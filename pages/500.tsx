@@ -4,7 +4,7 @@ import { ErrorPage } from 'components/ErrorPage'
 const Error500: React.FC = () => {
   return (
     <>
-      <Head />
+      <Head title='Thream | Server Error' />
 
       <ErrorPage message='Internal Server Error.' statusCode={500} />
     </>

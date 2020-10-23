@@ -4,7 +4,7 @@ import { ErrorPage } from 'components/ErrorPage'
 const Error404: React.FC = () => {
   return (
     <>
-      <Head />
+      <Head title='Thream | Not Found' />
 
       <ErrorPage message='This page could not be found.' statusCode={404} />
     </>
