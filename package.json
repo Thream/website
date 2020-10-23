@@ -43,7 +43,8 @@
     "build": "next build",
     "export": "next export",
     "lint": "ts-standard | snazzy",
-    "format": "ts-standard --fix | snazzy"
+    "format": "ts-standard --fix | snazzy",
+    "release": "release-it"
   },
   "dependencies": {
     "express": "4.17.1",
