@@ -44,7 +44,8 @@
     "export": "next export",
     "lint": "ts-standard | snazzy",
     "format": "ts-standard --fix | snazzy",
-    "release": "release-it"
+    "release": "release-it",
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "dependencies": {
     "axios": "^0.21.0",
