@@ -15,9 +15,7 @@
 
 ## 📜 About
 
-Thream's website to stay close with your friends and communities.
-
-The project rely on [Thream/api](https://github.com/Thream/api/).
+Thream's website to stay close with your friends and communities. It relies on [Thream/api](https://github.com/Thream/api/).
 
 **Thream** is greatly inspired by [Discord](https://discord.com/).
 
