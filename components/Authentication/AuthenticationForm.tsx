@@ -12,7 +12,7 @@ export const AuthenticationForm: React.FC<AuthenticationFormProps> = props => {
   const { isSignup = false, ...rest } = props
 
   const authenticationFormPosition = useMemo(
-    () => (isSignup ? 'left: 46%; top: 8%;' : 'left: 29%; top:10%;'),
+    () => (isSignup ? 'left: 46%; top: 3%;' : 'left: 29%; top:8%;'),
     [isSignup]
   )
 
