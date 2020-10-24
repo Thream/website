@@ -1,21 +1,21 @@
 import { AuthenticationLayout } from 'components/Authentication/AuthenticationLayout'
 import Head from 'components/Head'
 
-const Signup: React.FC = () => {
+const Signin: React.FC = () => {
   return (
     <>
       <Head />
       <AuthenticationLayout
         layoutContent={{
-          title: 'Already have an <br /> account ?',
+          title: 'New here ?',
           description:
-            'Then why are you here ? Come <br /> on you gotta do better next time.' ,
-          buttonText: 'Login'
+            ' Then create your boring and <br /> stupid account, now!',
+          buttonText: 'Create'
         }}
-        isReversed
+
       />
     </>
   )
 }
 
-export default Signup
+export default Signin

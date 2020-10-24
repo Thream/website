@@ -68,7 +68,7 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
           </Link>
 
           <div className='AuthenticationLayout__content'>
-            <h2 className='AuthenticationLayout__title'>{title}</h2>
+            <h2 className='AuthenticationLayout__title'>{htmlParser(title)}</h2>
             <p className='AuthenticationLayout__description'>
               {htmlParser(description)}
             </p>
