@@ -9,7 +9,7 @@ const Signup: React.FC = () => {
         layoutContent={{
           title: 'Already have an <br /> account ?',
           description:
-            'Then why are you here ? Come <br /> on you gotta do better next time.' ,
+            'Then why are you here ? Come <br /> on you gotta do better next time.',
           buttonText: 'Login'
         }}
         isReversed
