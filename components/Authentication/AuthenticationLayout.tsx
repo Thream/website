@@ -22,6 +22,9 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
   const svgType = useMemo(() => (isReversed != null ? '-reverse' : ''), [
     isReversed
   ])
+  const formPosition = useMemo(() => (isReversed != null ? 'center' : 'end'), [
+    isReversed
+  ])
   const svgPositionLeftToRight = useMemo(
     () => (isReversed != null ? 'right' : 'left'),
     [isReversed]
@@ -122,7 +125,7 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
           .layoutContainer {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: ${formPosition};
           }
           .Authentication__form-container {
             order: 2;
@@ -141,26 +144,22 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
             position: relative;
             height: 100%;
           }
-
           .Authentication__aside-background img {
             height: 100vh;
             position: fixed;
             ${svgPositionRightToLeft} : -7px;
             overflow: hidden;
           }
-
           .AuthenticationLayout__content {
             position: absolute;
             top: 0;
             ${svgPositionRightToLeft} : 20px;
             text-align: ${svgPositionRightToLeft};
           }
-
           .AuthenticationLayout__title {
             color: #fff;
             font-size: 3.2rem;
           }
-
           .AuthenticationLayout__description {
             color: var(--color-grey-light-2);
             font-weight: 200;
@@ -168,7 +167,6 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
             font-size: 2rem;
             line-height: 1.3;
           }
-
           .thream {
             width: 100%;
             height: 8rem;
@@ -180,10 +178,7 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
             ${svgPositionRightToLeft} : -4px;
           }
 
-          @media only screen and (max-width: 992px) {
-            .AuthenticationLayout {
-              height: 100%;
-            }
+          @media only screen and (max-width: 1150px) {
             .layoutContainer {
               position: relative;
               z-index: 1;
@@ -196,11 +191,7 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
               display: flex;
               align-items: center;
               justify-content: space-between;
-              background: linear-gradient(
-                165.58deg,
-                var(--color-grey-light-5) 8.4%,
-                var(--color-secondary-dark) 99.52%
-              );
+              position: static;
               width: 100%;
               bottom: 0;
               height: auto;
@@ -208,21 +199,28 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
             .Authentication__aside-background {
               display: none;
             }
-
             .Authentication__form-container {
               align-items: start;
               padding-top: 7rem;
               padding-left: 0;
-              width: 33rem;
+              min-width: 33rem;
               order: 1;
             }
 
             .AuthenticationLayout__content {
+              background: linear-gradient(
+                165.58deg,
+                var(--color-grey-light-5) 8.4%,
+                var(--color-secondary-dark) 99.52%
+              );
               position: static;
               width: 100%;
               padding: 2.5rem 1rem;
+              text-align: left;
               top: unset;
-              left: unset;
+              bottom: 0;
+              left: 0;
+              right: 0;
               display: flex;
               justify-content: center;
               align-items: center;
@@ -231,11 +229,12 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
             .AuthenticationLayout__description {
               margin: 1rem 0;
               font-size: 1.2rem;
+              padding: 0 2rem;
             }
-
             .AuthenticationLayout__title {
               font-size: 2rem;
               font-weight: 500;
+              padding: 0 2rem;
               margin: 0;
             }
             .half-circle {
@@ -247,11 +246,13 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
           }
 
           @media (min-height: 1366px) and (min-width: 1024px) {
-            .Authentication__form-container {
-              padding-left: 3rem;
-            }
             .Authentication__aside-background img {
               width: 52%;
+            }
+          }
+          @media only screen and (max-width: 600px) {
+            .Authentication__form-container {
+              width: 33rem;
             }
           }
         `}
