@@ -37,8 +37,8 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             --color-grey-dark-2: #999;
             --color-grey-dark-3: #575757;
 
-            --color-success: #90ee90;
-            --color-error: #ff7f7f;
+            --color-success: #90e059;
+            --color-error: #ee1b1b;
           }
 
           *,
