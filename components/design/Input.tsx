@@ -74,7 +74,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           .group {
             position: relative;
             margin: ${groupMargin}rem 0;
-            width: 30rem;
           }
           .input {
             background: none;
@@ -82,7 +81,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             padding: 1rem 1rem 1rem 0.9rem;
             line-height: 1;
             display: block;
-            width: 30rem;
+            width: 100%;
             border: none;
             border-radius: 4px;
             outline: none;

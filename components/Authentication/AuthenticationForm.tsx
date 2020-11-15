@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import Form from 'react-component-form'
 
 import { Button } from 'components/design/Button'
@@ -11,11 +10,6 @@ interface AuthenticationFormProps extends React.HTMLProps<HTMLDivElement> {
 export const AuthenticationForm: React.FC<AuthenticationFormProps> = props => {
   const { isSignup = false, ...rest } = props
 
-  const authenticationFormPosition = useMemo(
-    () => (isSignup ? 'left: 46%; top: 3%;' : 'left: 29%; top:8%;'),
-    [isSignup]
-  )
-
   return (
     <>
       <div className='AuthenticationForm' {...rest}>
@@ -24,13 +18,21 @@ export const AuthenticationForm: React.FC<AuthenticationFormProps> = props => {
         </h1>
 
         <div className='btn-group'>
-          <Button socialMediaType='github'>Github</Button>
-          <Button socialMediaType='twitter'>Twitter</Button>
+          <Button style={{ width: '46%' }} socialMediaType='github'>
+            Github
+          </Button>
+          <Button style={{ width: '46%' }} socialMediaType='twitter'>
+            Twitter
+          </Button>
         </div>
 
         <div className='btn-group'>
-          <Button socialMediaType='discord'>Discord</Button>
-          <Button socialMediaType='google'>Google</Button>
+          <Button style={{ width: '46%' }} socialMediaType='discord'>
+            Discord
+          </Button>
+          <Button style={{ width: '46%' }} socialMediaType='google'>
+            Google
+          </Button>
         </div>
 
         <span className='AuthenticationForm__seperator'>OR</span>
@@ -58,26 +60,35 @@ export const AuthenticationForm: React.FC<AuthenticationFormProps> = props => {
           <Button type='large'> {isSignup ? 'Create' : 'Get in'}</Button>
         </Form>
 
-        {isSignup && (
-          <a className='AuthenticationForm__link' href='#'>
-            Forgot password ?
-          </a>
+        {!isSignup && (
+          <>
+            <a
+              style={{ display: 'block', marginBottom: '0' }}
+              className='AuthenticationForm__link'
+              href='#'
+            >
+              Forgot password ?
+            </a>
+            <span style={{ color: '#DEDEDE' }}>Need help ? </span>
+
+            <a className='AuthenticationForm__link' href='#'>
+              click here
+            </a>
+          </>
         )}
       </div>
 
       <style jsx>
         {`
           .AuthenticationForm {
-            position: absolute;
-            ${authenticationFormPosition}
-            padding: 1rem 4.5rem 6rem 4.5rem;
+            padding: 1rem 4.5rem 3rem 4.5rem;
             border-radius: 2rem;
             background: linear-gradient(
               165.58deg,
               var(--color-grey-light-5) 8.4%,
               var(--color-secondary-dark) 99.52%
             );
-            box-shadow: 0px 0.4rem 3rem rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 0.4rem 3rem rgba($color: #000000, $alpha: 1);
           }
 
           .btn-group {
@@ -111,7 +122,8 @@ export const AuthenticationForm: React.FC<AuthenticationFormProps> = props => {
             background: var(--color-grey-light-4);
             margin: 5px 11px;
           }
-          .AuthenticationForm__link {
+          .AuthenticationForm__link,
+          span {
             color: var(--color-grey-light-4);
             font-size: 1.2rem;
             font-weight: 200;
@@ -121,6 +133,19 @@ export const AuthenticationForm: React.FC<AuthenticationFormProps> = props => {
           }
           .AuthenticationForm__link:hover {
             text-decoration: underline;
+          }
+
+          @media only screen and (max-width: 700px) {
+            .AuthenticationForm {
+              padding: 1rem 3.5rem 2rem 3.5rem;
+            }
+            .AuthenticationForm__title {
+              padding: 1rem;
+              margin: 0.2rem 0;
+            }
+            .AuthenticationForm__seperator {
+              margin: 1.4rem 0;
+            }
           }
         `}
       </style>
