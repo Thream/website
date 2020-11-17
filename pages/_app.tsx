@@ -23,6 +23,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             --color-primary-1: #060c24;
             --color-primary-2: #1e2337;
             --color-primary-3: #262b3f;
+            --color-primary-4: #333951;
 
             --color-secondary: #429d89;
 

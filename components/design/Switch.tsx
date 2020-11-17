@@ -34,9 +34,9 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
               align-items: center;
               justify-content: space-between;
               cursor: pointer;
-              width: 100px;
-              height: 50px;
-              background: grey;
+              width: 85px;
+              height: 35px;
+              background: var(--color-primary-4);
               border-radius: 100px;
               position: relative;
               transition: background-color 0.2s;
@@ -45,13 +45,13 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             .switch__label .switch__button {
               content: '';
               position: absolute;
-              top: 2px;
+              top: -7px;
               left: 2px;
-              width: 45px;
-              height: 45px;
-              border-radius: 45px;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
               transition: 0.2s;
-              background: #fff;
+              background: var(--color-secondary);
               box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
             }
 
