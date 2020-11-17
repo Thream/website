@@ -36,8 +36,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         if (socialMediaType !== 'google') {
           classList.push('color-white')
         }
-      } else {
-        classList.push('btn--black')
       }
 
       return classList.join(' ')
@@ -70,63 +68,35 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               border: none;
               border-radius: 4px;
               transition: 0.2s;
-              color: var(--color-secondary-light);
+              color: #fff;
+              background: var(--color-secondary);
             }
             .btn:hover {
               transform: translateY(-3px);
               box-shadow: 0 1rem 2rem rgba(0, 0, 0 0.2);
+              background: var(--color-primary-1);
+              border: 1px solid #fff;
+              transition: all 0.3s ease-in;
             }
 
             .btn:active,
             .btn:focus {
-              outline: none;
+              outline: 2px;
               transform: translateY(-1px);
               box-shadow: 0 0.5rem 1rem rgba(0, 0, 0 0.2);
             }
 
-            .btn::before {
-              position: absolute;
-              content: '';
-              z-index: -1;
-              bottom: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-color: var(--color-primary);
-              transition: 0.2s ease-in-out;
-            }
-            .btn:hover::before {
-              height: 0%;
-            }
-            .btn--black {
-              background-color: var(--color-secondary-dark);
-              border: 1px solid var(--color-primary);
-            }
-
-            .btn--black:hover {
-              color: #fff;
-              border: 1px solid #fff;
-            }
-
             .btn--disabled {
               cursor: not-allowed;
-              border: 1px solid var(--color-secondary-light);
             }
-
-            .btn--disabled:hover::before {
-              height: 100%;
-            }
-
-            .btn--disabled::before,
             .btn--disabled:hover {
-              color: var(--color-secondary-light);
-              background-color: var(--color-primary);
-              border: 1px solid var(--color-secondary-light);
+              background: var(--color-secondary);
+              border: none;
             }
+
             .btn--large {
               width: 100%;
             }
-
             .btn--social:before {
               display: none;
             }
