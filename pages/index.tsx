@@ -9,18 +9,21 @@ const Home: React.FC = () => {
 
       <p>Hello Thream! 👋</p>
 
-      <IconButton iconName='add' hasBackground />
       <br />
       <br />
-      <IconButton iconName='settings' hasBackground />
+
+      <IconButton name='add' hasBackground />
       <br />
       <br />
-      <IconButton iconName='emoji' hasBackground />
+      <IconButton name='settings' hasBackground />
+      <br />
+      <br />
+      <IconButton name='emoji' hasBackground />
       <br />
       <br />
 
       <Tooltip content='edit'>
-        <IconButton iconName='edit' />
+        <IconButton name='edit' />
       </Tooltip>
 
       <br />
@@ -28,7 +31,7 @@ const Home: React.FC = () => {
       <br />
       <br />
       <Tooltip content='delete'>
-        <IconButton iconName='delete' />
+        <IconButton name='delete' />
       </Tooltip>
 
       <br />
@@ -36,7 +39,7 @@ const Home: React.FC = () => {
       <br />
       <br />
       <Tooltip content='send'>
-        <IconButton iconName='send' />
+        <IconButton name='send' />
       </Tooltip>
 
       <br />

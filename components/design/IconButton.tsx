@@ -2,14 +2,14 @@ import { forwardRef, useMemo } from 'react'
 import { ReactHTMLProps } from 'typings/utils'
 
 type IconButton = ReactHTMLProps<HTMLButtonElement> & {
-  iconName: string
+  name: string
   hasBackground?: boolean
   hasOutline?: boolean
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {
-    const { iconName, hasBackground, ...rest } = props
+    const { name, hasBackground, ...rest } = props
     const backgroundStyle = useMemo(
       () =>
         hasBackground != null
@@ -20,7 +20,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
     return (
       <>
         <button ref={ref} className='iconButton' {...rest}>
-          <img src={`/images/svg/generic/${iconName}.svg`} alt={iconName} />
+          <img src={`/images/svg/generic/${name}.svg`} alt={name} />
         </button>
 
         <style jsx>

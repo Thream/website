@@ -4,11 +4,11 @@ import { ReactHTMLProps } from 'typings/utils'
 
 type SwitchProps = ReactHTMLProps<HTMLInputElement> & {
   isOn: boolean
-  handleToogle: () => {}
+  handleToggle: () => {}
 }
 
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
-  const { isOn, handleToogle, ...rest } = props
+  const { isOn, handleToggle, ...rest } = props
 
   return (
     <>
@@ -17,7 +17,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
           className='switch__checkbox'
           id='switch__checkbox'
           type='checkbox'
-          onChange={handleToogle}
+          onChange={handleToggle}
           checked={isOn}
         />
         <label className='switch__label' htmlFor='switch__checkbox'>
