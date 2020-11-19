@@ -8,18 +8,20 @@ type Tooltip = ReactHTMLProps<HTMLDivElement> & {
   delay?: number
 }
 
-export const Tooltip = forwardRef<HTMLButtonElement, Tooltip>((props, ref) => {
+export const Tooltip = forwardRef<HTMLDivElement, Tooltip>((props, ref) => {
   const { direction = 'bottom', delay = 5, children, content, ...rest } = props
 
-  let timeout: ReturnType<typeof setTimeout>
+  let timeout: NodeJS.Timeout
   const [active, setActive] = useState(false)
 
-  const showTip = (): void => {
-    timeout = setTimeout(() => {
-      setActive(true)
-    }, delay)
-  }
-  const hideTip = (): void => {
+  const handleMouse = (): void => {
+    if (!active) {
+      timeout = setTimeout(() => {
+        setActive(true)
+      }, delay)
+      return
+    }
+
     clearInterval(timeout)
     setActive(false)
   }
@@ -27,10 +29,11 @@ export const Tooltip = forwardRef<HTMLButtonElement, Tooltip>((props, ref) => {
   return (
     <>
       <div
+        ref={ref}
         {...rest}
         className='Tooltip-Wrapper'
-        onMouseEnter={showTip}
-        onMouseLeave={hideTip}
+        onMouseEnter={handleMouse}
+        onMouseLeave={handleMouse}
       >
         {children}
         {active && <div className={`Tooltip-Tip ${direction}`}>{content}</div>}
