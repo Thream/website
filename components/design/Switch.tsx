@@ -26,7 +26,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
             style={
               checked
                 ? { background: 'var(--color-secondary)' }
-                : { background: 'var(--color-grey-light-3)' }
+                : { background: 'var(--color-grey-light-4)' }
             }
           />
         </label>
@@ -65,7 +65,9 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
             background: var(--color-secondary);
             box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
           }
-
+          .switch__label .switch__button:hover {
+            opacity: 0.8;
+          }
           .switch__checkbox:checked + .switch__label .switch__button {
             left: calc(100% - 2px);
             transform: translateX(-100%);
