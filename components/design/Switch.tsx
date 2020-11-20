@@ -3,12 +3,12 @@ import { forwardRef } from 'react'
 import { ReactHTMLProps } from 'typings/utils'
 
 type SwitchProps = ReactHTMLProps<HTMLInputElement> & {
-  isOn: boolean
-  handleToggle: () => {}
+  checked: boolean
+  handleToggle?: () => {}
 }
 
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
-  const { isOn, handleToggle, ...rest } = props
+  const { checked, handleToggle, ...rest } = props
 
   return (
     <>
@@ -17,11 +17,18 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
           className='switch__checkbox'
           id='switch__checkbox'
           type='checkbox'
+          checked={checked}
           onChange={handleToggle}
-          checked={isOn}
         />
         <label className='switch__label' htmlFor='switch__checkbox'>
-          <span className='switch__button' />
+          <span
+            className='switch__button'
+            style={
+              checked
+                ? { background: 'var(--color-secondary)' }
+                : { background: 'var(--color-grey-light-3)' }
+            }
+          />
         </label>
       </div>
 
@@ -38,8 +45,8 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            width: 85px;
-            height: 35px;
+            width: 38px;
+            height: 14px;
             background: var(--color-primary-4);
             border-radius: 100px;
             position: relative;
@@ -49,10 +56,10 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
           .switch__label .switch__button {
             content: '';
             position: absolute;
-            top: -7px;
+            top: -3px;
             left: 2px;
-            width: 50px;
-            height: 50px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             transition: 0.2s;
             background: var(--color-secondary);
@@ -65,7 +72,7 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
           }
 
           .switch__label:active .switch__button {
-            width: 60px;
+            width: 21px;
           }
         `}
       </style>
