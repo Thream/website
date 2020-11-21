@@ -19,13 +19,13 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             --default-font-size: 1.6rem;
 
             --color-text: rgb(222, 222, 222);
-            --color-primary: #ffd800;
-            --color-primary-light: #ffec81;
-            --color-primary-dark: #dcbb00;
-            --color-tertiary: #ff5a00;
 
-            --color-secondary-dark: #181818;
-            --color-secondary-light: #1e1e1e;
+            --color-primary-1: #060c24;
+            --color-primary-2: #1e2337;
+            --color-primary-3: #262b3f;
+            --color-primary-4: #333951;
+
+            --color-secondary: #429d89;
 
             --color-grey-light-1: #f1f1f1;
             --color-grey-light-2: #dcdcdc;
@@ -55,7 +55,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
           body {
             display: flex;
             flex-flow: column wrap;
-            background-color: var(--color-secondary-dark);
+            background-color: var(--color-primary-1);
             color: var(--color-text);
             font-size: var(--default-font-size);
             font-family: var(--default-font-family);
