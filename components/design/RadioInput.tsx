@@ -1,30 +1,19 @@
-import { forwardRef } from 'react'
+import { forwardRef, InputHTMLAttributes, MouseEvent } from 'react'
 
-import { ReactHTMLProps } from 'typings/utils'
-
-type RadioInput = ReactHTMLProps<HTMLInputElement> & {
-  id: string
-  checked?: boolean
-  value: string
+type RadioInput = InputHTMLAttributes<HTMLInputElement> & {
   label: string
-  handleChange?: any
+  handleClick?: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void
 }
 
-export const RadioInput = forwardRef<HTMLDivElement, RadioInput>(
+export const RadioInput = forwardRef<HTMLInputElement, RadioInput>(
   (props, ref) => {
-    const { checked, id, value, label, handleChange, ...rest } = props
+    const { id = '', checked = false, handleClick, label, ...rest } = props
 
     return (
       <>
-        <div ref={ref} {...rest} className='RadioButton'>
-          <input
-            id={id}
-            onChange={handleChange}
-            value={value}
-            type='radio'
-            checked={checked}
-          />
-          <label htmlFor={id}>{props.label}</label>
+        <div className='RadioButton' onClick={handleClick}>
+          <input ref={ref} {...rest} defaultChecked={checked} type='radio' />
+          <label htmlFor={id}>{label}</label>
         </div>
 
         <style jsx>
@@ -52,7 +41,7 @@ export const RadioInput = forwardRef<HTMLDivElement, RadioInput>(
             }
 
             .RadioButton input[type='radio']:checked + label:before {
-              border-color: #429d89;
+              border-color: var(--color-secondary);
               animation: ripple 0.2s linear forwards;
             }
 
@@ -84,7 +73,7 @@ export const RadioInput = forwardRef<HTMLDivElement, RadioInput>(
               top: 0;
               width: 20px;
               height: 20px;
-              border: 2px solid #429d89;
+              border: 2px solid var(--color-secondary);
             }
 
             .RadioButton label:after {

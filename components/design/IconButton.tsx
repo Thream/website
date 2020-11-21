@@ -1,22 +1,15 @@
-import { forwardRef, useMemo } from 'react'
+import { forwardRef } from 'react'
 import { ReactHTMLProps } from 'typings/utils'
 
 type IconButton = ReactHTMLProps<HTMLButtonElement> & {
   name: string
   hasBackground?: boolean
-  hasOutline?: boolean
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
   (props, ref) => {
-    const { name, hasBackground, ...rest } = props
-    const backgroundStyle = useMemo(
-      () =>
-        hasBackground != null
-          ? 'background :var(--color-secondary); width: 50px; height: 50px; border-radius: 50%;'
-          : 'background : none;',
-      [hasBackground]
-    )
+    const { name, hasBackground = false, ...rest } = props
+
     return (
       <>
         <button ref={ref} className='iconButton' {...rest}>
@@ -26,7 +19,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
         <style jsx>
           {`
             .iconButton {
-              ${backgroundStyle}
+              background: ${hasBackground ? 'var(--color-secondary)' : 'none'};
+              border-radius: ${hasBackground ? '50%' : '0'};
+              width: ${hasBackground ? '50px' : '100%'};
+              height: ${hasBackground ? '50px' : '100%'};
               border: none;
               outline: none;
               display: flex;
