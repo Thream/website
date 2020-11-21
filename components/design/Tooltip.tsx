@@ -21,7 +21,6 @@ export const Tooltip = forwardRef<HTMLDivElement, Tooltip>((props, ref) => {
       }, delay)
       return
     }
-
     clearInterval(timeout)
     setActive(false)
   }
