@@ -3,12 +3,12 @@ import { forwardRef } from 'react'
 import { ReactHTMLProps } from 'typings/utils'
 
 type SwitchProps = ReactHTMLProps<HTMLInputElement> & {
-  checked: boolean
+  checked?: boolean
   handleToggle?: () => {}
 }
 
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>((props, ref) => {
-  const { checked, handleToggle, ...rest } = props
+  const { checked = false, handleToggle, ...rest } = props
 
   return (
     <>
