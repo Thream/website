@@ -25,14 +25,6 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
   const formPosition = useMemo(() => (isReversed != null ? 'center' : 'end'), [
     isReversed
   ])
-  const svgPositionLeftToRight = useMemo(
-    () => (isReversed != null ? 'right' : 'left'),
-    [isReversed]
-  )
-  const svgPositionRightToLeft = useMemo(
-    () => (isReversed != null ? 'left' : 'right'),
-    [isReversed]
-  )
 
   return (
     <>
@@ -108,17 +100,17 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
           }
 
           .blue-dot {
-            ${svgPositionLeftToRight}: 1rem;
+            left: 1rem;
             top: 1.8rem;
           }
 
           .rectangles {
-            ${svgPositionLeftToRight}: 0;
+            left: 0;
             top: 24.5rem;
           }
 
           .half-circle {
-            ${svgPositionLeftToRight}: 0;
+            left: 0;
             bottom: 0;
           }
 
@@ -147,14 +139,14 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
           .Authentication__aside-background img {
             height: 100vh;
             position: fixed;
-            ${svgPositionRightToLeft} : -7px;
+            left: -7px;
             overflow: hidden;
           }
           .AuthenticationLayout__content {
             position: absolute;
             top: 0;
-            ${svgPositionRightToLeft} : 20px;
-            text-align: ${svgPositionRightToLeft};
+            right: 20px;
+            text-align: right;
           }
           .AuthenticationLayout__title {
             color: #fff;
@@ -175,7 +167,7 @@ export const AuthenticationLayout: React.FC<AuthenticationLayoutProps> = props =
             top: 15px;
             width: 53px;
             position: absolute;
-            ${svgPositionRightToLeft} : -4px;
+            right: -4px;
           }
 
           @media only screen and (max-width: 1150px) {

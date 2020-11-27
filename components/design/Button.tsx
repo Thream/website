@@ -73,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             }
             .btn:hover {
               transform: translateY(-3px);
-              box-shadow: 0 1rem 2rem rgba(0, 0, 0 0.2);
+              box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
               background: var(--color-primary-1);
               border: 1px solid #fff;
               transition: all 0.3s ease-in;
@@ -83,7 +83,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             .btn:focus {
               outline: 2px;
               transform: translateY(-1px);
-              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0 0.2);
+              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
             }
 
             .btn--disabled {
