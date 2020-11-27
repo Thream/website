@@ -11,10 +11,13 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
 .vscode
+.theia
+.idea
 
 # PWA
 **/public/workbox-*.js
