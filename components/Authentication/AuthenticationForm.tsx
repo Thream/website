@@ -21,9 +21,6 @@ export const AuthenticationForm: React.FC<AuthenticationFormProps> = props => {
           <Button style={{ width: '46%' }} socialMediaType='github'>
             Github
           </Button>
-          <Button style={{ width: '46%' }} socialMediaType='twitter'>
-            Twitter
-          </Button>
         </div>
 
         <div className='btn-group'>

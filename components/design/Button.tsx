@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from 'react'
 
 import { ReactHTMLProps } from 'typings/utils'
 
-type OAuthProviders = 'twitter' | 'discord' | 'github' | 'google'
+type OAuthProviders = 'discord' | 'github' | 'google'
 
 type SocialMediaColors = {
   [key in OAuthProviders]: string
@@ -15,7 +15,6 @@ type ButtonProps = ReactHTMLProps<HTMLButtonElement> & {
 
 const socialMediaColors: SocialMediaColors = {
   discord: '#7289DA',
-  twitter: '#3EA1F2',
   github: '#24292E',
   google: '#FCFCFC'
 }
