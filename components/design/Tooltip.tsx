@@ -2,13 +2,13 @@ import { forwardRef, useState } from 'react'
 
 import { ReactHTMLProps } from 'typings/utils'
 
-type Tooltip = ReactHTMLProps<HTMLDivElement> & {
+type TooltipProps = ReactHTMLProps<HTMLDivElement> & {
   content: string
   direction?: 'top' | 'bottom' | 'right' | 'left'
   delay?: number
 }
 
-export const Tooltip = forwardRef<HTMLDivElement, Tooltip>((props, ref) => {
+export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
   const { direction = 'bottom', delay = 5, children, content, ...rest } = props
 
   let timeout: NodeJS.Timeout

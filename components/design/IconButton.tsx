@@ -1,12 +1,12 @@
 import { forwardRef } from 'react'
 import { ReactHTMLProps } from 'typings/utils'
 
-type IconButton = ReactHTMLProps<HTMLButtonElement> & {
+type IconButtonProps = ReactHTMLProps<HTMLButtonElement> & {
   name: string
   hasBackground?: boolean
 }
 
-export const IconButton = forwardRef<HTMLButtonElement, IconButton>(
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (props, ref) => {
     const { name, hasBackground = false, ...rest } = props
 

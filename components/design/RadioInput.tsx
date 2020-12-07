@@ -1,11 +1,11 @@
 import { forwardRef, InputHTMLAttributes, MouseEvent } from 'react'
 
-type RadioInput = InputHTMLAttributes<HTMLInputElement> & {
+type RadioInputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string
   handleClick?: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void
 }
 
-export const RadioInput = forwardRef<HTMLInputElement, RadioInput>(
+export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
   (props, ref) => {
     const { id = '', checked = false, handleClick, label, ...rest } = props
 
