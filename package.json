@@ -53,7 +53,7 @@
     "express": "4.17.1",
     "express-http-to-https": "1.1.4",
     "fontsource-montserrat": "3.0.9",
-    "fontsource-roboto": "3.0.3",
+    "fontsource-roboto": "3.1.5",
     "html-react-parser": "0.14.2",
     "next": "10.0.3",
     "next-pwa": "5.0.0",
