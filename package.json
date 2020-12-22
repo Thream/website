@@ -48,7 +48,7 @@
     "postinstall": "node ./scripts/postinstall.js"
   },
   "dependencies": {
-    "axios": "0.21.0",
+    "axios": "0.21.1",
     "classnames": "2.2.6",
     "express": "4.17.1",
     "express-http-to-https": "1.1.4",
