@@ -1,7 +1,7 @@
-import 'fontsource-montserrat/400.css'
+import '@fontsource/montserrat/400.css'
 
-import 'fontsource-roboto/400.css'
-import 'fontsource-roboto/500.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
 
 import 'normalize.css/normalize.css'
 
