@@ -52,7 +52,7 @@
     "classnames": "2.2.6",
     "express": "4.17.1",
     "express-http-to-https": "1.1.4",
-    "fontsource-montserrat": "3.1.5",
+    "fontsource-montserrat": "4.0.0",
     "fontsource-roboto": "3.1.5",
     "html-react-parser": "1.0.0",
     "next": "10.0.4",
