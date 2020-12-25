@@ -1,0 +1,22 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "ready on",
+      "startServerReadyTimeout": 20000,
+      "url": ["http://localhost:3000/"],
+      "numberOfRuns": 3
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "legacy-javascript": "off",
+        "canonical": "off"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    },
+    "server": {}
+  }
+}

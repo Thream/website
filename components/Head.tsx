@@ -23,7 +23,6 @@ const Head: React.FC<HeadProps> = props => {
       {/* Meta Tag */}
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <meta name='description' content={description} />
-      <link rel='canonical' href={url} />
       <meta name='Language' content='en' />
       <meta name='theme-color' content='#ffd800' />
 
