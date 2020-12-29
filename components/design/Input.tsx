@@ -4,11 +4,10 @@ import classNames from 'classnames'
 interface InputProps extends React.ComponentPropsWithRef<'input'> {
   label: string
   state?: 'success' | 'error' | 'togglePassword'
-  groupMargin?: number
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { label, state, type = 'text', groupMargin = 4, ...rest } = props
+  const { label, state, type = 'text', ...rest } = props
   const [inputType, setInputType] = useState(type)
   const [hasInputValue, setHasInputValue] = useState(false)
 
@@ -73,7 +72,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         {`
           .group {
             position: relative;
-            margin: ${groupMargin}rem 0;
+            margin: 3rem 0;
           }
           .input {
             background: none;
@@ -81,7 +80,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             padding: 1rem 1rem 1rem 0.9rem;
             line-height: 1;
             display: block;
-            width: 100%;
             border: none;
             border-radius: 4px;
             outline: none;

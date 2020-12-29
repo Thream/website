@@ -14,13 +14,12 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
         {`
           :root {
             --default-font-size: 1.6rem;
-            --color-background-primary: #060c24;
-            --color-background-secondary: #262b3f;
-            --color-background-tertiary: #1e2337;
+            --color-background-primary: #212121;
+            --color-background-secondary: #292D3E;
             --color-primary: #27b05e;
             --color-secondary: #fff;
             --color-tertiary: #7c818f;
-            --color-success: #90e059;
+            --color-success: #27b05e;
             --color-error: #ee1b1b;
           }
           *,
