@@ -1,16 +1,14 @@
 import { forwardRef, useMemo } from 'react'
 
-import { ReactHTMLProps } from 'typings/utils'
-
 type OAuthProviders = 'discord' | 'github' | 'google'
 
 type SocialMediaColors = {
   [key in OAuthProviders]: string
 }
 
-type ButtonProps = ReactHTMLProps<HTMLButtonElement> & {
-  type?: 'disabled' | 'large'
-  socialMediaType?: OAuthProviders
+interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
+  size?: 'large'
+  socialMedia?: OAuthProviders
 }
 
 const socialMediaColors: SocialMediaColors = {
@@ -21,32 +19,29 @@ const socialMediaColors: SocialMediaColors = {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { children, socialMediaType, type, ...rest } = props
+    const { children, socialMedia, size, ...rest } = props
 
     const buttonClassList = useMemo(() => {
       const classList = ['btn']
-
-      if (type != null) {
-        classList.push(`btn--${type}`)
+      if (size != null) {
+        classList.push(`btn--${size}`)
       }
-
-      if (socialMediaType != null) {
+      if (socialMedia != null) {
         classList.push('btn--social')
-        if (socialMediaType !== 'google') {
+        if (socialMedia !== 'google') {
           classList.push('color-white')
         }
       }
-
       return classList.join(' ')
-    }, [socialMediaType, type])
+    }, [socialMedia, size])
 
     return (
       <>
         <button ref={ref} {...rest} className={buttonClassList}>
-          {socialMediaType != null && (
+          {socialMedia != null && (
             <img
-              src={`/images/svg/social-media/${socialMediaType}.svg`}
-              alt={socialMediaType}
+              src={`/images/svg/social-media/${socialMedia}.svg`}
+              alt={socialMedia}
             />
           )}
           <span>{children}</span>
@@ -68,31 +63,28 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               border-radius: 4px;
               transition: 0.2s;
               color: #fff;
-              background: var(--color-secondary);
+              background: var(--color-primary);
             }
             .btn:hover {
               transform: translateY(-3px);
               box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-              background: var(--color-primary-1);
+              background: var(--color-background-primary);
               border: 1px solid #fff;
               transition: all 0.3s ease-in;
             }
-
             .btn:active,
             .btn:focus {
               outline: 2px;
               transform: translateY(-1px);
               box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
             }
-
-            .btn--disabled {
+            .btn[disabled] {
               cursor: not-allowed;
             }
-            .btn--disabled:hover {
-              background: var(--color-secondary);
+            .btn[disabled]:hover {
+              background: var(--color-primary);
               border: none;
             }
-
             .btn--large {
               width: 100%;
             }
@@ -104,7 +96,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               display: inline-block;
               font-weight: 500;
             }
-
             .btn--social img {
               width: 2rem;
               margin-right: 0.7rem;
@@ -115,13 +106,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               align-items: center;
               width: 144px;
             }
-
             .color-white {
               color: #fff;
             }
-
             .btn--social {
-              background: ${socialMediaColors[socialMediaType ?? 'google']};
+              background: ${socialMediaColors[socialMedia ?? 'google']};
             }
           `}
         </style>

@@ -36,8 +36,6 @@
     }
   },
   "scripts": {
-    "dev:custom": "cross-env NODE_ENV=development node server",
-    "start:custom": "cross-env NODE_ENV=production node server",
     "dev": "next",
     "start": "next start",
     "build": "next build",
@@ -49,12 +47,9 @@
     "postinstall": "node ./scripts/postinstall.js"
   },
   "dependencies": {
-    "@fontsource/montserrat": "4.0.1",
-    "@fontsource/roboto": "4.0.1",
+    "@fontsource/poppins": "4.0.1",
     "axios": "0.21.1",
     "classnames": "2.2.6",
-    "express": "4.17.1",
-    "express-http-to-https": "1.1.4",
     "html-react-parser": "1.1.1",
     "next": "10.0.4",
     "next-pwa": "5.0.1",
@@ -74,7 +69,6 @@
     "@types/node": "14.14.16",
     "@types/react": "17.0.0",
     "@types/styled-jsx": "2.2.8",
-    "cross-env": "7.0.3",
     "husky": "4.3.6",
     "release-it": "14.2.2",
     "sass": "1.30.0",

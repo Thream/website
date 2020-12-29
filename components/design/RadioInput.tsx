@@ -1,8 +1,8 @@
-import { forwardRef, InputHTMLAttributes, MouseEvent } from 'react'
+import { forwardRef } from 'react'
 
-type RadioInputProps = InputHTMLAttributes<HTMLInputElement> & {
+interface RadioInputProps extends React.ComponentPropsWithRef<'input'> {
   label: string
-  handleClick?: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void
+  handleClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
 export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
@@ -22,33 +22,26 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
               0% {
                 box-shadow: 0px 0px 0px 1px transparent;
               }
-
               50% {
                 box-shadow: 0px 0px 0px 15px rgba(255, 255, 255, 0.1);
               }
-
               100% {
                 box-shadow: 0px 0px 0px 15px transparent;
               }
             }
-
             .RadioButton {
               margin: 16px 0;
             }
-
             .RadioButton input[type='radio'] {
               display: none;
             }
-
             .RadioButton input[type='radio']:checked + label:before {
-              border-color: var(--color-secondary);
+              border-color: var(--color-primary);
               animation: ripple 0.2s linear forwards;
             }
-
             .RadioButton input[type='radio']:checked + label:after {
               transform: scale(1);
             }
-
             .RadioButton label {
               display: inline-block;
               height: 20px;
@@ -58,7 +51,6 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
               cursor: pointer;
               vertical-align: bottom;
             }
-
             .RadioButton label:before,
             .RadioButton label:after {
               position: absolute;
@@ -67,15 +59,13 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
               transition: all 0.3s ease;
               transition-property: transform, border-color;
             }
-
             .RadioButton label:before {
               left: 0;
               top: 0;
               width: 20px;
               height: 20px;
-              border: 2px solid var(--color-secondary);
+              border: 2px solid var(--color-primary);
             }
-
             .RadioButton label:after {
               top: 5px;
               left: 5px;

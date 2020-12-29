@@ -1,9 +1,7 @@
-import { forwardRef, InputHTMLAttributes, MouseEvent } from 'react'
+import { forwardRef } from 'react'
 
-type SwitchProps = InputHTMLAttributes<HTMLInputElement> & {
-  handleClick?: (
-    event: MouseEvent<HTMLLabelElement, globalThis.MouseEvent>
-  ) => void
+interface SwitchProps extends React.ComponentPropsWithRef<'input'> {
+  handleClick?: React.MouseEventHandler<HTMLLabelElement>
 }
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
@@ -30,7 +28,6 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               width: 0;
               visibility: hidden;
             }
-
             .switch__label {
               display: flex;
               align-items: center;
@@ -38,12 +35,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               cursor: pointer;
               width: 38px;
               height: 14px;
-              background: var(--color-primary-4);
+              background: var(--color-secondary);
               border-radius: 100px;
               position: relative;
               transition: background-color 0.2s;
             }
-
             .switch__label .switch__button {
               content: '';
               position: absolute;
@@ -62,15 +58,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               left: calc(100% - 2px);
               transform: translateX(-100%);
             }
-
             .switch__label:active .switch__button {
               width: 21px;
             }
-
             .switch__button {
               background: ${checked
-                ? 'var(--color-secondary)'
-                : 'var(--color-grey-light-4)'};
+                ? 'var(--color-primary)'
+                : 'var(--color-secondary)'};
             }
           `}
         </style>

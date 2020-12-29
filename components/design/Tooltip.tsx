@@ -1,8 +1,6 @@
 import { forwardRef, useState } from 'react'
 
-import { ReactHTMLProps } from 'typings/utils'
-
-type TooltipProps = ReactHTMLProps<HTMLDivElement> & {
+interface TooltipProps extends React.ComponentPropsWithRef<'div'> {
   content: string
   direction?: 'top' | 'bottom' | 'right' | 'left'
   delay?: number
@@ -64,7 +62,6 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>((props, ref) => 
             z-index: 100;
             white-space: nowrap;
           }
-
           .Tooltip-Tip::before {
             content: ' ';
             left: 50%;
@@ -76,7 +73,6 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>((props, ref) => 
             border-width: var(--tooltip-arrow-size);
             margin-left: calc(var(--tooltip-arrow-size) * -1);
           }
-
           .Tooltip-Tip.top {
             top: calc(var(--tooltip-margin) * -1);
           }
@@ -84,7 +80,6 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>((props, ref) => 
             top: 100%;
             border-top-color: var(--tooltip-background-color);
           }
-
           .Tooltip-Tip.right {
             left: calc(100% + var(--tooltip-margin));
             top: 50%;
@@ -103,7 +98,6 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>((props, ref) => 
             bottom: 100%;
             border-bottom-color: var(--tooltip-background-color);
           }
-
           .Tooltip-Tip.left {
             left: auto;
             right: calc(100% + var(--tooltip-margin));

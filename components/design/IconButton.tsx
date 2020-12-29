@@ -1,25 +1,26 @@
 import { forwardRef } from 'react'
-import { ReactHTMLProps } from 'typings/utils'
 
-type IconButtonProps = ReactHTMLProps<HTMLButtonElement> & {
-  name: string
+type IconSVG = 'add' | 'delete' | 'edit' | 'emoji' | 'send' | 'settings' | 'more'
+
+interface IconButtonProps extends React.ComponentPropsWithRef<'button'> {
+  icon: IconSVG
   hasBackground?: boolean
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (props, ref) => {
-    const { name, hasBackground = false, ...rest } = props
+    const { icon, hasBackground = false, ...rest } = props
 
     return (
       <>
-        <button ref={ref} className='iconButton' {...rest}>
-          <img src={`/images/svg/generic/${name}.svg`} alt={name} />
+        <button ref={ref} className='IconButton' {...rest}>
+          <img src={`/images/svg/icons/${icon}.svg`} alt={icon} />
         </button>
 
         <style jsx>
           {`
-            .iconButton {
-              background: ${hasBackground ? 'var(--color-secondary)' : 'none'};
+            .IconButton {
+              background: ${hasBackground ? 'var(--color-primary)' : 'none'};
               border-radius: ${hasBackground ? '50%' : '0'};
               width: ${hasBackground ? '50px' : '100%'};
               height: ${hasBackground ? '50px' : '100%'};
@@ -30,10 +31,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               justify-content: center;
               cursor: pointer;
             }
-            .iconButton:hover {
+            .IconButton:hover {
               opacity: 0.9;
             }
-            .iconButton img {
+            .IconButton > img {
               width: 20px;
               height: 20px;
               display: block;

@@ -1,7 +1,7 @@
 import { forwardRef, useState, useCallback, useMemo } from 'react'
 import classNames from 'classnames'
 
-interface InputProps extends React.HTMLProps<HTMLInputElement> {
+interface InputProps extends React.ComponentPropsWithRef<'input'> {
   label: string
   state?: 'success' | 'error' | 'togglePassword'
   groupMargin?: number
@@ -13,7 +13,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const [hasInputValue, setHasInputValue] = useState(false)
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
-    event => {
+    (event) => {
       if (event.target.value.length >= 1 && !hasInputValue) {
         setHasInputValue(true)
       } else if (event.target.value.length === 0 && hasInputValue) {
@@ -77,7 +77,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           }
           .input {
             background: none;
-            background-color: var(--color-grey-light-1);
+            background-color: var(--color-secondary);
             padding: 1rem 1rem 1rem 0.9rem;
             line-height: 1;
             display: block;
@@ -96,19 +96,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             right: 12px;
             display: none;
             padding-left: 5px;
-            background-color: var(--color-grey-light-1);
+            background-color: var(--color-secondary);
           }
-
           .input:focus ~ .input__label {
             top: -1.6rem;
             color: white;
             font-size: 1.3rem;
             left: 0px;
           }
-
           .input__label {
             font-size: 16px;
-            color: var(--color-grey-dark-3);
+            color: var(--color-tertiary);
             font-weight: normal;
             position: absolute;
             top: 50%;
@@ -118,7 +116,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             text-transform: capitalize;
             transition: 300ms ease all;
           }
-
           .input__label.shrink {
             top: -1.6rem;
             padding: 1px;
@@ -128,7 +125,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           .input--success {
             border: 2px solid var(--color-success);
           }
-
           .input--error {
             border: 2px solid var(--color-error);
           }
@@ -137,7 +133,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           .input--togglePassword + .input__img {
             display: block;
           }
-
           .input--togglePassword + .input__img {
             cursor: pointer;
           }

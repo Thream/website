@@ -3,19 +3,18 @@ interface ErrorPageProps {
   statusCode: number
 }
 
-export const ErrorPage: React.FC<ErrorPageProps> = ({
-  message,
-  statusCode
-}) => {
+export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
+  const { message, statusCode } = props
+
   return (
     <>
       <h1>{statusCode}</h1>
-
       <div className='container-message'>
         <h2>{message}</h2>
       </div>
 
-      <style jsx global>{`
+      <style jsx global>
+        {`
           #__next {
             display: flex;
             flex-direction: column;
@@ -24,7 +23,8 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({
           }
         `}
       </style>
-      <style jsx>{`
+      <style jsx>
+        {`
           h1 {
             display: inline-block;
             margin: 0;

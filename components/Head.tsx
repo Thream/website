@@ -7,7 +7,7 @@ interface HeadProps {
   url?: string
 }
 
-const Head: React.FC<HeadProps> = props => {
+const Head: React.FC<HeadProps> = (props) => {
   const {
     title = 'Thream',
     image = '/images/icons/icon-96x96.png',
@@ -24,7 +24,7 @@ const Head: React.FC<HeadProps> = props => {
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <meta name='description' content={description} />
       <meta name='Language' content='en' />
-      <meta name='theme-color' content='#ffd800' />
+      <meta name='theme-color' content='#27B05E' />
 
       {/* Open Graph Metadata */}
       <meta property='og:title' content={title} />

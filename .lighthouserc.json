@@ -11,6 +11,8 @@
       "preset": "lighthouse:recommended",
       "assertions": {
         "legacy-javascript": "off",
+        "unused-javascript": "off",
+        "uses-rel-preload": "off",
         "canonical": "off"
       }
     },
