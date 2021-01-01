@@ -47,7 +47,7 @@
     "postinstall": "copy-env-cli"
   },
   "dependencies": {
-    "@fontsource/poppins": "4.0.1",
+    "@fontsource/poppins": "4.1.0",
     "axios": "0.21.1",
     "classnames": "2.2.6",
     "html-react-parser": "1.1.1",
