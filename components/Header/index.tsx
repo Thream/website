@@ -1,3 +1,4 @@
+import { Language } from './Language'
 import { SwitchTheme } from './SwitchTheme'
 
 export const Header: React.FC = () => {
@@ -15,15 +16,7 @@ export const Header: React.FC = () => {
               <strong className='navbar__brand-title'>Thream</strong>
             </div>
             <div className='navbar__buttons'>
-              <div className='flag-button'>
-                <img
-                  className='flag-image'
-                  src='/images/flags/english.svg'
-                  alt='english'
-                />
-                <p className='flag-language'>EN</p>
-                <img src='/images/home/arrow.svg' alt='arrow' />
-              </div>
+              <Language />
               <SwitchTheme />
             </div>
           </nav>
@@ -74,19 +67,6 @@ export const Header: React.FC = () => {
           .navbar__buttons {
             display: flex;
             justify-content: space-between;
-          }
-          .flag-button {
-            display: flex;
-            align-items: center;
-            margin-right: 15px;
-          }
-          .flag-image {
-            width: 35px;
-            height: 35px;
-            margin-right: 10px;
-          }
-          .flag-language {
-            margin: 0 8px 0 0;
           }
         `}
       </style>

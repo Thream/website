@@ -30,7 +30,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }
           .btn:hover {
             background-color: var(--color-primary);
-            color: var(--color-secondary);
+            color: #fff;
           }
         `}
         </style>

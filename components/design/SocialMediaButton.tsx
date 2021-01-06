@@ -46,7 +46,6 @@ SocialMediaButtonProps
         .btn:hover {
           box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
           border: 1px solid ${socialMediaColors[socialMedia]};
-          background: var(--color-background-primary);
           transition: all 0.3s ease-in;
         }
         .btn:before {
