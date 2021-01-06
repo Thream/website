@@ -36,10 +36,9 @@ const Home: React.FC = () => {
                   href='https://github.com/Thream'
                   target='_blank'
                   rel='noopener noreferrer'
+                  className='github-link'
                 >
-                  <SocialMediaButton socialMedia='github'>
-                    GitHub
-                  </SocialMediaButton>
+                  <SocialMediaButton socialMedia='GitHub' />
                 </a>
               </div>
             </div>
@@ -82,6 +81,9 @@ const Home: React.FC = () => {
           .buttons {
             text-align: center;
             margin-top: 20px;
+          }
+          .github-link {
+            text-decoration: none;
           }
           @media (max-width: 600px) {
             .container {
