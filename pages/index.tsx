@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { Button } from 'components/design/Button'
 import { SocialMediaButton } from 'components/design/SocialMediaButton'
 import Head from 'components/Head'
@@ -11,11 +13,11 @@ const Home: React.FC = () => {
       <Header />
       <div className='container'>
         <section id='about'>
-          <div className='logo'>
+          <div>
             <img
-              className='logo__image'
+              className='app__image'
               src='/images/home/home.svg'
-              alt='Thream'
+              alt="Thream's chat app"
             />
           </div>
           <div className='text'>
@@ -25,10 +27,16 @@ const Home: React.FC = () => {
               friends and communities, <strong>talk</strong>, chat,{' '}
               <strong>collaborate</strong>, share and <strong>have fun</strong>.
               <div className='buttons'>
-                <Button style={{ marginRight: 20 }}>Get Started</Button>
-                <SocialMediaButton socialMedia='github'>
-                  See on GitHub
-                </SocialMediaButton>
+                <Link href='/users/signup'>
+                  <a>
+                    <Button style={{ marginRight: 20 }}>Get Started</Button>
+                  </a>
+                </Link>
+                <a href='https://github.com/Thream' target='_blank' rel='noopener noreferrer'>
+                  <SocialMediaButton socialMedia='github'>
+                    See on GitHub
+                  </SocialMediaButton>
+                </a>
               </div>
             </div>
           </div>
@@ -48,7 +56,7 @@ const Home: React.FC = () => {
             align-items: center;
             width: 740px;
           }
-          .logo__image {
+          .app__image {
             width: 200px;
             height: 200px;
             margin-right: 25px;
@@ -71,7 +79,7 @@ const Home: React.FC = () => {
             margin-top: 20px;
           }
           @media (max-width: 600px) {
-            .logo__image {
+            .app__image {
               width: 100%;
             }
             #about {

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { Language } from './Language'
 import { SwitchTheme } from './SwitchTheme'
 
@@ -7,14 +9,18 @@ export const Header: React.FC = () => {
       <header className='Header'>
         <div className='container'>
           <nav className='navbar navbar--fixed-top'>
-            <div className='navbar__brand'>
-              <img
-                className='navbar__brand-logo'
-                src='/images/home/Thream_icon.png'
-                alt='Thream'
-              />
-              <strong className='navbar__brand-title'>Thream</strong>
-            </div>
+            <Link href='/'>
+              <a className='navbar__brand-link'>
+                <div className='navbar__brand'>
+                  <img
+                    className='navbar__brand-logo'
+                    src='/images/home/Thream_icon.png'
+                    alt='Thream'
+                  />
+                  <strong className='navbar__brand-title'>Thream</strong>
+                </div>
+              </a>
+            </Link>
             <div className='navbar__buttons'>
               <Language />
               <SwitchTheme />
@@ -50,6 +56,10 @@ export const Header: React.FC = () => {
             position: sticky;
             top: 0;
             z-index: 200;
+          }
+          .navbar__brand-link {
+            color: var(--color-secondary);
+            text-decoration: none;
           }
           .navbar__brand {
             display: flex;

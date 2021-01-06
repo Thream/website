@@ -33,6 +33,7 @@ SocialMediaButtonProps
 
       <style jsx>{`
         .btn {
+          outline: none;
           font-size: var(--default-font-size);
           cursor: pointer;
           letter-spacing: 0.8px;
