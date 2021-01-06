@@ -50,6 +50,7 @@ export const SwitchTheme: React.FC = () => {
             border-radius: 30px;
             background-color: #4d4d4d;
             transition: all 0.2s ease;
+            color: #fff;
           }
           .toggle-track-check {
             position: absolute;
@@ -96,6 +97,7 @@ export const SwitchTheme: React.FC = () => {
             box-sizing: border-box;
             transition: all 0.25s ease;
             top: 1px;
+            color: #fff;
           }
           .toggle-screenreader-only {
             border: 0;

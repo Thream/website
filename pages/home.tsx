@@ -27,7 +27,7 @@ const Home: React.FC = () => {
               <div className='buttons'>
                 <Link href='/users/signup'>
                   <a>
-                    <Button style={{ marginRight: 10 }}>Get started</Button>
+                    <Button style={{ margin: '0 10px 0 0' }}>Get started</Button>
                   </a>
                 </Link>
                 <a

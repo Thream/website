@@ -20,7 +20,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             padding: 1rem 2rem;
             font-weight: 400;
             transform: translateY(-3px);
-            background-color: var(--color-background-primary);
+            background-color: transparent;
             border: 1px solid var(--color-primary);
             border-radius: 10px;
             transition: all 0.3s ease-in;
