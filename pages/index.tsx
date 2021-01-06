@@ -1,4 +1,5 @@
 import { Button } from 'components/design/Button'
+import { SocialMediaButton } from 'components/design/SocialMediaButton'
 import Head from 'components/Head'
 import { Header } from 'components/Header'
 
@@ -23,9 +24,11 @@ const Home: React.FC = () => {
               Your <strong>open source</strong> platform to stay close with your
               friends and communities, <strong>talk</strong>, chat,{' '}
               <strong>collaborate</strong>, share and <strong>have fun</strong>.
-              <div>
-                <Button style={{ marginTop: 20 }}>Get Started</Button>
-                <button>See on GitHub</button>
+              <div className='buttons'>
+                <Button style={{ marginRight: 20 }}>Get Started</Button>
+                <SocialMediaButton socialMedia='github'>
+                  See on GitHub
+                </SocialMediaButton>
               </div>
             </div>
           </div>
@@ -63,7 +66,11 @@ const Home: React.FC = () => {
             font-weight: 700;
             color: var(--color-primary);
           }
-          @media (max-width: 560px) {
+          .buttons {
+            text-align: center;
+            margin-top: 20px;
+          }
+          @media (max-width: 600px) {
             .logo__image {
               width: 100%;
             }

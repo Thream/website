@@ -14,7 +14,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         <style jsx>{`
           .btn {
-            position: relative;
             cursor: pointer;
             font-size: var(--default-font-size);
             letter-spacing: 0.8px;
