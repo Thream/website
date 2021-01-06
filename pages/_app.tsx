@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             box-sizing: border-box;
           }
           #__next {
-            min-height: 100vh;
+            max-width: 100%;
           }
           html {
             font-size: 62.5%; /* 1 rem = 10px; 10px/16px = 62.5% */

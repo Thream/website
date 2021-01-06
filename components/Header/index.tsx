@@ -42,6 +42,11 @@ export const Header: React.FC = () => {
             width: 100%;
             margin: auto;
           }
+          @media (max-width: 404px) {
+            .container {
+              padding: 0;
+            }
+          }
           .navbar {
             display: flex;
             justify-content: space-between;
@@ -57,23 +62,23 @@ export const Header: React.FC = () => {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 140px;
           }
           .navbar__brand-logo {
             width: 60px;
             height: 60px;
+            margin-right: 10px;
           }
           .navbar__brand-title {
             font-weight: 400;
           }
           .navbar__buttons {
             display: flex;
-            width: 300px;
             justify-content: space-between;
           }
           .flag-button {
             display: flex;
             align-items: center;
+            margin-right: 15px;
           }
           .flag-image {
             width: 35px;
