@@ -17,7 +17,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             cursor: pointer;
             font-size: var(--default-font-size);
             letter-spacing: 0.8px;
-            padding: 1rem 3rem;
+            padding: 1rem 2rem;
             font-weight: 400;
             transform: translateY(-3px);
             background-color: var(--color-background-primary);

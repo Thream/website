@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { Language } from './Language'
 import { SwitchTheme } from './SwitchTheme'
@@ -12,8 +13,9 @@ export const Header: React.FC = () => {
             <Link href='/'>
               <a className='navbar__brand-link'>
                 <div className='navbar__brand'>
-                  <img
-                    className='navbar__brand-logo'
+                  <Image
+                    width={60}
+                    height={60}
                     src='/images/home/Thream_icon.png'
                     alt='Thream'
                   />
@@ -33,7 +35,6 @@ export const Header: React.FC = () => {
         {`
           .Header {
             margin-top: 20px;
-            height: 130px;
           }
           .container {
             padding: 0 32px;
@@ -66,13 +67,9 @@ export const Header: React.FC = () => {
             align-items: center;
             justify-content: space-between;
           }
-          .navbar__brand-logo {
-            width: 60px;
-            height: 60px;
-            margin-right: 10px;
-          }
           .navbar__brand-title {
             font-weight: 400;
+            margin-left: 10px;
           }
           .navbar__buttons {
             display: flex;

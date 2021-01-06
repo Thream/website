@@ -29,12 +29,16 @@ const Home: React.FC = () => {
               <div className='buttons'>
                 <Link href='/users/signup'>
                   <a>
-                    <Button style={{ marginRight: 20 }}>Get Started</Button>
+                    <Button style={{ marginRight: 10 }}>Get Started</Button>
                   </a>
                 </Link>
-                <a href='https://github.com/Thream' target='_blank' rel='noopener noreferrer'>
+                <a
+                  href='https://github.com/Thream'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   <SocialMediaButton socialMedia='github'>
-                    See on GitHub
+                    GitHub
                   </SocialMediaButton>
                 </a>
               </div>
@@ -49,6 +53,7 @@ const Home: React.FC = () => {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 50px;
           }
           #about {
             display: flex;
@@ -79,6 +84,11 @@ const Home: React.FC = () => {
             margin-top: 20px;
           }
           @media (max-width: 600px) {
+            .container {
+              height: calc(100vh - 110px);
+              margin-bottom: 20px;
+              margin-top: 0;
+            }
             .app__image {
               width: 100%;
             }

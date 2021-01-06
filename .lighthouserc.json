@@ -13,7 +13,9 @@
         "legacy-javascript": "off",
         "unused-javascript": "off",
         "uses-rel-preload": "off",
-        "canonical": "off"
+        "canonical": "off",
+        "unsized-images": "off",
+        "uses-responsive-images": "off"
       }
     },
     "upload": {
