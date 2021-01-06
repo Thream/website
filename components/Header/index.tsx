@@ -10,7 +10,7 @@ export const Header: React.FC = () => {
       <header className='Header'>
         <div className='container'>
           <nav className='navbar navbar--fixed-top'>
-            <Link href='/'>
+            <Link href='/home'>
               <a className='navbar__brand-link'>
                 <div className='navbar__brand'>
                   <Image

@@ -32,7 +32,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             --color-background-secondary: #292d3e;
             --color-primary: #27b05e;
             --color-tertiary: #7c818f;
-            --color-success: #27b05e;
+            --color-success: #30BD3E;
             --color-error: #ee1b1b;
             &.theme-dark {
               --color-background-primary: #212121;

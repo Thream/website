@@ -20,16 +20,14 @@ const Home: React.FC = () => {
               alt="Thream's chat app"
             />
           </div>
-          <div className='text'>
+          <div>
             <h1 className='title'>Thream</h1>
             <div className='paragraph'>
-              Your <strong>open source</strong> platform to stay close with your
-              friends and communities, <strong>talk</strong>, chat,{' '}
-              <strong>collaborate</strong>, share and <strong>have fun</strong>.
+              Your <strong>open source</strong> platform to stay close with your friends and communities, <strong>talk</strong>, chat, <strong>collaborate</strong>, share and <strong>have fun</strong>.
               <div className='buttons'>
                 <Link href='/users/signup'>
                   <a>
-                    <Button style={{ marginRight: 10 }}>Get Started</Button>
+                    <Button style={{ marginRight: 10 }}>Get started</Button>
                   </a>
                 </Link>
                 <a

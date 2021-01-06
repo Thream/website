@@ -13,11 +13,7 @@ export const ThemeContext = createContext<ThemeValue>({
 })
 
 const getOppositeTheme = (theme: Theme): Theme => {
-  if (theme === 'dark') {
-    return 'light'
-  } else {
-    return 'dark'
-  }
+  return theme === 'dark' ? 'light' : 'dark'
 }
 
 export const ThemeProvider: React.FC = (props) => {
