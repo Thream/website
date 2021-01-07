@@ -70,7 +70,7 @@
     "@types/react": "17.0.0",
     "@types/styled-jsx": "2.2.8",
     "copy-env-cli": "1.0.0",
-    "husky": "4.3.6",
+    "husky": "4.3.7",
     "release-it": "14.2.2",
     "sass": "1.32.2",
     "snazzy": "9.0.0",
