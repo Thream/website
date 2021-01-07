@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { Button } from 'components/design/Button'
 import { SocialMediaButton } from 'components/design/SocialMediaButton'
@@ -13,9 +14,10 @@ const Home: React.FC = () => {
       <Header />
       <div className='container'>
         <section id='about'>
-          <div>
-            <img
-              className='app__image'
+          <div className='app__image'>
+            <Image
+              width={351}
+              height={341}
               src='/images/home/home.svg'
               alt="Thream's chat app"
             />
@@ -23,11 +25,15 @@ const Home: React.FC = () => {
           <div>
             <h1 className='title'>Thream</h1>
             <div className='paragraph'>
-              Your <strong>open source</strong> platform to stay close with your friends and communities, <strong>talk</strong>, chat, <strong>collaborate</strong>, share and <strong>have fun</strong>.
+              Your <strong>open source</strong> platform to stay close with your
+              friends and communities, <strong>talk</strong>, chat,{' '}
+              <strong>collaborate</strong>, share and <strong>have fun</strong>.
               <div className='buttons'>
                 <Link href='/users/signup'>
                   <a>
-                    <Button style={{ margin: '0 10px 0 0' }}>Get started</Button>
+                    <Button style={{ margin: '0 10px 0 0' }}>
+                      Get started
+                    </Button>
                   </a>
                 </Link>
                 <a
@@ -59,8 +65,6 @@ const Home: React.FC = () => {
             width: 740px;
           }
           .app__image {
-            width: 200px;
-            height: 200px;
             margin-right: 25px;
           }
           .title {
@@ -88,9 +92,6 @@ const Home: React.FC = () => {
               height: calc(100vh - 110px);
               margin-bottom: 20px;
               margin-top: 0;
-            }
-            .app__image {
-              width: 100%;
             }
             #about {
               flex-direction: column;

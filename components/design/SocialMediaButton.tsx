@@ -1,4 +1,5 @@
 import { forwardRef } from 'react'
+import Image from 'next/image'
 
 type SocialMedia = 'Discord' | 'GitHub' | 'Google'
 
@@ -25,11 +26,13 @@ SocialMediaButtonProps
   return (
     <>
       <button ref={ref} {...rest} className='btn'>
-        <img
+        <Image
+          width={20}
+          height={20}
           src={`/images/svg/social-media/${socialMedia}.svg`}
           alt={socialMedia}
         />
-        <span>{socialMedia}</span>
+        <span className='socialMedia'>{socialMedia}</span>
       </button>
 
       <style jsx>
@@ -58,9 +61,8 @@ SocialMediaButtonProps
           .btn:before {
             display: none;
           }
-          .btn img {
-            width: 2rem;
-            margin-right: 0.7rem;
+          .socialMedia {
+            margin-left: 0.7rem;
           }
         `}
       </style>
