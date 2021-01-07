@@ -16,9 +16,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           .btn {
             cursor: pointer;
             font-size: var(--default-font-size);
+            font-weight: 400;
             letter-spacing: 0.8px;
             padding: 1rem 2rem;
-            font-weight: 400;
             transform: translateY(-3px);
             background-color: transparent;
             border: 1px solid var(--color-primary);
@@ -26,7 +26,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             transition: all 0.3s ease-in;
             color: var(--color-primary);
             outline: 0;
-            font-weight: 400;
           }
           .btn:hover {
             background-color: var(--color-primary);

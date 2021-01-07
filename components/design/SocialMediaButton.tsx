@@ -39,6 +39,8 @@ SocialMediaButtonProps
             align-items: center;
             outline: none;
             font-size: var(--default-font-size);
+            font-family: 0;
+            margin: 0;
             cursor: pointer;
             letter-spacing: 0.8px;
             padding: 0.8rem 3rem;

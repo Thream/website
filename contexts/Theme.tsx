@@ -7,10 +7,8 @@ export interface ThemeValue {
   handleToggleTheme: () => void
 }
 
-export const ThemeContext = createContext<ThemeValue>({
-  theme: 'dark',
-  handleToggleTheme: () => {}
-})
+const defaultThemeContext: ThemeValue = {} as any
+export const ThemeContext = createContext<ThemeValue>(defaultThemeContext)
 
 const getOppositeTheme = (theme: Theme): Theme => {
   return theme === 'dark' ? 'light' : 'dark'
