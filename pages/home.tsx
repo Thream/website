@@ -99,6 +99,14 @@ const Home: React.FC = () => {
               width: 80%;
             }
           }
+          @media (max-width: 600px) and (max-height: 700px) {
+            .app__image:first-child {
+              width: 65%;
+            }
+            .paragraph {
+              font-size: 14px;
+            }
+          }
         `}
       </style>
     </>
