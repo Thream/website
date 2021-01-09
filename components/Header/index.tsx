@@ -69,6 +69,11 @@ export const Header: React.FC = () => {
             display: flex;
             justify-content: space-between;
           }
+          @media (max-width: 320px) {
+            .navbar__brand-title {
+              display: none;
+            }
+          }
         `}
       </style>
     </>

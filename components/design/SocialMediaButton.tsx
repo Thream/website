@@ -46,7 +46,7 @@ SocialMediaButtonProps
             margin: 0;
             cursor: pointer;
             letter-spacing: 0.8px;
-            padding: 0.8rem 3rem;
+            padding: 0.9rem 2.4rem;
             border: 1px solid transparent;
             border-radius: 10px;
             background: ${socialMediaColors[socialMedia]};

@@ -30,10 +30,8 @@ const Home: React.FC = () => {
               <strong>collaborate</strong>, share and <strong>have fun</strong>.
               <div className='buttons'>
                 <Link href='/users/signup'>
-                  <a>
-                    <Button style={{ margin: '0 10px 0 0' }}>
-                      Get started
-                    </Button>
+                  <a className='get-started-link'>
+                    <Button>Get started</Button>
                   </a>
                 </Link>
                 <a
@@ -69,6 +67,7 @@ const Home: React.FC = () => {
             justify-content: center;
             align-items: center;
             margin-top: 50px;
+            text-align: justify;
           }
           #about {
             display: flex;
@@ -96,8 +95,16 @@ const Home: React.FC = () => {
             text-align: center;
             margin-top: 20px;
           }
+          .get-started-link {
+            margin: 0 10px 0 0;
+          }
           .github-link {
             text-decoration: none;
+          }
+          @media (max-width: 338px) {
+            .get-started-link {
+              margin: 0;
+            }
           }
           @media (max-width: 600px) {
             .container {
