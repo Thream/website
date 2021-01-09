@@ -37,15 +37,9 @@ export const Header: React.FC = () => {
             margin-top: 20px;
           }
           .container {
-            padding: 0 32px;
             max-width: 1280px;
             width: 100%;
             margin: auto;
-          }
-          @media (max-width: 404px) {
-            .container {
-              padding: 0;
-            }
           }
           .navbar {
             display: flex;

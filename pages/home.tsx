@@ -50,6 +50,18 @@ const Home: React.FC = () => {
         </section>
       </div>
 
+      <style jsx global>
+        {`
+          body {
+            padding: 0 32px;
+          }
+          @media (max-width: 404px) {
+            body {
+              padding: 0;
+            }
+          }
+        `}
+      </style>
       <style jsx>
         {`
           .container {
@@ -104,7 +116,7 @@ const Home: React.FC = () => {
               width: 65%;
             }
             .paragraph {
-              font-size: 14px;
+              font-size: 16px;
             }
           }
         `}
