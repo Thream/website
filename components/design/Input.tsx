@@ -52,7 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               state === 'togglePassword' ? handleTogglePassword : undefined
             }
             className='input__img'
-            src={`/images/svg/input/${
+            src={`/images/svg/icons/input/${
               state === 'togglePassword' ? inputType : state
             }.svg`}
             alt={state}

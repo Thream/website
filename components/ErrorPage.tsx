@@ -20,6 +20,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
           }
         `}
       </style>

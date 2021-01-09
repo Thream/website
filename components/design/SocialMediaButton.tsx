@@ -29,7 +29,7 @@ SocialMediaButtonProps
         <Image
           width={20}
           height={20}
-          src={`/images/svg/social-media/${socialMedia}.svg`}
+          src={`/images/svg/web/${socialMedia}.svg`}
           alt={socialMedia}
         />
         <span className='social-media'>{socialMedia}</span>

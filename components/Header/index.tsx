@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
                   <Image
                     width={60}
                     height={60}
-                    src='/images/home/Thream_icon.png'
+                    src='/images/icons/Thream.png'
                     alt='Thream'
                   />
                   <strong className='navbar__brand-title'>Thream</strong>

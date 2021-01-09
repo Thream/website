@@ -18,7 +18,7 @@ const Home: React.FC = () => {
             <Image
               width={351}
               height={341}
-              src='/images/home/home.svg'
+              src='/images/svg/design/home.svg'
               alt="Thream's chat app"
             />
           </div>

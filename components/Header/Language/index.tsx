@@ -9,7 +9,7 @@ export const Language: React.FC = () => {
         <Image
           width={35}
           height={35}
-          src='/images/flags/English.svg'
+          src='/images/svg/languages/en.svg'
           alt='English'
         />
         <p className='language-title'>EN</p>
