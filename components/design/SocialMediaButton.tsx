@@ -25,19 +25,19 @@ SocialMediaButtonProps
 
   return (
     <>
-      <button ref={ref} {...rest} className='btn'>
+      <button ref={ref} {...rest} className='button'>
         <Image
           width={20}
           height={20}
           src={`/images/svg/social-media/${socialMedia}.svg`}
           alt={socialMedia}
         />
-        <span className='socialMedia'>{socialMedia}</span>
+        <span className='social-media'>{socialMedia}</span>
       </button>
 
       <style jsx>
         {`
-          .btn {
+          .button {
             display: inline-flex;
             align-items: center;
             outline: none;
@@ -53,15 +53,15 @@ SocialMediaButtonProps
             color: #fff;
             transition: all 0.3s ease-out;
           }
-          .btn:hover {
+          .button:hover {
             box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
             border: 1px solid ${socialMediaColors[socialMedia]};
             transition: all 0.3s ease-in;
           }
-          .btn:before {
+          .button:before {
             display: none;
           }
-          .socialMedia {
+          .social-media {
             margin-left: 0.7rem;
           }
         `}

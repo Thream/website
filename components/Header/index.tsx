@@ -7,9 +7,9 @@ import { SwitchTheme } from './SwitchTheme'
 export const Header: React.FC = () => {
   return (
     <>
-      <header className='Header'>
+      <header className='header'>
         <div className='container'>
-          <nav className='navbar navbar--fixed-top'>
+          <nav className='navbar navbar-fixed-top'>
             <Link href='/home'>
               <a className='navbar__brand-link'>
                 <div className='navbar__brand'>
@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
 
       <style jsx>
         {`
-          .Header {
+          .header {
             margin-top: 20px;
           }
           .container {
@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
             align-items: center;
             padding: 0.5rem 1rem;
           }
-          .navbar--fixed-top {
+          .navbar-fixed-top {
             position: sticky;
             top: 0;
             z-index: 200;

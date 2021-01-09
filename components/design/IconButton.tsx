@@ -13,13 +13,13 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
 
     return (
       <>
-        <button ref={ref} className='IconButton' {...rest}>
+        <button ref={ref} className='button' {...rest}>
           <img src={`/images/svg/icons/${icon}.svg`} alt={icon} />
         </button>
 
         <style jsx>
           {`
-            .IconButton {
+            .button {
               background: ${hasBackground ? 'var(--color-primary)' : 'none'};
               border-radius: ${hasBackground ? '50%' : '0'};
               width: ${hasBackground ? '50px' : '100%'};
@@ -31,10 +31,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               justify-content: center;
               cursor: pointer;
             }
-            .IconButton:hover {
+            .button:hover {
               opacity: 0.9;
             }
-            .IconButton > img {
+            .button > img {
               width: 20px;
               height: 20px;
               display: block;

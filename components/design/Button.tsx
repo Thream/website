@@ -8,12 +8,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <>
-        <button ref={ref} {...rest} className='btn'>
+        <button ref={ref} {...rest} className='button'>
           {children}
         </button>
 
         <style jsx>{`
-          .btn {
+          .button {
             cursor: pointer;
             font-size: var(--default-font-size);
             font-weight: 400;
@@ -27,7 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             color: var(--color-primary);
             outline: 0;
           }
-          .btn:hover {
+          .button:hover {
             background-color: var(--color-primary);
             color: #fff;
           }
