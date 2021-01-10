@@ -1,3 +1,5 @@
+import { Header } from 'components/Header'
+
 interface ErrorPageProps {
   message: string
   statusCode: number
@@ -8,24 +10,30 @@ export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
 
   return (
     <>
-      <h1>{statusCode}</h1>
-      <div className='container-message'>
-        <h2>{message}</h2>
+      <Header />
+      <div className='container'>
+        <h1>{statusCode}</h1>
+        <div className='container-message'>
+          <h2>{message}</h2>
+        </div>
       </div>
 
       <style jsx global>
         {`
           #__next {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
           }
         `}
       </style>
       <style jsx>
         {`
+          .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 110px);
+          }
           h1 {
             display: inline-block;
             margin: 0;
