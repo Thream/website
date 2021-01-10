@@ -29,10 +29,12 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
           }
           body {
             --default-font-size: 1.6rem;
+            --color-background-primary: #212121;
             --color-background-secondary: #292d3e;
             --color-primary: #27b05e;
+            --color-secondary: #fff;
             --color-tertiary: #7c818f;
-            --color-success: #30BD3E;
+            --color-success: #30bd3e;
             --color-error: #ee1b1b;
             &.theme-dark {
               --color-background-primary: #212121;
@@ -42,7 +44,6 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
               --color-background-primary: #fff;
               --color-secondary: #181818;
             }
-
             display: flex;
             flex-flow: column wrap;
             background-color: var(--color-background-primary);
