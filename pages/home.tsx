@@ -63,7 +63,7 @@ const Home: React.FC = () => {
               margin: 0 !important;
             }
             .get-started-link > button {
-              margin-bottom: 10px;
+              margin-bottom: 10px !important;
             }
           }
         `}

@@ -26,6 +26,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             transition: all 0.3s ease-in;
             color: var(--color-primary);
             outline: 0;
+            margin: 0;
           }
           .button:hover {
             background-color: var(--color-primary);
