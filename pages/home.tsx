@@ -58,6 +58,14 @@ const Home: React.FC = () => {
               padding: 0;
             }
           }
+          @media (max-width: 338px) {
+            .get-started-link {
+              margin: 0 !important;
+            }
+            .get-started-link > button {
+              margin-bottom: 10px;
+            }
+          }
         `}
       </style>
       <style jsx>
@@ -100,11 +108,6 @@ const Home: React.FC = () => {
           }
           .github-link {
             text-decoration: none;
-          }
-          @media (max-width: 338px) {
-            .get-started-link {
-              margin: 0;
-            }
           }
           @media (max-width: 600px) {
             .container {
