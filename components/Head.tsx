@@ -10,7 +10,7 @@ interface HeadProps {
 const Head: React.FC<HeadProps> = (props) => {
   const {
     title = 'Thream',
-    image = '/images/icons/icon-96x96.png',
+    image = '/images/icons/96x96.png',
     description = 'Stay close with your friends and communities, talk, chat, collaborate, share, and have fun.',
     url = 'https://thream.divlo.fr/'
   } = props

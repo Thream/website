@@ -1,21 +1,3 @@
-import Head from 'components/Head'
+import redirect from 'nextjs-redirect'
 
-const Home: React.FC = () => {
-  return (
-    <>
-      <Head />
-
-      <p>Hello Thream! 👋</p>
-
-      <style jsx>
-        {`
-          p {
-            margin-left: 15px;
-          }
-        `}
-      </style>
-    </>
-  )
-}
-
-export default Home
+export default redirect('/home')

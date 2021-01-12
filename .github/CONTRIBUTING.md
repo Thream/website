@@ -2,6 +2,14 @@
 
 Thanks a lot for your interest in contributing to **Thream/website**! 🎉
 
+## Code of Conduct
+
+**Thream** has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/Thream/Thream/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+
+## Open Development
+
+All work on **Thream** happens directly on [GitHub](https://github.com/Thream). Both core team members and external contributors send pull requests which go through the same review process.
+
 ## Types of contributions
 
 - Reporting a bug.

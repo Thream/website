@@ -4,7 +4,7 @@
       "startServerCommand": "npm run start",
       "startServerReadyPattern": "ready on",
       "startServerReadyTimeout": 20000,
-      "url": ["http://localhost:3000/"],
+      "url": ["http://localhost:3000/home"],
       "numberOfRuns": 3
     },
     "assert": {
@@ -13,7 +13,9 @@
         "legacy-javascript": "off",
         "unused-javascript": "off",
         "uses-rel-preload": "off",
-        "canonical": "off"
+        "canonical": "off",
+        "unsized-images": "off",
+        "uses-responsive-images": "off"
       }
     },
     "upload": {

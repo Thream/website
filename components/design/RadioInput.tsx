@@ -11,7 +11,7 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
 
     return (
       <>
-        <div className='RadioButton' onClick={handleClick}>
+        <div className='button' onClick={handleClick}>
           <input ref={ref} {...rest} defaultChecked={checked} type='radio' />
           <label htmlFor={id}>{label}</label>
         </div>
@@ -29,20 +29,20 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
                 box-shadow: 0px 0px 0px 15px transparent;
               }
             }
-            .RadioButton {
+            .button {
               margin: 16px 0;
             }
-            .RadioButton input[type='radio'] {
+            .button input[type='radio'] {
               display: none;
             }
-            .RadioButton input[type='radio']:checked + label:before {
+            .button input[type='radio']:checked + label:before {
               border-color: var(--color-primary);
               animation: ripple 0.2s linear forwards;
             }
-            .RadioButton input[type='radio']:checked + label:after {
+            .button input[type='radio']:checked + label:after {
               transform: scale(1);
             }
-            .RadioButton label {
+            .button label {
               display: inline-block;
               height: 20px;
               position: relative;
@@ -51,22 +51,22 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
               cursor: pointer;
               vertical-align: bottom;
             }
-            .RadioButton label:before,
-            .RadioButton label:after {
+            .button label:before,
+            .button label:after {
               position: absolute;
               content: '';
               border-radius: 50%;
               transition: all 0.3s ease;
               transition-property: transform, border-color;
             }
-            .RadioButton label:before {
+            .button label:before {
               left: 0;
               top: 0;
               width: 20px;
               height: 20px;
               border: 2px solid var(--color-primary);
             }
-            .RadioButton label:after {
+            .button label:after {
               top: 5px;
               left: 5px;
               width: 10px;

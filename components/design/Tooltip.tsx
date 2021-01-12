@@ -11,24 +11,24 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
     return (
       <>
-        <div ref={ref} {...rest} className='Tooltip-Wrapper'>
+        <div ref={ref} {...rest} className='tooltip-wrapper'>
           {children}
-          <div className={`Tooltip-Tip ${direction}`}>{content}</div>
+          <div className={`tooltip ${direction}`}>{content}</div>
         </div>
 
         <style jsx>
           {`
-            .Tooltip-Wrapper {
+            .tooltip-wrapper {
               --tooltip-text-color: white;
               --tooltip-background-color: black;
               --tooltip-margin: 40px;
               --tooltip-arrow-size: 6px;
             }
-            .Tooltip-Wrapper {
+            .tooltip-wrapper {
               display: inline-block;
               position: relative;
             }
-            .Tooltip-Tip {
+            .tooltip {
               position: absolute;
               border-radius: 6px;
               left: 50%;
@@ -45,14 +45,14 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
               visibility: hidden;
               transition: all 0.15s ease-in;
             }
-            .Tooltip-Wrapper ~ .Tooltip-Wrapper:hover .Tooltip-Tip,
-            .Tooltip-Wrapper:first-child:hover .Tooltip-Tip {
+            .tooltip-wrapper ~ .tooltip-wrapper:hover .tooltip,
+            .tooltip-wrapper:first-child:hover .tooltip {
               opacity: 1;
               visibility: visible;
               transition: all 0.35s ease-out;
               margin: 0;
             }
-            .Tooltip-Tip::before {
+            .tooltip::before {
               content: ' ';
               left: 50%;
               border: solid transparent;
@@ -63,38 +63,38 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
               border-width: var(--tooltip-arrow-size);
               margin-left: calc(var(--tooltip-arrow-size) * -1);
             }
-            .Tooltip-Tip.top {
+            .tooltip.top {
               top: calc(var(--tooltip-margin) * -1);
             }
-            .Tooltip-Tip.top::before {
+            .tooltip.top::before {
               top: 100%;
               border-top-color: var(--tooltip-background-color);
             }
-            .Tooltip-Tip.right {
+            .tooltip.right {
               left: calc(100% + var(--tooltip-margin));
               top: 50%;
               transform: translateX(0) translateY(-50%);
             }
-            .Tooltip-Tip.right::before {
+            .tooltip.right::before {
               left: calc(var(--tooltip-arrow-size) * -1);
               top: 50%;
               transform: translateX(0) translateY(-50%);
               border-right-color: var(--tooltip-background-color);
             }
-            .Tooltip-Tip.bottom {
+            .tooltip.bottom {
               bottom: calc(var(--tooltip-margin) * -1);
             }
-            .Tooltip-Tip.bottom::before {
+            .tooltip.bottom::before {
               bottom: 100%;
               border-bottom-color: var(--tooltip-background-color);
             }
-            .Tooltip-Tip.left {
+            .tooltip.left {
               left: auto;
               right: calc(100% + var(--tooltip-margin));
               top: 50%;
               transform: translateX(0) translateY(-50%);
             }
-            .Tooltip-Tip.left::before {
+            .tooltip.left::before {
               left: auto;
               right: calc(var(--tooltip-arrow-size) * -2);
               top: 50%;
