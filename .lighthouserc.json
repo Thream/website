@@ -15,7 +15,8 @@
         "uses-rel-preload": "off",
         "canonical": "off",
         "unsized-images": "off",
-        "uses-responsive-images": "off"
+        "uses-responsive-images": "off",
+	"preload-lcp-image": "warning"
       }
     },
     "upload": {
