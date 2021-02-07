@@ -1,137 +1,116 @@
-import { forwardRef, useState, useCallback, useMemo } from 'react'
-import classNames from 'classnames'
+import { forwardRef, useState } from 'react'
+import Link from 'next/link'
+import { ErrorMessage } from '../Authentication/ErrorMessage'
 
 interface InputProps extends React.ComponentPropsWithRef<'input'> {
   label: string
-  state?: 'success' | 'error' | 'togglePassword'
+  errors?: string[]
+  showForgotPassword?: boolean
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { label, state, type = 'text', ...rest } = props
+  const {
+    label,
+    name,
+    type = 'text',
+    errors = [],
+    showForgotPassword = false,
+    ...rest
+  } = props
+
   const [inputType, setInputType] = useState(type)
-  const [hasInputValue, setHasInputValue] = useState(false)
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
-    (event) => {
-      if (event.target.value.length >= 1 && !hasInputValue) {
-        setHasInputValue(true)
-      } else if (event.target.value.length === 0 && hasInputValue) {
-        setHasInputValue(false)
-      }
-    },
-    [hasInputValue]
-  )
-
-  const handleTogglePassword = useCallback(() => {
-    const type = inputType === 'text' ? 'password' : 'text'
-    setInputType(type)
-  }, [inputType])
-
-  const inputClassList = useMemo(() => {
-    const classList = ['input']
-    if (state != null) {
-      classList.push(`input--${state}`)
-    }
-    return classList.join(' ')
-  }, [state])
+  const handlePassword = (): void => {
+    const oppositeType = inputType === 'password' ? 'text' : 'password'
+    setInputType(oppositeType)
+  }
 
   return (
     <>
-      <div className='group'>
-        <input
-          onChange={handleChange}
-          ref={ref}
-          type={inputType}
-          {...rest}
-          id={props.name}
-          className={inputClassList}
-        />
-        {state != null && (
-          <img
-            onClick={
-              state === 'togglePassword' ? handleTogglePassword : undefined
-            }
-            className='input__img'
-            src={`/images/svg/icons/input/${
-              state === 'togglePassword' ? inputType : state
-            }.svg`}
-            alt={state}
-          />
-        )}
-        <label
-          className={classNames('input__label', {
-            shrink: hasInputValue
-          })}
-          htmlFor={props.name}
-        >
-          {label}
-        </label>
+      <div className='container'>
+        <div className='input-with-label'>
+          <div className='label-container'>
+            <label className='label' htmlFor={name}>
+              {label}
+            </label>
+            {type === 'password' && showForgotPassword ? (
+              <Link href='/authentication/forgot-password'>
+                <a className='label-forgot-password'>Forgot your password ?</a>
+              </Link>
+            ) : null}
+          </div>
+          <div className='input-container'>
+            <input
+              className='input'
+              {...rest}
+              ref={ref}
+              id={name}
+              name={name}
+              type={inputType}
+            />
+            {type === 'password' && (
+              <div onClick={handlePassword} className='password-eye' />
+            )}
+            <ErrorMessage errors={errors} />
+          </div>
+        </div>
       </div>
 
       <style jsx>
         {`
-          .group {
+          .container {
+            margin-bottom: 20px;
+          }
+          .input-container {
+            margin-top: 0;
             position: relative;
-            margin: 3rem 0;
+          }
+          .input-with-label {
+            display: flex;
+            flex-direction: column;
+          }
+          .label-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+          }
+          .label-forgot-password {
+            font-size: 12px;
+          }
+          .label {
+            color: var(--color-secondary);
+            font-size: 16px;
+            font-family: 'Poppins', 'Arial', 'sans-serif';
+            padding-left: 3px;
           }
           .input {
-            background: none;
-            background-color: var(--color-secondary);
-            padding: 1rem 1rem 1rem 0.9rem;
-            line-height: 1;
-            display: block;
-            border: none;
-            border-radius: 4px;
-            outline: none;
-            overflow-x: hidden;
-            padding-right: 32px;
+            background-color: #f1f1f1;
+            font-family: 'Roboto', 'Arial', 'sans-serif';
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 20px;
+            color: #2a2a2a;
+            border: 0;
+            box-shadow: ${errors.length >= 1
+              ? '0 0 0 2px var(--color-error)'
+              : 'none'};
+            border-radius: 10px;
           }
-          .input__img {
-            width: 18px;
+          .input:focus {
+            outline: 0;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px var(--color-primary);
+          }
+          .password-eye {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 12px;
-            display: none;
-            padding-left: 5px;
-            background-color: var(--color-secondary);
-          }
-          .input:focus ~ .input__label {
-            top: -1.6rem;
-            color: white;
-            font-size: 1.3rem;
-            left: 0px;
-          }
-          .input__label {
-            font-size: 16px;
-            color: var(--color-tertiary);
-            font-weight: normal;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            left: ${hasInputValue ? '0px' : '10px'};
-            text-transform: capitalize;
-            transition: 300ms ease all;
-          }
-          .input__label.shrink {
-            top: -1.6rem;
-            padding: 1px;
-            color: #fff;
-            font-size: 1.3rem;
-          }
-          .input--success {
-            border: 2px solid var(--color-success);
-          }
-          .input--error {
-            border: 2px solid var(--color-error);
-          }
-          .input--success + .input__img,
-          .input--error + .input__img,
-          .input--togglePassword + .input__img {
-            display: block;
-          }
-          .input--togglePassword + .input__img {
+            top: 12px;
+            right: 16px;
+            z-index: 1;
+            width: 20px;
+            height: 20px;
+            background-image: url(/images/svg/icons/input/${inputType}.svg);
+            background-size: cover;
             cursor: pointer;
           }
         `}

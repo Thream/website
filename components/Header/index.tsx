@@ -10,7 +10,7 @@ export const Header: React.FC = () => {
       <header className='header'>
         <div className='container'>
           <nav className='navbar navbar-fixed-top'>
-            <Link href='/home'>
+            <Link href='/'>
               <a className='navbar__brand-link'>
                 <div className='navbar__brand'>
                   <Image
@@ -31,6 +31,18 @@ export const Header: React.FC = () => {
         </div>
       </header>
 
+      <style jsx global>
+        {`
+          body {
+            padding: 0 32px;
+          }
+          @media (max-width: 404px) {
+            body {
+              padding: 0;
+            }
+          }
+        `}
+      </style>
       <style jsx>
         {`
           .header {
@@ -55,6 +67,7 @@ export const Header: React.FC = () => {
           .navbar__brand-link {
             color: var(--color-secondary);
             text-decoration: none;
+            font-size: 16px;
           }
           .navbar__brand {
             display: flex;

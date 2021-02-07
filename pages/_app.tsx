@@ -10,7 +10,7 @@ import { AppProps } from 'next/app'
 
 import { ThemeProvider } from 'contexts/Theme'
 
-const App = ({ Component, pageProps }: AppProps): JSX.Element => {
+const ThreamApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <>
       <ThemeProvider>
@@ -34,15 +34,19 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             --color-primary: #27b05e;
             --color-secondary: #fff;
             --color-tertiary: #7c818f;
-            --color-success: #30bd3e;
-            --color-error: #ee1b1b;
+            --color-success: #90ee90;
+            --color-error: #ff7f7f;
             &.theme-dark {
               --color-background-primary: #212121;
               --color-secondary: #fff;
+              --color-success: #90ee90;
+              --color-error: #ff7f7f;
             }
             &.theme-light {
               --color-background-primary: #fff;
               --color-secondary: #181818;
+              --color-success: #1e4620;
+              --color-error: #ee1b1b;
             }
             display: flex;
             flex-flow: column wrap;
@@ -56,7 +60,13 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
             max-width: 100%;
           }
           a {
+            font-family: 'Roboto', 'Arial', 'sans-serif';
+            font-size: 14px;
             color: var(--color-primary);
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
           }
         `}
       </style>
@@ -64,4 +74,4 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   )
 }
 
-export default App
+export default ThreamApp
