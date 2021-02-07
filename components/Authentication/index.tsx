@@ -16,7 +16,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
   return (
     <>
       <Header />
-      <Container>
+      <Container className='container-authentication'>
         <AuthenticationSocialMedia />
         <div className='divider'>
           <Divider content='OR' />
@@ -26,6 +26,11 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
       <style jsx>
         {`
+          @media (max-height: 700px) {
+            :global(.container-authentication) {
+              height: auto !important;
+            }
+          }
           @media (max-width: 600px) {
             .divider {
               margin: 20px 0 !important;

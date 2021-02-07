@@ -29,6 +29,11 @@ export const AuthenticationFormLayout: React.FC<AuthenticationFormLayoutProps> =
 
       <style jsx>
         {`
+          @media (max-width: 330px) {
+            .form {
+              width: auto !important;
+            }
+          }
           .form {
             flex-shrink: 0;
             width: 310px;

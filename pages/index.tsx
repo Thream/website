@@ -16,12 +16,16 @@ const Home: React.FC = () => {
       <Container className='home-container'>
         <section id='about'>
           <div className='app__image'>
-            <Image
-              width={351}
-              height={341}
-              src='/images/svg/design/home.svg'
-              alt="Thream's chat app"
-            />
+            <Link href='/authentication/signup'>
+              <a>
+                <Image
+                  width={351}
+                  height={341}
+                  src='/images/svg/design/home.svg'
+                  alt="Thream's chat app"
+                />
+              </a>
+            </Link>
           </div>
           <div>
             <h1 className='title'>Thream</h1>
