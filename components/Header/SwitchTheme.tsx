@@ -1,9 +1,7 @@
-import { useContext } from 'react'
-
-import { ThemeContext } from 'contexts/Theme'
+import { useTheme } from 'contexts/Theme'
 
 export const SwitchTheme: React.FC = () => {
-  const { handleToggleTheme, theme } = useContext(ThemeContext)
+  const { handleToggleTheme, theme } = useTheme()
 
   return (
     <>

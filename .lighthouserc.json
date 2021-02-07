@@ -4,7 +4,7 @@
       "startServerCommand": "npm run start",
       "startServerReadyPattern": "ready on",
       "startServerReadyTimeout": 20000,
-      "url": ["http://localhost:3000/home"],
+      "url": ["http://localhost:3000/", "http://localhost:3000/authentication/signup"],
       "numberOfRuns": 3
     },
     "assert": {
@@ -16,7 +16,9 @@
         "canonical": "off",
         "unsized-images": "off",
         "uses-responsive-images": "off",
-	"preload-lcp-image": "warning"
+        "bypass": "warning",
+        "color-contrast": "warning",
+        "preload-lcp-image": "warning"
       }
     },
     "upload": {

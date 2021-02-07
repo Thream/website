@@ -3,11 +3,10 @@ import Validator, { ValidationError, ValidationRule } from 'fastest-validator'
 
 export type ValidationResult<T> = { [key in keyof T]: ValidationError[] }
 
-export type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>
-
 export interface UseValidatorResult<T> {
   validationResult: ValidationResult<T>
-  setValidationResult: ReactSetState<ValidationResult<any>>
+  setValidationResult: (validationError: ValidationError[]) => void
+  getErrorMessages: (key: keyof T) => string[]
   validate: (value: any) => boolean
 }
 
@@ -16,17 +15,25 @@ export type ValidatorSchema<T = any> = {
 }
 
 export const useFastestValidator = <T = any>(
-  validatorSchema: ValidatorSchema<T>
+  validatorSchema: ValidatorSchema<T>,
+  defaultErrorMessage: string = 'Invalid value.'
 ): UseValidatorResult<T> => {
-  const emptyValidationResult = useMemo(() => {
-    const result: ValidationResult<T> = {} as any
+  const fillEmptyValidation = (
+    result: ValidationResult<T> = {} as any
+  ): ValidationResult<T> => {
     for (const key in validatorSchema) {
-      result[key] = []
+      if (result[key] == null) {
+        result[key] = []
+      }
     }
     return result
+  }
+
+  const emptyValidationResult = useMemo(() => {
+    return fillEmptyValidation()
   }, [validatorSchema])
 
-  const [validationResult, setValidationResult] = useState<ValidationResult<T>>(
+  const [validationResult, setValidation] = useState<ValidationResult<T>>(
     emptyValidationResult
   )
 
@@ -37,9 +44,14 @@ export const useFastestValidator = <T = any>(
   const validate = (value: any): boolean => {
     const validationError = validator(value)
     if (!Array.isArray(validationError)) {
-      setValidationResult(emptyValidationResult)
+      setValidation(emptyValidationResult)
       return true
     }
+    setValidationResult(validationError)
+    return false
+  }
+
+  const setValidationResult = (validationError: ValidationError[]): void => {
     const result: ValidationResult<T> = {} as any
     validationError.forEach((error) => {
       if (result[error.field as keyof T] == null) {
@@ -48,9 +60,20 @@ export const useFastestValidator = <T = any>(
         result[error.field as keyof T].push(error)
       }
     })
-    setValidationResult(result)
-    return false
+    const finalResult = fillEmptyValidation(result)
+    setValidation(finalResult)
   }
 
-  return { validationResult, setValidationResult, validate }
+  const getErrorMessages = (key: keyof T): string[] => {
+    return validationResult[key].map(
+      (error) => error?.message ?? defaultErrorMessage
+    )
+  }
+
+  return {
+    validationResult,
+    setValidationResult,
+    getErrorMessages,
+    validate
+  }
 }
