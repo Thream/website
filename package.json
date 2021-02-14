@@ -9,7 +9,9 @@
   },
   "release-it": {
     "git": {
-      "commitMessage": "chore(release): v${version}"
+      "commit": false,
+      "push": false,
+      "tag": false
     },
     "github": {
       "release": false
@@ -20,6 +22,7 @@
     "hooks": {
       "before:init": [
         "npm run lint",
+        "npm run markdownlint",
         "npm run build",
         "npm run lighthouse"
       ]
@@ -36,9 +39,10 @@
     "start": "next start",
     "build": "next build",
     "export": "next export",
+    "markdownlint": "markdownlint '**/*.md' --ignore node_modules",
     "lint": "ts-standard | snazzy",
     "format": "ts-standard --fix | snazzy",
-    "release": "release-it",
+    "release": "release-it --ci",
     "lighthouse": "lhci autorun",
     "postinstall": "copy-env-cli && husky install"
   },
@@ -64,12 +68,13 @@
     "@release-it/conventional-changelog": "2.0.0",
     "@styled-jsx/plugin-sass": "2.0.1",
     "@types/classnames": "2.2.11",
-    "@types/node": "14.14.26",
-    "@types/react": "17.0.1",
+    "@types/node": "14.14.27",
+    "@types/react": "17.0.2",
     "@types/styled-jsx": "2.2.8",
     "copy-env-cli": "1.0.0",
     "husky": "5.0.9",
-    "release-it": "14.3.0",
+    "markdownlint-cli": "0.26.0",
+    "release-it": "14.4.0",
     "sass": "1.32.7",
     "snazzy": "9.0.0",
     "ts-standard": "10.0.0",
