@@ -10,6 +10,7 @@ import { emailSchema } from 'components/Authentication/AuthenticationForm'
 import { useForm } from 'hooks/useForm'
 import { api } from 'utils/api'
 import { authenticationFromServerSide } from 'utils/authentication'
+import useTranslation from 'next-translate/useTranslation'
 
 const ForgotPassword: React.FC = () => {
   const {
@@ -21,10 +22,11 @@ const ForgotPassword: React.FC = () => {
   } = useForm({
     validatorSchema: emailSchema
   })
+  const { t } = useTranslation()
 
   return (
     <>
-      <Head title='Thream | Forgot Password' />
+      <Head title={`Thream | ${t('authentication:forgot-password')}`} />
 
       <Header />
       <Container>
@@ -35,12 +37,12 @@ const ForgotPassword: React.FC = () => {
               `/users/resetPassword?redirectURI=${window.location.origin}/authentication/reset-password`,
               formData
             )
-            return 'Password-reset request successful, please check your emails!'
+            return t('authentication:success-forgot-password')
           })}
           link={
             <p>
               <Link href='/authentication/signin'>
-                <a>Already know your password ?</a>
+                <a>{t('authentication:already-know-password')}</a>
               </Link>
             </p>
           }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Input } from 'components/design/Input'
 import { FormState } from 'components/Authentication/FormState'
@@ -11,11 +12,7 @@ export const emailSchema: ValidatorSchema = {
   email: {
     type: 'email',
     empty: false,
-    trim: true,
-    messages: {
-      emailEmpty: 'Oops, this field is required 🙈.',
-      email: 'Mmm… It seems that this email is not valid 🤔.'
-    }
+    trim: true
   }
 }
 
@@ -24,11 +21,7 @@ export const nameSchema: ValidatorSchema = {
     type: 'string',
     min: 3,
     max: 30,
-    trim: true,
-    messages: {
-      stringEmpty: 'Oops, this field is required 🙈.',
-      stringMin: 'The {field} must contain at least {expected} characters.'
-    }
+    trim: true
   }
 }
 
@@ -36,16 +29,14 @@ export const passwordSchema: ValidatorSchema = {
   password: {
     type: 'string',
     empty: false,
-    trim: true,
-    messages: {
-      stringEmpty: 'Oops, this field is required 🙈.'
-    }
+    trim: true
   }
 }
 
 export const AuthenticationForm: React.FC<AuthenticationProps> = (props) => {
   const { mode, onSubmit } = props
 
+  const { t } = useTranslation()
   const {
     getErrorMessages,
     formState,
@@ -70,8 +61,8 @@ export const AuthenticationForm: React.FC<AuthenticationProps> = (props) => {
             <Link href={mode === 'signup' ? '/authentication/signin' : '/authentication/signup'}>
               <a>
                 {mode === 'signup'
-                  ? 'Already have an account ?'
-                  : "Don't have an account ?"}
+                  ? t('authentication:already-have-an-account')
+                  : t('authentication:dont-have-an-account')}
               </a>
             </Link>
           </p>
@@ -81,9 +72,9 @@ export const AuthenticationForm: React.FC<AuthenticationProps> = (props) => {
           <Input
             errors={getErrorMessages('name')}
             type='text'
-            placeholder='Name'
+            placeholder={t('authentication:name')}
             name='name'
-            label='Name'
+            label={t('authentication:name')}
           />
         )}
         <Input
@@ -96,9 +87,9 @@ export const AuthenticationForm: React.FC<AuthenticationProps> = (props) => {
         <Input
           errors={getErrorMessages('password')}
           type='password'
-          placeholder='Password'
+          placeholder={t('authentication:password')}
           name='password'
-          label='Password'
+          label={t('authentication:password')}
           showForgotPassword={mode === 'signin'}
         />
       </AuthenticationFormLayout>

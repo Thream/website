@@ -21,10 +21,10 @@ const UserProfile: React.FC = () => {
   )
 }
 
-const Profile: React.FC<PagePropsWithAuthentication> = (props) => {
+const Application: React.FC<PagePropsWithAuthentication> = (props) => {
   return (
     <AuthenticationProvider authentication={props.authentication}>
-      <Head title='Thream | Profile' />
+      <Head title='Thream | Application' />
 
       <Header />
       <UserProfile />
@@ -36,4 +36,4 @@ export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true
 })
 
-export default Profile
+export default Application

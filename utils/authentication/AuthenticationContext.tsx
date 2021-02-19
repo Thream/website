@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useMemo, useContext } from 'react'
+import useTranslation from 'next-translate/useTranslation'
 
 import {
   Authentication,
@@ -7,6 +8,7 @@ import {
   UserSettings
 } from '.'
 import { useTheme } from 'contexts/Theme'
+import { setLanguage } from 'utils/setLanguage'
 
 export interface AuthenticationValue {
   authentication: Authentication
@@ -22,6 +24,7 @@ const AuthenticationContext = createContext<AuthenticationValue>(
 export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
   props
 ) => {
+  const { lang } = useTranslation()
   const { theme, setTheme } = useTheme()
   const [user] = useState<User>(props.authentication.user)
   const [settings] = useState<UserSettings>(props.authentication.settings)
@@ -31,12 +34,19 @@ export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
   }, [props.authentication.tokens])
 
   useEffect(() => {
+    setLanguage(settings.language).catch(() => {})
     setTheme(settings.theme)
   }, [])
 
   useEffect(() => {
     authentication.api.put('/users/current/settings', { theme }).catch(() => {})
   }, [theme])
+
+  useEffect(() => {
+    authentication.api
+      .put('/users/current/settings', { language: lang })
+      .catch(() => {})
+  }, [lang])
 
   return (
     <AuthenticationContext.Provider value={{ authentication, user, settings }}>

@@ -1,12 +1,9 @@
 import { Theme } from 'contexts/Theme'
 
-/** how long in ms, until the cookie expires */
-export const COOKIE_MAX_AGE = 365 * 24 * 60 * 60
-
 export interface RefreshTokenResponse {
   accessToken: string
 
-  /** expiresIn is how long, in milliseconds, until the returned accessToken expires */
+  /** how long, in milliseconds, until the accessToken expires */
   expiresIn: number
   type: 'Bearer'
 }
@@ -27,8 +24,11 @@ export interface User {
   updatedAt: string
 }
 
+export const languages = ['en', 'fr'] as const
+export type Language = typeof languages[number]
+
 export interface UserSettings {
-  language: 'en'
+  language: Language
   theme: Theme
   isPublicEmail: boolean
 }

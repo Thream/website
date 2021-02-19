@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { FormDataObject, HandleForm } from 'react-component-form'
+import useTranslation from 'next-translate/useTranslation'
 
 import { FormState, useFormState } from 'hooks/useFormState'
-import { useFastestValidator, ValidatorSchema } from 'hooks/useFastestValidator'
-import { ValidationError } from 'fastest-validator'
+import {
+  GetErrorMessages,
+  useFastestValidator,
+  ValidatorSchema
+} from 'hooks/useFastestValidator'
+import { MessagesType, ValidationError } from 'fastest-validator'
 
 export interface ErrorResponse {
   field?: string
@@ -23,20 +28,33 @@ export type HandleSubmitCallback = (
 export interface UseFormResult {
   message: string | undefined
   formState: FormState
-  getErrorMessages: (key: string) => string[]
+  getErrorMessages: GetErrorMessages
   handleChange: HandleForm
   handleSubmit: HandleSubmit
 }
 
 export const useForm = (options: UseFormOptions): UseFormResult => {
   const { validatorSchema } = options
-
+  const { lang, t } = useTranslation()
+  const errorsMessages: MessagesType = useMemo(() => {
+    return {
+      stringMin: t('errors:stringMin'),
+      stringEmpty: t('errors:required'),
+      emailEmpty: t('errors:required'),
+      required: t('errors:required'),
+      email: t('errors:email'),
+      alreadyUsed: t('errors:alreadyUsed'),
+      invalid: t('errors:invalid')
+    }
+  }, [lang])
   const [formState, setFormState] = useFormState()
   const {
     validate,
     getErrorMessages,
-    setValidationResult
-  } = useFastestValidator(validatorSchema)
+    addValidationErrors
+  } = useFastestValidator(validatorSchema, {
+    messages: errorsMessages
+  })
   const [message, setMessage] = useState<string | undefined>(undefined)
 
   const handleChange: HandleForm = (formData) => {
@@ -60,21 +78,24 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
             formElement.reset()
           }
         } catch (error) {
+          if (error.response == null) {
+            setFormState('error')
+            setMessage(t('errors:server-error'))
+            return
+          }
           const errors = error.response.data.errors as ErrorResponse[]
           const validationErrors: ValidationError[] = []
           for (const error of errors) {
             if (error.field != null) {
               if (error.message.endsWith('already used')) {
                 validationErrors.push({
-                  type: 'alreadyExists',
-                  field: error.field,
-                  message: error.message
+                  type: 'alreadyUsed',
+                  field: error.field
                 })
               } else {
                 validationErrors.push({
                   type: 'invalid',
-                  field: error.field,
-                  message: error.message
+                  field: error.field
                 })
               }
             } else {
@@ -83,7 +104,7 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
               break
             }
           }
-          setValidationResult(validationErrors)
+          addValidationErrors(validationErrors)
           setFormState('error')
         }
       } else {

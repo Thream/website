@@ -1,4 +1,5 @@
 import HeadTag from 'next/head'
+import useTranslation from 'next-translate/useTranslation'
 
 interface HeadProps {
   title?: string
@@ -8,10 +9,12 @@ interface HeadProps {
 }
 
 const Head: React.FC<HeadProps> = (props) => {
+  const { t } = useTranslation()
+
   const {
     title = 'Thream',
     image = '/images/icons/96x96.png',
-    description = 'Stay close with your friends and communities, talk, chat, collaborate, share, and have fun.',
+    description = t('common:description'),
     url = 'https://thream.divlo.fr/'
   } = props
 

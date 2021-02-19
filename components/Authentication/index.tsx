@@ -1,3 +1,5 @@
+import useTranslation from 'next-translate/useTranslation'
+
 import { Divider } from 'components/design/Divider'
 import { Header } from 'components/Header'
 import { AuthenticationForm } from 'components/Authentication/AuthenticationForm'
@@ -12,6 +14,7 @@ export interface AuthenticationProps {
 
 export const Authentication: React.FC<AuthenticationProps> = (props) => {
   const { mode, onSubmit } = props
+  const { t } = useTranslation()
 
   return (
     <>
@@ -19,7 +22,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
       <Container className='container-authentication'>
         <AuthenticationSocialMedia />
         <div className='divider'>
-          <Divider content='OR' />
+          <Divider content={t('authentication:or')} />
         </div>
         <AuthenticationForm onSubmit={onSubmit} mode={mode} />
       </Container>

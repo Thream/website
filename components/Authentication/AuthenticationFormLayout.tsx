@@ -1,6 +1,7 @@
 import Form, { HandleForm } from 'react-component-form'
 
 import { Button } from 'components/design/Button'
+import useTranslation from 'next-translate/useTranslation'
 
 export interface AuthenticationFormLayoutProps {
   onChange?: HandleForm
@@ -12,6 +13,7 @@ export const AuthenticationFormLayout: React.FC<AuthenticationFormLayoutProps> =
   props
 ) => {
   const { children, onChange, onSubmit, link } = props
+  const { t } = useTranslation()
 
   return (
     <>
@@ -20,7 +22,7 @@ export const AuthenticationFormLayout: React.FC<AuthenticationFormLayoutProps> =
           <div className='form'>
             {children}
             <Button style={{ width: '100%' }} type='submit'>
-              Submit
+              {t('authentication:submit')}
             </Button>
             {link}
           </div>

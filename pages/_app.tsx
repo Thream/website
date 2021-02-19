@@ -1,3 +1,10 @@
+import { useEffect } from 'react'
+import { AppProps } from 'next/app'
+import useTranslation from 'next-translate/useTranslation'
+
+import { ThemeProvider } from 'contexts/Theme'
+import { cookies } from 'utils/cookies'
+
 import '@fontsource/poppins/400.css'
 import '@fontsource/poppins/700.css'
 
@@ -6,11 +13,13 @@ import '@fontsource/roboto/700.css'
 
 import 'normalize.css/normalize.css'
 
-import { AppProps } from 'next/app'
-
-import { ThemeProvider } from 'contexts/Theme'
-
 const ThreamApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+  const { lang } = useTranslation()
+
+  useEffect(() => {
+    cookies.set('NEXT_LOCALE', lang)
+  }, [lang])
+
   return (
     <>
       <ThemeProvider>
@@ -36,17 +45,20 @@ const ThreamApp = ({ Component, pageProps }: AppProps): JSX.Element => {
             --color-tertiary: #7c818f;
             --color-success: #90ee90;
             --color-error: #ff7f7f;
+            --color-shadow: rgba(255, 255, 255, 0.2);
             &.theme-dark {
               --color-background-primary: #212121;
               --color-secondary: #fff;
               --color-success: #90ee90;
               --color-error: #ff7f7f;
+              --color-shadow: rgba(255, 255, 255, 0.2);
             }
             &.theme-light {
               --color-background-primary: #fff;
               --color-secondary: #181818;
               --color-success: #1e4620;
               --color-error: #ee1b1b;
+              --color-shadow: rgba(0, 0, 0, 0.2);
             }
             display: flex;
             flex-flow: column wrap;
