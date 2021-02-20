@@ -23,7 +23,7 @@ const Signin: React.FC = () => {
           const { data } = await api.post<Tokens>('/users/signin', formData)
           const authentication = new Authentication(data)
           authentication.signin()
-          await router.push('/application')
+          await router.push('/app')
           return null
         }}
       />

@@ -1,12 +1,14 @@
 version: '3.0'
 services:
   thream-website:
+    container_name: ${COMPOSE_PROJECT_NAME}
     build:
       context: './'
     ports:
-      - '3000:3000'
+      - '${PORT}:${PORT}'
+    environment:
+      PORT: ${PORT}
     volumes:
       - './:/app'
       - '/app/node_modules'
       - '/app/.next'
-    container_name: 'thream-website'

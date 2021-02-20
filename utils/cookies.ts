@@ -11,7 +11,6 @@ export class Cookies {
   }
 
   set (name: string, value: string): void {
-    this.remove(name)
     this.universalCookie.set(name, value, {
       path: '/',
       maxAge: Cookies.COOKIE_MAX_AGE

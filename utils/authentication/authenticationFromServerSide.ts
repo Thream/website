@@ -42,7 +42,7 @@ export const authenticationFromServerSide = (
       if (tokens != null) {
         return {
           redirect: {
-            destination: '/application',
+            destination: '/app',
             permanent: false
           }
         }
