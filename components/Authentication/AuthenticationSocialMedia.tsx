@@ -35,7 +35,7 @@ export const AuthenticationSocialMedia: React.FC = () => {
     if (isTokens(data)) {
       const authentication = new Authentication(data)
       authentication.signin()
-      router.push('/app/profile').catch(() => {})
+      router.push('/app').catch(() => {})
     }
   }, [router.query])
 

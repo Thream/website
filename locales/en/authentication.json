@@ -1,0 +1,17 @@
+{
+  "or": "OR",
+  "password": "Password",
+  "name": "Name",
+  "already-have-an-account": "Already have an account?",
+  "dont-have-an-account": "Don't have an account?",
+  "submit": "Submit",
+  "forgot-password": "Forgot your password?",
+  "already-know-password": "Already know your password?",
+  "signup": "Signup",
+  "signin": "Signin",
+  "reset-password": "Reset Password",
+  "errors": "Errors",
+  "success": "Success",
+  "success-signup": "You're almost there, please check your emails to confirm registration.",
+  "success-forgot-password": "Password-reset request successful, please check your emails!"
+}

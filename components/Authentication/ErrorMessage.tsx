@@ -1,3 +1,5 @@
+import useTranslation from 'next-translate/useTranslation'
+
 export interface ErrorMessageProps {
   errors: string[]
   fontSize?: number
@@ -5,6 +7,7 @@ export interface ErrorMessageProps {
 
 export const ErrorMessage: React.FC<ErrorMessageProps> = (props) => {
   const { errors, fontSize = 14 } = props
+  const { t } = useTranslation()
 
   if (errors.length === 0) {
     return null
@@ -23,7 +26,7 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = (props) => {
           <>
             <div className='error-container'>
               <div className='error-thumbnail' />
-              <span className='error-text'>Errors :</span>
+              <span className='error-text'>{t('authentication:errors')} :</span>
             </div>
             <ul className='errors-list'>
               {errors.map((error, index) => {

@@ -1,0 +1,9 @@
+{
+  "page-not-found": "This page could not be found.",
+  "server-error": "Internal Server Error.",
+  "required": "Oops, this field is required 🙈.",
+  "stringMin": "The field must contain at least {expected} characters.",
+  "email": "Mmm… It seems that this email is not valid 🤔.",
+  "alreadyUsed": "Already used.",
+  "invalid": "Invalid value."
+}

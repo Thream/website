@@ -1,13 +1,18 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import useTranslation from 'next-translate/useTranslation'
+import Translation from 'next-translate/Trans'
 
-import { Button } from 'components/design/Button'
-import { SocialMediaButton } from 'components/design/SocialMediaButton'
 import Head from 'components/Head'
 import { Header } from 'components/Header'
 import { Container } from 'components/design/Container'
+import { Button } from 'components/design/Button'
+import { SocialMediaButton } from 'components/design/SocialMediaButton'
 
 const Home: React.FC = () => {
+  const { t } = useTranslation()
+
   return (
     <>
       <Head />
@@ -30,13 +35,14 @@ const Home: React.FC = () => {
           <div>
             <h1 className='title'>Thream</h1>
             <div className='paragraph'>
-              Your <strong>open source</strong> platform to stay close with your
-              friends and communities, <strong>talk</strong>, chat,{' '}
-              <strong>collaborate</strong>, share and <strong>have fun</strong>.
+              <Translation
+                i18nKey='home:description'
+                components={[<strong key='bold' />]}
+              />
               <div className='buttons'>
                 <Link href='/authentication/signup'>
                   <a className='get-started-link'>
-                    <Button>Get started</Button>
+                    <Button>{t('home:get-started')}</Button>
                   </a>
                 </Link>
                 <a
@@ -123,6 +129,10 @@ const Home: React.FC = () => {
       </style>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
 }
 
 export default Home

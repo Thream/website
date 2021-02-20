@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios'
 import { GetServerSideProps } from 'next'
-import Cookies from 'universal-cookie'
 
 import { api } from 'utils/api'
+import { Cookies } from 'utils/cookies'
 import { RefreshTokenResponse, Tokens } from '.'
 import { Authentication } from './Authentication'
 
@@ -29,20 +29,20 @@ export const authenticationFromServerSide = (
 
   return async (context) => {
     const cookies = new Cookies(context.req.headers.cookie)
-    const refreshToken: string = cookies.get('refreshToken')
+    const refreshToken = cookies.get('refreshToken')
     let tokens: Tokens | null = null
     if (refreshToken != null) {
       try {
         tokens = await fetchRefreshToken(refreshToken)
       } catch {
-        cookies.remove('refreshToken', { path: '/' })
+        cookies.remove('refreshToken')
       }
     }
     if (!shouldBeAuthenticated) {
       if (tokens != null) {
         return {
           redirect: {
-            destination: '/app/profile',
+            destination: '/app',
             permanent: false
           }
         }

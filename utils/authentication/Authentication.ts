@@ -1,11 +1,9 @@
 import axios, { AxiosInstance } from 'axios'
-import Cookies from 'universal-cookie'
 
 import { API_URL } from 'utils/api'
-import { COOKIE_MAX_AGE, Tokens } from '.'
+import { cookies } from 'utils/cookies'
+import { Tokens } from '.'
 import { fetchRefreshToken } from './authenticationFromServerSide'
-
-const cookies = new Cookies()
 
 export class Authentication {
   public tokens: Tokens
@@ -45,7 +43,7 @@ export class Authentication {
         return response
       },
       async (error) => {
-        if (error.response.status !== 403 || error.config._retry as boolean) {
+        if (error.response.status !== 403 || (error.config._retry as boolean)) {
           return await Promise.reject(error)
         }
         error.config._retry = true
@@ -66,7 +64,7 @@ export class Authentication {
   }
 
   async signout (shouldSignoutApiSide: boolean = true): Promise<void> {
-    cookies.remove('refreshToken', { path: '/' })
+    cookies.remove('refreshToken')
     if (shouldSignoutApiSide) {
       await this.api.post('/users/signout', {
         refreshToken: this.tokens.refreshToken
@@ -76,10 +74,6 @@ export class Authentication {
   }
 
   signin (): void {
-    cookies.remove('refreshToken', { path: '/' })
-    cookies.set('refreshToken', this.tokens.refreshToken, {
-      path: '/',
-      maxAge: COOKIE_MAX_AGE
-    })
+    cookies.set('refreshToken', this.tokens.refreshToken)
   }
 }

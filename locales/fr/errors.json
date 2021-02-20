@@ -1,0 +1,9 @@
+{
+  "page-not-found": "Cette page est introuvable.",
+  "server-error": "Erreur interne du serveur.",
+  "required": "Oups, ce champ est obligatoire 🙈.",
+  "stringMin": "Le champ doit contenir au moins {expected} caractères.",
+  "email": "Mmm… Il semblerait que cet email ne soit pas valide 🤔.",
+  "alreadyUsed": "Déjà utilisé.",
+  "invalid": "Valeur invalide."
+}

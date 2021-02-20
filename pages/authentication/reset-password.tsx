@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+import useTranslation from 'next-translate/useTranslation'
 
 import Head from 'components/Head'
 import { Input } from 'components/design/Input'
@@ -14,6 +14,7 @@ import { authenticationFromServerSide } from 'utils/authentication'
 
 const ResetPassword: React.FC = () => {
   const router = useRouter()
+  const { t } = useTranslation()
 
   const {
     getErrorMessages,
@@ -27,7 +28,7 @@ const ResetPassword: React.FC = () => {
 
   return (
     <>
-      <Head title='Thream | Reset Password' />
+      <Head title={`Thream | ${t('authentication:reset-password')}`} />
 
       <Header />
       <Container>
@@ -51,13 +52,6 @@ const ResetPassword: React.FC = () => {
           />
         </AuthenticationFormLayout>
         <FormState state={formState} message={message} />
-        {formState === 'success' && (
-          <p className='text-center'>
-            <Link href='/authentication/signin'>
-              <a className='signin-link'>Go to Signin page</a>
-            </Link>
-          </p>
-        )}
       </Container>
 
       <style jsx>

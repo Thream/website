@@ -1,6 +1,7 @@
 import { forwardRef, useState } from 'react'
 import Link from 'next/link'
 import { ErrorMessage } from '../Authentication/ErrorMessage'
+import useTranslation from 'next-translate/useTranslation'
 
 interface InputProps extends React.ComponentPropsWithRef<'input'> {
   label: string
@@ -17,7 +18,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     showForgotPassword = false,
     ...rest
   } = props
-
+  const { t } = useTranslation()
   const [inputType, setInputType] = useState(type)
 
   const handlePassword = (): void => {
@@ -35,7 +36,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             </label>
             {type === 'password' && showForgotPassword ? (
               <Link href='/authentication/forgot-password'>
-                <a className='label-forgot-password'>Forgot your password ?</a>
+                <a className='label-forgot-password'>
+                  {t('authentication:forgot-password')}
+                </a>
               </Link>
             ) : null}
           </div>
