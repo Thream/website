@@ -20,7 +20,7 @@ const Signup: React.FC = () => {
             `/users/signup?redirectURI=${window.location.origin}/authentication/signin`,
             { ...formData, language: lang, theme }
           )
-          return t('authentication:success-message')
+          return t('authentication:success-signup')
         }}
       />
     </>
