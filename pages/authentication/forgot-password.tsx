@@ -37,7 +37,7 @@ const ForgotPassword: React.FC = () => {
               `/users/resetPassword?redirectURI=${window.location.origin}/authentication/reset-password`,
               formData
             )
-            return t('authentication:success-forgot-password')
+            return await t('authentication:success-forgot-password')
           })}
           link={
             <p>
