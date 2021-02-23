@@ -8,7 +8,7 @@ import {
   useFastestValidator,
   ValidatorSchema
 } from 'hooks/useFastestValidator'
-import { MessagesType, ValidationError } from 'fastest-validator'
+import { ValidationError } from 'fastest-validator'
 
 export interface ErrorResponse {
   field?: string
@@ -36,7 +36,7 @@ export interface UseFormResult {
 export const useForm = (options: UseFormOptions): UseFormResult => {
   const { validatorSchema } = options
   const { lang, t } = useTranslation()
-  const errorsMessages: MessagesType = useMemo(() => {
+  const errorsMessages = useMemo(() => {
     return {
       stringMin: t('errors:stringMin'),
       stringEmpty: t('errors:required'),
