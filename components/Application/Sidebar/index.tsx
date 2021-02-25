@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 
 import { IconButton } from 'components/design/IconButton'
@@ -20,49 +19,7 @@ export const Sidebar: React.FC = () => {
   return (
     <>
       <nav className='sidebar'>
-        <SidebarList>
-          <SidebarItem>
-            <Image
-              src='/images/icons/Thream.png'
-              alt='Thream'
-              width={60}
-              height={60}
-            />
-          </SidebarItem>
-          <SidebarItem>
-            <Tooltip content={t('application:add-guild')} direction='right'>
-              <IconButton icon='add' hasBackground />
-            </Tooltip>
-          </SidebarItem>
-        </SidebarList>
-
-        <SidebarList>
-          {guilds.rows.map((row) => {
-            return (
-              <SidebarItem key={row.id}>
-                <Tooltip content={row.guild.name} direction='right'>
-                  <Avatar
-                    src={`${API_URL}${row.guild.icon}`}
-                    alt={row.guild.name}
-                    width={60}
-                    height={60}
-                  />
-                </Tooltip>
-              </SidebarItem>
-            )
-          })}
-        </SidebarList>
-
-        <SidebarList>
-          <SidebarItem>
-            <Tooltip content={t('application:settings')} direction='right'>
-              <IconButton
-                icon='settings'
-                hasBackground
-                onClick={handleToggleTheme}
-              />
-            </Tooltip>
-          </SidebarItem>
+        <SidebarList className='guilds-list'>
           <SidebarItem>
             <Tooltip
               content={user.name}
@@ -77,6 +34,32 @@ export const Sidebar: React.FC = () => {
               />
             </Tooltip>
           </SidebarItem>
+          <SidebarItem>
+            <Tooltip content={t('application:add-guild')} direction='right'>
+              <IconButton icon='add' hasBackground />
+            </Tooltip>
+          </SidebarItem>
+          <SidebarItem>
+            <Tooltip content={t('application:settings')} direction='right'>
+              <IconButton
+                icon='settings'
+                hasBackground
+                onClick={handleToggleTheme}
+              />
+            </Tooltip>
+          </SidebarItem>
+          {guilds.rows.map((row) => {
+            return (
+              <SidebarItem key={row.id}>
+                <Avatar
+                  src={`${API_URL}${row.guild.icon}`}
+                  alt={row.guild.name}
+                  width={60}
+                  height={60}
+                />
+              </SidebarItem>
+            )
+          })}
         </SidebarList>
       </nav>
 
@@ -91,6 +74,22 @@ export const Sidebar: React.FC = () => {
             background-color: var(--color-background-primary);
             width: var(--sidebar-width);
             height: 100vh;
+            padding: 15px;
+          }
+          :global(.guilds-list) {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            flex-direction: row !important;
+          }
+          :global(.guilds-list)::-webkit-scrollbar {
+            width: 0.5rem;
+            margin-right: 10px;
+          }
+          :global(.guilds-list)::-webkit-scrollbar-track {
+            background-color: rgba(36, 38, 45, 0.4);
+          }
+          :global(.guilds-list)::-webkit-scrollbar-thumb {
+            background-color: var(--color-background-secondary);
           }
         `}
       </style>
