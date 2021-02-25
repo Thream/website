@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import useTranslation from 'next-translate/useTranslation'
 
 import { IconButton } from 'components/design/IconButton'
 import { Avatar } from 'components/design/Avatar'
@@ -14,6 +15,7 @@ export const Sidebar: React.FC = () => {
   const { authentication, user } = useAuthentication()
   const { handleToggleTheme } = useTheme()
   const { guilds } = useGuilds()
+  const { t } = useTranslation()
 
   return (
     <>
@@ -28,7 +30,7 @@ export const Sidebar: React.FC = () => {
             />
           </SidebarItem>
           <SidebarItem>
-            <Tooltip content='Add a Guild' direction='right'>
+            <Tooltip content={t('application:add-guild')} direction='right'>
               <IconButton icon='add' hasBackground />
             </Tooltip>
           </SidebarItem>
@@ -53,7 +55,7 @@ export const Sidebar: React.FC = () => {
 
         <SidebarList>
           <SidebarItem>
-            <Tooltip content='Settings' direction='right'>
+            <Tooltip content={t('application:settings')} direction='right'>
               <IconButton
                 icon='settings'
                 hasBackground
