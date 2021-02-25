@@ -21,7 +21,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             .tooltip-wrapper {
               --tooltip-text-color: white;
               --tooltip-background-color: black;
-              --tooltip-margin: 40px;
+              --tooltip-margin: 15px;
               --tooltip-arrow-size: 6px;
             }
             .tooltip-wrapper {
