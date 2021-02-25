@@ -1,22 +1,25 @@
 import Head from 'components/Head'
-import {
-  authenticationFromServerSide,
-  AuthenticationProvider,
-  PagePropsWithAuthentication
-} from 'utils/authentication'
-import { Application } from 'components/Application'
+import { authenticationFromServerSide } from 'utils/authentication'
+import { Application, ApplicationProps } from 'components/Application'
 
-const ApplicationPage: React.FC<PagePropsWithAuthentication> = (props) => {
+const ApplicationPage: React.FC<ApplicationProps> = (props) => {
   return (
-    <AuthenticationProvider authentication={props.authentication}>
+    <>
       <Head title='Thream | Application' />
-      <Application />
-    </AuthenticationProvider>
+      <Application
+        authentication={props.authentication}
+        guilds={props.guilds}
+      />
+    </>
   )
 }
 
 export const getServerSideProps = authenticationFromServerSide({
-  shouldBeAuthenticated: true
+  shouldBeAuthenticated: true,
+  fetchData: async (api) => {
+    const { data } = await api.get('/guilds')
+    return { guilds: data }
+  }
 })
 
 export default ApplicationPage

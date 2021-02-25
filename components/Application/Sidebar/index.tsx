@@ -6,9 +6,11 @@ import { SidebarItem } from './SidebarItem'
 import { SidebarList } from './SidebarList'
 import { useAuthentication } from 'utils/authentication'
 import { API_URL } from 'utils/api'
+import { useGuilds } from 'contexts/Guilds'
 
 export const Sidebar: React.FC = () => {
   const { user } = useAuthentication()
+  const { guilds } = useGuilds()
 
   return (
     <>
@@ -25,6 +27,21 @@ export const Sidebar: React.FC = () => {
           <SidebarItem>
             <IconButton icon='add' hasBackground />
           </SidebarItem>
+        </SidebarList>
+
+        <SidebarList>
+          {guilds.rows.map((row) => {
+            return (
+              <SidebarItem key={row.id}>
+                <Avatar
+                  src={`${API_URL}${row.guild.icon}`}
+                  alt={row.guild.name}
+                  width={60}
+                  height={60}
+                />
+              </SidebarItem>
+            )
+          })}
         </SidebarList>
 
         <SidebarList>
