@@ -6,6 +6,7 @@ export const SidebarItem: React.FC = (props) => {
       <style jsx>
         {`
           .sidebar-item {
+            position: relative;
             margin: 10px;
           }
         `}

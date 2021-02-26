@@ -7,23 +7,34 @@ import { SidebarList } from './SidebarList'
 import { API_URL } from 'utils/api'
 import { useGuilds } from 'contexts/Guilds'
 import { Tooltip } from 'components/design/Tooltip'
-import { useTheme } from 'contexts/Theme'
+import { useAuthentication } from 'utils/authentication'
 
 export const Sidebar: React.FC = () => {
-  const { handleToggleTheme } = useTheme()
   const { guilds } = useGuilds()
   const { t } = useTranslation()
+  const { user } = useAuthentication()
 
   return (
     <>
       <nav className='sidebar'>
-        <SidebarList className='guilds-list'>
+        <SidebarList>
           <SidebarItem>
             <Tooltip content={t('application:settings')} direction='right'>
-              <IconButton
-                icon='settings'
-                hasBackground
-                onClick={handleToggleTheme}
+              <Avatar
+                src='/images/icons/Thream.png'
+                alt='Thream'
+                width={60}
+                height={60}
+              />
+            </Tooltip>
+          </SidebarItem>
+          <SidebarItem>
+            <Tooltip content={t('application:settings')} direction='right'>
+              <Avatar
+                src={`${API_URL}${user.logo}`}
+                alt={user.name}
+                width={60}
+                height={60}
               />
             </Tooltip>
           </SidebarItem>
@@ -60,22 +71,7 @@ export const Sidebar: React.FC = () => {
             background-color: var(--color-background-primary);
             width: var(--sidebar-width);
             height: 100vh;
-            padding: 15px;
-          }
-          :global(.guilds-list) {
-            overflow-y: scroll;
-            overflow-x: hidden;
-            flex-direction: row !important;
-          }
-          :global(.guilds-list)::-webkit-scrollbar {
-            width: 0.5rem;
-            margin-right: 10px;
-          }
-          :global(.guilds-list)::-webkit-scrollbar-track {
-            background-color: rgba(36, 38, 45, 0.4);
-          }
-          :global(.guilds-list)::-webkit-scrollbar-thumb {
-            background-color: var(--color-background-secondary);
+            padding: 0 15px;
           }
         `}
       </style>

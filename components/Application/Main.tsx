@@ -11,7 +11,8 @@ export const Main: React.FC = () => {
             padding: 2rem;
             margin-left: var(--sidebar-width);
             background-color: var(--color-background-secondary);
-            height: 100vh;
+            min-height: 100vh;
+            overflow: auto;
           }
         `}
       </style>
