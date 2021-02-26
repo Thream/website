@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useMemo, useContext } from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import setLanguage from 'next-translate/setLanguage'
 
 import {
   Authentication,
@@ -8,7 +9,6 @@ import {
   UserSettings
 } from '.'
 import { useTheme } from 'contexts/Theme'
-import { setLanguage } from 'utils/setLanguage'
 
 export interface AuthenticationValue {
   authentication: Authentication
