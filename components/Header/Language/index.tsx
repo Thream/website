@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import setLanguage from 'next-translate/setLanguage'
 
 import { Arrow } from './Arrow'
-import { setLanguage } from 'utils/setLanguage'
 import { languages, Language as LanguageType } from 'utils/authentication'
 import { LanguageFlag } from './LanguageFlag'
 
