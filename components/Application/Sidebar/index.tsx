@@ -4,14 +4,12 @@ import { IconButton } from 'components/design/IconButton'
 import { Avatar } from 'components/design/Avatar'
 import { SidebarItem } from './SidebarItem'
 import { SidebarList } from './SidebarList'
-import { useAuthentication } from 'utils/authentication'
 import { API_URL } from 'utils/api'
 import { useGuilds } from 'contexts/Guilds'
 import { Tooltip } from 'components/design/Tooltip'
 import { useTheme } from 'contexts/Theme'
 
 export const Sidebar: React.FC = () => {
-  const { authentication, user } = useAuthentication()
   const { handleToggleTheme } = useTheme()
   const { guilds } = useGuilds()
   const { t } = useTranslation()
@@ -21,25 +19,6 @@ export const Sidebar: React.FC = () => {
       <nav className='sidebar'>
         <SidebarList className='guilds-list'>
           <SidebarItem>
-            <Tooltip
-              content={user.name}
-              direction='right'
-              onClick={async () => await authentication.signout()}
-            >
-              <Avatar
-                src={`${API_URL}${user.logo}`}
-                alt={user.name}
-                width={60}
-                height={60}
-              />
-            </Tooltip>
-          </SidebarItem>
-          <SidebarItem>
-            <Tooltip content={t('application:add-guild')} direction='right'>
-              <IconButton icon='add' hasBackground />
-            </Tooltip>
-          </SidebarItem>
-          <SidebarItem>
             <Tooltip content={t('application:settings')} direction='right'>
               <IconButton
                 icon='settings'
@@ -48,15 +27,22 @@ export const Sidebar: React.FC = () => {
               />
             </Tooltip>
           </SidebarItem>
+          <SidebarItem>
+            <Tooltip content={t('application:add-guild')} direction='right'>
+              <IconButton icon='add' hasBackground />
+            </Tooltip>
+          </SidebarItem>
           {guilds.rows.map((row) => {
             return (
               <SidebarItem key={row.id}>
-                <Avatar
-                  src={`${API_URL}${row.guild.icon}`}
-                  alt={row.guild.name}
-                  width={60}
-                  height={60}
-                />
+                <Tooltip content={row.guild.name} direction='right'>
+                  <Avatar
+                    src={`${API_URL}${row.guild.icon}`}
+                    alt={row.guild.name}
+                    width={60}
+                    height={60}
+                  />
+                </Tooltip>
               </SidebarItem>
             )
           })}
