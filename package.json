@@ -63,7 +63,7 @@
     "universal-cookie": "4.0.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "12.0.0",
+    "@commitlint/cli": "12.0.1",
     "@commitlint/config-conventional": "12.0.0",
     "@lhci/cli": "0.7.0",
     "@release-it/conventional-changelog": "2.0.1",
