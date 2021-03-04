@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@fontsource/poppins": "4.2.2",
-    "@fontsource/roboto": "4.2.1",
+    "@fontsource/roboto": "4.2.2",
     "axios": "0.21.1",
     "classnames": "2.2.6",
     "fastest-validator": "1.10.0",
