@@ -1,39 +1,25 @@
-import { Button } from 'components/design/Button'
 import Head from 'components/Head'
-import { Header } from 'components/Header'
-import {
-  authenticationFromServerSide,
-  AuthenticationProvider,
-  PagePropsWithAuthentication,
-  useAuthentication
-} from 'utils/authentication'
+import { authenticationFromServerSide } from 'utils/authentication'
+import { Application, ApplicationProps } from 'components/Application'
 
-const UserProfile: React.FC = () => {
-  const { authentication, user } = useAuthentication()
-
+const ApplicationPage: React.FC<ApplicationProps> = (props) => {
   return (
     <>
-      <p>Welcome {user.name}!</p>
-      <Button onClick={async () => await authentication.signout()}>
-        Signout
-      </Button>
+      <Head title='Thream | Application' />
+      <Application
+        authentication={props.authentication}
+        guilds={props.guilds}
+      />
     </>
   )
 }
 
-const Application: React.FC<PagePropsWithAuthentication> = (props) => {
-  return (
-    <AuthenticationProvider authentication={props.authentication}>
-      <Head title='Thream | Application' />
-
-      <Header />
-      <UserProfile />
-    </AuthenticationProvider>
-  )
-}
-
 export const getServerSideProps = authenticationFromServerSide({
-  shouldBeAuthenticated: true
+  shouldBeAuthenticated: true,
+  fetchData: async (api) => {
+    const { data } = await api.get('/guilds')
+    return { guilds: data }
+  }
 })
 
-export default Application
+export default ApplicationPage

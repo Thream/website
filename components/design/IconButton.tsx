@@ -20,10 +20,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         <style jsx>
           {`
             .button {
-              background: ${hasBackground ? 'var(--color-primary)' : 'none'};
+              background: ${hasBackground ? 'var(--color-background-secondary)' : 'none'};
               border-radius: ${hasBackground ? '50%' : '0'};
-              width: ${hasBackground ? '50px' : '100%'};
-              height: ${hasBackground ? '50px' : '100%'};
+              width: ${hasBackground ? '60px' : '100%'};
+              height: ${hasBackground ? '60px' : '100%'};
               border: none;
               outline: none;
               display: flex;
@@ -35,8 +35,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               opacity: 0.9;
             }
             .button > img {
-              width: 20px;
-              height: 20px;
+              width: 23px;
+              height: 23px;
               display: block;
             }
           `}

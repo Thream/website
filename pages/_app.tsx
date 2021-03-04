@@ -80,6 +80,15 @@ const ThreamApp = ({ Component, pageProps }: AppProps): JSX.Element => {
           a:hover {
             text-decoration: underline;
           }
+          ::-webkit-scrollbar {
+            width: 0.5rem;
+          }
+          ::-webkit-scrollbar-track {
+            background-color: rgba(36, 38, 45, 0.4);
+          }
+          ::-webkit-scrollbar-thumb {
+            background-color: var(--color-background-secondary);
+          }
         `}
       </style>
     </>

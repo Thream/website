@@ -21,18 +21,19 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             .tooltip-wrapper {
               --tooltip-text-color: white;
               --tooltip-background-color: black;
-              --tooltip-margin: 40px;
+              --tooltip-margin: 50px;
               --tooltip-arrow-size: 6px;
             }
             .tooltip-wrapper {
               display: inline-block;
-              position: relative;
+
             }
             .tooltip {
               position: absolute;
               border-radius: 6px;
-              left: 50%;
-              transform: translateX(-50%);
+              left: 100%;
+              top: 50%;
+              transform: translateY(-50%);
               padding: 10px;
               color: var(--tooltip-text-color);
               background: var(--tooltip-background-color);
@@ -72,13 +73,9 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             }
             .tooltip.right {
               left: calc(100% + var(--tooltip-margin));
-              top: 50%;
-              transform: translateX(0) translateY(-50%);
             }
             .tooltip.right::before {
               left: calc(var(--tooltip-arrow-size) * -1);
-              top: 50%;
-              transform: translateX(0) translateY(-50%);
               border-right-color: var(--tooltip-background-color);
             }
             .tooltip.bottom {

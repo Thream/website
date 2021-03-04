@@ -4,7 +4,7 @@ import { api } from 'utils/api'
 
 type NextPage = () => Promise<void>
 
-interface PaginationData<T> {
+export interface PaginationData<T> {
   totalItems: number
   hasMore: boolean
   rows: T[]
