@@ -5,12 +5,15 @@
 </p>
 
 <p align="center">
+  <strong>⚠️ The project has evolved, you can still use the code as you wish, but we won't maintain it on this GitHub repository.</strong>
+</p>
+
+<p align="center">
   <a href="https://github.com/Thream/website/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/Thream/website/workflows/Node.js%20CI/badge.svg" alt="Node.js CI" /></a>
-  <a href="https://dependabot.com/"><img src="https://badgen.net/github/dependabot/Thream/website?icon=dependabot" alt="Dependabot badge" /></a>
   <a href="https://www.npmjs.com/package/ts-standard"><img alt="TypeScript Standard Style" src="https://camo.githubusercontent.com/f87caadb70f384c0361ec72ccf07714ef69a5c0a/68747470733a2f2f62616467656e2e6e65742f62616467652f636f64652532307374796c652f74732d7374616e646172642f626c75653f69636f6e3d74797065736372697074"/></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
   <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits" /></a>
-  <a href="https://github.com/Thream/Thream/blob/master/.github/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
+  <a href="https://github.com/Thream/Thream/blob/master/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
   <br/> <br/>
   <a href="https://thream.divlo.fr/"><img src="./.github/images/Thream.png" alt="Thream" /></a>
 </p>
@@ -19,16 +22,7 @@
 
 Thream's website to stay close with your friends and communities. It relies on [Thream/api](https://github.com/Thream/api/).
 
-**Thream** is greatly inspired by [Discord](https://discord.com/).
-
 This project was bootstrapped with [create-fullstack-app](https://github.com/Divlo/create-fullstack-app).
-
-## 🚀 Features
-
-- ✨ Progressive Web App ready
-- ⚡️ Fast and Easy to use
-- 💰 Completely free (no premium subscriptions or such)
-- 🚀 Open source and welcome contributions
 
 ## ⚙️ Getting Started
 
@@ -74,7 +68,7 @@ npm run dev
 
 Anyone can help to improve the project, submit a Feature Request, a bug report or even correct a simple spelling mistake.
 
-The steps to contribute can be found in the [CONTRIBUTING.md](./.github/CONTRIBUTING.md) file.
+The steps to contribute can be found in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
 
 ## 📄 License
 
