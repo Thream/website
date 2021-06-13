@@ -1,8 +1,9 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext } from 'react'
 
-import { PaginationData } from 'hooks/usePagination'
+import { NextPage, PaginationData, usePagination } from 'hooks/usePagination'
+import { useAuthentication } from 'utils/authentication'
 
-interface Guild {
+export interface Guild {
   id: number
   name: string
   description: string
@@ -15,6 +16,7 @@ interface Guild {
 interface PaginationGuild {
   id: number
   isOwner: boolean
+  lastVisitedChannelId: number
   userId: number
   guildId: number
   createdAt: string
@@ -26,16 +28,26 @@ export type Guilds = PaginationData<PaginationGuild>
 
 export interface GuildsValue {
   guilds: Guilds
+  nextPage: NextPage
+}
+
+export interface GuildsProviderProps {
+  guilds: Guilds
 }
 
 const defaultGuildsContext: GuildsValue = {} as any
 const GuildsContext = createContext<GuildsValue>(defaultGuildsContext)
 
-export const GuildsProvider: React.FC<GuildsValue> = (props) => {
-  const [guilds] = useState<Guilds>(props.guilds)
+export const GuildsProvider: React.FC<GuildsProviderProps> = (props) => {
+  const { authentication } = useAuthentication()
+  const { data: guilds, nextPage } = usePagination<PaginationGuild>({
+    api: authentication.api,
+    url: '/guilds',
+    defaultPaginationData: props.guilds
+  })
 
   return (
-    <GuildsContext.Provider value={{ guilds }}>
+    <GuildsContext.Provider value={{ guilds, nextPage }}>
       {props.children}
     </GuildsContext.Provider>
   )

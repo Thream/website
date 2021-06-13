@@ -16,7 +16,7 @@ export const FormState: React.FC<FormStateProps> = (props) => {
   if (state === 'loading') {
     return (
       <>
-        <div className='loader'>
+        <div data-testid='loader' className='loader'>
           <Loader />
         </div>
 
@@ -86,7 +86,7 @@ export const FormState: React.FC<FormStateProps> = (props) => {
 
   return (
     <>
-      <div className='error'>
+      <div data-testid='error' className='error'>
         <ErrorMessage fontSize={16} errors={[message]} />
       </div>
 

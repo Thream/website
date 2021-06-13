@@ -1,4 +1,6 @@
-export const SidebarItem: React.FC = (props) => {
+import { memo } from 'react'
+
+export const SidebarItem: React.FC = memo((props) => {
   return (
     <>
       <li className='sidebar-item'>{props.children}</li>
@@ -8,9 +10,10 @@ export const SidebarItem: React.FC = (props) => {
           .sidebar-item {
             position: relative;
             margin: 10px;
+            cursor: pointer;
           }
         `}
       </style>
     </>
   )
-}
+})

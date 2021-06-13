@@ -1,6 +1,7 @@
-FROM node:14.16.0
+FROM node:14.16.1
+RUN npm install --global npm@7
 
-WORKDIR /app
+WORKDIR /website
 
 COPY ./package*.json ./
 RUN npm install

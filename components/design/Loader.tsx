@@ -8,7 +8,7 @@ export const Loader: React.FC<LoaderProps> = (props) => {
 
   return (
     <>
-      <div className='progress-spinner'>
+      <div data-testid='progress-spinner' className='progress-spinner'>
         <svg className='progress-spinner-svg' viewBox='25 25 50 50'>
           <circle
             className='progress-spinner-circle'

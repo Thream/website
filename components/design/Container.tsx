@@ -5,7 +5,9 @@ export const Container: React.FC<ContainerProps> = (props) => {
 
   return (
     <>
-      <div className={`container ${className ?? ''}`}>{children}</div>
+      <div className={`container ${className ?? ''}`}>
+        {children}
+      </div>
 
       <style jsx>
         {`

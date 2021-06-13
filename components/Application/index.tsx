@@ -16,7 +16,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
       <GuildsProvider guilds={props.guilds}>
         <div className='application'>
           <Sidebar />
-          <Main />
+          <Main>{props.children}</Main>
         </div>
 
         <style jsx global>

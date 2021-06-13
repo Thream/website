@@ -1,9 +1,7 @@
-export const Main: React.FC = () => {
+export const Main: React.FC = (props) => {
   return (
     <>
-      <main className='main'>
-        <p>Main Content</p>
-      </main>
+      <main className='main'>{props.children}</main>
 
       <style jsx>
         {`
@@ -13,6 +11,9 @@ export const Main: React.FC = () => {
             background-color: var(--color-background-secondary);
             min-height: 100vh;
             overflow: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
           }
         `}
       </style>

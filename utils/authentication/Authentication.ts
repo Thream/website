@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
+import { io, Socket } from 'socket.io-client'
 
 import { API_URL } from 'utils/api'
 import { cookies } from 'utils/cookies'
@@ -7,12 +8,28 @@ import { fetchRefreshToken } from './authenticationFromServerSide'
 
 export class Authentication {
   public tokens: Tokens
-  public api: AxiosInstance
   public accessTokenAge: number
+  public socket: Socket
+  public api: AxiosInstance
 
   constructor (tokens: Tokens) {
     this.tokens = tokens
     this.accessTokenAge = Date.now()
+    this.socket = io(API_URL, {
+      auth: { token: `Bearer ${tokens.accessToken}` }
+    })
+    this.socket.on('connect_error', (error) => {
+      if (error.message.startsWith('Unauthorized')) {
+        fetchRefreshToken(this.tokens.refreshToken)
+          .then(({ accessToken }) => {
+            this.setAccessToken(accessToken)
+          })
+          .catch(async () => {
+            this.signout()
+            return await Promise.reject(error)
+          })
+      }
+    })
     this.api = axios.create({
       baseURL: API_URL,
       headers: {
@@ -27,14 +44,13 @@ export class Authentication {
           const { accessToken } = await fetchRefreshToken(
             this.tokens.refreshToken
           )
-          this.tokens.accessToken = accessToken
-          this.accessTokenAge = Date.now()
+          this.setAccessToken(accessToken)
         }
         config.headers.Authorization = `${this.tokens.type} ${this.tokens.accessToken}`
         return config
       },
       async (error) => {
-        await this.signout(false)
+        this.signout()
         return await Promise.reject(error)
       }
     )
@@ -51,29 +67,39 @@ export class Authentication {
           const { accessToken } = await fetchRefreshToken(
             this.tokens.refreshToken
           )
-          this.tokens.accessToken = accessToken
-          this.accessTokenAge = Date.now()
+          this.setAccessToken(accessToken)
           error.response.config.headers.Authorization = `${this.tokens.type} ${this.tokens.accessToken}`
           return await this.api.request(error.response.config)
         } catch {
-          await this.signout(false)
+          this.signout()
           return await Promise.reject(error)
         }
       }
     )
   }
 
-  async signout (shouldSignoutApiSide: boolean = true): Promise<void> {
-    cookies.remove('refreshToken')
-    if (shouldSignoutApiSide) {
-      await this.api.post('/users/signout', {
-        refreshToken: this.tokens.refreshToken
-      })
+  public setAccessToken (accessToken: string): void {
+    this.tokens.accessToken = accessToken
+    this.accessTokenAge = Date.now()
+    const token = `${this.tokens.type} ${this.tokens.accessToken}`
+    if (typeof this.socket.auth !== 'function') {
+      this.socket.auth.token = token
     }
+  }
+
+  public signout (): void {
+    cookies.remove('refreshToken')
     window.location.href = '/authentication/signin'
   }
 
-  signin (): void {
+  public async signoutServerSide (): Promise<void> {
+    await this.api.post('/users/signout', {
+      refreshToken: this.tokens.refreshToken
+    })
+    this.signout()
+  }
+
+  public signin (): void {
     cookies.set('refreshToken', this.tokens.refreshToken)
   }
 }

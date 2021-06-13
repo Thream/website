@@ -1,6 +1,6 @@
 import useTranslation from 'next-translate/useTranslation'
 
-import Head from 'components/Head'
+import { Head } from 'components/Head'
 import { Authentication } from 'components/Authentication'
 import { api } from 'utils/api'
 import { useTheme } from 'contexts/Theme'

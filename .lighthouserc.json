@@ -5,7 +5,10 @@
       "startServerReadyPattern": "ready on",
       "startServerReadyTimeout": 20000,
       "url": ["http://localhost:3000/", "http://localhost:3000/authentication/signup"],
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
+      "settings": {
+        "chromeFlags": "--no-sandbox"
+      }
     },
     "assert": {
       "preset": "lighthouse:recommended",
@@ -18,7 +21,9 @@
         "uses-responsive-images": "off",
         "bypass": "warning",
         "color-contrast": "warning",
-        "preload-lcp-image": "warning"
+        "preload-lcp-image": "warning",
+        "errors-in-console": "warning",
+        "service-worker": "warning"
       }
     },
     "upload": {

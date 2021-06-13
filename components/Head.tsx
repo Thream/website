@@ -8,7 +8,7 @@ interface HeadProps {
   url?: string
 }
 
-const Head: React.FC<HeadProps> = (props) => {
+export const Head: React.FC<HeadProps> = (props) => {
   const { t } = useTranslation()
 
   const {
@@ -52,5 +52,3 @@ const Head: React.FC<HeadProps> = (props) => {
     </HeadTag>
   )
 }
-
-export default Head

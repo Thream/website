@@ -4,7 +4,7 @@ import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import Translation from 'next-translate/Trans'
 
-import Head from 'components/Head'
+import { Head } from 'components/Head'
 import { Header } from 'components/Header'
 import { Container } from 'components/design/Container'
 import { Button } from 'components/design/Button'
@@ -20,14 +20,14 @@ const Home: React.FC = () => {
       <Header />
       <Container className='home-container'>
         <section id='about'>
-          <div className='app__image'>
+          <div className='application__image'>
             <Link href='/authentication/signup'>
               <a>
                 <Image
                   width={351}
                   height={341}
                   src='/images/svg/design/home.svg'
-                  alt={'Thream\'s chat app'}
+                  alt={"Thream's chat app"}
                 />
               </a>
             </Link>
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
             text-align: center;
             width: 80%;
           }
-          .app__image {
+          .application__image {
             margin-right: 25px;
             max-width: 300px;
           }
@@ -118,7 +118,7 @@ const Home: React.FC = () => {
             text-decoration: none;
           }
           @media (max-width: 600px) and (max-height: 700px) {
-            .app__image:first-child {
+            .application__image:first-child {
               width: 65%;
             }
             .paragraph {

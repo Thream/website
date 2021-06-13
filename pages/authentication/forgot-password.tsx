@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { Input } from 'components/design/Input'
-import Head from 'components/Head'
+import { Head } from 'components/Head'
 import { Header } from 'components/Header'
 import { FormState } from 'components/Authentication/FormState'
 import { Container } from 'components/design/Container'

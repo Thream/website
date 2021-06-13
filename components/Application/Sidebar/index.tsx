@@ -1,4 +1,5 @@
 import useTranslation from 'next-translate/useTranslation'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { IconButton } from 'components/design/IconButton'
 import { Avatar } from 'components/design/Avatar'
@@ -8,25 +9,29 @@ import { API_URL } from 'utils/api'
 import { useGuilds } from 'contexts/Guilds'
 import { Tooltip } from 'components/design/Tooltip'
 import { useAuthentication } from 'utils/authentication'
+import { Loader } from 'components/design/Loader'
+import Link from 'next/link'
 
 export const Sidebar: React.FC = () => {
-  const { guilds } = useGuilds()
+  const { guilds, nextPage } = useGuilds()
   const { t } = useTranslation()
   const { user } = useAuthentication()
 
   return (
     <>
       <nav className='sidebar'>
-        <SidebarList>
+        <SidebarList id='sidebar-list'>
           <SidebarItem>
-            <Tooltip content={t('application:settings')} direction='right'>
-              <Avatar
-                src='/images/icons/Thream.png'
-                alt='Thream'
-                width={60}
-                height={60}
-              />
-            </Tooltip>
+            <Link href='/application'>
+              <Tooltip content={t('application:settings')} direction='right'>
+                <Avatar
+                  src='/images/icons/Thream.png'
+                  alt='Thream'
+                  width={60}
+                  height={60}
+                />
+              </Tooltip>
+            </Link>
           </SidebarItem>
           <SidebarItem>
             <Tooltip content={t('application:settings')} direction='right'>
@@ -43,20 +48,33 @@ export const Sidebar: React.FC = () => {
               <IconButton icon='add' hasBackground />
             </Tooltip>
           </SidebarItem>
-          {guilds.rows.map((row) => {
-            return (
-              <SidebarItem key={row.id}>
-                <Tooltip content={row.guild.name} direction='right'>
-                  <Avatar
-                    src={`${API_URL}${row.guild.icon}`}
-                    alt={row.guild.name}
-                    width={60}
-                    height={60}
-                  />
-                </Tooltip>
-              </SidebarItem>
-            )
-          })}
+          <InfiniteScroll
+            dataLength={guilds.rows.length}
+            next={nextPage}
+            style={{ overflow: 'none' }}
+            hasMore={guilds.hasMore}
+            loader={<Loader />}
+            scrollableTarget='sidebar-list'
+          >
+            {guilds.rows.map((row) => {
+              return (
+                <SidebarItem key={row.id}>
+                  <Link
+                    href={`/application/${row.guildId}/${row.lastVisitedChannelId}`}
+                  >
+                    <Tooltip content={row.guild.name} direction='right'>
+                      <Avatar
+                        src={`${API_URL}${row.guild.icon}`}
+                        alt={row.guild.name}
+                        width={60}
+                        height={60}
+                      />
+                    </Tooltip>
+                  </Link>
+                </SidebarItem>
+              )
+            })}
+          </InfiniteScroll>
         </SidebarList>
       </nav>
 

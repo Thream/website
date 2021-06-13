@@ -10,6 +10,7 @@
     "/authentication/reset-password": ["authentication", "errors"],
     "/authentication/signin": ["authentication", "errors"],
     "/authentication/signup": ["authentication", "errors"],
-    "/app": ["application"]
+    "/application": ["application"],
+    "/application/[guildId]/[channelId]": ["application"]
   }
 }

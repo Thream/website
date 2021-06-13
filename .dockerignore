@@ -1,5 +1,11 @@
-node_modules
+.vscode
+.git
 .next
 build
-out
+coverage
 dist
+node_modules
+out
+**/workbox-*.js
+**/sw.js
+**/__test__/**

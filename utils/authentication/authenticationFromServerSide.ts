@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import { api } from 'utils/api'
 import { Cookies } from 'utils/cookies'
@@ -19,7 +19,7 @@ interface AuthenticationFromServerSideOptions {
   shouldBeAuthenticated: boolean
 
   /** allows to fetch data server side with the authenticated user, the callback should returns the data that will be transfer to the component as props */
-  fetchData?: (api: AxiosInstance) => Promise<{ [key: string]: any }>
+  fetchData?: (api: AxiosInstance, context: GetServerSidePropsContext) => Promise<{ [key: string]: any }>
 }
 
 export const authenticationFromServerSide = (
@@ -42,7 +42,7 @@ export const authenticationFromServerSide = (
       if (tokens != null) {
         return {
           redirect: {
-            destination: '/app',
+            destination: '/application',
             permanent: false
           }
         }
@@ -64,7 +64,7 @@ export const authenticationFromServerSide = (
           '/users/current'
         )
         if (fetchData != null) {
-          data = await fetchData(authentication.api)
+          data = await fetchData(authentication.api, context)
         }
         return {
           props: { authentication: { tokens, ...currentUser }, ...data }

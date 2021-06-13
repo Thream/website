@@ -1,4 +1,4 @@
-import Head from 'components/Head'
+import { Head } from 'components/Head'
 import { authenticationFromServerSide } from 'utils/authentication'
 import { Application, ApplicationProps } from 'components/Application'
 
@@ -6,10 +6,9 @@ const ApplicationPage: React.FC<ApplicationProps> = (props) => {
   return (
     <>
       <Head title='Thream | Application' />
-      <Application
-        authentication={props.authentication}
-        guilds={props.guilds}
-      />
+      <Application authentication={props.authentication} guilds={props.guilds}>
+        <p>Main Content</p>
+      </Application>
     </>
   )
 }

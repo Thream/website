@@ -14,8 +14,6 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
   <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits" /></a>
   <a href="https://github.com/Thream/Thream/blob/master/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
-  <br/> <br/>
-  <a href="https://thream.divlo.fr/"><img src="./.github/images/Thream.png" alt="Thream" /></a>
 </p>
 
 ## 📜 About
@@ -28,8 +26,8 @@ This project was bootstrapped with [create-fullstack-app](https://github.com/Div
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) >= 14
-- [npm](https://www.npmjs.com/) >= 6
+- [Node.js](https://nodejs.org/) >= 16
+- [npm](https://www.npmjs.com/) >= 7
 
 ### Installation
 
@@ -40,35 +38,39 @@ git clone https://github.com/Thream/website.git
 # Go to the project root
 cd website
 
-# Install dependencies
+# Configure environment variables
+cp .env.example .env
+
+# Install
 npm install
 ```
 
-### Usage (development environment)
+You will need to configure the environment variables by creating an `.env` file at
+the root of the project (see `.env.example`).
 
-#### With [docker](https://www.docker.com/)
+### Local Development environment
+
+```sh
+npm run dev
+```
+
+### Production environment with [Docker](https://www.docker.com/)
 
 ```sh
 # Setup and run all the services for you
 docker-compose up --build
 ```
 
-**Services started :**
+#### Services started
 
 - website : `http://localhost:3000`
 
-#### Without docker
-
-```sh
-# Start the website server (http://localhost:3000)
-npm run dev
-```
-
 ## 💡 Contributing
 
-Anyone can help to improve the project, submit a Feature Request, a bug report or even correct a simple spelling mistake.
+Anyone can help to improve the project, submit a Feature Request, a bug report or
+even correct a simple spelling mistake.
 
-The steps to contribute can be found in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
+The steps to contribute can be found in [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## 📄 License
 

@@ -6,6 +6,7 @@ import { ThemeProvider } from 'contexts/Theme'
 import { cookies } from 'utils/cookies'
 
 import '@fontsource/poppins/400.css'
+import '@fontsource/poppins/600.css'
 import '@fontsource/poppins/700.css'
 
 import '@fontsource/roboto/400.css'
@@ -40,6 +41,7 @@ const ThreamApp = ({ Component, pageProps }: AppProps): JSX.Element => {
             --default-font-size: 1.6rem;
             --color-background-primary: #212121;
             --color-background-secondary: #292d3e;
+            --color-background-tertiary: #202331;
             --color-primary: #27b05e;
             --color-secondary: #fff;
             --color-tertiary: #7c818f;
@@ -67,6 +69,7 @@ const ThreamApp = ({ Component, pageProps }: AppProps): JSX.Element => {
             font-size: var(--default-font-size);
             font-family: 'Poppins', 'Arial', 'sans-serif';
             font-weight: 400;
+            overflow-y: hidden;
           }
           #__next {
             max-width: 100%;

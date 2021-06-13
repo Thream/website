@@ -44,6 +44,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           </div>
           <div className='input-container'>
             <input
+              data-testid='input'
               className='input'
               {...rest}
               ref={ref}
@@ -52,7 +53,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               type={inputType}
             />
             {type === 'password' && (
-              <div onClick={handlePassword} className='password-eye' />
+              <div
+                data-testid='password-eye'
+                onClick={handlePassword}
+                className='password-eye'
+              />
             )}
             <ErrorMessage errors={errors} />
           </div>

@@ -29,7 +29,12 @@ SocialMediaButtonProps
 
   return (
     <>
-      <button ref={ref} {...rest} className={`button ${className ?? ''}`}>
+      <button
+        data-testid='button'
+        ref={ref}
+        {...rest}
+        className={`button ${className ?? ''}`}
+      >
         <Image
           width={20}
           height={20}

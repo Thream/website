@@ -4,11 +4,10 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}
     build:
       context: './'
+      dockerfile: './Dockerfile'
     ports:
       - '${PORT}:${PORT}'
     environment:
       PORT: ${PORT}
     volumes:
-      - './:/app'
-      - '/app/node_modules'
-      - '/app/.next'
+      - './:/website'

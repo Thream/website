@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import Head from 'components/Head'
+import { Head } from 'components/Head'
 import { Authentication as AuthenticationComponent } from 'components/Authentication'
 import { api } from 'utils/api'
 import {
@@ -23,7 +23,7 @@ const Signin: React.FC = () => {
           const { data } = await api.post<Tokens>('/users/signin', formData)
           const authentication = new Authentication(data)
           authentication.signin()
-          await router.push('/app')
+          await router.push('/application')
           return null
         }}
       />

@@ -1,7 +1,13 @@
-export const SidebarList: React.FC = (props) => {
+export interface SidebarListProps extends React.ComponentPropsWithRef<'ul'> {}
+
+export const SidebarList: React.FC<SidebarListProps> = (props) => {
+  const { children, ...rest } = props
+
   return (
     <>
-      <ul className='sidebar-list'>{props.children}</ul>
+      <ul {...rest} className='sidebar-list'>
+        {children}
+      </ul>
 
       <style jsx>
         {`

@@ -1,8 +1,8 @@
-const withTranslate = require('next-translate')
-const withPWA = require('next-pwa')
+const nextTranslate = require('next-translate')
+const nextPWA = require('next-pwa')
 
-module.exports = withTranslate(
-  withPWA({
+module.exports = nextTranslate(
+  nextPWA({
     pwa: {
       disable: process.env.NODE_ENV !== 'production',
       dest: 'public'
