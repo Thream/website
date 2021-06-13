@@ -1,38 +1,22 @@
-import { useRouter } from 'next/router'
+import { GetStaticProps } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from 'components/Head'
-import { Authentication as AuthenticationComponent } from 'components/Authentication'
-import { api } from 'utils/api'
-import {
-  Authentication,
-  authenticationFromServerSide,
-  Tokens
-} from 'utils/authentication'
+import { Authentication } from 'components/Authentication'
 
 const Signin: React.FC = () => {
-  const router = useRouter()
   const { t } = useTranslation()
 
   return (
     <>
-      <Head title={`Thream | ${t('authentication:signin')}`} />
-      <AuthenticationComponent
-        mode='signin'
-        onSubmit={async (formData) => {
-          const { data } = await api.post<Tokens>('/users/signin', formData)
-          const authentication = new Authentication(data)
-          authentication.signin()
-          await router.push('/application')
-          return null
-        }}
-      />
+      <Head title={`Thream | ${t('authentication:signup')}`} />
+      <Authentication mode='signin' />
     </>
   )
 }
 
-export const getServerSideProps = authenticationFromServerSide({
-  shouldBeAuthenticated: false
-})
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}
 
 export default Signin

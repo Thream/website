@@ -10,7 +10,7 @@
   "signup": "S'inscrire",
   "signin": "Se connecter",
   "reset-password": "Réinitialiser le mot de passe",
-  "errors": "Erreurs",
+  "error": "Erreur",
   "success": "Succès",
   "success-signup": "Vous y êtes presque, veuillez vérifier vos emails pour confirmer votre inscription.",
   "success-forgot-password": "Demande de réinitialisation du mot de passe réussie, veuillez vérifier vos emails!"

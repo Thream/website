@@ -1,4 +1,4 @@
-import HeadTag from 'next/head'
+import NextHead from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 
 interface HeadProps {
@@ -19,14 +19,14 @@ export const Head: React.FC<HeadProps> = (props) => {
   } = props
 
   return (
-    <HeadTag>
+    <NextHead>
       <title>{title}</title>
       <link rel='icon' type='image/png' href={image} />
 
       {/* Meta Tag */}
-      <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       <meta name='description' content={description} />
-      <meta name='Language' content='en' />
+      <meta name='Language' content='fr, en' />
       <meta name='theme-color' content='#27B05E' />
 
       {/* Open Graph Metadata */}
@@ -35,7 +35,7 @@ export const Head: React.FC<HeadProps> = (props) => {
       <meta property='og:url' content={url} />
       <meta property='og:image' content={image} />
       <meta property='og:description' content={description} />
-      <meta property='og:locale' content='en_EN' />
+      <meta property='og:locale' content='fr_FR, en_US' />
       <meta property='og:site_name' content={title} />
 
       {/* Twitter card Metadata */}
@@ -49,6 +49,6 @@ export const Head: React.FC<HeadProps> = (props) => {
       <meta name='apple-mobile-web-app-capable' content='yes' />
       <meta name='mobile-web-app-capable' content='yes' />
       <link rel='apple-touch-icon' href={image} />
-    </HeadTag>
+    </NextHead>
   )
 }

@@ -4,7 +4,10 @@
       "startServerCommand": "npm run start",
       "startServerReadyPattern": "ready on",
       "startServerReadyTimeout": 20000,
-      "url": ["http://localhost:3000/", "http://localhost:3000/authentication/signup"],
+      "url": [
+        "http://localhost:3000/",
+        "http://localhost:3000/authentication/signup"
+      ],
       "numberOfRuns": 3,
       "settings": {
         "chromeFlags": "--no-sandbox"

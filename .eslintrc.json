@@ -1,0 +1,15 @@
+{
+  "extends": ["standard-with-typescript", "eslint-config-prettier"],
+  "plugins": ["eslint-plugin-prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}

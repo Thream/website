@@ -10,7 +10,7 @@
   "signup": "Signup",
   "signin": "Signin",
   "reset-password": "Reset Password",
-  "errors": "Errors",
+  "error": "Error",
   "success": "Success",
   "success-signup": "You're almost there, please check your emails to confirm registration.",
   "success-forgot-password": "Password-reset request successful, please check your emails!"
