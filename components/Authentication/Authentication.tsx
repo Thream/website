@@ -56,7 +56,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           <Button className='w-full mt-6' type='submit'>
             {t('authentication:submit')}
           </Button>
-          <p className='mt-2 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
+          <p className='mt-3 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
             <Link
               href={
                 mode === 'signup'

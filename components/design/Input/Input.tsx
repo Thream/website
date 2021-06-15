@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -12,7 +12,7 @@ export const getInputType = (inputType: string): string => {
   return inputType === 'password' ? 'text' : 'password'
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Input: React.FC<InputProps> = (props) => {
   const {
     label,
     name,
@@ -52,7 +52,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             data-testid='input'
             className='input font-paragraph w-full focus:border focus:outline-none'
             {...rest}
-            ref={ref}
             id={name}
             name={name}
             type={inputType}
@@ -93,4 +92,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       </style>
     </>
   )
-})
+}

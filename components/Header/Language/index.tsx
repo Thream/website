@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import setLanguage from 'next-translate/setLanguage'
 
 import { Arrow } from './Arrow'
 import { LanguageFlag } from './LanguageFlag'
-import { locales } from 'i18n.json'
+import i18n from 'i18n.json'
 
 export const Language: React.FC = () => {
   const { lang: currentLanguage } = useTranslation()
   const [hiddenMenu, setHiddenMenu] = useState(true)
+
+  const handleHiddenMenu = useCallback(() => {
+    setHiddenMenu(!hiddenMenu)
+  }, [hiddenMenu])
 
   useEffect(() => {
     if (!hiddenMenu) {
@@ -20,15 +24,11 @@ export const Language: React.FC = () => {
     return () => {
       window.document.removeEventListener('click', handleHiddenMenu)
     }
-  }, [hiddenMenu])
+  }, [hiddenMenu, handleHiddenMenu])
 
   const handleLanguage = async (language: string): Promise<void> => {
     await setLanguage(language)
     handleHiddenMenu()
-  }
-
-  const handleHiddenMenu = (): void => {
-    setHiddenMenu(!hiddenMenu)
   }
 
   return (
@@ -39,7 +39,7 @@ export const Language: React.FC = () => {
       </div>
       {!hiddenMenu && (
         <ul className='flex flex-col justify-center items-center absolute p-0 top-14 z-10 w-24 mt-3 mr-4 rounded-lg list-none shadow-light dark:shadow-dark bg-white dark:bg-black'>
-          {locales.map((language, index) => {
+          {i18n.locales.map((language, index) => {
             if (language === currentLanguage) {
               return null
             }

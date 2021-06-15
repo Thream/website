@@ -28,7 +28,7 @@ const ForgotPassword: React.FC = () => {
           <Button className='w-full mt-6' type='submit'>
             {t('authentication:submit')}
           </Button>
-          <p className='mt-2 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
+          <p className='mt-3 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
             <Link href='/authentication/signin'>
               <a>{t('authentication:already-know-password')}</a>
             </Link>

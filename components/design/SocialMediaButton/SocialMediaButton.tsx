@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from 'react'
+import { useMemo } from 'react'
 import Image from 'next/image'
 import classNames from 'classnames'
 
@@ -13,15 +13,12 @@ interface SocialMediaButtonProps extends React.ComponentPropsWithRef<'button'> {
 }
 
 const socialMediaColors: SocialMediaColors = {
-  Discord: '#7289DA',
+  Discord: '#404EED',
   GitHub: '#24292E',
   Google: '#FCFCFC'
 }
 
-export const SocialMediaButton = forwardRef<
-  HTMLButtonElement,
-  SocialMediaButtonProps
->((props, ref) => {
+export const SocialMediaButton: React.FC<SocialMediaButtonProps> = (props) => {
   const { socialMedia, className, ...rest } = props
 
   const socialMediaColor = useMemo(() => {
@@ -32,7 +29,6 @@ export const SocialMediaButton = forwardRef<
     <>
       <button
         data-testid='button'
-        ref={ref}
         {...rest}
         className={classNames(
           `button py-2 px-6 inline-flex outline-none items-center font-paragraph rounded-lg cursor-pointer transition duration-300 ease-in-out hover:opacity-80 focus:outline-none`,
@@ -62,4 +58,4 @@ export const SocialMediaButton = forwardRef<
       </style>
     </>
   )
-})
+}
