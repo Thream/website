@@ -8,7 +8,8 @@ type SocialMediaColors = {
   [key in SocialMedia]: string
 }
 
-interface SocialMediaButtonProps extends React.ComponentPropsWithRef<'button'> {
+export interface SocialMediaButtonProps
+  extends React.ComponentPropsWithRef<'button'> {
   socialMedia: SocialMedia
 }
 

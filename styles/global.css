@@ -5,3 +5,12 @@
 #__next {
   @apply flex flex-col h-screen;
 }
+
+body,
+#preview-storybook {
+  @apply bg-white dark:bg-black text-black dark:text-white font-headline;
+}
+
+#preview-storybook {
+  @apply min-h-screen p-6;
+}
