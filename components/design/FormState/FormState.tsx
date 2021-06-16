@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 
 import { FormState as FormStateType } from 'hooks/useFormState'
-import { Loader } from 'components/design/Loader'
+import { Loader } from '../Loader'
 
 export interface FormStateProps {
   state: FormStateType

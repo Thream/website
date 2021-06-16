@@ -2,14 +2,22 @@ import { Meta, Story } from '@storybook/react'
 
 import { SocialMediaButton, SocialMediaButtonProps } from './SocialMediaButton'
 
-const ButtonStories: Meta = {
+const Stories: Meta = {
   title: 'SocialMediaButton',
   component: SocialMediaButton
 }
 
-export default ButtonStories
+export default Stories
 
-export const Main: Story<SocialMediaButtonProps> = (args) => (
+const Template: Story<SocialMediaButtonProps> = (args) => (
   <SocialMediaButton {...args} />
 )
-Main.args = { socialMedia: 'GitHub' }
+
+export const Github = Template.bind({})
+Github.args = { socialMedia: 'GitHub' }
+
+export const Discord = Template.bind({})
+Discord.args = { socialMedia: 'Discord' }
+
+export const Google = Template.bind({})
+Google.args = { socialMedia: 'Google' }

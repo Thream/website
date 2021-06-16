@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+import { FormState } from '../FormState'
 
-interface InputProps extends React.ComponentPropsWithRef<'input'> {
+export interface InputProps extends React.ComponentPropsWithRef<'input'> {
   label: string
   error?: string
   showForgotPassword?: boolean
@@ -60,9 +61,10 @@ export const Input: React.FC<InputProps> = (props) => {
             <div
               data-testid='password-eye'
               onClick={handlePassword}
-              className='password-eye absolute cursor-pointer bg-cover bg-white'
+              className='password-eye absolute cursor-pointer bg-cover bg-[#f1f1f1]'
             />
           )}
+          <FormState state={error == null ? 'idle' : 'error'} message={error} />
         </div>
       </div>
 
