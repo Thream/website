@@ -5,6 +5,7 @@
     "*": ["common"],
     "/": ["home"],
     "/authentication/forgot-password": ["authentication"],
+    "/authentication/reset-password": ["authentication"],
     "/authentication/signup": ["authentication"],
     "/authentication/signin": ["authentication"]
   }

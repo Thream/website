@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import { AuthenticationForm } from 'components/Authentication'
 import useTranslation from 'next-translate/useTranslation'
@@ -13,26 +12,26 @@ import { Button } from 'components/design/Button'
 import { FormState } from 'components/design/FormState'
 import { useFormState } from 'hooks/useFormState'
 
-const ForgotPassword: React.FC = () => {
+const ResetPassword: React.FC = () => {
   const { t } = useTranslation()
   const [formState] = useFormState()
   const [message] = useState<string | undefined>(undefined)
 
   return (
     <>
-      <Head title={`Thream | ${t('authentication:forgot-password')}`} />
+      <Head title={`Thream | ${t('authentication:reset-password')}`} />
       <Header />
       <Main>
         <AuthenticationForm>
-          <Input type='email' placeholder='Email' name='email' label='Email' />
+          <Input
+            type='password'
+            placeholder='Password'
+            name='password'
+            label='Password'
+          />
           <Button className='w-full mt-6' type='submit'>
             {t('authentication:submit')}
           </Button>
-          <p className='mt-3 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
-            <Link href='/authentication/signin'>
-              <a>{t('authentication:already-know-password')}</a>
-            </Link>
-          </p>
         </AuthenticationForm>
         <FormState state={formState} message={message} />
       </Main>
@@ -45,4 +44,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: {} }
 }
 
-export default ForgotPassword
+export default ResetPassword

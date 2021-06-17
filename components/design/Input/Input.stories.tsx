@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react'
 
 import { Input, InputProps } from './Input'
+import { AuthenticationForm } from '../../Authentication/AuthenticationForm'
 
 const Stories: Meta = {
   title: 'Input',
@@ -10,9 +11,9 @@ const Stories: Meta = {
 export default Stories
 
 const Template: Story<InputProps> = (args) => (
-  <div className='w-4/6 max-w-xs'>
+  <AuthenticationForm>
     <Input {...args} />
-  </div>
+  </AuthenticationForm>
 )
 
 export const Text = Template.bind({})

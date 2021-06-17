@@ -51,7 +51,7 @@ export const Input: React.FC<InputProps> = (props) => {
         <div className='mt-0 relative'>
           <input
             data-testid='input'
-            className='input font-paragraph w-full focus:border focus:outline-none'
+            className='input caret-green-600 font-paragraph w-full focus:border focus:outline-none'
             {...rest}
             id={name}
             name={name}

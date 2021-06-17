@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import Form from 'react-component-form'
 
 import { SocialMediaButton } from 'components/design/SocialMediaButton'
 import { Header } from 'components/Header'
@@ -11,6 +10,7 @@ import { Input } from 'components/design/Input'
 import { Button } from 'components/design/Button'
 import { FormState } from 'components/design/FormState'
 import { useFormState } from 'hooks/useFormState'
+import { AuthenticationForm } from './'
 
 export interface AuthenticationProps {
   mode: 'signup' | 'signin'
@@ -36,7 +36,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
         <section className='text-center text-lg font-paragraph pt-8'>
           {t('authentication:or')}
         </section>
-        <Form className='w-4/6 max-w-xs'>
+        <AuthenticationForm>
           {mode === 'signup' && (
             <Input
               type='text'
@@ -71,7 +71,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
               </a>
             </Link>
           </p>
-        </Form>
+        </AuthenticationForm>
         <FormState state={formState} message={message} />
       </Main>
       <Footer />
