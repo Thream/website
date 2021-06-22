@@ -113,7 +113,7 @@ const ApplicationPage: React.FC = () => {
                 return (
                   <a
                     key={index}
-                    className='w-full flex justify-center cursor-pointer'
+                    className='w-full flex justify-center cursor-pointer relative'
                     title='Guild name'
                   >
                     <Image
@@ -123,6 +123,11 @@ const ApplicationPage: React.FC = () => {
                       height={48}
                       className='w-12 h-12'
                     />
+                    {index === 1 && (
+                      <div className='absolute flex items-center w-3 h-12 left-0'>
+                        <span className='absolute w-4/12 bg-green-700 rounded-r-lg h-full'></span>
+                      </div>
+                    )}
                   </a>
                 )
               })}
