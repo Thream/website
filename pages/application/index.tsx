@@ -107,7 +107,7 @@ const ApplicationPage: React.FC = () => {
                 </button>
               </div>
               <div className='relative flex justify-center h-[2px] w-full'>
-                <div className='absolute h-[2px] w-10 bg-white/20 rounded-full'></div>
+                <div className='absolute h-[2px] w-12 bg-white/20 rounded-full'></div>
               </div>
               {new Array(100).fill(null).map((_, index) => {
                 return (
@@ -130,6 +130,9 @@ const ApplicationPage: React.FC = () => {
             <div className='flex flex-col justify-between w-full mt-2'>
               <div className='text-center p-2 mt-2'>
                 <h2 className='text-xl'>Guild Name</h2>
+              </div>
+              <div className='relative flex justify-center h-[2px] w-full mb-3'>
+                <div className='absolute h-[2px] w-8/12 bg-white/20 rounded-full'></div>
               </div>
               <nav className='w-full overflow-y-scroll'>
                 {new Array(100).fill(null).map((_, index) => {
@@ -155,6 +158,9 @@ const ApplicationPage: React.FC = () => {
                   )
                 })}
               </nav>
+              <div className='relative flex justify-center h-[2px] w-full mt-2'>
+                <div className='absolute h-[2px] w-8/12 bg-white/20 rounded-full'></div>
+              </div>
               <div className='flex justify-center items-center p-2 mb-1 space-x-6'>
                 <button
                   className='h-10 w-10 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none focus:animate-pulse'
