@@ -14,3 +14,25 @@ body,
 #preview-storybook {
   @apply min-h-screen p-6;
 }
+
+:root {
+  --scroll-bar-color: #c5c5c5;
+  --scroll-bar-bg-color: transparent;
+}
+
+::-webkit-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-bar-color) var(--scroll-bar-bg-color);
+  width: 5px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-bar-color);
+  border-radius: 20px;
+  border: 3px solid var(--scroll-bar-bg-color);
+}

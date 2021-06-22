@@ -4,7 +4,14 @@ import { useEffect, useState } from 'react'
 
 import classNames from 'classnames'
 import { useTheme } from 'next-themes'
-import { MenuIcon, UsersIcon, XIcon, PlusIcon } from '@heroicons/react/solid'
+import {
+  MenuIcon,
+  UsersIcon,
+  XIcon,
+  CogIcon,
+  PlusIcon
+} from '@heroicons/react/solid'
+import {} from '@heroicons/react/outline'
 
 import { Head } from 'components/Head'
 
@@ -15,7 +22,7 @@ const ApplicationPage: React.FC = () => {
 
   useEffect(() => {
     setMounted(true)
-    // setVisibleSidebar(window.innerWidth > 768)
+    setVisibleSidebar(window.innerWidth > 768)
   }, [])
 
   if (!mounted) {
@@ -36,7 +43,9 @@ const ApplicationPage: React.FC = () => {
         >
           {!visibleSidebar ? <MenuIcon /> : <XIcon />}
         </button>
-        <div className='font-paragraph text-md'>#general</div>
+        <div className='text-md text-green-400 dark:text-green-400 font-semibold'>
+          #general
+        </div>
         <div className='flex'>
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -52,15 +61,17 @@ const ApplicationPage: React.FC = () => {
             className={classNames(
               'sidebar flex bg-gray-800 md:w-80 w-4/5 inset-y-0 left-0 transform transition duration-200 ease-in-out',
               {
-                '-translate-x-full': !visibleSidebar,
-                relative: visibleSidebar,
-                absolute: !visibleSidebar
+                '-translate-x-full absolute': !visibleSidebar,
+                relative: visibleSidebar
               }
             )}
           >
-            <div className='min-w-[92px] overflow-y-scroll space-y-2 mt-2'>
+            <div className='min-w-[92px] overflow-y-scroll space-y-4 mt-2 border-r-2 border-white/20'>
               <div className='w-full flex justify-center'>
-                <button className='h-12 w-12 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none'>
+                <button
+                  className='h-12 w-12 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none focus:animate-pulse'
+                  title='My profile'
+                >
                   <Image
                     className='rounded-full'
                     src='/images/data/divlo.png'
@@ -71,7 +82,10 @@ const ApplicationPage: React.FC = () => {
                 </button>
               </div>
               <div className='w-full flex justify-center'>
-                <button className='h-10 w-10 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none'>
+                <button
+                  className='h-10 w-10 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none focus:animate-pulse'
+                  title='Add a Guild'
+                >
                   <PlusIcon />
                 </button>
               </div>
@@ -80,7 +94,11 @@ const ApplicationPage: React.FC = () => {
               </div>
               {new Array(100).fill(null).map((_, index) => {
                 return (
-                  <div key={index} className='w-full flex justify-center'>
+                  <a
+                    key={index}
+                    className='w-full flex justify-center cursor-pointer'
+                    title='Guild name'
+                  >
                     <Image
                       src='/images/icons/Thream.png'
                       alt='logo'
@@ -88,23 +106,53 @@ const ApplicationPage: React.FC = () => {
                       height={48}
                       className='w-12 h-12'
                     />
-                  </div>
-                )
-              })}
-            </div>
-            <nav className='w-full overflow-y-scroll'>
-              {new Array(100).fill(null).map((_, index) => {
-                return (
-                  <a
-                    key={index}
-                    className='hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-3 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 text-gray-600 dark:text-gray-400 rounded-lg '
-                    href='#'
-                  >
-                    <span className='mx-4 text-lg font-normal'>Element</span>
                   </a>
                 )
               })}
-            </nav>
+            </div>
+            <div className='flex flex-col justify-between w-full mt-2'>
+              <div className='text-center p-2 mt-2'>
+                <h2 className='text-xl'>Guild Name</h2>
+              </div>
+              <nav className='w-full overflow-y-scroll'>
+                {new Array(100).fill(null).map((_, index) => {
+                  return (
+                    <a
+                      key={index}
+                      className={classNames(
+                        ' hover:bg-gray-100 group flex items-center justify-between text-sm py-2 my-3 mx-3 transition-colors dark:hover:bg-gray-600 duration-200 rounded-lg',
+                        {
+                          'text-green-400 dark:text-green-400 font-semibold':
+                            index === 4,
+                          'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white font-normal':
+                            index !== 4
+                        }
+                      )}
+                      href='#'
+                    >
+                      <span className='ml-2 mr-4'># Channel {index}</span>
+                      <button className='h-6 w-6 mr-2 hidden group-hover:block focus:outline-none focus:animate-spin'>
+                        <CogIcon />
+                      </button>
+                    </a>
+                  )
+                })}
+              </nav>
+              <div className='flex justify-center items-center p-2 mb-1 space-x-6'>
+                <button
+                  className='h-10 w-10 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none focus:animate-pulse'
+                  title='Add a Channel'
+                >
+                  <PlusIcon />
+                </button>
+                <button
+                  className='h-7 w-7 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none focus:animate-spin'
+                  title='Settings'
+                >
+                  <CogIcon />
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className='flex-1 p-10 text-2xl font-bold'>
