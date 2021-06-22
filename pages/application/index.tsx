@@ -53,14 +53,14 @@ const ApplicationPage: React.FC = () => {
   return (
     <>
       <Head title='Thream | Application' />
-      <header className='flex bg-gray-800 h-16 px-2 py-3 justify-between items-center'>
+      <header className='flex bg-gray-200 dark:bg-gray-800 h-16 px-2 py-3 justify-between items-center'>
         <button
           onClick={handleToggleSidebar}
           className='p-2 h-10 w-10 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none'
         >
           {!visibleSidebar ? <MenuIcon /> : <XIcon />}
         </button>
-        <div className='text-md text-green-400 dark:text-green-400 font-semibold'>
+        <div className='text-md text-green-800 dark:text-green-400 font-semibold'>
           #general
         </div>
         <div className='flex'>
@@ -76,7 +76,7 @@ const ApplicationPage: React.FC = () => {
         <div className='relative md:flex'>
           <div
             className={classNames(
-              'sidebar flex bg-gray-800 md:w-80 w-4/5 inset-y-0 left-0 transform transition duration-200 ease-in-out',
+              'sidebar flex bg-gray-200 dark:bg-gray-800 md:w-80 w-4/5 inset-y-0 left-0 transform transition duration-200 ease-in-out',
               {
                 '-translate-x-full absolute': !visibleSidebar,
                 relative: visibleSidebar
@@ -107,7 +107,7 @@ const ApplicationPage: React.FC = () => {
                 </button>
               </div>
               <div className='relative flex justify-center h-[2px] w-full'>
-                <div className='absolute h-[2px] w-12 bg-white/20 rounded-full'></div>
+                <div className='absolute h-[2px] w-12 bg-gray-600 dark:bg-white/20 rounded-full'></div>
               </div>
               {new Array(100).fill(null).map((_, index) => {
                 return (
@@ -132,7 +132,7 @@ const ApplicationPage: React.FC = () => {
                 <h2 className='text-xl'>Guild Name</h2>
               </div>
               <div className='relative flex justify-center h-[2px] w-full mb-3'>
-                <div className='absolute h-[2px] w-8/12 bg-white/20 rounded-full'></div>
+                <div className='absolute h-[2px] w-8/12 bg-gray-600 dark:bg-white/20 rounded-full'></div>
               </div>
               <nav className='w-full overflow-y-scroll'>
                 {new Array(100).fill(null).map((_, index) => {
@@ -142,7 +142,7 @@ const ApplicationPage: React.FC = () => {
                       className={classNames(
                         ' hover:bg-gray-100 group flex items-center justify-between text-sm py-2 my-3 mx-3 transition-colors dark:hover:bg-gray-600 duration-200 rounded-lg',
                         {
-                          'text-green-400 dark:text-green-400 font-semibold':
+                          'text-green-800 dark:text-green-400 font-semibold':
                             index === 4,
                           'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white font-normal':
                             index !== 4
@@ -159,7 +159,7 @@ const ApplicationPage: React.FC = () => {
                 })}
               </nav>
               <div className='relative flex justify-center h-[2px] w-full mt-2'>
-                <div className='absolute h-[2px] w-8/12 bg-white/20 rounded-full'></div>
+                <div className='absolute h-[2px] w-8/12 bg-gray-600 dark:bg-white/20 rounded-full'></div>
               </div>
               <div className='flex justify-center items-center p-2 mb-1 space-x-6'>
                 <button
