@@ -1,7 +1,8 @@
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-
+import { useMediaQuery } from 'react-responsive'
+import { useSwipeable } from 'react-swipeable'
 import classNames from 'classnames'
 import { useTheme } from 'next-themes'
 import {
@@ -11,7 +12,6 @@ import {
   CogIcon,
   PlusIcon
 } from '@heroicons/react/solid'
-import {} from '@heroicons/react/outline'
 
 import { Head } from 'components/Head'
 
@@ -20,17 +20,34 @@ const ApplicationPage: React.FC = () => {
   const [visibleSidebar, setVisibleSidebar] = useState(true)
   const { theme, setTheme } = useTheme()
 
+  const isMobile: boolean = useMediaQuery({
+    query: '(max-width: 768px)'
+  })
+
+  const handleToggleSidebar = (): void => {
+    setVisibleSidebar((visible) => !visible)
+  }
+
+  const handleCloseSidebar = (): void => {
+    if (isMobile && visibleSidebar) {
+      handleToggleSidebar()
+    }
+  }
+
+  const swipeableHandlers = useSwipeable({
+    trackMouse: false,
+    trackTouch: true,
+    preventDefaultTouchmoveEvent: true,
+    onSwipedRight: handleToggleSidebar
+  })
+
   useEffect(() => {
     setMounted(true)
-    setVisibleSidebar(window.innerWidth > 768)
-  }, [])
+    setVisibleSidebar(!isMobile)
+  }, [isMobile])
 
   if (!mounted) {
     return null
-  }
-
-  const handleSidebarToggle = (): void => {
-    setVisibleSidebar((visible) => !visible)
   }
 
   return (
@@ -38,7 +55,7 @@ const ApplicationPage: React.FC = () => {
       <Head title='Thream | Application' />
       <header className='flex bg-gray-800 h-16 px-2 py-3 justify-between items-center'>
         <button
-          onClick={handleSidebarToggle}
+          onClick={handleToggleSidebar}
           className='p-2 h-10 w-10 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none'
         >
           {!visibleSidebar ? <MenuIcon /> : <XIcon />}
@@ -55,7 +72,7 @@ const ApplicationPage: React.FC = () => {
           </button>
         </div>
       </header>
-      <main>
+      <main {...swipeableHandlers} onClick={handleCloseSidebar}>
         <div className='relative md:flex'>
           <div
             className={classNames(
@@ -164,6 +181,7 @@ const ApplicationPage: React.FC = () => {
       <style jsx>{`
         main {
           overflow: hidden;
+          height: calc(100vh - 64px);
         }
         .sidebar {
           height: calc(100vh - 64px);
