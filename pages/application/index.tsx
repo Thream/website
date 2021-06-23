@@ -201,9 +201,9 @@ const ApplicationPage: React.FC = () => {
                 return (
                   <div
                     key={index}
-                    className='relative flex-1 mt-4 min-w-0 md:p-3 md:mx-3 flex hover:bg-gray-200 dark:hover:bg-gray-800'
+                    className='relative flex-1 mt-4 min-w-0 md:p-2 md:mx-2 flex hover:bg-gray-200 dark:hover:bg-gray-800'
                   >
-                    <div className='w-12 h-12 mx-3 flex-shrink-0 flex items-center justify-center select-none'>
+                    <div className='w-12 h-12 mr-3 flex-shrink-0 flex items-center justify-center select-none'>
                       <div className='w-10 h-10 rounded-full overflow-hidden'>
                         <Image
                           className='rounded-full'
@@ -239,7 +239,7 @@ const ApplicationPage: React.FC = () => {
                 )
               })}
             </div>
-            <div className='flex h-auto px-8 pt-4'>
+            <div className='flex h-auto px-8 pt-6'>
               <div className='flex items-start w-full h-full rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-800'>
                 <form className='w-full h-auto rounded-lg px30 overflow-hidden'>
                   <div className='relative flex items-center w-full h-auto rounded-lg'>
