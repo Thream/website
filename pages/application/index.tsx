@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { useSwipeable } from 'react-swipeable'
+import TextareaAutosize from 'react-textarea-autosize'
 import classNames from 'classnames'
 import {
   MenuIcon,
@@ -244,10 +245,11 @@ const ApplicationPage: React.FC = () => {
                   <div className='relative flex items-center w-full h-auto rounded-lg'>
                     <div className='w-full relative flex items-center my-1'>
                       <div className='w-full flex items-center p-3'>
-                        <textarea
-                          className='py-2 flex-grow break-all sm:break-words w-12/12 overflow-y-auto overflow-x-hidden rounded-lg bg-transparent outline-none font-paragraph'
+                        <TextareaAutosize
+                          className='py-2 flex-grow break-all sm:break-words w-12/12 overflow-y-auto overflow-x-hidden rounded-lg bg-transparent outline-none font-paragraph resize-none'
                           placeholder='Write a message'
-                        ></textarea>
+                          wrap='soft'
+                        ></TextareaAutosize>
                       </div>
                     </div>
                   </div>
