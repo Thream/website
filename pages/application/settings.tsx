@@ -3,12 +3,12 @@ import { GetStaticProps } from 'next'
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
 
-const ApplicationPage: React.FC = () => {
+const SettingsPage: React.FC = () => {
   return (
     <>
-      <Head title='Thream | Application' />
-      <Application path='/application'>
-        <p>Application</p>
+      <Head title='Thream | Settings' />
+      <Application path='/application/settings'>
+        <p>Settings</p>
       </Application>
     </>
   )
@@ -18,4 +18,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: {} }
 }
 
-export default ApplicationPage
+export default SettingsPage
