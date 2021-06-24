@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 
-export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {}
+export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {}
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const { children, className, ...rest } = props
