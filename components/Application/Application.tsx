@@ -79,6 +79,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
               <IconLink
                 href='/application/settings'
                 selected={path === '/application/settings'}
+                title='Settings'
               >
                 <Image
                   className='rounded-full'
@@ -88,7 +89,11 @@ export const Application: React.FC<ApplicationProps> = (props) => {
                   height={48}
                 />
               </IconLink>
-              <IconLink href='/application' selected={path === '/application'}>
+              <IconLink
+                href='/application'
+                selected={path === '/application'}
+                title='Join a Guild'
+              >
                 <PlusIcon />
               </IconLink>
               <Divider />

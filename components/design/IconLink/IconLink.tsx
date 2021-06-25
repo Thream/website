@@ -4,17 +4,18 @@ import classNames from 'classnames'
 export interface IconLinkProps {
   selected?: boolean
   href: string
+  title?: string
 }
 
 export const IconLink: React.FC<IconLinkProps> = (props) => {
-  const { children, selected, href } = props
+  const { children, selected, href, title } = props
 
   return (
     <div className='w-full flex justify-center group'>
       <Link href={href}>
         <a
           className='h-12 w-12 text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none focus:animate-pulse'
-          title='Settings'
+          title={title}
         >
           {children}
         </a>
