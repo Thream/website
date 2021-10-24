@@ -1,0 +1,23 @@
+{
+  "name": "@thream/website",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "remote.autoForwardPorts": false
+  },
+  "extensions": [
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "divlo.vscode-styled-jsx-syntax",
+    "divlo.vscode-styled-jsx-languageserver",
+    "bradlc.vscode-tailwindcss",
+    "mikestead.dotenv",
+    "davidanson.vscode-markdownlint",
+    "ms-azuretools.vscode-docker"
+  ],
+  "forwardPorts": [3000],
+  "postAttachCommand": ["npm", "install"],
+  "remoteUser": "node"
+}

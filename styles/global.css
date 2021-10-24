@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#__next {
+  @apply flex flex-col h-screen;
+}
+
+body,
+#preview-storybook {
+  @apply bg-white dark:bg-black text-black dark:text-white font-headline;
+  overflow: hidden;
+}
+
+#preview-storybook {
+  @apply min-h-screen p-6;
+}
+
+.h-full-without-header {
+  height: calc(100vh - 64px);
+}
+
+:root {
+  --scroll-bar-color: #c5c5c5;
+  --scroll-bar-bg-color: transparent;
+}
+
+::-webkit-scrollbar {
+  scrollbar-color: var(--scroll-bar-color) var(--scroll-bar-bg-color);
+  width: 5px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-bar-color);
+  border-radius: 20px;
+  border: 3px solid var(--scroll-bar-bg-color);
+}
+
+/* Firefox Support */
+.scrollbar-firefox-support {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-bar-color) var(--scroll-bar-bg-color);
+  z-index: 1000;
+}

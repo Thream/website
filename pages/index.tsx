@@ -1,26 +1,27 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import useTranslation from 'next-translate/useTranslation'
 import Translation from 'next-translate/Trans'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from 'components/Head'
 import { Header } from 'components/Header'
-import { Container } from 'components/design/Container'
-import { Button } from 'components/design/Button'
+import { Main } from 'components/design/Main'
+import { Footer } from 'components/Footer'
 import { SocialMediaButton } from 'components/design/SocialMediaButton'
+import { Button } from 'components/design/Button'
+import { ScrollableBody } from 'components/ScrollableBody'
 
 const Home: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <>
+    <ScrollableBody>
       <Head />
-
       <Header />
-      <Container className='home-container'>
-        <section id='about'>
-          <div className='application__image'>
+      <Main>
+        <section className='flex flex-col items-center w-4/5'>
+          <section className='max-w-xs'>
             <Link href='/authentication/signup'>
               <a>
                 <Image
@@ -31,103 +32,40 @@ const Home: React.FC = () => {
                 />
               </a>
             </Link>
-          </div>
-          <div>
-            <h1 className='title'>Thream</h1>
-            <div className='paragraph'>
+          </section>
+          <section className='text-center'>
+            <h1 className='my-4 text-3xl font-medium font-headline text-green-800 dark:text-green-400'>
+              Thream
+            </h1>
+            <div
+              className='font-paragraph text-lg max-w-lg'
+              data-cy='main-description'
+            >
               <Translation
                 i18nKey='home:description'
-                components={[<strong key='bold' />]}
+                components={[
+                  <strong
+                    className='text-green-800 dark:text-green-400 font-bold'
+                    key='bold'
+                  />
+                ]}
               />
-              <div className='buttons'>
-                <Link href='/authentication/signup'>
-                  <a className='get-started-link'>
-                    <Button>{t('home:get-started')}</Button>
-                  </a>
-                </Link>
-                <a
-                  href='https://github.com/Thream'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='github-link'
-                >
-                  <SocialMediaButton socialMedia='GitHub' />
-                </a>
-              </div>
             </div>
-          </div>
+            <div className='flex justify-center items-center text-center mt-8 space-x-4'>
+              <Button>{t('home:get-started')}</Button>
+              <a
+                href='https://github.com/Thream'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <SocialMediaButton socialMedia='GitHub' />
+              </a>
+            </div>
+          </section>
         </section>
-      </Container>
-
-      <style jsx global>
-        {`
-          @media (max-width: 338px) {
-            .get-started-link {
-              margin: 0 !important;
-            }
-            .get-started-link > button {
-              margin-bottom: 10px !important;
-            }
-          }
-          .home-container {
-            align-items: center;
-            margin-top: 50px;
-            text-align: justify;
-            margin-bottom: 20px;
-            margin-top: 0;
-          }
-        `}
-      </style>
-      <style jsx>
-        {`
-          #about {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 740px;
-            flex-direction: column;
-            text-align: center;
-            width: 80%;
-          }
-          .application__image {
-            margin-right: 25px;
-            max-width: 300px;
-          }
-          .title {
-            font-weight: 400;
-          }
-          .paragraph {
-            font-family: 'Roboto', 'sans-serif';
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 32px;
-            max-width: 500px;
-          }
-          strong {
-            font-weight: 700;
-            color: var(--color-primary);
-          }
-          .buttons {
-            text-align: center;
-            margin-top: 20px;
-          }
-          .get-started-link {
-            margin: 0 10px 0 0;
-          }
-          .github-link {
-            text-decoration: none;
-          }
-          @media (max-width: 600px) and (max-height: 700px) {
-            .application__image:first-child {
-              width: 65%;
-            }
-            .paragraph {
-              font-size: 16px;
-            }
-          }
-        `}
-      </style>
-    </>
+      </Main>
+      <Footer />
+    </ScrollableBody>
   )
 }
 

@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "divlo.vscode-styled-jsx-syntax",
+    "divlo.vscode-styled-jsx-languageserver",
+    "bradlc.vscode-tailwindcss",
+    "mikestead.dotenv",
+    "davidanson.vscode-markdownlint",
+    "ms-azuretools.vscode-docker"
+  ]
+}

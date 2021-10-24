@@ -1,0 +1,15 @@
+import { Meta, Story } from '@storybook/react'
+
+import { {{ properCase name }} as Component, {{ properCase name }}Props } from './{{ properCase name }}'
+
+const Stories: Meta = {
+  title: '{{ properCase name }}',
+  component: Component
+}
+
+export default Stories
+
+export const {{ properCase name }}: Story<{{ properCase name }}Props> = (arguments_) => {
+  return <Component {...arguments_} />
+}
+{{ properCase name }}.args = { className: 'text-center' }

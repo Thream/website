@@ -1,0 +1,11 @@
+import classNames from 'classnames'
+
+export interface {{ properCase name }}Props {
+  className?: string
+}
+
+export const {{ properCase name }}: React.FC<{{ properCase name }}Props> = (props) => {
+  const { children, className } = props
+
+  return <main className={classNames(className, '')}>{children}</main>
+}

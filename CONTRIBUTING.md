@@ -14,14 +14,14 @@ All work on **Thream/website** happens directly on [GitHub](https://github.com/T
 
 - Reporting a bug.
 - Suggest a new feature idea.
-- Correct spelling errors, improvements or additions to documentation files (README, CONTRIBUTING...).
+- Correct spelling errors, improvements or additions to documentation files.
 - Improve structure/format/performance/refactor/tests of the code.
 
 ## Pull Requests
 
-- **Please first discuss** the change you wish to make via [issue](https://github.com/Thream/website/issues) before making a change. It might avoid a waste of your time.
+- **Please first discuss** the change you wish to make via issues.
 
-- Ensure your code respect [Typescript Standard Style](https://www.npmjs.com/package/ts-standard).
+- Ensure your code respect `eslint` and `prettier`.
 
 - Make sure your **code passes the tests**.
 
@@ -29,7 +29,9 @@ If you're adding new features to **Thream/website**, please include tests.
 
 ## Commits
 
-The commit message guidelines respect [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) and [Semantic Versioning](https://semver.org/) for releases.
+The commit message guidelines respect
+[@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
+and [Semantic Versioning](https://semver.org/) for releases.
 
 ### Types
 
@@ -52,3 +54,10 @@ Types define which kind of changes you made to the project.
 ### Scopes
 
 Scopes define what part of the code changed.
+
+### Examples
+
+```sh
+git commit -m "feat(components): add Button"
+git commit -m "docs(readme): update installation process"
+```

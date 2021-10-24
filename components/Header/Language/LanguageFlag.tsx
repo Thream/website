@@ -1,9 +1,7 @@
 import Image from 'next/image'
 
-import { Language } from 'utils/authentication'
-
 export interface LanguageFlagProps {
-  language: Language
+  language: string
 }
 
 export const LanguageFlag: React.FC<LanguageFlagProps> = (props) => {
@@ -17,15 +15,9 @@ export const LanguageFlag: React.FC<LanguageFlagProps> = (props) => {
         src={`/images/svg/languages/${language}.svg`}
         alt={language}
       />
-      <p className='language-title'>{language.toUpperCase()}</p>
-
-      <style jsx>
-        {`
-          .language-title {
-            margin: 0 8px 0 10px;
-          }
-        `}
-      </style>
+      <p data-cy='language-flag-text' className='mx-2 text-base'>
+        {language.toUpperCase()}
+      </p>
     </>
   )
 }

@@ -1,6 +1,10 @@
 {
   "name": "Thream",
   "short_name": "Thream",
+  "theme_color": "#27B05E",
+  "background_color": "#262B3F",
+  "start_url": "/",
+  "display": "standalone",
   "icons": [
     {
       "src": "images/icons/72x72.png",
@@ -43,9 +47,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "theme_color": "#27B05E",
-  "background_color": "#262B3F",
-  "start_url": "/",
-  "display": "standalone"
+  ]
 }

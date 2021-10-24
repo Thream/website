@@ -10,6 +10,7 @@
     "removeComments": true,
     "noEmit": true,
     "strict": true,
+    "types": ["jest", "@testing-library/jest-dom", "@testing-library/react"],
     "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

@@ -5,12 +5,6 @@
     "*": ["common"],
     "/": ["home"],
     "/404": ["errors"],
-    "/500": ["errors"],
-    "/authentication/forgot-password": ["authentication", "errors"],
-    "/authentication/reset-password": ["authentication", "errors"],
-    "/authentication/signin": ["authentication", "errors"],
-    "/authentication/signup": ["authentication", "errors"],
-    "/application": ["application"],
-    "/application/[guildId]/[channelId]": ["application"]
+    "/500": ["errors"]
   }
 }

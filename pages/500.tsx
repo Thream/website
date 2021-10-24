@@ -1,17 +1,23 @@
 import { GetStaticProps } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 
-import { Head } from 'components/Head'
 import { ErrorPage } from 'components/ErrorPage'
+import { Head } from 'components/Head'
+import { Header } from 'components/Header'
+import { Footer } from 'components/Footer'
 
 const Error500: React.FC = () => {
   const { t } = useTranslation()
 
   return (
     <>
-      <Head title='Thream | 500' />
+      <Head title='Divlo - 500' />
 
-      <ErrorPage message={t('errors:server-error')} statusCode={500} />
+      <Header />
+      <main className='flex flex-col md:mx-auto md:max-w-4xl lg:max-w-7xl'>
+        <ErrorPage statusCode={500} message={t('errors:server-error')} />
+      </main>
+      <Footer />
     </>
   )
 }

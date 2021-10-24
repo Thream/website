@@ -1,0 +1,14 @@
+{
+  "roots": ["<rootDir>"],
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+  },
+  "moduleDirectories": ["node_modules", "./"],
+  "modulePathIgnorePatterns": ["<rootDir>/cypress"],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": [
+    "@testing-library/jest-dom/extend-expect",
+    "@testing-library/react"
+  ]
+}
