@@ -5,6 +5,11 @@
     "*": ["common"],
     "/": ["home"],
     "/404": ["errors"],
-    "/500": ["errors"]
+    "/500": ["errors"],
+    "/authentication/forgot-password": ["authentication", "errors"],
+    "/authentication/reset-password": ["authentication", "errors"],
+    "/authentication/signup": ["authentication", "errors"],
+    "/authentication/signin": ["authentication", "errors"],
+    "/application/users/[userId]": ["application"]
   }
 }

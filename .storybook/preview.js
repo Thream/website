@@ -3,6 +3,8 @@ import I18nProvider from 'next-translate/I18nProvider'
 
 import i18n from '../i18n.json'
 import common from '../locales/en/common.json'
+import authentication from '../locales/en/authentication.json'
+import application from '../locales/en/application.json'
 
 import '../styles/global.css'
 
@@ -18,7 +20,9 @@ addDecorator((story) => (
   <I18nProvider
     lang='en'
     namespaces={{
-      common
+      common,
+      authentication,
+      application
     }}
     config={i18n}
   >

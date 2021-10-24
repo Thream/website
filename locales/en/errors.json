@@ -3,5 +3,10 @@
   "success": "Success",
   "page-not-found": "This page could not be found.",
   "server-error": "Internal Server Error.",
-  "return-to-home-page": "Return to the home page?"
+  "return-to-home-page": "Return to the home page?",
+  "required": "Oops, this field is required 🙈.",
+  "minLength": "The field must contain at least {expected} characters.",
+  "maxLength": "The field must contain at most {expected} characters.",
+  "email": "Mmm… It seems that this email is not valid 🤔.",
+  "invalid": "Invalid value."
 }

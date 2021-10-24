@@ -4,7 +4,12 @@
       "startServerCommand": "npm run start",
       "startServerReadyPattern": "ready on",
       "startServerReadyTimeout": 20000,
-      "url": ["http://localhost:3000/"],
+      "url": [
+        "http://localhost:3000/",
+        "http://localhost:3000/authentication/signin",
+        "http://localhost:3000/authentication/signup",
+        "http://localhost:3000/authentication/forgot-password"
+      ],
       "numberOfRuns": 1
     },
     "assert": {
