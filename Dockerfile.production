@@ -1,0 +1,31 @@
+ARG NODE_VERSION=14.16.1
+
+FROM node:${NODE_VERSION} AS dependencies
+RUN npm install --global npm@7
+WORKDIR /website
+COPY ./package*.json ./
+RUN npm clean-install
+
+FROM node:${NODE_VERSION} AS builder
+WORKDIR /website
+COPY ./ ./
+COPY --from=dependencies /website/node_modules ./node_modules
+RUN npm run build
+
+FROM node:${NODE_VERSION} AS runner
+WORKDIR /website
+ENV NODE_ENV=production
+
+COPY --from=builder /website/next.config.js ./next.config.js
+COPY --from=builder /website/public ./public
+COPY --from=builder /website/.next ./.next
+COPY --from=builder /website/i18n.json ./i18n.json
+COPY --from=builder /website/locales ./locales
+COPY --from=builder /website/pages ./pages
+COPY --from=builder /website/node_modules ./node_modules
+
+RUN chown --recursive node /website/.next
+USER node
+
+RUN npx next telemetry disable
+CMD ["node_modules/.bin/next", "start", "--port", "${PORT}"]

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>eye/ open</title>
+<defs>
+<polygon id="a" points="0 0.1255 19.839 0.1255 19.839 13 0 13"/>
+</defs>
+<g fill="none" fill-rule="evenodd">
+<g transform="translate(-904 -1100)">
+<g transform="translate(645 1040)">
+<g transform="translate(259 60)">
+<g transform="translate(0 -.25)">
+<rect y=".25" width="20" height="20" fill="#fff" fill-opacity=".01"/>
+<g transform="translate(0 3.875)">
+<mask id="b" fill="white">
+<use xlink:href="#a"/>
+</mask>
+<path d="m1.8467 6.5625c2.444 3.277 5.158 4.937 8.073 4.937s5.629-1.66 8.073-4.937c-2.445-3.277-5.159-4.937-8.073-4.937-2.915 0-5.629 1.66-8.073 4.937m8.073 6.437c-3.556 0-6.79-2.019-9.612-6.003l-0.308-0.434 0.308-0.434c2.823-3.984 6.057-6.003 9.612-6.003 3.554 0 6.788 2.019 9.612 6.003l0.307 0.434-0.307 0.434c-2.823 3.984-6.057 6.003-9.612 6.003" fill="#AEA197" mask="url(#b)"/>
+</g>
+<path d="m9.9194 7.375c1.74 0 3.15 1.371 3.15 3.063 0 1.691-1.41 3.062-3.15 3.062s-3.15-1.371-3.15-3.062c0-1.692 1.41-3.063 3.15-3.063" fill="#AEA197"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
