@@ -1,15 +1,18 @@
 import { UserSettings } from '../../../models/UserSettings'
-import { UserPublic } from '../../../models/User'
+import { User } from '../../../models/User'
 
-export const user: UserPublic = {
+export const user: User = {
   id: 1,
   name: 'Divlo',
   email: 'contact@divlo.fr',
-  logo: undefined,
-  status: undefined,
-  biography: undefined,
+  password: 'somepassword',
+  logo: null,
+  status: null,
+  biography: null,
   website: 'https://divlo.fr',
   isConfirmed: true,
+  temporaryToken: 'temporaryUUIDtoken',
+  temporaryExpirationToken: '2021-10-20T20:59:08.485Z',
   createdAt: '2021-10-20T20:30:51.595Z',
   updatedAt: '2021-10-20T20:59:08.485Z'
 }

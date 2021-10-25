@@ -1,10 +1,7 @@
-import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { AuthenticationForm } from 'components/Authentication'
 import useTranslation from 'next-translate/useTranslation'
-import { HandleForm } from 'react-component-form'
 import axios from 'axios'
-import { Type } from '@sinclair/typebox'
 
 import { Head } from 'components/Head'
 import { Header } from 'components/Header'
@@ -13,53 +10,39 @@ import { Footer, FooterProps } from 'components/Footer'
 import { Input } from 'components/design/Input'
 import { Button } from 'components/design/Button'
 import { FormState } from 'components/design/FormState'
-import { useFormState } from 'hooks/useFormState'
 import { authenticationFromServerSide } from 'utils/authentication'
 import { ScrollableBody } from 'components/ScrollableBody'
+import { userSchema } from 'models/User'
 import { api } from 'utils/api'
-import { userSchema } from '../../models/User'
-import { ajv } from '../../utils/ajv'
+import { HandleSubmitCallback, useForm } from 'hooks/useForm'
 
 const ForgotPassword: React.FC<FooterProps> = (props) => {
   const { t } = useTranslation()
   const { version } = props
-  const [formState, setFormState] = useFormState()
-  const [messageTranslationKey, setMessageTranslationKey] = useState<
-    string | undefined
-  >(undefined)
 
-  const validateSchema = useMemo(() => {
-    return Type.Object({
-      email: userSchema.email
-    })
-  }, [])
+  const { formState, message, errors, getErrorTranslation, handleSubmit } =
+    useForm({ validateSchemaObject: { email: userSchema.email } })
 
-  const validate = useMemo(() => {
-    return ajv.compile(validateSchema)
-  }, [validateSchema])
-
-  const handleSubmit: HandleForm = async (formData, formElement) => {
-    const isValid = validate(formData)
-    if (!isValid) {
-      setFormState('error')
-      setMessageTranslationKey('errors:email')
-    } else {
-      setFormState('loading')
-      try {
-        await api.post(
-          `/users/reset-password?redirectURI=${window.location.origin}/authentication/reset-password`,
-          formData
-        )
-        formElement.reset()
-        setFormState('success')
-        setMessageTranslationKey('authentication:success-forgot-password')
-      } catch (error) {
-        setFormState('error')
-        if (axios.isAxiosError(error) && error.response?.status === 400) {
-          setMessageTranslationKey('errors:email')
-        } else {
-          setMessageTranslationKey('errors:server-error')
+  const onSubmit: HandleSubmitCallback = async (formData) => {
+    try {
+      await api.post(
+        `/users/reset-password?redirectURI=${window.location.origin}/authentication/reset-password`,
+        formData
+      )
+      return {
+        type: 'success',
+        value: 'authentication:success-forgot-password'
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 400) {
+        return {
+          type: 'error',
+          value: 'errors:email'
         }
+      }
+      return {
+        type: 'error',
+        value: 'errors:server-error'
       }
     }
   }
@@ -69,7 +52,7 @@ const ForgotPassword: React.FC<FooterProps> = (props) => {
       <Head title={`Thream | ${t('authentication:forgot-password')}`} />
       <Header />
       <Main>
-        <AuthenticationForm onSubmit={handleSubmit}>
+        <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
           <Input type='email' placeholder='Email' name='email' label='Email' />
           <Button data-cy='submit' className='w-full mt-6' type='submit'>
             {t('authentication:submit')}
@@ -84,7 +67,7 @@ const ForgotPassword: React.FC<FooterProps> = (props) => {
           id='message'
           state={formState}
           message={
-            messageTranslationKey != null ? t(messageTranslationKey) : null
+            message != null ? message : getErrorTranslation(errors.email)
           }
         />
       </Main>

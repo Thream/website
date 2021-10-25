@@ -8,10 +8,10 @@ export const userSchema = {
   id,
   name: Type.String({ minLength: 1, maxLength: 30 }),
   email: Type.String({ minLength: 1, maxLength: 254, format: 'email' }),
-  password: Type.String(),
-  logo: Type.String({ format: 'uri-reference' }),
-  status: Type.String({ maxLength: 50 }),
-  biography: Type.String({ maxLength: 160 }),
+  password: Type.String({ minLength: 1 }),
+  logo: Type.Union([Type.String({ format: 'uri-reference' }), Type.Null()]),
+  status: Type.Union([Type.String({ maxLength: 50 }), Type.Null()]),
+  biography: Type.Union([Type.String({ maxLength: 160 }), Type.Null()]),
   website: Type.String({ maxLength: 255, format: 'uri-reference' }),
   isConfirmed: Type.Boolean({ default: false }),
   temporaryToken: Type.String(),
@@ -20,13 +20,15 @@ export const userSchema = {
   updatedAt: date.updatedAt
 }
 
+export const userObjectSchema = Type.Object(userSchema)
+
 export const userPublicWithoutSettingsSchema = {
   id,
   name: userSchema.name,
   email: Type.Union([userSchema.email, Type.Null()]),
-  logo: Type.Union([userSchema.logo, Type.Null()]),
-  status: Type.Union([userSchema.status, Type.Null()]),
-  biography: Type.Union([userSchema.biography, Type.Null()]),
+  logo: userSchema.logo,
+  status: userSchema.status,
+  biography: userSchema.biography,
   website: Type.Union([userSchema.website, Type.Null()]),
   isConfirmed: userSchema.isConfirmed,
   createdAt: date.createdAt,
@@ -46,5 +48,6 @@ export const userCurrentSchema = Type.Object({
   strategies: Type.Array(Type.Union([...strategiesTypebox]))
 })
 
+export type User = Static<typeof userObjectSchema>
 export type UserPublic = Static<typeof userPublicObjectSchema>
 export type UserCurrent = Static<typeof userCurrentSchema>

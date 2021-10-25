@@ -1,11 +1,7 @@
-import { useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import { useTheme } from 'next-themes'
-import { Type } from '@sinclair/typebox'
-import type { ErrorObject } from 'ajv'
-import type { HandleForm } from 'react-component-form'
 import axios from 'axios'
 
 import { SocialMediaButton } from '../design/SocialMediaButton'
@@ -13,26 +9,14 @@ import { Main } from '../design/Main'
 import { Input } from '../design/Input'
 import { Button } from '../design/Button'
 import { FormState } from '../design/FormState'
-import { useFormState } from '../../hooks/useFormState'
 import { AuthenticationForm } from './'
 import { userSchema } from '../../models/User'
-import { ajv } from '../../utils/ajv'
 import { api } from 'utils/api'
 import {
   Tokens,
   Authentication as AuthenticationClass
 } from '../../utils/authentication'
-import { getErrorTranslationKey } from './getErrorTranslationKey'
-
-interface Errors {
-  [key: string]: ErrorObject<string, any> | null | undefined
-}
-
-const findError = (
-  field: string
-): ((value: ErrorObject, index: number, object: ErrorObject[]) => boolean) => {
-  return (validationError) => validationError.instancePath === field
-}
+import { useForm, HandleSubmitCallback } from '../../hooks/useForm'
 
 export interface AuthenticationProps {
   mode: 'signup' | 'signin'
@@ -44,83 +28,56 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
   const router = useRouter()
   const { lang, t } = useTranslation()
   const { theme } = useTheme()
-  const [formState, setFormState] = useFormState()
-  const [messageTranslationKey, setMessageTranslationKey] = useState<
-    string | undefined
-  >(undefined)
-  const [errors, setErrors] = useState<Errors>({
-    name: null,
-    email: null,
-    password: null
-  })
 
-  const validateSchema = useMemo(() => {
-    return Type.Object({
-      ...(mode === 'signup' && { name: userSchema.name }),
-      email: userSchema.email,
-      password: userSchema.password
+  const { errors, formState, message, getErrorTranslation, handleSubmit } =
+    useForm({
+      validateSchemaObject: {
+        ...(mode === 'signup' && { name: userSchema.name }),
+        email: userSchema.email,
+        password: userSchema.password
+      }
     })
-  }, [mode])
 
-  const validate = useMemo(() => {
-    return ajv.compile(validateSchema)
-  }, [validateSchema])
-
-  const getErrorTranslation = (error?: ErrorObject | null): string | null => {
-    if (error != null) {
-      return t(getErrorTranslationKey(error)).replace(
-        '{expected}',
-        error?.params?.limit
-      )
-    }
-    return null
-  }
-
-  const handleSubmit: HandleForm = async (formData, formElement) => {
-    const isValid = validate(formData)
-    if (!isValid) {
-      setFormState('error')
-      const nameError = validate?.errors?.find(findError('/name'))
-      const emailError = validate?.errors?.find(findError('/email'))
-      const passwordError = validate?.errors?.find(findError('/password'))
-      setErrors({
-        name: nameError,
-        email: emailError,
-        password: passwordError
-      })
-    } else {
-      setErrors({})
-      setFormState('loading')
-      if (mode === 'signup') {
-        try {
-          await api.post(
-            `/users/signup?redirectURI=${window.location.origin}/authentication/signin`,
-            { ...formData, language: lang, theme }
-          )
-          formElement.reset()
-          setFormState('success')
-          setMessageTranslationKey('authentication:success-signup')
-        } catch (error) {
-          setFormState('error')
-          if (axios.isAxiosError(error) && error.response?.status === 400) {
-            setMessageTranslationKey('authentication:alreadyUsed')
-          } else {
-            setMessageTranslationKey('errors:server-error')
+  const onSubmit: HandleSubmitCallback = async (formData) => {
+    if (mode === 'signup') {
+      try {
+        await api.post(
+          `/users/signup?redirectURI=${window.location.origin}/authentication/signin`,
+          { ...formData, language: lang, theme }
+        )
+        return {
+          type: 'success',
+          value: 'authentication:success-signup'
+        }
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.status === 400) {
+          return {
+            type: 'error',
+            value: 'authentication:alreadyUsed'
           }
         }
-      } else {
-        try {
-          const { data } = await api.post<Tokens>('/users/signin', formData)
-          const authentication = new AuthenticationClass(data)
-          authentication.signin()
-          await router.push('/application')
-        } catch (error) {
-          setFormState('error')
-          if (axios.isAxiosError(error) && error.response?.status === 400) {
-            setMessageTranslationKey('authentication:wrong-credentials')
-          } else {
-            setMessageTranslationKey('errors:server-error')
+        return {
+          type: 'error',
+          value: 'errors:server-error'
+        }
+      }
+    } else {
+      try {
+        const { data } = await api.post<Tokens>('/users/signin', formData)
+        const authentication = new AuthenticationClass(data)
+        authentication.signin()
+        await router.push('/application')
+        return null
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.status === 400) {
+          return {
+            type: 'error',
+            value: 'authentication:wrong-credentials'
           }
+        }
+        return {
+          type: 'error',
+          value: 'errors:server-error'
         }
       }
     }
@@ -138,7 +95,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
       <section className='text-center text-lg font-paragraph pt-8'>
         {t('authentication:or')}
       </section>
-      <AuthenticationForm onSubmit={handleSubmit}>
+      <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
         {mode === 'signup' && (
           <Input
             type='text'
@@ -182,13 +139,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           </Link>
         </p>
       </AuthenticationForm>
-      <FormState
-        id='message'
-        state={formState}
-        message={
-          messageTranslationKey != null ? t(messageTranslationKey) : null
-        }
-      />
+      <FormState id='message' state={formState} message={message} />
     </Main>
   )
 }
