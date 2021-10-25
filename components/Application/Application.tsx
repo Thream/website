@@ -19,6 +19,7 @@ import { Guilds } from './Guilds/Guilds'
 import { Divider } from '../design/Divider'
 import { Members } from './Members'
 import { useAuthentication } from 'utils/authentication'
+import { API_URL } from 'utils/api'
 
 export interface GuildsChannelsPath {
   guildId: number
@@ -193,7 +194,11 @@ export const Application: React.FC<ApplicationProps> = (props) => {
             >
               <Image
                 className='rounded-full'
-                src='/images/data/divlo.png'
+                src={
+                  user.logo == null
+                    ? '/images/data/user-default.png'
+                    : API_URL + user.logo
+                }
                 alt='logo'
                 width={48}
                 height={48}
