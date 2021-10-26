@@ -5,8 +5,7 @@ import {
   AuthenticationProvider,
   PagePropsWithAuthentication
 } from 'utils/authentication'
-
-import { UserProfile } from 'components/UserProfile'
+import { UserProfile } from 'components/Application/UserProfile'
 
 const UserProfilePage: React.FC<PagePropsWithAuthentication> = (props) => {
   return (

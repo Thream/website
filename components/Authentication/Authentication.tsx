@@ -99,9 +99,9 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
         {mode === 'signup' && (
           <Input
             type='text'
-            placeholder={t('authentication:name')}
+            placeholder={t('common:name')}
             name='name'
-            label={t('authentication:name')}
+            label={t('common:name')}
             error={getErrorTranslation(errors.name)}
           />
         )}

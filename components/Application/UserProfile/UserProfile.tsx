@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 import date from 'date-and-time'
 
-import { UserPublic } from '../../models/User'
+import { UserPublic } from '../../../models/User'
 
 export interface UserProfileProps {
   className?: string
@@ -14,8 +14,6 @@ export interface UserProfileProps {
 
 export const UserProfile: React.FC<UserProfileProps> = (props) => {
   const { user, isOwner = false } = props
-
-  console.log(user)
 
   const { t } = useTranslation()
 

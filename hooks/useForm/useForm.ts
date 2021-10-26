@@ -32,7 +32,8 @@ interface Message {
 }
 
 export type HandleSubmitCallback = (
-  formData: FormDataObject
+  formData: FormDataObject,
+  formElement: HTMLFormElement
 ) => Promise<Message | null>
 
 export interface UseFormResult {
@@ -83,7 +84,7 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
       } else {
         setErrors({})
         setFormState('loading')
-        const message = await callback(formData)
+        const message = await callback(formData, formElement)
         if (message != null) {
           setMessageTranslationKey(message.value)
           if (message.type === 'success') {
