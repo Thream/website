@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from 'axios'
 import { io, Socket } from 'socket.io-client'
 
-import { API_URL } from 'utils/api'
-import { cookies } from 'utils/cookies'
+import { API_URL } from '../api'
+import { cookies } from '../cookies'
 import { Tokens } from './'
 import { fetchRefreshToken } from './authenticationFromServerSide'
 
@@ -46,6 +46,7 @@ export class Authentication {
           )
           this.setAccessToken(accessToken)
         }
+        config.headers = config.headers == null ? {} : config.headers
         config.headers.Authorization = `${this.tokens.type} ${this.tokens.accessToken}`
         return config
       },

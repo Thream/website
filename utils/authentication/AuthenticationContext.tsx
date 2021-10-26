@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect, useMemo, useContext } from 'react'
+import { useTheme } from 'next-themes'
 import useTranslation from 'next-translate/useTranslation'
 import setLanguage from 'next-translate/setLanguage'
 
 import { Authentication, PagePropsWithAuthentication } from './'
-import { useTheme } from 'next-themes'
-import { UserCurrent } from 'models/User'
+import { UserCurrent } from '../../models/User'
 
 export interface AuthenticationValue {
   authentication: Authentication

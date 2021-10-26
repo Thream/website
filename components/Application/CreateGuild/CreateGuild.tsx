@@ -4,13 +4,13 @@ import { Form } from 'react-component-form'
 import TextareaAutosize from 'react-textarea-autosize'
 import { AxiosResponse } from 'axios'
 
-import { useAuthentication } from 'utils/authentication'
-import { HandleSubmitCallback, useForm } from 'hooks/useForm'
-import { GuildComplete, guildSchema } from 'models/Guild'
-import { Input } from 'components/design/Input'
-import { Main } from 'components/design/Main'
-import { Button } from 'components/design/Button'
-import { FormState } from 'components/design/FormState'
+import { useAuthentication } from '../../../utils/authentication'
+import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
+import { GuildComplete, guildSchema } from '../../../models/Guild'
+import { Input } from '../../design/Input'
+import { Main } from '../../design/Main'
+import { Button } from '../../design/Button'
+import { FormState } from '../../design/FormState'
 
 export const CreateGuild: React.FC = () => {
   const { t } = useTranslation()
