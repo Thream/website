@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
+import useTranslation from 'next-translate/useTranslation'
 import {
   CogIcon,
   PlusIcon,
@@ -19,6 +20,7 @@ import { Guilds } from './Guilds/Guilds'
 import { Divider } from '../design/Divider'
 import { Members } from './Members'
 import { useAuthentication } from 'utils/authentication'
+import { API_URL } from 'utils/api'
 
 export interface GuildsChannelsPath {
   guildId: number
@@ -37,6 +39,7 @@ export interface ApplicationProps {
 export const Application: React.FC<ApplicationProps> = (props) => {
   const { children, path } = props
 
+  const { t } = useTranslation()
   const { user } = useAuthentication()
 
   const [visibleSidebars, setVisibleSidebars] = useState({
@@ -138,10 +141,10 @@ export const Application: React.FC<ApplicationProps> = (props) => {
       return 'Join a Guild'
     }
     if (path === '/application/guilds/create') {
-      return 'Create a Guild'
+      return t('application:create-a-guild')
     }
     return 'Application'
-  }, [path])
+  }, [path, t])
 
   useEffect(() => {
     setMounted(true)
@@ -193,7 +196,11 @@ export const Application: React.FC<ApplicationProps> = (props) => {
             >
               <Image
                 className='rounded-full'
-                src='/images/data/divlo.png'
+                src={
+                  user.logo == null
+                    ? '/images/data/user-default.png'
+                    : API_URL + user.logo
+                }
                 alt='logo'
                 width={48}
                 height={48}

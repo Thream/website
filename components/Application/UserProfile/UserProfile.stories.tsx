@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react'
-import { user, userSettings } from '../../cypress/fixtures/users/user'
+import { user, userSettings } from '../../../cypress/fixtures/users/user'
 
 import { UserProfile as Component, UserProfileProps } from './UserProfile'
 

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 
-import { user, userSettings } from '../../cypress/fixtures/users/user'
+import { user, userSettings } from '../../../cypress/fixtures/users/user'
 
 import { UserProfile } from './UserProfile'
 

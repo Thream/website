@@ -1,10 +1,11 @@
-import { AxiosInstance } from 'axios'
+import { AxiosInstance, AxiosResponse } from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext, Redirect } from 'next'
 
-import { api } from 'utils/api'
-import { Cookies } from 'utils/cookies'
+import { api } from '../api'
+import { Cookies } from '../cookies'
 import { RefreshTokenResponse, Tokens } from './index'
 import { Authentication } from './Authentication'
+import { UserCurrent } from '../../models/User'
 
 export const fetchRefreshToken = async (
   refreshToken: string
@@ -70,9 +71,10 @@ export const authenticationFromServerSide = (
       } else {
         let data: Redirect | any = {}
         const authentication = new Authentication(tokens)
-        const { data: currentUser } = await authentication.api.get(
-          '/users/current'
-        )
+        const { data: currentUser } = await authentication.api.get<
+          unknown,
+          AxiosResponse<UserCurrent>
+        >('/users/current')
         if (fetchData != null) {
           data = await fetchData(context, authentication.api)
         }

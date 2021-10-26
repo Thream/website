@@ -40,6 +40,9 @@ describe('Pages > /authentication/reset-password', () => {
     cy.visit('/authentication/reset-password')
     cy.get('#message').should('not.exist')
     cy.get('[data-cy=submit]').click()
-    cy.get('#message').should('have.text', 'Error: Invalid value.')
+    cy.get('#message').should(
+      'have.text',
+      'Error: Oops, this field is required 🙈.'
+    )
   })
 })

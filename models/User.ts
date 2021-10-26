@@ -7,11 +7,11 @@ import { date, id } from './utils'
 export const userSchema = {
   id,
   name: Type.String({ minLength: 1, maxLength: 30 }),
-  email: Type.String({ minLength: 1, maxLength: 255, format: 'email' }),
+  email: Type.String({ minLength: 1, maxLength: 254, format: 'email' }),
   password: Type.String({ minLength: 1 }),
-  logo: Type.String({ format: 'uri-reference' }),
-  status: Type.String({ maxLength: 255 }),
-  biography: Type.String(),
+  logo: Type.Union([Type.String({ format: 'uri-reference' }), Type.Null()]),
+  status: Type.Union([Type.String({ maxLength: 50 }), Type.Null()]),
+  biography: Type.Union([Type.String({ maxLength: 160 }), Type.Null()]),
   website: Type.String({ maxLength: 255, format: 'uri-reference' }),
   isConfirmed: Type.Boolean({ default: false }),
   temporaryToken: Type.String(),
@@ -20,32 +20,34 @@ export const userSchema = {
   updatedAt: date.updatedAt
 }
 
-const userSchemaWithSettings = {
-  ...userSchema,
-  settings: Type.Object(userSettingsSchema)
+export const userObjectSchema = Type.Object(userSchema)
+
+export const userPublicWithoutSettingsSchema = {
+  id,
+  name: userSchema.name,
+  email: Type.Union([userSchema.email, Type.Null()]),
+  logo: userSchema.logo,
+  status: userSchema.status,
+  biography: userSchema.biography,
+  website: Type.Union([userSchema.website, Type.Null()]),
+  isConfirmed: userSchema.isConfirmed,
+  createdAt: date.createdAt,
+  updatedAt: date.updatedAt
 }
 
 export const userPublicSchema = {
-  id,
-  name: userSchema.name,
-  email: Type.Optional(userSchema.email),
-  logo: Type.Optional(userSchema.logo),
-  status: Type.Optional(userSchema.status),
-  biography: Type.Optional(userSchema.biography),
-  website: Type.Optional(userSchema.website),
-  isConfirmed: userSchema.isConfirmed,
-  createdAt: date.createdAt,
-  updatedAt: date.updatedAt,
-  settings: Type.Optional(Type.Object(userSettingsSchema))
+  ...userPublicWithoutSettingsSchema,
+  settings: Type.Object(userSettingsSchema)
 }
 
 export const userPublicObjectSchema = Type.Object(userPublicSchema)
 
 export const userCurrentSchema = Type.Object({
-  ...userSchemaWithSettings,
+  ...userPublicSchema,
   currentStrategy: Type.Union([...strategiesTypebox]),
   strategies: Type.Array(Type.Union([...strategiesTypebox]))
 })
 
+export type User = Static<typeof userObjectSchema>
 export type UserPublic = Static<typeof userPublicObjectSchema>
 export type UserCurrent = Static<typeof userCurrentSchema>
