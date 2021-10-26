@@ -72,7 +72,7 @@ export const CreateGuild: React.FC = () => {
           </div>
         </div>
 
-        <Button className='w-full mt-6' type='submit'>
+        <Button className='w-full mt-6' type='submit' data-cy='submit'>
           {t('application:create')}
         </Button>
       </Form>
