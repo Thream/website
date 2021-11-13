@@ -21,7 +21,7 @@ const ResetPassword: React.FC<FooterProps> = (props) => {
   const router = useRouter()
   const { version } = props
 
-  const { formState, message, errors, getErrorTranslation, handleSubmit } =
+  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
     useForm({ validateSchemaObject: { password: userSchema.password } })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
@@ -64,7 +64,7 @@ const ResetPassword: React.FC<FooterProps> = (props) => {
         </AuthenticationForm>
         <FormState
           id='message'
-          state={formState}
+          state={fetchState}
           message={
             message != null ? message : getErrorTranslation(errors.password)
           }

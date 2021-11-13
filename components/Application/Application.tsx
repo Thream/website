@@ -240,6 +240,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
         </Sidebar>
 
         <div
+          id='application-page-content'
           className={classNames(
             'top-0 h-full-without-header flex flex-col flex-1 z-0 overflow-y-auto transition',
             {
