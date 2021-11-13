@@ -19,6 +19,13 @@ export const guildCompleteSchema = {
   members: Type.Array(Type.Object(memberSchema))
 }
 
+export const guildPublicObjectSchema = Type.Object({
+  ...guildSchema,
+  membersCount: Type.Integer({ min: 1 })
+})
+
 export const guildCompleteObjectSchema = Type.Object(guildCompleteSchema)
 
 export type GuildComplete = Static<typeof guildCompleteObjectSchema>
+
+export type GuildPublic = Static<typeof guildPublicObjectSchema>

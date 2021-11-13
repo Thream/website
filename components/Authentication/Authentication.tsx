@@ -29,7 +29,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
   const { lang, t } = useTranslation()
   const { theme } = useTheme()
 
-  const { errors, formState, message, getErrorTranslation, handleSubmit } =
+  const { errors, fetchState, message, getErrorTranslation, handleSubmit } =
     useForm({
       validateSchemaObject: {
         ...(mode === 'signup' && { name: userSchema.name }),
@@ -139,7 +139,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           </Link>
         </p>
       </AuthenticationForm>
-      <FormState id='message' state={formState} message={message} />
+      <FormState id='message' state={fetchState} message={message} />
     </Main>
   )
 }

@@ -20,7 +20,7 @@ const ForgotPassword: React.FC<FooterProps> = (props) => {
   const { t } = useTranslation()
   const { version } = props
 
-  const { formState, message, errors, getErrorTranslation, handleSubmit } =
+  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
     useForm({ validateSchemaObject: { email: userSchema.email } })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
@@ -65,7 +65,7 @@ const ForgotPassword: React.FC<FooterProps> = (props) => {
         </AuthenticationForm>
         <FormState
           id='message'
-          state={formState}
+          state={fetchState}
           message={
             message != null ? message : getErrorTranslation(errors.email)
           }

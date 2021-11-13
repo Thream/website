@@ -19,10 +19,17 @@ module.exports = (on, config) => {
       })
       await server.start(8080)
       for (const handler of handlers) {
-        await server[handler.method.toLowerCase()](handler.url).thenJson(
-          handler.response.statusCode,
-          handler.response.body
-        )
+        const requestBuilder = server[handler.method.toLowerCase()](handler.url)
+        if (handler.query != null) {
+          await requestBuilder
+            .withExactQuery(handler.query)
+            .thenJson(handler.response.statusCode, handler.response.body)
+        } else {
+          await requestBuilder.thenJson(
+            handler.response.statusCode,
+            handler.response.body
+          )
+        }
       }
       return null
     },

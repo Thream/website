@@ -4,7 +4,7 @@ import { Type } from '@sinclair/typebox'
 import type { FormDataObject, HandleForm } from 'react-component-form'
 import type { ErrorObject } from 'ajv'
 
-import { FormState, useFormState } from '../useFormState'
+import { FetchState, useFetchState } from '../useFetchState'
 import { ajv } from '../../utils/ajv'
 import { getErrorTranslationKey } from './getErrorTranslationKey'
 
@@ -38,7 +38,7 @@ export type HandleSubmitCallback = (
 
 export interface UseFormResult {
   message: string | null
-  formState: FormState
+  fetchState: FetchState
   getErrorTranslation: GetErrorTranslation
   handleSubmit: HandleSubmit
   errors: Errors
@@ -47,7 +47,7 @@ export interface UseFormResult {
 export const useForm = (options: UseFormOptions): UseFormResult => {
   const { validateSchemaObject } = options
   const { t } = useTranslation()
-  const [formState, setFormState] = useFormState()
+  const [fetchState, setFetchState] = useFetchState()
   const [messageTranslationKey, setMessageTranslationKey] = useState<
     string | undefined
   >(undefined)
@@ -75,7 +75,7 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
     return async (formData, formElement) => {
       const isValid = validate(formData)
       if (!isValid) {
-        setFormState('error')
+        setFetchState('error')
         const errors: Errors = {}
         for (const property in validateSchema.properties) {
           errors[property] = validate.errors?.find(findError(`/${property}`))
@@ -83,15 +83,15 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
         setErrors(errors)
       } else {
         setErrors({})
-        setFormState('loading')
+        setFetchState('loading')
         const message = await callback(formData, formElement)
         if (message != null) {
           setMessageTranslationKey(message.value)
           if (message.type === 'success') {
-            setFormState('success')
+            setFetchState('success')
             formElement.reset()
           } else {
-            setFormState('error')
+            setFetchState('error')
           }
         }
       }
@@ -101,7 +101,7 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
   return {
     getErrorTranslation,
     errors,
-    formState,
+    fetchState,
     handleSubmit,
     message: messageTranslationKey != null ? t(messageTranslationKey) : null
   }

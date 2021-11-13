@@ -6,3 +6,8 @@ export const guild = {
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString()
 }
+
+export const guild2 = {
+  ...guild,
+  name: 'app'
+}

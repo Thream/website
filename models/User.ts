@@ -9,10 +9,26 @@ export const userSchema = {
   name: Type.String({ minLength: 1, maxLength: 30 }),
   email: Type.String({ minLength: 1, maxLength: 254, format: 'email' }),
   password: Type.String({ minLength: 1 }),
-  logo: Type.Union([Type.String({ format: 'uri-reference' }), Type.Null()]),
-  status: Type.Union([Type.String({ maxLength: 50 }), Type.Null()]),
-  biography: Type.Union([Type.String({ maxLength: 160 }), Type.Null()]),
-  website: Type.String({ maxLength: 255, format: 'uri-reference' }),
+  logo: Type.Union([
+    Type.String({ minLength: 1, format: 'uri-reference' }),
+    Type.Null()
+  ]),
+  status: Type.Union([
+    Type.String({ minLength: 1, maxLength: 50 }),
+    Type.Null()
+  ]),
+  biography: Type.Union([
+    Type.String({ minLength: 1, maxLength: 160 }),
+    Type.Null()
+  ]),
+  website: Type.Union([
+    Type.String({
+      minLength: 1,
+      maxLength: 255,
+      format: 'uri-reference'
+    }),
+    Type.Null()
+  ]),
   isConfirmed: Type.Boolean({ default: false }),
   temporaryToken: Type.String(),
   temporaryExpirationToken: Type.String({ format: 'date-time' }),
@@ -29,7 +45,7 @@ export const userPublicWithoutSettingsSchema = {
   logo: userSchema.logo,
   status: userSchema.status,
   biography: userSchema.biography,
-  website: Type.Union([userSchema.website, Type.Null()]),
+  website: userSchema.website,
   isConfirmed: userSchema.isConfirmed,
   createdAt: date.createdAt,
   updatedAt: date.updatedAt

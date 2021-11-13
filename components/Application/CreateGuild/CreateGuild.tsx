@@ -16,7 +16,7 @@ export const CreateGuild: React.FC = () => {
   const { t } = useTranslation()
   const router = useRouter()
 
-  const { formState, message, errors, getErrorTranslation, handleSubmit } =
+  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
     useForm({
       validateSchemaObject: {
         name: guildSchema.name,
@@ -76,7 +76,7 @@ export const CreateGuild: React.FC = () => {
           {t('application:create')}
         </Button>
       </Form>
-      <FormState id='message' state={formState} message={message} />
+      <FormState id='message' state={fetchState} message={message} />
     </Main>
   )
 }
