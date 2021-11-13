@@ -4,7 +4,6 @@ import { postUsersRefreshTokenHandler } from './users/refresh-token/post'
 export interface Handler {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE'
   url: string
-  query?: string
   response: {
     body: any
     statusCode: number

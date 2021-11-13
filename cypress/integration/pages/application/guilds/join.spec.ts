@@ -45,8 +45,7 @@ describe('Pages > /application/guilds/join', () => {
   it('should shows the searched guild', () => {
     cy.task('startMockServer', [
       ...authenticationHandlers,
-      getGuildsPublicSearchHandler,
-      getGuildsPublicEmptyHandler
+      getGuildsPublicSearchHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.visit('/application/guilds/join')
     cy.get('[data-cy=search-guild-input]').type('app')

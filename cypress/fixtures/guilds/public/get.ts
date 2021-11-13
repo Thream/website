@@ -26,7 +26,6 @@ export const getGuildsPublicHandler: Handler = {
 export const getGuildsPublicSearchHandler: Handler = {
   method: 'GET',
   url: '/guilds/public',
-  query: '?limit=20&search=app',
   response: {
     statusCode: 200,
     body: [{ ...guild2, membersCount: 1 }]
