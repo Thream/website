@@ -1,12 +1,12 @@
 import Image from 'next/image'
 
-import { GuildPublic } from 'models/Guild'
+import { GuildPublic as GuildPublicType } from 'models/Guild'
 
-export interface GuildProps {
-  guild: GuildPublic
+export interface GuildPublicProps {
+  guild: GuildPublicType
 }
 
-export const Guild: React.FC<GuildProps> = (props) => {
+export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
   const { guild } = props
 
   return (

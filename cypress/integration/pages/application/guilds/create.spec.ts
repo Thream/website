@@ -1,5 +1,5 @@
-import { channel } from '../../../../fixtures/channels/channel'
-import { guild } from '../../../../fixtures/guilds/guild'
+import { channelExample } from '../../../../fixtures/channels/channel'
+import { guildExample } from '../../../../fixtures/guilds/guild'
 import { postGuildsHandler } from '../../../../fixtures/guilds/post'
 import { authenticationHandlers } from '../../../../fixtures/handler'
 
@@ -15,11 +15,11 @@ describe('Pages > /application/guilds/create', () => {
     ]).setCookie('refreshToken', 'refresh-token')
     cy.visit('/application/guilds/create')
     cy.get('#error-name').should('not.exist')
-    cy.get('[data-cy=input-name]').type(guild.name)
+    cy.get('[data-cy=input-name]').type(guildExample.name)
     cy.get('[data-cy=submit]').click()
     cy.location('pathname').should(
       'eq',
-      `/application/${guild.id}/${channel.id}`
+      `/application/${guildExample.id}/${channelExample.id}`
     )
   })
 
@@ -30,7 +30,7 @@ describe('Pages > /application/guilds/create', () => {
     )
     cy.visit('/application/guilds/create')
     cy.get('#error-name').should('not.exist')
-    cy.get('[data-cy=input-name]').type(guild.name)
+    cy.get('[data-cy=input-name]').type(guildExample.name)
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should('have.text', 'Error: Internal Server Error.')
   })

@@ -1,5 +1,5 @@
 import { postUsersResetPasswordHandler } from '../../../fixtures/users/reset-password/post'
-import { user } from '../../../fixtures/users/user'
+import { userExample } from '../../../fixtures/users/user'
 
 describe('Pages > /authentication/forgot-password', () => {
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('Pages > /authentication/forgot-password', () => {
   it('should succeeds and sends a password-reset request', () => {
     cy.task('startMockServer', [postUsersResetPasswordHandler])
     cy.get('#message').should('not.exist')
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should(
       'have.text',
@@ -20,7 +20,7 @@ describe('Pages > /authentication/forgot-password', () => {
 
   it('should fails with unreachable api server', () => {
     cy.get('#message').should('not.exist')
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should('have.text', 'Error: Internal Server Error.')
   })

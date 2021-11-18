@@ -16,7 +16,7 @@ describe('Pages > /application/guilds/join', () => {
       getGuildsPublicEmptyHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.visit('/application/guilds/join')
-    cy.get('.guilds-list').children().should('have.length', 0)
+    cy.get('.guilds-public-list').children().should('have.length', 0)
   })
 
   it('should shows loader with internal api server error', () => {
@@ -25,7 +25,7 @@ describe('Pages > /application/guilds/join', () => {
       'refresh-token'
     )
     cy.visit('/application/guilds/join')
-    cy.get('.guilds-list').children().should('have.length', 1)
+    cy.get('.guilds-public-list').children().should('have.length', 1)
     cy.get('[data-testid=progress-spinner]').should('be.visible')
   })
 
@@ -35,8 +35,8 @@ describe('Pages > /application/guilds/join', () => {
       getGuildsPublicHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.visit('/application/guilds/join')
-    cy.get('.guilds-list').children().should('have.length', 2)
-    cy.get('.guilds-list [data-cy=guild-name]:first').should(
+    cy.get('.guilds-public-list').children().should('have.length', 2)
+    cy.get('.guilds-public-list [data-cy=guild-name]:first').should(
       'have.text',
       'GuildExample'
     )
@@ -49,7 +49,10 @@ describe('Pages > /application/guilds/join', () => {
     ]).setCookie('refreshToken', 'refresh-token')
     cy.visit('/application/guilds/join')
     cy.get('[data-cy=search-guild-input]').type('app')
-    cy.get('.guilds-list').children().should('have.length', 1)
-    cy.get('.guilds-list [data-cy=guild-name]:first').should('have.text', 'app')
+    cy.get('.guilds-public-list').children().should('have.length', 1)
+    cy.get('.guilds-public-list [data-cy=guild-name]:first').should(
+      'have.text',
+      'app'
+    )
   })
 })

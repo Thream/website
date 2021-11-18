@@ -15,7 +15,7 @@ export const Messages: React.FC = () => {
                 <div className='w-10 h-10 drop-shadow-md'>
                   <Image
                     className='rounded-full'
-                    src='/images/data/divlo.png'
+                    src='/images/data/user-default.png'
                     alt='logo'
                     width={50}
                     height={50}

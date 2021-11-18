@@ -2,13 +2,13 @@ import { useCallback, useEffect, useState, useRef } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { useAuthentication } from 'utils/authentication'
-import { GuildPublic } from 'models/Guild'
+import { GuildPublic as GuildPublicType } from 'models/Guild'
 import { Loader } from 'components/design/Loader'
 import { useFetchState } from 'hooks/useFetchState'
-import { Guild } from './Guild'
+import { GuildPublic } from './GuildPublic'
 
 export const JoinGuildsPublic: React.FC = () => {
-  const [guilds, setGuilds] = useState<GuildPublic[]>([])
+  const [guilds, setGuilds] = useState<GuildPublicType[]>([])
   const [hasMore, setHasMore] = useState(true)
   const [inputSearch, setInputSearch] = useState('')
   const [fetchState, setFetchState] = useFetchState('idle')
@@ -21,7 +21,7 @@ export const JoinGuildsPublic: React.FC = () => {
       return
     }
     setFetchState('loading')
-    const { data } = await authentication.api.get<GuildPublic[]>(
+    const { data } = await authentication.api.get<GuildPublicType[]>(
       `/guilds/public?limit=20&search=${inputSearch}${
         afterId.current != null ? `&after=${afterId.current}` : ''
       }`
@@ -58,7 +58,7 @@ export const JoinGuildsPublic: React.FC = () => {
       />
       <div className='w-full flex items-center justify-center p-12'>
         <InfiniteScroll
-          className='guilds-list max-w-[1600px] grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 !overflow-hidden'
+          className='guilds-public-list max-w-[1600px] grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 !overflow-hidden'
           dataLength={guilds.length}
           next={fetchGuilds}
           scrollableTarget='application-page-content'
@@ -66,7 +66,7 @@ export const JoinGuildsPublic: React.FC = () => {
           loader={<Loader />}
         >
           {guilds.map((guild) => {
-            return <Guild guild={guild} key={guild.id} />
+            return <GuildPublic guild={guild} key={guild.id} />
           })}
         </InfiniteScroll>
       </div>

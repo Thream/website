@@ -1,3 +1,4 @@
+import { getGuildsHandler } from '../../../fixtures/guilds/get'
 import { authenticationHandlers } from '../../../fixtures/handler'
 
 const applicationPaths = [
@@ -22,14 +23,23 @@ describe('Pages > /application', () => {
   })
 
   it('should not redirect the user if signed in', () => {
-    cy.task('startMockServer', authenticationHandlers).setCookie(
-      'refreshToken',
-      'refresh-token'
-    )
+    cy.task('startMockServer', [
+      ...authenticationHandlers,
+      getGuildsHandler
+    ]).setCookie('refreshToken', 'refresh-token')
     for (const applicationPath of applicationPaths) {
       cy.visit(applicationPath)
         .location('pathname')
         .should('eq', applicationPath)
     }
+  })
+
+  it('should shows all the guilds of the current user in left sidebar', () => {
+    cy.task('startMockServer', [
+      ...authenticationHandlers,
+      getGuildsHandler
+    ]).setCookie('refreshToken', 'refresh-token')
+    cy.visit('/application')
+    cy.get('.guilds-list').children().should('have.length', 2)
   })
 })

@@ -1,6 +1,6 @@
 import { Handler } from '../../handler'
 
-import { user, userSettings } from '../user'
+import { userExample, userSettingsExample } from '../user'
 
 export const postUsersSignupHandler: Handler = {
   method: 'POST',
@@ -9,8 +9,8 @@ export const postUsersSignupHandler: Handler = {
     statusCode: 201,
     body: {
       user: {
-        ...user,
-        settings: userSettings
+        ...userExample,
+        settings: userSettingsExample
       }
     }
   }

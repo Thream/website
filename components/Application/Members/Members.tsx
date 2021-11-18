@@ -12,7 +12,7 @@ export const Members: React.FC = () => {
       <div className='flex items-center cursor-pointer py-2 px-4 pr-10 rounded hover:bg-gray-300 dark:hover:bg-gray-900'>
         <div className='min-w-[50px] flex rounded-full border-2 border-green-500'>
           <Image
-            src='/images/data/divlo.png'
+            src='/images/data/user-default.png'
             alt={"Users's profil picture"}
             height={50}
             width={50}
@@ -35,7 +35,7 @@ export const Members: React.FC = () => {
           >
             <div className='min-w-[50px] flex rounded-full border-2 border-transparent drop-shadow-md'>
               <Image
-                src='/images/data/divlo.png'
+                src='/images/data/user-default.png'
                 alt={"Users's profil picture"}
                 height={50}
                 width={50}

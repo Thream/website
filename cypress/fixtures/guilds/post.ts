@@ -1,8 +1,8 @@
 import { Handler } from '../handler'
 
-import { guild } from './guild'
-import { channel } from '../channels/channel'
-import { memberComplete } from '../members/member'
+import { guildExample } from './guild'
+import { channelExample } from '../channels/channel'
+import { memberExampleComplete } from '../members/member'
 
 export const postGuildsHandler: Handler = {
   method: 'POST',
@@ -11,9 +11,9 @@ export const postGuildsHandler: Handler = {
     statusCode: 201,
     body: {
       guild: {
-        ...guild,
-        channels: [channel],
-        members: [memberComplete]
+        ...guildExample,
+        channels: [channelExample],
+        members: [memberExampleComplete]
       }
     }
   }

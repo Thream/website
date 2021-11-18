@@ -1,6 +1,6 @@
 import { Handler } from '../../handler'
 
-import { guild, guild2 } from '../guild'
+import { guildExample, guildExample2 } from '../guild'
 
 export const getGuildsPublicEmptyHandler: Handler = {
   method: 'GET',
@@ -17,8 +17,8 @@ export const getGuildsPublicHandler: Handler = {
   response: {
     statusCode: 200,
     body: [
-      { ...guild, membersCount: 1 },
-      { ...guild2, membersCount: 1 }
+      { ...guildExample, membersCount: 1 },
+      { ...guildExample2, membersCount: 1 }
     ]
   }
 }
@@ -28,6 +28,6 @@ export const getGuildsPublicSearchHandler: Handler = {
   url: '/guilds/public',
   response: {
     statusCode: 200,
-    body: [{ ...guild2, membersCount: 1 }]
+    body: [{ ...guildExample2, membersCount: 1 }]
   }
 }
