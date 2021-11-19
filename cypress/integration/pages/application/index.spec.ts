@@ -1,45 +1,31 @@
-import { getGuildsHandler } from '../../../fixtures/guilds/get'
 import { authenticationHandlers } from '../../../fixtures/handler'
-
-const applicationPaths = [
-  '/application',
-  '/application/users/0',
-  '/application/guilds/create',
-  '/application/guilds/join',
-  '/application/0/0'
-]
 
 describe('Pages > /application', () => {
   beforeEach(() => {
     cy.task('stopMockServer')
   })
 
-  it('should redirect the user to `/authentication/signin` if not signed in', () => {
-    for (const applicationPath of applicationPaths) {
-      cy.visit(applicationPath)
-        .location('pathname')
-        .should('eq', '/authentication/signin')
-    }
-  })
-
-  it('should not redirect the user if signed in', () => {
-    cy.task('startMockServer', [
-      ...authenticationHandlers,
-      getGuildsHandler
-    ]).setCookie('refreshToken', 'refresh-token')
-    for (const applicationPath of applicationPaths) {
-      cy.visit(applicationPath)
-        .location('pathname')
-        .should('eq', applicationPath)
-    }
-  })
-
-  it('should shows all the guilds of the current user in left sidebar', () => {
-    cy.task('startMockServer', [
-      ...authenticationHandlers,
-      getGuildsHandler
-    ]).setCookie('refreshToken', 'refresh-token')
+  it('should redirect user to `/application/guilds/create` on click on "Create a Guild"', () => {
+    cy.task('startMockServer', [...authenticationHandlers]).setCookie(
+      'refreshToken',
+      'refresh-token'
+    )
     cy.visit('/application')
-    cy.get('.guilds-list').children().should('have.length', 2)
+    cy.get('a[href="/application/guilds/create"]')
+      .click()
+      .location('pathname')
+      .should('eq', '/application/guilds/create')
+  })
+
+  it('should redirect user to `/application/guilds/join` on click on "Join a Guild"', () => {
+    cy.task('startMockServer', [...authenticationHandlers]).setCookie(
+      'refreshToken',
+      'refresh-token'
+    )
+    cy.visit('/application')
+    cy.get('a[href="/application/guilds/join"]')
+      .click()
+      .location('pathname')
+      .should('eq', '/application/guilds/join')
   })
 })

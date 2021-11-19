@@ -1,6 +1,6 @@
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
-import { PopupGuild } from 'components/Application/PopupGuild/PopupGuild.stories'
+import { PopupGuild } from 'components/Application/PopupGuild'
 import {
   authenticationFromServerSide,
   AuthenticationProvider,

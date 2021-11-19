@@ -1,49 +1,29 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { useAuthentication } from 'utils/authentication'
 import { GuildPublic as GuildPublicType } from 'models/Guild'
 import { Loader } from 'components/design/Loader'
-import { useFetchState } from 'hooks/useFetchState'
 import { GuildPublic } from './GuildPublic'
+import { usePagination } from 'hooks/usePagination'
 
 export const JoinGuildsPublic: React.FC = () => {
-  const [guilds, setGuilds] = useState<GuildPublicType[]>([])
-  const [hasMore, setHasMore] = useState(true)
-  const [inputSearch, setInputSearch] = useState('')
-  const [fetchState, setFetchState] = useFetchState('idle')
-  const afterId = useRef<number | null>(null)
-
+  const [search, setSearch] = useState('')
   const { authentication } = useAuthentication()
 
-  const fetchGuilds = useCallback(async (): Promise<void> => {
-    if (fetchState !== 'idle') {
-      return
-    }
-    setFetchState('loading')
-    const { data } = await authentication.api.get<GuildPublicType[]>(
-      `/guilds/public?limit=20&search=${inputSearch}${
-        afterId.current != null ? `&after=${afterId.current}` : ''
-      }`
-    )
-    afterId.current = data.length > 0 ? data[data.length - 1].id : null
-    setGuilds((oldGuilds) => {
-      return [...oldGuilds, ...data]
+  const { items, hasMore, nextPage, resetPagination } =
+    usePagination<GuildPublicType>({
+      api: authentication.api,
+      url: '/guilds/public'
     })
-    setHasMore(data.length > 0)
-    setFetchState('idle')
-  }, [authentication, fetchState, setFetchState, inputSearch])
 
   useEffect(() => {
-    afterId.current = null
-    setGuilds([])
-    fetchGuilds().catch((error) => {
-      console.error(error)
-    })
-  }, [inputSearch]) // eslint-disable-line react-hooks/exhaustive-deps
+    resetPagination()
+    nextPage({ search })
+  }, [resetPagination, nextPage, search])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setInputSearch(event.target.value)
+    setSearch(event.target.value)
   }
 
   return (
@@ -59,13 +39,13 @@ export const JoinGuildsPublic: React.FC = () => {
       <div className='w-full flex items-center justify-center p-12'>
         <InfiniteScroll
           className='guilds-public-list max-w-[1600px] grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 !overflow-hidden'
-          dataLength={guilds.length}
-          next={fetchGuilds}
+          dataLength={items.length}
+          next={nextPage}
           scrollableTarget='application-page-content'
           hasMore={hasMore}
           loader={<Loader />}
         >
-          {guilds.map((guild) => {
+          {items.map((guild) => {
             return <GuildPublic guild={guild} key={guild.id} />
           })}
         </InfiniteScroll>
