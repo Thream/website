@@ -14,7 +14,7 @@ const Signin: NextPage<FooterProps> = (props) => {
 
   return (
     <ScrollableBody>
-      <Head title={`Thream | ${t('authentication:signup')}`} />
+      <Head title={`Thream | ${t('authentication:signin')}`} />
       <Header />
       <Authentication mode='signin' />
       <Footer version={version} />
