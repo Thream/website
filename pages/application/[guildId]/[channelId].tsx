@@ -1,3 +1,5 @@
+import { NextPage } from 'next'
+
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
 import { Messages } from 'components/Application/Messages'
@@ -12,7 +14,7 @@ export interface ChannelPageProps extends PagePropsWithAuthentication {
   guildId: number
 }
 
-const ChannelPage: React.FC<ChannelPageProps> = (props) => {
+const ChannelPage: NextPage<ChannelPageProps> = (props) => {
   const { channelId, guildId, authentication } = props
 
   return (

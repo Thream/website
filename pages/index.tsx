@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -13,7 +13,7 @@ import { SocialMediaButton } from 'components/design/SocialMediaButton'
 import { Button } from 'components/design/Button'
 import { ScrollableBody } from 'components/ScrollableBody'
 
-const Home: React.FC<FooterProps> = (props) => {
+const Home: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
   const { version } = props
 

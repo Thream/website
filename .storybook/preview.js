@@ -1,3 +1,4 @@
+import * as NextImage from 'next/image'
 import { addDecorator } from '@storybook/react'
 import I18nProvider from 'next-translate/I18nProvider'
 
@@ -30,9 +31,9 @@ addDecorator((story) => (
   </I18nProvider>
 ))
 
-import * as nextImage from 'next/image'
+const OriginalNextImage = NextImage.default
 
-Object.defineProperty(nextImage, 'default', {
+Object.defineProperty(NextImage, 'default', {
   configurable: true,
-  value: (props) => <img {...props} />
+  value: (props) => <OriginalNextImage {...props} unoptimized />
 })

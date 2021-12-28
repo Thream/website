@@ -9,4 +9,5 @@ tmp
 temp
 .DS_Store
 .lighthouseci
+.vercel
 storybook-static

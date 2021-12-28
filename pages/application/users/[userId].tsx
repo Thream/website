@@ -1,3 +1,5 @@
+import { NextPage } from 'next'
+
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
 import {
@@ -7,7 +9,7 @@ import {
 } from 'utils/authentication'
 import { UserProfile } from 'components/Application/UserProfile'
 
-const UserProfilePage: React.FC<PagePropsWithAuthentication> = (props) => {
+const UserProfilePage: NextPage<PagePropsWithAuthentication> = (props) => {
   return (
     <AuthenticationProvider authentication={props.authentication}>
       <Head title='Thream | Settings' />

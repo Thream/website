@@ -1,3 +1,4 @@
+import { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from 'components/Head'
@@ -7,7 +8,7 @@ import { Footer, FooterProps } from 'components/Footer'
 import { authenticationFromServerSide } from 'utils/authentication'
 import { ScrollableBody } from 'components/ScrollableBody'
 
-const Signup: React.FC<FooterProps> = (props) => {
+const Signup: NextPage<FooterProps> = (props) => {
   const { version } = props
   const { t } = useTranslation()
 
