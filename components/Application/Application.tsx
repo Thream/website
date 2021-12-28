@@ -1,13 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
-import {
-  CogIcon,
-  PlusIcon,
-  MenuIcon,
-  UsersIcon,
-  XIcon
-} from '@heroicons/react/solid'
+import { PlusIcon, MenuIcon, UsersIcon, XIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import { useMediaQuery } from 'react-responsive'
 import { useSwipeable } from 'react-swipeable'
@@ -15,7 +9,6 @@ import { useSwipeable } from 'react-swipeable'
 import { Sidebar, DirectionSidebar } from './Sidebar'
 import { IconButton } from 'components/design/IconButton'
 import { IconLink } from 'components/design/IconLink'
-import { Channels } from './Channels'
 import { Guilds } from './Guilds/Guilds'
 import { Divider } from '../design/Divider'
 import { Members } from './Members'
@@ -27,17 +20,20 @@ export interface GuildsChannelsPath {
   channelId: number
 }
 
+export type ApplicationPath =
+  | '/application'
+  | '/application/guilds/join'
+  | '/application/guilds/create'
+  | '/application/users/[userId]'
+  | GuildsChannelsPath
+
 export interface ApplicationProps {
-  path:
-    | '/application'
-    | '/application/guilds/join'
-    | '/application/guilds/create'
-    | '/application/users/[userId]'
-    | GuildsChannelsPath
+  path: ApplicationPath
+  guildLeftSidebar?: React.ReactNode
 }
 
 export const Application: React.FC<ApplicationProps> = (props) => {
-  const { children, path } = props
+  const { children, path, guildLeftSidebar } = props
 
   const { t } = useTranslation()
   const { user } = useAuthentication()
@@ -217,26 +213,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
             <Guilds path={path} />
           </div>
 
-          {typeof path !== 'string' && (
-            <div className='flex flex-col justify-between w-full mt-2'>
-              <div className='text-center p-2 mx-8 mt-2'>
-                <h2 className='text-xl'>Guild Name</h2>
-              </div>
-              <Divider />
-              <div className='scrollbar-firefox-support overflow-y-auto'>
-                <Channels path={path} />
-              </div>
-              <Divider />
-              <div className='flex justify-center items-center p-2 mb-1 space-x-6'>
-                <IconButton className='h-10 w-10' title='Add a Channel'>
-                  <PlusIcon />
-                </IconButton>
-                <IconButton className='h-7 w-7' title='Settings'>
-                  <CogIcon />
-                </IconButton>
-              </div>
-            </div>
-          )}
+          {guildLeftSidebar}
         </Sidebar>
 
         <div

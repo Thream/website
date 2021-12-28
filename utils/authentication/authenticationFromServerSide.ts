@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
-import { GetServerSideProps, GetServerSidePropsContext, Redirect } from 'next'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import { api } from '../api'
 import { Cookies } from '../cookies'
@@ -25,7 +25,7 @@ interface AuthenticationFromServerSideOptions {
   /** allows to fetch data server side with the authenticated user, the callback should returns the data that will be transfer to the component as props */
   fetchData?: (
     context: GetServerSidePropsContext,
-    api?: AxiosInstance
+    api: AxiosInstance
   ) => Promise<{ [key: string]: any }>
 }
 
@@ -56,9 +56,9 @@ export const authenticationFromServerSide = (
       } else {
         let data = {}
         if (fetchData != null) {
-          data = await fetchData(context)
+          data = await fetchData(context, api)
         }
-        return { props: { ...data } }
+        return { props: data }
       }
     } else {
       if (tokens == null) {
@@ -69,20 +69,26 @@ export const authenticationFromServerSide = (
           }
         }
       } else {
-        let data: Redirect | any = {}
-        const authentication = new Authentication(tokens)
-        const { data: currentUser } = await authentication.api.get<
-          unknown,
-          AxiosResponse<UserCurrent>
-        >('/users/current')
-        if (fetchData != null) {
-          data = await fetchData(context, authentication.api)
-        }
-        if (data.redirect != null) {
-          return data
-        }
-        return {
-          props: { authentication: { tokens, ...currentUser }, ...data }
+        try {
+          let data: any = {}
+          const authentication = new Authentication(tokens)
+          const { data: currentUser } = await authentication.api.get<
+            unknown,
+            AxiosResponse<UserCurrent>
+          >('/users/current')
+          if (fetchData != null) {
+            data = await fetchData(context, authentication.api)
+          }
+          return {
+            props: { authentication: { tokens, ...currentUser }, ...data }
+          }
+        } catch {
+          return {
+            redirect: {
+              destination: '/404',
+              permanent: false
+            }
+          }
         }
       }
     }
