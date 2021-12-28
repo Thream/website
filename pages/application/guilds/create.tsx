@@ -8,14 +8,17 @@ import {
   PagePropsWithAuthentication
 } from 'utils/authentication'
 import { CreateGuild } from 'components/Application/CreateGuild'
+import { GuildsProvider } from 'contexts/Guilds'
 
 const CreateGuildPage: NextPage<PagePropsWithAuthentication> = (props) => {
   return (
     <AuthenticationProvider authentication={props.authentication}>
-      <Head title='Thream | Create a Guild' />
-      <Application path='/application/guilds/create'>
-        <CreateGuild />
-      </Application>
+      <GuildsProvider>
+        <Head title='Thream | Create a Guild' />
+        <Application path='/application/guilds/create'>
+          <CreateGuild />
+        </Application>
+      </GuildsProvider>
     </AuthenticationProvider>
   )
 }

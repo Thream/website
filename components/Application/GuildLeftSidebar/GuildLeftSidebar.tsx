@@ -21,7 +21,7 @@ export const GuildLeftSidebar: React.FC<GuildLeftSidebarProps> = (props) => {
         <h2 className='text-xl'>{guild.name}</h2>
       </div>
       <Divider />
-      <div className='scrollbar-firefox-support overflow-y-auto'>
+      <div className='scrollbar-firefox-support overflow-y-auto flex-1'>
         <Channels path={path} />
       </div>
       <Divider />

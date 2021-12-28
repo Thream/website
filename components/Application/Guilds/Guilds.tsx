@@ -1,44 +1,31 @@
-import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { useAuthentication } from 'utils/authentication'
-import { GuildWithDefaultChannelId } from 'models/Guild'
 import { Loader } from 'components/design/Loader'
 import { ApplicationProps } from '../Application'
 import { Guild } from './Guild'
-import { usePagination } from 'hooks/usePagination'
+import { useGuilds } from 'contexts/Guilds'
 
 export interface GuildsProps extends ApplicationProps {}
 
 export const Guilds: React.FC<GuildsProps> = (props) => {
   const { path } = props
-  const { authentication } = useAuthentication()
 
-  const { items, hasMore, nextPage } = usePagination<GuildWithDefaultChannelId>(
-    {
-      api: authentication.api,
-      url: '/guilds'
-    }
-  )
-
-  useEffect(() => {
-    nextPage()
-  }, [nextPage])
+  const { guilds, hasMore, nextPage } = useGuilds()
 
   return (
     <div
-      id='guilds-list-members'
+      id='guilds-list'
       className='min-w-[92px] mt-[130px] pt-2 h-full border-r-2 border-gray-500 dark:border-white/20 space-y-2 scrollbar-firefox-support overflow-y-auto'
     >
       <InfiniteScroll
         className='guilds-list'
-        dataLength={items.length}
+        dataLength={guilds.length}
         next={nextPage}
         hasMore={hasMore}
-        scrollableTarget='guilds-list-members'
+        scrollableTarget='guilds-list'
         loader={<Loader />}
       >
-        {items.map((guild) => {
+        {guilds.map((guild) => {
           return (
             <Guild
               guild={guild}

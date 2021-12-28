@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { AxiosInstance } from 'axios'
+
 import { FetchState } from './useFetchState'
 
 export interface Query {

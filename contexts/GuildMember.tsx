@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 import { Guild } from 'models/Guild'
 import { Member } from 'models/Member'
@@ -16,8 +16,10 @@ const defaultGuildMemberContext = {} as any
 const GuildMemberContext = createContext<GuildMember>(defaultGuildMemberContext)
 
 export const GuildMemberProvider: React.FC<GuildMemberProps> = (props) => {
+  const [guildMember] = useState(props.guildMember)
+
   return (
-    <GuildMemberContext.Provider value={props.guildMember}>
+    <GuildMemberContext.Provider value={guildMember}>
       {props.children}
     </GuildMemberContext.Provider>
   )
