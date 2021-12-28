@@ -12,15 +12,18 @@ import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
 import { GuildLeftSidebar } from 'components/Application/GuildLeftSidebar'
 import { ChannelsProvider } from 'contexts/Channels'
 import { GuildsProvider } from 'contexts/Guilds'
+import { Channel } from 'models/Channel'
 
 export interface ChannelPageProps extends PagePropsWithAuthentication {
   channelId: number
   guildId: number
   guildMember: GuildMember
+  selectedChannel: Channel
 }
 
 const ChannelPage: NextPage<ChannelPageProps> = (props) => {
-  const { channelId, guildId, authentication, guildMember } = props
+  const { channelId, guildId, authentication, guildMember, selectedChannel } =
+    props
 
   const path = {
     channelId,
@@ -36,6 +39,7 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
             <Application
               path={path}
               guildLeftSidebar={<GuildLeftSidebar path={path} />}
+              title={`# ${selectedChannel.name}`}
             >
               <Messages />
             </Application>
@@ -60,10 +64,14 @@ export const getServerSideProps = authenticationFromServerSide({
       }
     }
     const { data: guildMember } = await api.get(`/guilds/${guildId}`)
+    const { data: selectedChannelData } = await api.get(
+      `/channels/${channelId}`
+    )
     return {
       channelId,
       guildId,
-      guildMember
+      guildMember,
+      selectedChannel: selectedChannelData.channel
     }
   }
 })

@@ -1,11 +1,13 @@
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Loader } from 'components/design/Loader'
-import { ApplicationProps } from '../Application'
 import { Guild } from './Guild'
 import { useGuilds } from 'contexts/Guilds'
+import { GuildsChannelsPath } from '..'
 
-export interface GuildsProps extends ApplicationProps {}
+export interface GuildsProps {
+  path: GuildsChannelsPath | string
+}
 
 export const Guilds: React.FC<GuildsProps> = (props) => {
   const { path } = props
@@ -26,13 +28,8 @@ export const Guilds: React.FC<GuildsProps> = (props) => {
         loader={<Loader />}
       >
         {guilds.map((guild) => {
-          return (
-            <Guild
-              guild={guild}
-              key={guild.id}
-              selected={typeof path !== 'string' && path.guildId === guild.id}
-            />
-          )
+          const selected = typeof path !== 'string' && path.guildId === guild.id
+          return <Guild key={guild.id} guild={guild} selected={selected} />
         })}
       </InfiniteScroll>
     </div>

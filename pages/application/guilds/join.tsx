@@ -15,7 +15,7 @@ const JoinGuildPage: NextPage<PagePropsWithAuthentication> = (props) => {
     <AuthenticationProvider authentication={props.authentication}>
       <GuildsProvider>
         <Head title='Thream | Application' />
-        <Application path='/application/guilds/join'>
+        <Application path='/application/guilds/join' title='Join a Guild'>
           <JoinGuildsPublic />
         </Application>
       </GuildsProvider>

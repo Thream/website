@@ -15,7 +15,7 @@ const ApplicationPage: NextPage<PagePropsWithAuthentication> = (props) => {
     <AuthenticationProvider authentication={props.authentication}>
       <GuildsProvider>
         <Head title='Thream | Application' />
-        <Application path='/application'>
+        <Application path='/application' title='Application'>
           <PopupGuild />
         </Application>
       </GuildsProvider>

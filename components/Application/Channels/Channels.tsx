@@ -23,7 +23,15 @@ export const Channels: React.FC<ChannelsProps> = (props) => {
       loader={<Loader />}
     >
       {channels.map((channel) => {
-        return <Channel key={channel.id} channel={channel} path={path} />
+        const selected = channel.id === path.channelId
+        return (
+          <Channel
+            key={channel.id}
+            channel={channel}
+            path={path}
+            selected={selected}
+          />
+        )
       })}
     </InfiniteScroll>
   )

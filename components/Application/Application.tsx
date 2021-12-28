@@ -1,6 +1,5 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import useTranslation from 'next-translate/useTranslation'
 import { PlusIcon, MenuIcon, UsersIcon, XIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import { useMediaQuery } from 'react-responsive'
@@ -30,12 +29,12 @@ export type ApplicationPath =
 export interface ApplicationProps {
   path: ApplicationPath
   guildLeftSidebar?: React.ReactNode
+  title: string
 }
 
 export const Application: React.FC<ApplicationProps> = (props) => {
-  const { children, path, guildLeftSidebar } = props
+  const { children, path, guildLeftSidebar, title } = props
 
-  const { t } = useTranslation()
   const { user } = useAuthentication()
 
   const [visibleSidebars, setVisibleSidebars] = useState({
@@ -124,23 +123,6 @@ export const Application: React.FC<ApplicationProps> = (props) => {
       })
     }
   })
-
-  const title = useMemo(() => {
-    if (typeof path !== 'string') {
-      // TODO: Returns the real name of the channel when doing APIs calls
-      return `# Channel ${path.channelId}`
-    }
-    if (path.startsWith('/application/users/')) {
-      return 'Settings'
-    }
-    if (path === '/application/guilds/join') {
-      return 'Join a Guild'
-    }
-    if (path === '/application/guilds/create') {
-      return t('application:create-a-guild')
-    }
-    return 'Application'
-  }, [path, t])
 
   useEffect(() => {
     setMounted(true)
