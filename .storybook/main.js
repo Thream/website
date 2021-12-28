@@ -1,6 +1,10 @@
 const path = require('path')
 
 module.exports = {
+  core: {
+    builder: 'webpack5'
+  },
+  staticDirs: ['../public'],
   stories: ['../components/**/*.stories.@(ts|tsx|js|jsx)'],
   addons: [
     '@storybook/addon-links',

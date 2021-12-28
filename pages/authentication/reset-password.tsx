@@ -1,3 +1,4 @@
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import axios from 'axios'
@@ -16,7 +17,7 @@ import { api } from 'utils/api'
 import { userSchema } from '../../models/User'
 import { HandleSubmitCallback, useForm } from 'hooks/useForm'
 
-const ResetPassword: React.FC<FooterProps> = (props) => {
+const ResetPassword: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
   const router = useRouter()
   const { version } = props

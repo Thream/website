@@ -1,6 +1,7 @@
+import { NextPage } from 'next'
+
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
-
 import {
   authenticationFromServerSide,
   AuthenticationProvider,
@@ -8,7 +9,7 @@ import {
 } from 'utils/authentication'
 import { CreateGuild } from 'components/Application/CreateGuild'
 
-const CreateGuildPage: React.FC<PagePropsWithAuthentication> = (props) => {
+const CreateGuildPage: NextPage<PagePropsWithAuthentication> = (props) => {
   return (
     <AuthenticationProvider authentication={props.authentication}>
       <Head title='Thream | Create a Guild' />

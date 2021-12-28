@@ -1,3 +1,5 @@
+import { NextPage } from 'next'
+
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
 import { PopupGuild } from 'components/Application/PopupGuild/PopupGuild.stories'
@@ -7,7 +9,7 @@ import {
   PagePropsWithAuthentication
 } from 'utils/authentication'
 
-const ApplicationPage: React.FC<PagePropsWithAuthentication> = (props) => {
+const ApplicationPage: NextPage<PagePropsWithAuthentication> = (props) => {
   return (
     <AuthenticationProvider authentication={props.authentication}>
       <Head title='Thream | Application' />

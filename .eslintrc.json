@@ -3,6 +3,7 @@
     "standard-with-typescript",
     "next",
     "next/core-web-vitals",
+    "plugin:storybook/recommended",
     "prettier"
   ],
   "plugins": ["unicorn", "prettier"],

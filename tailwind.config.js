@@ -1,6 +1,8 @@
 module.exports = {
-  mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}'
+  ],
   darkMode: 'class',
   theme: {
     extend: {
@@ -20,13 +22,10 @@ module.exports = {
         error: '0 2px 8px rgba(200, 69, 69, 0.5)'
       },
       fontFamily: {
-        headline: ['Montserrat', 'Arial', 'sans-serif'],
-        paragraph: ['Roboto', 'Arial', 'sans-serif']
+        headline: "'Montserrat', 'Arial', 'sans-serif'",
+        paragraph: "'Roboto', 'Arial', 'sans-serif'"
       }
     }
-  },
-  variants: {
-    extend: {}
   },
   plugins: []
 }

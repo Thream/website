@@ -1,3 +1,4 @@
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { AuthenticationForm } from 'components/Authentication'
 import useTranslation from 'next-translate/useTranslation'
@@ -16,7 +17,7 @@ import { userSchema } from 'models/User'
 import { api } from 'utils/api'
 import { HandleSubmitCallback, useForm } from 'hooks/useForm'
 
-const ForgotPassword: React.FC<FooterProps> = (props) => {
+const ForgotPassword: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
   const { version } = props
 
