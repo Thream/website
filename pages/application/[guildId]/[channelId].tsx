@@ -7,7 +7,7 @@ import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'utils/authentication'
+} from 'tools/authentication'
 import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
 import { GuildLeftSidebar } from 'components/Application/GuildLeftSidebar'
 import { ChannelsProvider } from 'contexts/Channels'
@@ -35,7 +35,7 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
   return (
     <AuthenticationProvider authentication={authentication}>
       <GuildsProvider>
-        <GuildMemberProvider guildMember={guildMember}>
+        <GuildMemberProvider guildMember={guildMember} path={path}>
           <MembersProviders path={path}>
             <ChannelsProvider path={path}>
               <MessagesProvider path={path}>

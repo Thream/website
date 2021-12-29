@@ -7,7 +7,7 @@ import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'utils/authentication'
+} from 'tools/authentication'
 import { GuildsProvider } from 'contexts/Guilds'
 
 const ApplicationPage: NextPage<PagePropsWithAuthentication> = (props) => {

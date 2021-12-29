@@ -1,20 +1,27 @@
+import useTranslation from 'next-translate/useTranslation'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Divider } from '../../design/Divider'
 import { Loader } from 'components/design/Loader'
 import { useMembers } from 'contexts/Members'
 import { Member } from './Member'
+import { capitalize } from '../../../tools/utils/capitalize'
 
 export const Members: React.FC = () => {
   const { members, hasMore, nextPage } = useMembers()
 
+  const { t } = useTranslation()
+
   return (
     <>
       <div className='mb-2'>
-        <h1 className='text-center pt-2 my-2 text-xl'>Members</h1>
+        <h1 data-cy='members-title' className='text-center pt-2 my-2 text-xl'>
+          {capitalize(t('application:members'))}
+        </h1>
         <Divider />
       </div>
       <InfiniteScroll
+        className='members-list'
         dataLength={members.length}
         next={nextPage}
         hasMore={hasMore}

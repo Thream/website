@@ -7,11 +7,12 @@ export interface Query {
   [key: string]: string
 }
 export type NextPageAsync = (query?: Query) => Promise<void>
-export type NextPage = (query?: Query) => void
+export type NextPage = (query?: Query, callback?: () => void) => void
 
 export interface UsePaginationOptions {
   api: AxiosInstance
   url: string
+  inverse?: boolean
 }
 
 export interface UsePaginationResult<T> {
@@ -24,7 +25,7 @@ export interface UsePaginationResult<T> {
 export const usePagination = <T extends { id: number }>(
   options: UsePaginationOptions
 ): UsePaginationResult<T> => {
-  const { api, url } = options
+  const { api, url, inverse = false } = options
 
   const [items, setItems] = useState<T[]>([])
   const [hasMore, setHasMore] = useState(true)
@@ -45,22 +46,32 @@ export const usePagination = <T extends { id: number }>(
       const { data: newItems } = await api.get<T[]>(
         `${url}?${searchParameters.toString()}`
       )
-      afterId.current =
-        newItems.length > 0 ? newItems[newItems.length - 1].id : null
+      if (!inverse) {
+        afterId.current =
+          newItems.length > 0 ? newItems[newItems.length - 1].id : null
+      } else {
+        afterId.current = newItems.length > 0 ? newItems[0].id : null
+      }
       setItems((oldItems) => {
-        return [...oldItems, ...newItems]
+        return inverse ? [...newItems, ...oldItems] : [...oldItems, ...newItems]
       })
       setHasMore(newItems.length > 0)
       fetchState.current = 'idle'
     },
-    [api, url]
+    [api, url, inverse]
   )
 
   const nextPage: NextPage = useCallback(
-    (query) => {
-      nextPageAsync(query).catch((error) => {
-        console.error(error)
-      })
+    (query, callback) => {
+      nextPageAsync(query)
+        .then(() => {
+          if (callback != null) {
+            callback()
+          }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     },
     [nextPageAsync]
   )

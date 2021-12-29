@@ -7,3 +7,9 @@ export const channelExample = {
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString()
 }
+
+export const channelExample2 = {
+  ...channelExample,
+  id: 2,
+  name: 'general2'
+}

@@ -1,3 +1,4 @@
+import useTranslation from 'next-translate/useTranslation'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import TextareaAutosize from 'react-textarea-autosize'
 
@@ -8,12 +9,20 @@ import { useMessages } from 'contexts/Messages'
 export const Messages: React.FC = () => {
   const { messages, hasMore, nextPage } = useMessages()
 
+  const { t } = useTranslation()
+
   return (
     <>
-      <div className='w-full scrollbar-firefox-support overflow-y-auto transition-all flex-1'>
+      <div
+        id='messages'
+        className='w-full scrollbar-firefox-support overflow-y-auto transition-all flex-1 flex flex-col-reverse'
+      >
         <InfiniteScroll
+          scrollableTarget='messages'
+          className='messages-list'
           dataLength={messages.length}
           next={nextPage}
+          inverse
           hasMore={hasMore}
           loader={<Loader />}
         >
@@ -27,7 +36,7 @@ export const Messages: React.FC = () => {
           <form className='w-full h-full flex items-center'>
             <TextareaAutosize
               className='w-full scrollbar-firefox-support p-2 px-6 my-2 bg-transparent outline-none font-paragraph tracking-wide resize-none'
-              placeholder='Write a message...'
+              placeholder={t('application:write-a-message')}
               wrap='soft'
               maxRows={6}
             />

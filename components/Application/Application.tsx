@@ -11,8 +11,8 @@ import { IconLink } from 'components/design/IconLink'
 import { Guilds } from './Guilds/Guilds'
 import { Divider } from '../design/Divider'
 import { Members } from './Members'
-import { useAuthentication } from 'utils/authentication'
-import { API_URL } from 'utils/api'
+import { useAuthentication } from 'tools/authentication'
+import { API_URL } from 'tools/api'
 
 export interface GuildsChannelsPath {
   guildId: number
@@ -141,12 +141,16 @@ export const Application: React.FC<ApplicationProps> = (props) => {
         >
           {!visibleSidebars.left ? <MenuIcon /> : <XIcon />}
         </IconButton>
-        <div className='text-md text-green-800 dark:text-green-400 font-semibold'>
+        <div
+          data-cy='application-title'
+          className='text-md text-green-800 dark:text-green-400 font-semibold'
+        >
           {title}
         </div>
         <div className='flex space-x-2'>
           {title.startsWith('#') && (
             <IconButton
+              data-cy='icon-button-right-sidebar-members'
               className='p-2 h-10 w-10'
               onClick={() => handleToggleSidebars('right')}
             >

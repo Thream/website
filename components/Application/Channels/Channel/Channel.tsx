@@ -14,7 +14,7 @@ export const Channel: React.FC<ChannelProps> = (props) => {
   const { channel, path, selected = false } = props
 
   return (
-    <Link key={channel.id} href={`/application/${path.guildId}/${channel.id}`}>
+    <Link href={`/application/${path.guildId}/${channel.id}`}>
       <a
         className={classNames(
           'hover:bg-gray-100 group flex items-center justify-between text-sm py-2 my-3 mx-3 transition-colors dark:hover:bg-gray-600 duration-200 rounded-lg',
@@ -23,7 +23,9 @@ export const Channel: React.FC<ChannelProps> = (props) => {
           }
         )}
       >
-        <span className='ml-2 mr-4'># {channel.name}</span>
+        <span className='ml-2 mr-4' data-cy='channel-name'>
+          # {channel.name}
+        </span>
       </a>
     </Link>
   )

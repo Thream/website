@@ -5,7 +5,7 @@ import { Head } from 'components/Head'
 import { Authentication } from 'components/Authentication'
 import { Header } from 'components/Header'
 import { Footer, FooterProps } from 'components/Footer'
-import { authenticationFromServerSide } from 'utils/authentication'
+import { authenticationFromServerSide } from 'tools/authentication'
 import { ScrollableBody } from 'components/ScrollableBody'
 
 const Signin: NextPage<FooterProps> = (props) => {

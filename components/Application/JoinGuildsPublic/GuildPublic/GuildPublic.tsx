@@ -1,6 +1,7 @@
 import Image from 'next/image'
+import useTranslation from 'next-translate/useTranslation'
 
-import { GuildPublic as GuildPublicType } from 'models/Guild'
+import { GuildPublic as GuildPublicType } from '../../../../models/Guild'
 
 export interface GuildPublicProps {
   guild: GuildPublicType
@@ -9,11 +10,10 @@ export interface GuildPublicProps {
 export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
   const { guild } = props
 
+  const { t } = useTranslation()
+
   return (
-    <div
-      key={guild.id}
-      className='max-w-sm flex flex-col items-center justify-center border-gray-500 dark:border-gray-700 p-4 cursor-pointer rounded shadow-lg border transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none'
-    >
+    <div className='max-w-sm flex flex-col items-center justify-center border-gray-500 dark:border-gray-700 p-4 cursor-pointer rounded shadow-lg border transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none'>
       <Image
         className='rounded-full'
         src={guild.icon != null ? guild.icon : '/images/data/guild-default.png'}
@@ -28,7 +28,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
         <p className='text-base w-11/12 mx-auto'>{guild.description}</p>
       </div>
       <p className='flex flex-col text-green-800 dark:text-green-400 mt-4'>
-        {guild.membersCount} members
+        {guild.membersCount} {t('application:members')}
       </p>
     </div>
   )

@@ -11,10 +11,10 @@ import { Footer, FooterProps } from 'components/Footer'
 import { Input } from 'components/design/Input'
 import { Button } from 'components/design/Button'
 import { FormState } from 'components/design/FormState'
-import { authenticationFromServerSide } from 'utils/authentication'
+import { authenticationFromServerSide } from 'tools/authentication'
 import { ScrollableBody } from 'components/ScrollableBody'
 import { userSchema } from 'models/User'
-import { api } from 'utils/api'
+import { api } from 'tools/api'
 import { HandleSubmitCallback, useForm } from 'hooks/useForm'
 
 const ForgotPassword: NextPage<FooterProps> = (props) => {

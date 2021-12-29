@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react'
-import { channelExample } from 'cypress/fixtures/channels/channel'
+import { channelExample } from '../../../../cypress/fixtures/channels/channel'
 
 import { Channel as Component, ChannelProps } from './Channel'
 

@@ -3,7 +3,7 @@ import { io, Socket } from 'socket.io-client'
 
 import { API_URL } from '../api'
 import { cookies } from '../cookies'
-import { Tokens } from './'
+import { Tokens } from '.'
 import { fetchRefreshToken } from './authenticationFromServerSide'
 
 export class Authentication {

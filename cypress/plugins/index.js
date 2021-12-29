@@ -1,5 +1,7 @@
 import { getLocal } from 'mockttp'
 
+import { API_DEFAULT_PORT } from '../../tools/api'
+
 /// <reference types="cypress" />
 
 /** @type {import('mockttp').Mockttp | null}  */
@@ -17,7 +19,7 @@ module.exports = (on, config) => {
       server = getLocal({
         cors: true
       })
-      await server.start(8080)
+      await server.start(API_DEFAULT_PORT)
       for (const handler of handlers) {
         await server[handler.method.toLowerCase()](handler.url).thenJson(
           handler.response.statusCode,

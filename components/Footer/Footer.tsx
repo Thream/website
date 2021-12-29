@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 
-import { API_VERSION } from '../../utils/api'
+import { API_VERSION } from '../../tools/api'
 import { VersionLink } from './VersionLink'
 
 export interface FooterProps {

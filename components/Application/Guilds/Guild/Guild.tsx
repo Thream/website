@@ -14,7 +14,6 @@ export const Guild: React.FC<GuildProps> = (props) => {
   return (
     <IconLink
       className='mt-2'
-      key={guild.id}
       href={`/application/${guild.id}/${guild.defaultChannelId}`}
       selected={selected}
       title={guild.name}

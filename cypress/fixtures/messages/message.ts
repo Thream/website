@@ -16,3 +16,10 @@ export const messageExampleComplete = {
   ...messageExample,
   member: memberExampleComplete
 }
+
+export const messageExampleComplete2 = {
+  ...messageExample,
+  id: 2,
+  value: 'Second message',
+  member: memberExampleComplete
+}

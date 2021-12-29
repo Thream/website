@@ -6,7 +6,7 @@ import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'utils/authentication'
+} from 'tools/authentication'
 import { UserProfile } from 'components/Application/UserProfile'
 import { GuildsProvider } from 'contexts/Guilds'
 

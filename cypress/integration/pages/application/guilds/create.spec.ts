@@ -20,6 +20,7 @@ describe('Pages > /application/guilds/create', () => {
       getChannelWithChannelIdHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.visit('/application/guilds/create')
+    cy.get('[data-cy=application-title]').should('have.text', 'Create a Guild')
     cy.get('#error-name').should('not.exist')
     cy.get('[data-cy=input-name]').type(guildExample.name)
     cy.get('[data-cy=submit]').click()

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect } from 'react'
 
 import { NextPage, usePagination } from 'hooks/usePagination'
-import { useAuthentication } from 'utils/authentication'
+import { useAuthentication } from 'tools/authentication'
 import { MessageWithMember } from 'models/Message'
 import { GuildsChannelsPath } from 'components/Application'
 
@@ -30,12 +30,18 @@ export const MessagesProvider: React.FC<MessagesProviderProps> = (props) => {
     resetPagination
   } = usePagination<MessageWithMember>({
     api: authentication.api,
-    url: `/channels/${path.channelId}/messages`
+    url: `/channels/${path.channelId}/messages`,
+    inverse: true
   })
 
   useEffect(() => {
     resetPagination()
-    nextPage()
+    nextPage(undefined, () => {
+      const messagesDiv = window.document.getElementById(
+        'messages'
+      ) as HTMLDivElement
+      messagesDiv.scrollTo(0, messagesDiv.scrollHeight)
+    })
   }, [nextPage, resetPagination])
 
   return (

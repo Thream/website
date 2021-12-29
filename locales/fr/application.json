@@ -1,5 +1,11 @@
 {
   "website": "Site web",
-  "create": "Crée",
-  "create-a-guild": "Crée une Guilde"
+  "create": "Créer",
+  "create-a-guild": "Créer une Guilde",
+  "create-a-guild-description": "Créez votre propre guilde et gérez tout.",
+  "join-a-guild": "Rejoindre une Guilde",
+  "join-a-guild-description": "Discutez, collaborez, partagez et amusez-vous avec vos amis en rejoignant une guilde déjà existante!",
+  "members": "membre(s)",
+  "search": "Rechercher",
+  "write-a-message": "Écrire un message..."
 }

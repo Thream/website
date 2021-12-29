@@ -6,7 +6,7 @@ import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'utils/authentication'
+} from 'tools/authentication'
 import { CreateGuild } from 'components/Application/CreateGuild'
 import { GuildsProvider } from 'contexts/Guilds'
 import useTranslation from 'next-translate/useTranslation'
@@ -17,7 +17,10 @@ const CreateGuildPage: NextPage<PagePropsWithAuthentication> = (props) => {
   return (
     <AuthenticationProvider authentication={props.authentication}>
       <GuildsProvider>
-        <Head title='Thream | Create a Guild' />
+        <Head
+          title={`Thream | ${t('application:create-a-guild')}`}
+          description={t('application:create-a-guild-description')}
+        />
         <Application
           path='/application/guilds/create'
           title={t('application:create-a-guild')}

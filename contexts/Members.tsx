@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect } from 'react'
 
 import { NextPage, usePagination } from 'hooks/usePagination'
-import { useAuthentication } from 'utils/authentication'
+import { useAuthentication } from 'tools/authentication'
 import { MemberWithPublicUser } from 'models/Member'
 import { GuildsChannelsPath } from 'components/Application'
 

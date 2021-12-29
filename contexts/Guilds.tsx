@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect } from 'react'
 
 import { NextPage, usePagination } from 'hooks/usePagination'
-import { useAuthentication } from 'utils/authentication'
+import { useAuthentication } from 'tools/authentication'
 import { GuildWithDefaultChannelId } from 'models/Guild'
 
 export interface Guilds {

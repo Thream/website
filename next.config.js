@@ -2,6 +2,7 @@ const nextPWA = require('next-pwa')
 const nextTranslate = require('next-translate')
 const { createSecureHeaders } = require('next-secure-headers')
 
+/** @type {import("next").NextConfig} */
 module.exports = nextTranslate(
   nextPWA({
     images: {

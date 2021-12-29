@@ -11,6 +11,7 @@ describe('Pages > /application', () => {
       'refresh-token'
     )
     cy.visit('/application')
+    cy.get('[data-cy=application-title]').should('have.text', 'Application')
     cy.get('a[href="/application/guilds/create"]')
       .click()
       .location('pathname')

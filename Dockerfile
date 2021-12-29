@@ -1,15 +1,15 @@
-FROM node:16.11.0 AS dependencies
+FROM node:16.13.1 AS dependencies
 WORKDIR /usr/src/app
 COPY ./package*.json ./
 RUN npm clean-install
 
-FROM node:16.11.0 AS builder
+FROM node:16.13.1 AS builder
 WORKDIR /usr/src/app
 COPY ./ ./
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 RUN npm run build
 
-FROM node:16.11.0 AS runner
+FROM node:16.13.1 AS runner
 WORKDIR /usr/src/app
 ENV NODE_ENV=production
 COPY --from=builder /usr/src/app/next.config.js ./next.config.js
