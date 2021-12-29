@@ -50,6 +50,9 @@ export const userPublicWithoutSettingsSchema = {
   createdAt: date.createdAt,
   updatedAt: date.updatedAt
 }
+export const userPublicWithoutSettingsObjectSchema = Type.Object(
+  userPublicWithoutSettingsSchema
+)
 
 export const userPublicSchema = {
   ...userPublicWithoutSettingsSchema,
@@ -66,4 +69,7 @@ export const userCurrentSchema = Type.Object({
 
 export type User = Static<typeof userObjectSchema>
 export type UserPublic = Static<typeof userPublicObjectSchema>
+export type UserPublicWithoutSettings = Static<
+  typeof userPublicWithoutSettingsObjectSchema
+>
 export type UserCurrent = Static<typeof userCurrentSchema>

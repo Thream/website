@@ -13,6 +13,7 @@ import { GuildLeftSidebar } from 'components/Application/GuildLeftSidebar'
 import { ChannelsProvider } from 'contexts/Channels'
 import { GuildsProvider } from 'contexts/Guilds'
 import { Channel } from 'models/Channel'
+import { MessagesProvider } from 'contexts/Messages'
 
 export interface ChannelPageProps extends PagePropsWithAuthentication {
   channelId: number
@@ -35,14 +36,16 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
       <GuildsProvider>
         <GuildMemberProvider guildMember={guildMember}>
           <ChannelsProvider path={path}>
-            <Head title='Thream | Application' />
-            <Application
-              path={path}
-              guildLeftSidebar={<GuildLeftSidebar path={path} />}
-              title={`# ${selectedChannel.name}`}
-            >
-              <Messages />
-            </Application>
+            <MessagesProvider path={path}>
+              <Head title='Thream | Application' />
+              <Application
+                path={path}
+                guildLeftSidebar={<GuildLeftSidebar path={path} />}
+                title={`# ${selectedChannel.name}`}
+              >
+                <Messages />
+              </Application>
+            </MessagesProvider>
           </ChannelsProvider>
         </GuildMemberProvider>
       </GuildsProvider>

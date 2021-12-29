@@ -1,52 +1,26 @@
-import Image from 'next/image'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import TextareaAutosize from 'react-textarea-autosize'
 
+import { Loader } from 'components/design/Loader'
+import { Message } from './Message'
+import { useMessages } from 'contexts/Messages'
+
 export const Messages: React.FC = () => {
+  const { messages, hasMore, nextPage } = useMessages()
+
   return (
     <>
-      <div className='w-full scrollbar-firefox-support overflow-y-auto transition-all'>
-        {new Array(20).fill(null).map((_, index) => {
-          return (
-            <div
-              key={index}
-              className='p-4 flex transition hover:bg-gray-200 dark:hover:bg-gray-900'
-            >
-              <div className='w-12 h-12 mr-4 flex flex-shrink-0 items-center justify-center'>
-                <div className='w-10 h-10 drop-shadow-md'>
-                  <Image
-                    className='rounded-full'
-                    src='/images/data/user-default.png'
-                    alt='logo'
-                    width={50}
-                    height={50}
-                  />
-                </div>
-              </div>
-              <div className='w-full'>
-                <div className='w-max flex items-center'>
-                  <span className='font-bold text-gray-900 dark:text-gray-200'>
-                    Divlo
-                  </span>
-                  <span className='text-gray-500 dark:text-gray-200 text-xs ml-4 select-none'>
-                    06/04/2021 - 22:28:40
-                  </span>
-                </div>
-                <div className='text-gray-800 dark:text-gray-300 font-paragraph mt-1 break-words'>
-                  <p>Message {index}</p>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Eum debitis voluptatum itaque quaerat. Nemo optio voluptas
-                    quas mollitia rerum commodi laboriosam voluptates et sit
-                    quo. Repudiandae eius at inventore magnam. Voluptas nisi
-                    maxime laborum architecto fuga a consequuntur reiciendis
-                    rerum beatae hic possimus, omnis dolorum libero, illo
-                    dolorem assumenda. Repellat, ad!
-                  </p>
-                </div>
-              </div>
-            </div>
-          )
-        })}
+      <div className='w-full scrollbar-firefox-support overflow-y-auto transition-all flex-1'>
+        <InfiniteScroll
+          dataLength={messages.length}
+          next={nextPage}
+          hasMore={hasMore}
+          loader={<Loader />}
+        >
+          {messages.map((message) => {
+            return <Message key={message.id} message={message} />
+          })}
+        </InfiniteScroll>
       </div>
       <div className='p-6 pb-4'>
         <div className='w-full h-full py-1 flex rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-200'>
