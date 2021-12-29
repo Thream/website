@@ -179,7 +179,8 @@ export const Application: React.FC<ApplicationProps> = (props) => {
                     ? '/images/data/user-default.png'
                     : API_URL + user.logo
                 }
-                alt='logo'
+                alt={"Users's profil picture"}
+                draggable={false}
                 width={48}
                 height={48}
               />

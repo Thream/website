@@ -28,6 +28,7 @@ export const Guild: React.FC<GuildProps> = (props) => {
           alt='logo'
           width={48}
           height={48}
+          draggable={false}
         />
       </div>
     </IconLink>

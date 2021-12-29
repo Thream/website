@@ -22,9 +22,10 @@ export const Message: React.FC<MessageProps> = (props) => {
                 ? '/images/data/user-default.png'
                 : API_URL + message.member.user.logo
             }
-            alt='logo'
+            alt={"Users's profil picture"}
             width={50}
             height={50}
+            draggable={false}
           />
         </div>
       </div>
