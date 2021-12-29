@@ -23,7 +23,7 @@ export type ApplicationPath =
   | '/application'
   | '/application/guilds/join'
   | '/application/guilds/create'
-  | '/application/users/[userId]'
+  | `/application/users/${number}`
   | GuildsChannelsPath
 
 export interface ApplicationProps {
@@ -212,13 +212,15 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           {children}
         </div>
 
-        <Sidebar
-          direction='right'
-          visible={visibleSidebars.right}
-          isMobile={isMobile}
-        >
-          <Members />
-        </Sidebar>
+        {typeof path !== 'string' && (
+          <Sidebar
+            direction='right'
+            visible={visibleSidebars.right}
+            isMobile={isMobile}
+          >
+            <Members />
+          </Sidebar>
+        )}
       </main>
     </>
   )

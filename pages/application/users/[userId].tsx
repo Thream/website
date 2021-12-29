@@ -15,7 +15,10 @@ const UserProfilePage: NextPage<PagePropsWithAuthentication> = (props) => {
     <AuthenticationProvider authentication={props.authentication}>
       <GuildsProvider>
         <Head title='Thream | Settings' />
-        <Application path='/application/users/[userId]' title='Settings'>
+        <Application
+          path={`/application/users/${props.authentication.user.id}`}
+          title='Settings'
+        >
           <UserProfile user={props.authentication.user} />
         </Application>
       </GuildsProvider>
