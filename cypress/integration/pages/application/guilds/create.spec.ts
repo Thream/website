@@ -1,3 +1,6 @@
+import { getChannelWithChannelIdHandler } from '../../../../fixtures/channels/[channelId]/get'
+import { getGuildsHandler } from '../../../../fixtures/guilds/get'
+import { getGuildMemberWithGuildIdHandler } from '../../../../fixtures/guilds/[guildId]/get'
 import { channelExample } from '../../../../fixtures/channels/channel'
 import { guildExample } from '../../../../fixtures/guilds/guild'
 import { postGuildsHandler } from '../../../../fixtures/guilds/post'
@@ -11,7 +14,10 @@ describe('Pages > /application/guilds/create', () => {
   it('should succeeds and create the guild', () => {
     cy.task('startMockServer', [
       ...authenticationHandlers,
-      postGuildsHandler
+      postGuildsHandler,
+      getGuildsHandler,
+      getGuildMemberWithGuildIdHandler,
+      getChannelWithChannelIdHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.visit('/application/guilds/create')
     cy.get('#error-name').should('not.exist')

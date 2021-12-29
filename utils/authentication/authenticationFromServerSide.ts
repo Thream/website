@@ -79,6 +79,9 @@ export const authenticationFromServerSide = (
           if (fetchData != null) {
             data = await fetchData(context, authentication.api)
           }
+          if (data.redirect != null) {
+            return data
+          }
           return {
             props: { authentication: { tokens, ...currentUser }, ...data }
           }

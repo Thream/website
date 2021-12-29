@@ -1,12 +1,17 @@
+import { channelExample } from '../../../fixtures/channels/channel'
+import { guildExample } from '../../../fixtures/guilds/guild'
+import { userExample } from '../../../fixtures/users/user'
 import { getGuildsHandler } from '../../../fixtures/guilds/get'
 import { authenticationHandlers } from '../../../fixtures/handler'
+import { getGuildMemberWithGuildIdHandler } from '../../../fixtures/guilds/[guildId]/get'
+import { getChannelWithChannelIdHandler } from '../../../fixtures/channels/[channelId]/get'
 
 const applicationPaths = [
   '/application',
-  '/application/users/0',
+  `/application/users/${userExample.id}`,
   '/application/guilds/create',
   '/application/guilds/join',
-  '/application/0/0'
+  `/application/${guildExample.id}/${channelExample.id}`
 ]
 
 describe('Common > application/authentication', () => {
@@ -25,7 +30,9 @@ describe('Common > application/authentication', () => {
   it('should not redirect the user if signed in', () => {
     cy.task('startMockServer', [
       ...authenticationHandlers,
-      getGuildsHandler
+      getGuildsHandler,
+      getGuildMemberWithGuildIdHandler,
+      getChannelWithChannelIdHandler
     ]).setCookie('refreshToken', 'refresh-token')
     for (const applicationPath of applicationPaths) {
       cy.visit(applicationPath)
