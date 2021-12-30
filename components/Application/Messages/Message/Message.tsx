@@ -4,6 +4,7 @@ import date from 'date-and-time'
 
 import { MessageWithMember } from '../../../../models/Message'
 import { API_URL } from '../../../../tools/api'
+import { MessageContent } from './MessageContent'
 
 export interface MessageProps {
   message: MessageWithMember
@@ -53,12 +54,7 @@ export const Message: React.FC<MessageProps> = (props) => {
             {date.format(new Date(message.createdAt), 'DD/MM/YYYY - HH:mm:ss')}
           </span>
         </div>
-        <div
-          data-cy='message-value'
-          className='text-gray-800 dark:text-gray-300 font-paragraph mt-1 break-words'
-        >
-          {message.value}
-        </div>
+        <MessageContent message={message} />
       </div>
     </div>
   )

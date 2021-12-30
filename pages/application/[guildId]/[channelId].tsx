@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
 import { Messages } from 'components/Application/Messages'
+import { SendMessage } from 'components/Application/SendMessage'
 import {
   authenticationFromServerSide,
   AuthenticationProvider,
@@ -46,6 +47,7 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
                   title={`# ${selectedChannel.name}`}
                 >
                   <Messages />
+                  <SendMessage />
                 </Application>
               </MessagesProvider>
             </ChannelsProvider>

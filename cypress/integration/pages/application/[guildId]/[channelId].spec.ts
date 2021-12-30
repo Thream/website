@@ -89,7 +89,7 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
     cy.wait(['@getMessagesWithChannelIdHandler', '@nextStaticAndImages']).then(
       () => {
         cy.get('.messages-list').children().should('have.length', 2)
-        cy.get('.messages-list [data-cy=message-value]:first').should(
+        cy.get('.messages-list p:first').should(
           'have.text',
           messageExampleComplete.value
         )
@@ -103,7 +103,7 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
             'DD/MM/YYYY - HH:mm:ss'
           )
         )
-        cy.get('.messages-list [data-cy=message-value]:last').should(
+        cy.get('.messages-list p:last').should(
           'have.text',
           messageExampleComplete2.value
         )
