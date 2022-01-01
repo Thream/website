@@ -3,9 +3,24 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { Loader } from 'components/design/Loader'
 import { Message } from './Message'
 import { useMessages } from 'contexts/Messages'
+import { Emoji } from 'components/Emoji'
 
 export const Messages: React.FC = () => {
   const { messages, hasMore, nextPage } = useMessages()
+
+  if (messages.length === 0) {
+    return (
+      <div
+        id='messages'
+        className='w-full scrollbar-firefox-support overflow-y-auto transition-all flex-1 flex flex-col text-center mt-8 text-lg'
+      >
+        <p>
+          Nothing to show here! <Emoji value=':ghost:' size={20} />
+        </p>
+        <p>Start chatting to kill this Ghost!</p>
+      </div>
+    )
+  }
 
   return (
     <div

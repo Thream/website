@@ -1,6 +1,6 @@
 import { Emoji as EmojiMart } from 'emoji-mart'
 
-import { emojiSet } from './emojiPlugin'
+import { EMOJI_SET } from './emojiPlugin'
 
 export interface EmojiProps {
   value: string
@@ -12,7 +12,7 @@ export const Emoji: React.FC<EmojiProps> = (props) => {
 
   return (
     <EmojiMart
-      set={emojiSet}
+      set={EMOJI_SET}
       emoji={value}
       size={size}
       tooltip

@@ -6,28 +6,16 @@ import type { EmojiSet } from 'emoji-mart'
 
 import { emojiRegex } from './isStringWithOnlyOneEmoji'
 
-export const emojiSet: EmojiSet = 'twitter'
+export const EMOJI_SET: EmojiSet = 'twitter'
 
 const extractText = (
   string: string,
   start: number,
   end: number
 ): ElementContent => {
-  const startLine = string.slice(0, start).split('\n')
-  const endLine = string.slice(0, end).split('\n')
   return {
     type: 'text',
-    value: string.slice(start, end),
-    position: {
-      start: {
-        line: startLine.length,
-        column: startLine[startLine.length - 1].length + 1
-      },
-      end: {
-        line: endLine.length,
-        column: endLine[endLine.length - 1].length + 1
-      }
-    }
+    value: string.slice(start, end)
   }
 }
 
