@@ -1,8 +1,6 @@
-import { Type } from '@sinclair/typebox'
+import { Type, Static } from '@sinclair/typebox'
 
 import { date, id } from './utils'
-
-export const types = [Type.Literal('text')]
 
 export const channelSchema = {
   id,
@@ -11,3 +9,5 @@ export const channelSchema = {
   updatedAt: date.updatedAt,
   guildId: id
 }
+const channelObjectSchema = Type.Object(channelSchema)
+export type Channel = Static<typeof channelObjectSchema>

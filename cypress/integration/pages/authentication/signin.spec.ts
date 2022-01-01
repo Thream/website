@@ -3,7 +3,7 @@ import {
   postUsersSigninHandler,
   postUsersSigninInvalidCredentialsHandler
 } from 'cypress/fixtures/users/signin/post'
-import { user } from '../../../fixtures/users/user'
+import { userExample } from '../../../fixtures/users/user'
 
 describe('Pages > /authentication/signin', () => {
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('Pages > /authentication/signin', () => {
     ])
     cy.get('#error-email').should('not.exist')
     cy.get('#error-password').should('not.exist')
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=input-password]').type('randompassword')
     cy.get('[data-cy=submit]').click()
     cy.location('pathname').should('eq', '/application')
@@ -27,7 +27,7 @@ describe('Pages > /authentication/signin', () => {
   it('should fails with unreachable api server', () => {
     cy.get('#error-email').should('not.exist')
     cy.get('#error-password').should('not.exist')
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=input-password]').type('randompassword')
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should('have.text', 'Error: Internal Server Error.')
@@ -42,7 +42,7 @@ describe('Pages > /authentication/signin', () => {
     ])
     cy.get('#error-email').should('not.exist')
     cy.get('#error-password').should('not.exist')
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=input-password]').type('randompassword')
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should(

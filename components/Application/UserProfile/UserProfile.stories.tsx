@@ -1,5 +1,8 @@
 import { Meta, Story } from '@storybook/react'
-import { user, userSettings } from '../../../cypress/fixtures/users/user'
+import {
+  userExample,
+  userSettingsExample
+} from '../../../cypress/fixtures/users/user'
 
 import { UserProfile as Component, UserProfileProps } from './UserProfile'
 
@@ -15,7 +18,7 @@ export const UserProfile: Story<UserProfileProps> = (arguments_) => {
 }
 UserProfile.args = {
   user: {
-    ...user,
-    settings: userSettings
+    ...userExample,
+    settings: userSettingsExample
   }
 }

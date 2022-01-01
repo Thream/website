@@ -1,4 +1,4 @@
-import { user } from '../../../fixtures/users/user'
+import { userExample } from '../../../fixtures/users/user'
 import {
   postUsersSignupHandler,
   postUsersSignupAlreadyUsedHandler
@@ -15,8 +15,8 @@ describe('Pages > /authentication/signup', () => {
     cy.get('#error-name').should('not.exist')
     cy.get('#error-email').should('not.exist')
     cy.get('#error-password').should('not.exist')
-    cy.get('[data-cy=input-name]').type(user.name)
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-name]').type(userExample.name)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=input-password]').type('randompassword')
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should(
@@ -30,8 +30,8 @@ describe('Pages > /authentication/signup', () => {
     cy.get('#error-name').should('not.exist')
     cy.get('#error-email').should('not.exist')
     cy.get('#error-password').should('not.exist')
-    cy.get('[data-cy=input-name]').type(user.name)
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-name]').type(userExample.name)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=input-password]').type('randompassword')
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should('have.text', 'Error: Name or Email already used.')
@@ -44,8 +44,8 @@ describe('Pages > /authentication/signup', () => {
     cy.get('#error-name').should('not.exist')
     cy.get('#error-email').should('not.exist')
     cy.get('#error-password').should('not.exist')
-    cy.get('[data-cy=input-name]').type(user.name)
-    cy.get('[data-cy=input-email]').type(user.email)
+    cy.get('[data-cy=input-name]').type(userExample.name)
+    cy.get('[data-cy=input-email]').type(userExample.email)
     cy.get('[data-cy=input-password]').type('randompassword')
     cy.get('[data-cy=submit]').click()
     cy.get('#message').should('have.text', 'Error: Internal Server Error.')

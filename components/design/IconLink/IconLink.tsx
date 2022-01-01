@@ -5,15 +5,18 @@ export interface IconLinkProps {
   selected?: boolean
   href: string
   title?: string
+  className?: string
 }
 
 export const IconLink: React.FC<IconLinkProps> = (props) => {
-  const { children, selected, href, title } = props
+  const { children, selected, href, title, className } = props
 
   return (
-    <div className='w-full flex justify-center group'>
-      <Link href={href}>
-        <a className='w-full flex justify-center relative group' title={title}>
+    <Link href={href}>
+      <a className='w-full flex justify-center relative group' title={title}>
+        <div
+          className={classNames('w-full flex justify-center group', className)}
+        >
           {children}
           <div className='absolute flex items-center w-3 h-12 left-0'>
             <span
@@ -25,8 +28,8 @@ export const IconLink: React.FC<IconLinkProps> = (props) => {
               )}
             ></span>
           </div>
-        </a>
-      </Link>
-    </div>
+        </div>
+      </a>
+    </Link>
   )
 }

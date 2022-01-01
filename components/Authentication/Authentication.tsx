@@ -11,11 +11,11 @@ import { Button } from '../design/Button'
 import { FormState } from '../design/FormState'
 import { AuthenticationForm } from './'
 import { userSchema } from '../../models/User'
-import { api } from 'utils/api'
+import { api } from 'tools/api'
 import {
   Tokens,
   Authentication as AuthenticationClass
-} from '../../utils/authentication'
+} from '../../tools/authentication'
 import { useForm, HandleSubmitCallback } from '../../hooks/useForm'
 
 export interface AuthenticationProps {

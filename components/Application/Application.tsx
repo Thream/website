@@ -1,13 +1,6 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import useTranslation from 'next-translate/useTranslation'
-import {
-  CogIcon,
-  PlusIcon,
-  MenuIcon,
-  UsersIcon,
-  XIcon
-} from '@heroicons/react/solid'
+import { PlusIcon, MenuIcon, UsersIcon, XIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import { useMediaQuery } from 'react-responsive'
 import { useSwipeable } from 'react-swipeable'
@@ -15,31 +8,33 @@ import { useSwipeable } from 'react-swipeable'
 import { Sidebar, DirectionSidebar } from './Sidebar'
 import { IconButton } from 'components/design/IconButton'
 import { IconLink } from 'components/design/IconLink'
-import { Channels } from './Channels'
 import { Guilds } from './Guilds/Guilds'
 import { Divider } from '../design/Divider'
 import { Members } from './Members'
-import { useAuthentication } from 'utils/authentication'
-import { API_URL } from 'utils/api'
+import { useAuthentication } from 'tools/authentication'
+import { API_URL } from 'tools/api'
 
 export interface GuildsChannelsPath {
   guildId: number
   channelId: number
 }
 
+export type ApplicationPath =
+  | '/application'
+  | '/application/guilds/join'
+  | '/application/guilds/create'
+  | `/application/users/${number}`
+  | GuildsChannelsPath
+
 export interface ApplicationProps {
-  path:
-    | '/application'
-    | '/application/guilds/join'
-    | '/application/guilds/create'
-    | '/application/users/[userId]'
-    | GuildsChannelsPath
+  path: ApplicationPath
+  guildLeftSidebar?: React.ReactNode
+  title: string
 }
 
 export const Application: React.FC<ApplicationProps> = (props) => {
-  const { children, path } = props
+  const { children, path, guildLeftSidebar, title } = props
 
-  const { t } = useTranslation()
   const { user } = useAuthentication()
 
   const [visibleSidebars, setVisibleSidebars] = useState({
@@ -129,23 +124,6 @@ export const Application: React.FC<ApplicationProps> = (props) => {
     }
   })
 
-  const title = useMemo(() => {
-    if (typeof path !== 'string') {
-      // TODO: Returns the real name of the channel when doing APIs calls
-      return `# Channel ${path.channelId}`
-    }
-    if (path.startsWith('/application/users/')) {
-      return 'Settings'
-    }
-    if (path === '/application/guilds/join') {
-      return 'Join a Guild'
-    }
-    if (path === '/application/guilds/create') {
-      return t('application:create-a-guild')
-    }
-    return 'Application'
-  }, [path, t])
-
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -163,12 +141,16 @@ export const Application: React.FC<ApplicationProps> = (props) => {
         >
           {!visibleSidebars.left ? <MenuIcon /> : <XIcon />}
         </IconButton>
-        <div className='text-md text-green-800 dark:text-green-400 font-semibold'>
+        <div
+          data-cy='application-title'
+          className='text-md text-green-800 dark:text-green-400 font-semibold'
+        >
           {title}
         </div>
         <div className='flex space-x-2'>
           {title.startsWith('#') && (
             <IconButton
+              data-cy='icon-button-right-sidebar-members'
               className='p-2 h-10 w-10'
               onClick={() => handleToggleSidebars('right')}
             >
@@ -201,7 +183,8 @@ export const Application: React.FC<ApplicationProps> = (props) => {
                     ? '/images/data/user-default.png'
                     : API_URL + user.logo
                 }
-                alt='logo'
+                alt={"Users's profil picture"}
+                draggable={false}
                 width={48}
                 height={48}
               />
@@ -217,26 +200,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
             <Guilds path={path} />
           </div>
 
-          {typeof path !== 'string' && (
-            <div className='flex flex-col justify-between w-full mt-2'>
-              <div className='text-center p-2 mx-8 mt-2'>
-                <h2 className='text-xl'>Guild Name</h2>
-              </div>
-              <Divider />
-              <div className='scrollbar-firefox-support overflow-y-auto'>
-                <Channels path={path} />
-              </div>
-              <Divider />
-              <div className='flex justify-center items-center p-2 mb-1 space-x-6'>
-                <IconButton className='h-10 w-10' title='Add a Channel'>
-                  <PlusIcon />
-                </IconButton>
-                <IconButton className='h-7 w-7' title='Settings'>
-                  <CogIcon />
-                </IconButton>
-              </div>
-            </div>
-          )}
+          {guildLeftSidebar}
         </Sidebar>
 
         <div
@@ -252,13 +216,15 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           {children}
         </div>
 
-        <Sidebar
-          direction='right'
-          visible={visibleSidebars.right}
-          isMobile={isMobile}
-        >
-          <Members />
-        </Sidebar>
+        {typeof path !== 'string' && (
+          <Sidebar
+            direction='right'
+            visible={visibleSidebars.right}
+            isMobile={isMobile}
+          >
+            <Members />
+          </Sidebar>
+        )}
       </main>
     </>
   )

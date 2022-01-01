@@ -19,7 +19,9 @@ export const PopupGuildCard: React.FC<PopupGuildCardProps> = (props) => {
         {image}
       </div>
       <div className='flex justify-between flex-col h-1/2 w-full bg-gray-700 rounded-b-2xl mt-2 shadow-sm'>
-        <p className='text-gray-200 mt-6 text-center px-8'>{description}</p>
+        <p className='text-gray-200 text-sm mt-6 text-center px-8'>
+          {description}
+        </p>
         <Link href={link.href}>
           <a className='flex justify-center items-center w-4/5 h-10 rounded-2xl transition duration-200 ease-in-out text-white font-bold tracking-wide bg-green-400 self-center mb-6 hover:bg-green-600'>
             {link.icon}

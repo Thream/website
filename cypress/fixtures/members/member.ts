@@ -1,16 +1,16 @@
-import { guild } from '../guilds/guild'
-import { user } from '../users/user'
+import { guildExample } from '../guilds/guild'
+import { userExample } from '../users/user'
 
-export const member = {
+export const memberExample = {
   id: 1,
   isOwner: true,
-  userId: user.id,
-  guildId: guild.id,
+  userId: userExample.id,
+  guildId: guildExample.id,
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString()
 }
 
-export const memberComplete = {
-  ...member,
-  user
+export const memberExampleComplete = {
+  ...memberExample,
+  user: userExample
 }

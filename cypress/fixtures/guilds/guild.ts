@@ -1,4 +1,6 @@
-export const guild = {
+import { Guild } from '../../../models/Guild'
+
+export const guildExample: Guild = {
   id: 1,
   name: 'GuildExample',
   description: 'guild example.',
@@ -7,7 +9,8 @@ export const guild = {
   updatedAt: new Date().toISOString()
 }
 
-export const guild2 = {
-  ...guild,
+export const guildExample2: Guild = {
+  ...guildExample,
+  id: 2,
   name: 'app'
 }

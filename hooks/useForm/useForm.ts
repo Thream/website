@@ -5,7 +5,7 @@ import type { FormDataObject, HandleForm } from 'react-component-form'
 import type { ErrorObject } from 'ajv'
 
 import { FetchState, useFetchState } from '../useFetchState'
-import { ajv } from '../../utils/ajv'
+import { ajv } from '../../tools/ajv'
 import { getErrorTranslationKey } from './getErrorTranslationKey'
 
 interface Errors {

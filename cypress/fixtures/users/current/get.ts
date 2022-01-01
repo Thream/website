@@ -1,6 +1,6 @@
 import { Handler } from '../../handler'
 
-import { user, userSettings } from '../user'
+import { userExample, userSettingsExample } from '../user'
 
 export const getUsersCurrentHandler: Handler = {
   method: 'GET',
@@ -9,8 +9,8 @@ export const getUsersCurrentHandler: Handler = {
     statusCode: 200,
     body: {
       user: {
-        ...user,
-        settings: userSettings,
+        ...userExample,
+        settings: userSettingsExample,
         currentStrategy: 'local',
         strategies: ['local']
       }

@@ -1,7 +1,7 @@
 import { UserSettings } from '../../../models/UserSettings'
 import { User } from '../../../models/User'
 
-export const user: User = {
+export const userExample: User = {
   id: 1,
   name: 'Divlo',
   email: 'contact@divlo.fr',
@@ -17,7 +17,7 @@ export const user: User = {
   updatedAt: '2021-10-20T20:59:08.485Z'
 }
 
-export const userSettings: UserSettings = {
+export const userSettingsExample: UserSettings = {
   id: 1,
   language: 'en',
   theme: 'dark',

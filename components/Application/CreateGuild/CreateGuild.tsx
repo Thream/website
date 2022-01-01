@@ -4,7 +4,7 @@ import { Form } from 'react-component-form'
 import TextareaAutosize from 'react-textarea-autosize'
 import { AxiosResponse } from 'axios'
 
-import { useAuthentication } from '../../../utils/authentication'
+import { useAuthentication } from '../../../tools/authentication'
 import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { GuildComplete, guildSchema } from '../../../models/Guild'
 import { Input } from '../../design/Input'
