@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import { Form } from 'react-component-form'
-import TextareaAutosize from 'react-textarea-autosize'
 import { AxiosResponse } from 'axios'
 
 import { useAuthentication } from '../../../tools/authentication'
@@ -11,6 +10,7 @@ import { Input } from '../../design/Input'
 import { Main } from '../../design/Main'
 import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
+import { Textarea } from '../../design/Textarea'
 
 export const CreateGuild: React.FC = () => {
   const { t } = useTranslation()
@@ -54,24 +54,7 @@ export const CreateGuild: React.FC = () => {
           label={t('common:name')}
           error={getErrorTranslation(errors.name)}
         />
-
-        <div className='flex flex-col'>
-          <div className='flex justify-between mt-6 mb-2'>
-            <label className='pl-1' htmlFor='description'>
-              Description
-            </label>
-          </div>
-          <div className='mt-0 relative'>
-            <TextareaAutosize
-              className='p-3 rounded-lg bg-[#f1f1f1] text-[#2a2a2a] caret-green-600 font-paragraph w-full focus:border focus:outline-none resize-none focus:shadow-green'
-              placeholder='Description...'
-              id='description'
-              name='description'
-              wrap='soft'
-            ></TextareaAutosize>
-          </div>
-        </div>
-
+        <Textarea label='Description' id='textarea-description' />
         <Button className='w-full mt-6' type='submit' data-cy='submit'>
           {t('application:create')}
         </Button>
