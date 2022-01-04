@@ -19,7 +19,7 @@ const UserSettingsPage: NextPage<PagePropsWithAuthentication> = (props) => {
           path={`/application/users/${props.authentication.user.id}`}
           title='Settings'
         >
-          <UserSettings />
+          <UserSettings user={props.authentication.user} />
         </Application>
       </GuildsProvider>
     </AuthenticationProvider>
