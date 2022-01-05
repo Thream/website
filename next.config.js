@@ -27,7 +27,7 @@ module.exports = nextTranslate(
                 scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
                 styleSrc: ["'self'", "'unsafe-inline'"],
                 imgSrc: ['*', 'data:', 'blob:'],
-                mediaSrc: "'none'",
+                mediaSrc: ['*', 'data:', 'blob:'],
                 connectSrc: '*',
                 objectSrc: "'none'",
                 fontSrc: "'self'",

@@ -6,6 +6,6 @@
     "jest --findRelatedTests"
   ],
   "*.{css,yml,json}": ["prettier --write"],
-  "*.{md}": ["prettier --write", "markdownlint --dot --fix"],
+  "*.md": ["prettier --write", "markdownlint --dot --fix"],
   "./Dockerfile": ["dockerfilelint"]
 }

@@ -88,25 +88,38 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
     cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
     cy.wait(['@getMessagesWithChannelIdHandler', '@nextStaticAndImages']).then(
       () => {
-        cy.get('.messages-list').children().should('have.length', 2)
-        cy.get('.messages-list p:first').should(
+        cy.get('.messages-list').children().should('have.length', 4)
+        cy.get('[data-cy=message-1] p').should(
           'have.text',
           messageExampleComplete.value
         )
-        cy.get(
-          '.messages-list [data-cy=message-member-user-name]:first'
-        ).should('have.text', messageExampleComplete.member.user.name)
-        cy.get('.messages-list [data-cy=message-date]:first').should(
+        cy.get('[data-cy=message-1] [data-cy=message-member-user-name]').should(
+          'have.text',
+          messageExampleComplete.member.user.name
+        )
+        cy.get('[data-cy=message-1] [data-cy=message-date]').should(
           'have.text',
           date.format(
             new Date(messageExampleComplete.createdAt),
             'DD/MM/YYYY - HH:mm:ss'
           )
         )
-        cy.get('.messages-list p:last').should(
+        cy.get('[data-cy=message-2] p').should(
           'have.text',
           messageExampleComplete2.value
         )
+        cy.get('[data-cy=message-3] p').should(
+          'have.text',
+          'Message with bold text and italic text.\nNewlines and some emoji: '
+        )
+        cy.get('[data-cy=message-3] strong').should('have.text', 'bold text')
+        cy.get('[data-cy=message-3] em').should('have.text', 'italic text')
+        cy.get('[data-cy=message-3] span[title=smile]').should('exist')
+        cy.get('[data-cy=message-4] p:first').should(
+          'have.text',
+          'The Quadratic Formula:'
+        )
+        cy.get('[data-cy=message-4] .math').should('have.length', 3)
       }
     )
   })

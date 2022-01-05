@@ -18,8 +18,25 @@ export const messageExampleComplete = {
 }
 
 export const messageExampleComplete2 = {
-  ...messageExample,
+  ...messageExampleComplete,
   id: 2,
-  value: 'Second message',
-  member: memberExampleComplete
+  value: 'Message with bad html: <script>alert("xss")</script>'
+}
+
+export const messageExampleComplete3 = {
+  ...messageExampleComplete,
+  id: 3,
+  value:
+    'Message with **bold text** and *italic text*.\nNewlines and some emoji: :smile:'
+}
+
+export const messageExampleComplete4 = {
+  ...messageExampleComplete,
+  id: 4,
+  value: `The Quadratic Formula:
+
+**Theorem 1**: $(a, b, c) \\in \\mathbb{R}^3$, the solutions of $ax^2 + bx + c = 0$ are:
+
+$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$
+  `
 }
