@@ -50,8 +50,12 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
             </div>
           </div>
           <div className='flex flex-col mx-12'>
-            <Input label='Name' className='!mt-0' value={user.name} />
-            <Input label='Status' className='!mt-4' value={user.status ?? ''} />
+            <Input label='Name' className='!mt-0' defaultValue={user.name} />
+            <Input
+              label='Status'
+              className='!mt-4'
+              defaultValue={user.status ?? ''}
+            />
           </div>
         </div>
         <div className='flex mt-10 flex-col items-center ml-0 lg:ml-24 lg:mt-0'>
@@ -60,26 +64,29 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
             label={t('application:label-checkbox-guilds')}
             id='checkbox-public-guilds'
             className='px-8'
-            checked={user.settings.isPublicGuilds}
+            defaultChecked={user.settings.isPublicGuilds}
           />
         </div>
       </div>
       <div className='flex flex-col w-full justify-between items-center mt-12 lg:flex-row sm:w-fit'>
-        <div className='w-4/5 sm:w-[450px] pr-0 lg:pr-12 border-r-2 border-neutral-500'>
-          <Input label='Email' value={user.email ?? ''} />
+        <div className='w-4/5 sm:w-[450px] pr-0 lg:pr-12 border-r-[1px] border-neutral-700'>
+          <Input label='Email' defaultValue={user.email ?? ''} />
           <Checkbox
             label={t('application:label-checkbox-email')}
             id='checkbox-email-visibility'
-            checked={user.settings.isPublicEmail}
+            defaultChecked={user.settings.isPublicEmail}
           />
-          <Input label={t('application:website')} value={user.website ?? ''} />
+          <Input
+            label={t('application:website')}
+            defaultValue={user.website ?? ''}
+          />
           <Textarea
             label={t('application:biography')}
             id='textarea-biography'
-            value={user.biography ?? ''}
+            defaultValue={user.biography ?? ''}
           />
         </div>
-        <div className='flex flex-col justify-between items-center w-4/5 sm:w-[415px] h-full pr-0 lg:pl-12 border-l-2 border-neutral-500'>
+        <div className='flex flex-col justify-between items-center w-4/5 sm:w-[415px] h-full pr-0 lg:pl-12'>
           <div className='flex w-full flex-col gap-4 mt-14'>
             <SocialMediaButton
               socialMedia='Google'

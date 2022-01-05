@@ -1,6 +1,7 @@
 {
   "website": "Website",
   "create": "Create",
+  "status": "Status",
   "create-a-guild": "Create a Guild",
   "create-a-guild-description": "Create your own guild and manage everything.",
   "join-a-guild": "Join a Guild",
@@ -10,5 +11,6 @@
   "write-a-message": "Write a message...",
   "biography": "Biography",
   "label-checkbox-email": "Show your email to everyone.",
-  "label-checkbox-guilds": "Show the list of guilds to everyone."
+  "label-checkbox-guilds": "Show the list of guilds to everyone.",
+  "private-user-guilds-list": "List of private guilds"
 }

@@ -1,6 +1,7 @@
 {
   "website": "Site web",
   "create": "Créer",
+  "status": "Statut",
   "create-a-guild": "Créer une Guilde",
   "create-a-guild-description": "Créez votre propre guilde et gérez tout.",
   "join-a-guild": "Rejoindre une Guilde",
@@ -10,5 +11,6 @@
   "write-a-message": "Écrire un message...",
   "biography": "Biographie",
   "label-checkbox-email": "Afficher votre email au public.",
-  "label-checkbox-guilds": "Afficher la liste des guilds au public."
+  "label-checkbox-guilds": "Afficher la liste des guilds au public.",
+  "private-user-guilds-list": "List of private guilds"
 }
