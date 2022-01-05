@@ -199,14 +199,13 @@ export const Application: React.FC<ApplicationProps> = (props) => {
             <Divider />
             <Guilds path={path} />
           </div>
-
           {guildLeftSidebar}
         </Sidebar>
 
         <div
           id='application-page-content'
           className={classNames(
-            'top-0 h-full-without-header flex flex-col flex-1 z-0 overflow-y-auto transition',
+            'top-0 h-full-without-header w-full flex flex-col flex-1 z-0 overflow-y-auto transition',
             {
               'absolute opacity-20':
                 isMobile && (visibleSidebars.left || visibleSidebars.right)
