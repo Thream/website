@@ -8,5 +8,7 @@
   "members": "member(s)",
   "search": "Search",
   "write-a-message": "Write a message...",
-  "biography": "Biography"
+  "biography": "Biography",
+  "label-checkbox-website": "Show your website to everyone.",
+  "label-checkbox-guilds": "Show the list of guilds to everyone."
 }

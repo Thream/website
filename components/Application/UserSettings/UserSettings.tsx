@@ -8,6 +8,9 @@ import { UserProfileGuilds } from '../UserProfileGuilds'
 import { Input } from '../../design/Input'
 import { Checkbox } from '../../design/Checkbox'
 import { Textarea } from '../../design/Textarea'
+import { SocialMediaButton } from '../../design/SocialMediaButton'
+import { SwitchTheme } from '../../Header/SwitchTheme'
+import { Language } from '../../Header/Language'
 
 export interface UserSettingsProps {
   user: UserPublic
@@ -19,8 +22,8 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
 
   return (
     <div className='h-full flex flex-col items-center justify-center'>
-      <div className='min-w-[1080px] flex flex-col'>
-        <div className='flex items-center mx-auto'>
+      <div className='min-w-[875px] justify-center items-center flex flex-col'>
+        <div className='flex items-center'>
           <div className='relative w-max flex items-center'>
             <div className='absolute w-full h-full z-50'>
               <button className='relative w-full h-full flex items-center justify-center transition hover:scale-110'>
@@ -52,25 +55,42 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
           </div>
           <div className='flex flex-col items-center ml-24'>
             <UserProfileGuilds />
-            <p className='mt-6 flex items-center'>
-              <Checkbox
-                label='Afficher la liste des guilds au public'
-                id='checkbox-public-guilds'
-              />
-            </p>
+            <Checkbox
+              label={t('application:label-checkbox-guilds')}
+              id='checkbox-public-guilds'
+            />
           </div>
         </div>
-        <div className='flex mt-12'>
-          <div className='border border-l-neutral-500'>
+        <div className='flex justify-between mt-12'>
+          <div className='w-[450px] pr-12 border-r-1 border-l-neutral-500'>
             <Input label='Email' />
-            <Checkbox label='Afficher votre site web au public.' />
-            <Input label='Site web' />
+            <Input label={t('application:website')} />
+            <Checkbox label={t('application:label-checkbox-website')} />
             <Textarea
               label={t('application:biography')}
               id='textarea-biography'
             />
           </div>
-          <div className='border border-r-neutral-500'></div>
+          <div className='flex flex-col justify-between items-center w-[415px] pl-12 mt-14 border-t-1 border-r-neutral-500'>
+            <div className='flex w-full flex-col gap-4'>
+              <SocialMediaButton
+                socialMedia='Google'
+                className='w-full justify-center'
+              />
+              <SocialMediaButton
+                socialMedia='Discord'
+                className='w-full justify-center'
+              />
+              <SocialMediaButton
+                socialMedia='GitHub'
+                className='w-full justify-center'
+              />
+            </div>
+            <div className='flex justify-between w-full'>
+              <Language />
+              <SwitchTheme />
+            </div>
+          </div>
         </div>
       </div>
     </div>
