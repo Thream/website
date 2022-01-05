@@ -9,6 +9,6 @@
   "search": "Rechercher",
   "write-a-message": "Écrire un message...",
   "biography": "Biographie",
-  "label-checkbox-website": "Afficher votre site web au public.",
+  "label-checkbox-email": "Afficher votre email au public.",
   "label-checkbox-guilds": "Afficher la liste des guilds au public."
 }
