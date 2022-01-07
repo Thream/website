@@ -49,6 +49,7 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
     return (
       <a href={file.url} target='_blank' rel='noreferrer'>
         <Image
+          data-cy={`message-file-image-${message.id}`}
           className='max-w-xs max-h-xs'
           src={file.url}
           alt={message.value}
@@ -60,26 +61,30 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
   }
   if (message.mimetype.startsWith('audio/')) {
     return (
-      <audio controls>
+      <audio controls data-cy={`message-file-audio-${message.id}`}>
         <source src={file.url} type={message.mimetype} />
       </audio>
     )
   }
   if (message.mimetype.startsWith('video/')) {
     return (
-      <video className='max-w-xs max-h-xs' controls>
+      <video
+        className='max-w-xs max-h-xs'
+        controls
+        data-cy={`message-file-video-${message.id}`}
+      >
         <source src={file.url} type={message.mimetype} />
       </video>
     )
   }
   return (
-    <a href={file.url} download>
+    <a href={file.url} download data-cy={`message-file-download-${message.id}`}>
       <div className='flex items-center'>
-        <div className='flex'>
+        <div className='flex items-center'>
           <div>
             <FileIcon />
           </div>
-          <div className='ml-3'>
+          <div className='ml-4'>
             <p>{file.blob.type}</p>
             <p className='mt-1'>{prettyBytes(file.blob.size)}</p>
           </div>

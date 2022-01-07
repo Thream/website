@@ -8,7 +8,7 @@ module.exports = nextTranslate(
     images: {
       domains: [
         'api.thream.divlo.fr',
-        ...(process.env.NODE_ENV === 'development' ? ['localhost'] : [])
+        ...(process.env.NODE_ENV !== 'production' ? ['localhost'] : [])
       ]
     },
     reactStrictMode: true,

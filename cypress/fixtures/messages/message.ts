@@ -40,3 +40,41 @@ export const messageExampleComplete4 = {
 $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$
   `
 }
+
+export const messageExampleComplete5 = {
+  ...messageExampleComplete,
+  id: 5,
+  value: ':wave:'
+}
+
+export const messageExampleComplete6 = {
+  ...messageExampleComplete,
+  id: 6,
+  value: '/uploads/messages/image.png',
+  type: 'file',
+  mimetype: 'image/png'
+}
+
+export const messageExampleComplete7 = {
+  ...messageExampleComplete,
+  id: 7,
+  value: '/uploads/messages/audio.mp3',
+  type: 'file',
+  mimetype: 'audio/mp3'
+}
+
+export const messageExampleComplete8 = {
+  ...messageExampleComplete,
+  id: 8,
+  value: '/uploads/messages/video.mp4',
+  type: 'file',
+  mimetype: 'video/mp4'
+}
+
+export const messageExampleComplete9 = {
+  ...messageExampleComplete,
+  id: 9,
+  value: '/uploads/messages/download.zip',
+  type: 'file',
+  mimetype: 'application/zip'
+}
