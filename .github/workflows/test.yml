@@ -41,6 +41,9 @@ jobs:
       - name: 'Build'
         run: 'npm run build'
 
+      - name: 'html-w3c-validator'
+        run: 'npm run test:html-w3c-validator'
+
       - name: 'Lighthouse'
         run: 'npm run test:lighthouse'
         env:

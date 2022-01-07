@@ -1,5 +1,4 @@
 import { Handler } from '../../handler'
-
 import { guildExample } from '../guild'
 import { memberExampleComplete } from '../../members/member'
 

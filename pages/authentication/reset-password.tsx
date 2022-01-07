@@ -13,9 +13,9 @@ import { FormState } from 'components/design/FormState'
 import { authenticationFromServerSide } from 'tools/authentication'
 import { AuthenticationForm } from 'components/Authentication'
 import { ScrollableBody } from 'components/ScrollableBody/ScrollableBody'
-import { api } from 'tools/api'
-import { userSchema } from '../../models/User'
 import { HandleSubmitCallback, useForm } from 'hooks/useForm'
+import { api } from 'tools/api'
+import { userSchema } from 'models/User'
 
 const ResetPassword: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()

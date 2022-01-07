@@ -17,7 +17,7 @@ describe('<SocialMediaButton />', () => {
     const { findByTestId } = render(
       <SocialMediaButton socialMedia={socialMedia} />
     )
-    const button = await findByTestId('button')
+    const button = await findByTestId('social-media-button')
     expect(button).toHaveStyle('color: #000')
   })
 })

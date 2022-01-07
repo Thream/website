@@ -1,9 +1,9 @@
 import { CogIcon, PlusIcon } from '@heroicons/react/solid'
 
-import { useGuildMember } from 'contexts/GuildMember'
-import { Divider } from 'components/design/Divider'
-import { Channels } from 'components/Application/Channels'
-import { IconButton } from 'components/design/IconButton'
+import { useGuildMember } from '../../../contexts/GuildMember'
+import { Divider } from '../../design/Divider'
+import { Channels } from '../../Application/Channels'
+import { IconButton } from '../../design/IconButton'
 import { GuildsChannelsPath } from '..'
 
 export interface GuildLeftSidebarProps {

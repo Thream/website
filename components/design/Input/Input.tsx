@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+
 import { FormState } from '../FormState'
 
 export interface InputProps extends React.ComponentPropsWithRef<'input'> {

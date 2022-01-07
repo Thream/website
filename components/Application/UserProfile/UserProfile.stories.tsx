@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react'
+
 import {
   userExample,
   userSettingsExample
 } from '../../../cypress/fixtures/users/user'
-
 import { UserProfile as Component, UserProfileProps } from './UserProfile'
 
 const Stories: Meta = {
