@@ -1,7 +1,7 @@
 FROM node:16.13.1 AS dependencies
 WORKDIR /usr/src/app
 COPY ./package*.json ./
-RUN npm clean-install
+RUN npm install
 
 FROM node:16.13.1 AS builder
 WORKDIR /usr/src/app

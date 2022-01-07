@@ -1,9 +1,9 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { AuthenticationForm } from 'components/Authentication'
 import useTranslation from 'next-translate/useTranslation'
 import axios from 'axios'
 
+import { AuthenticationForm } from 'components/Authentication'
 import { Head } from 'components/Head'
 import { Header } from 'components/Header'
 import { Main } from 'components/design/Main'

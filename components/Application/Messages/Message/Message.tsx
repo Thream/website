@@ -4,7 +4,9 @@ import date from 'date-and-time'
 
 import { MessageWithMember } from '../../../../models/Message'
 import { API_URL } from '../../../../tools/api'
-import { MessageContent } from './MessageContent'
+import { MessageText } from './MessageText'
+import { Loader } from '../../../design/Loader'
+import { MessageFile } from './MessageFile'
 
 export interface MessageProps {
   message: MessageWithMember
@@ -14,7 +16,10 @@ export const Message: React.FC<MessageProps> = (props) => {
   const { message } = props
 
   return (
-    <div className='p-4 flex transition hover:bg-gray-200 dark:hover:bg-gray-900'>
+    <div
+      className='p-4 flex transition hover:bg-gray-200 dark:hover:bg-gray-900'
+      data-cy={`message-${message.id}`}
+    >
       <Link href={`/application/users/${message.member.user.id}`}>
         <a>
           <div className='w-12 h-12 mr-4 flex flex-shrink-0 items-center justify-center'>
@@ -54,7 +59,13 @@ export const Message: React.FC<MessageProps> = (props) => {
             {date.format(new Date(message.createdAt), 'DD/MM/YYYY - HH:mm:ss')}
           </span>
         </div>
-        <MessageContent message={message} />
+        {message.type === 'text' ? (
+          <MessageText message={message} />
+        ) : message.type === 'file' ? (
+          <MessageFile message={message} />
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   )

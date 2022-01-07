@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from 'components/Head'
 import { Application } from 'components/Application'
@@ -9,7 +10,6 @@ import {
 } from 'tools/authentication'
 import { CreateGuild } from 'components/Application/CreateGuild'
 import { GuildsProvider } from 'contexts/Guilds'
-import useTranslation from 'next-translate/useTranslation'
 
 const CreateGuildPage: NextPage<PagePropsWithAuthentication> = (props) => {
   const { t } = useTranslation()

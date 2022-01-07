@@ -5,6 +5,7 @@ export interface Handler {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE'
   url: `/${string}`
   response: {
+    isFile?: boolean
     body: any
     statusCode: number
   }

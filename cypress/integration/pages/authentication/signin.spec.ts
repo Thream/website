@@ -2,7 +2,7 @@ import { authenticationHandlers } from '../../../fixtures/handler'
 import {
   postUsersSigninHandler,
   postUsersSigninInvalidCredentialsHandler
-} from 'cypress/fixtures/users/signin/post'
+} from '../../../fixtures/users/signin/post'
 import { userExample } from '../../../fixtures/users/user'
 
 describe('Pages > /authentication/signin', () => {

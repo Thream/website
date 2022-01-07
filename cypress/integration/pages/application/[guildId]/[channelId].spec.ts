@@ -18,6 +18,12 @@ import {
 import { getMembersWithGuildIdHandler } from '../../../../fixtures/guilds/[guildId]/members/get'
 import { memberExampleComplete } from '../../../../fixtures/members/member'
 import { API_URL } from '../../../../../tools/api'
+import {
+  getMessagesUploadsAudioHandler,
+  getMessagesUploadsDownloadHandler,
+  getMessagesUploadsImageHandler,
+  getMessagesUploadsVideoHandler
+} from '../../../../fixtures/uploads/messages/get'
 
 describe('Pages > /application/[guildId]/[channelId]', () => {
   beforeEach(() => {
@@ -79,36 +85,95 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
       ...authenticationHandlers,
       getGuildMemberWithGuildIdHandler,
       getChannelWithChannelIdHandler,
-      getMessagesWithChannelIdHandler
+      getMessagesWithChannelIdHandler,
+      getMessagesUploadsImageHandler,
+      getMessagesUploadsAudioHandler,
+      getMessagesUploadsVideoHandler,
+      getMessagesUploadsDownloadHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.intercept(`${API_URL}${getMessagesWithChannelIdHandler.url}*`).as(
       'getMessagesWithChannelIdHandler'
     )
+    cy.intercept(`${API_URL}${getMessagesUploadsImageHandler.url}`).as(
+      'getMessagesUploadsImageHandler'
+    )
+    cy.intercept(`${API_URL}${getMessagesUploadsAudioHandler.url}`).as(
+      'getMessagesUploadsAudioHandler'
+    )
+    cy.intercept(`${API_URL}${getMessagesUploadsVideoHandler.url}`).as(
+      'getMessagesUploadsVideoHandler'
+    )
+    cy.intercept(`${API_URL}${getMessagesUploadsDownloadHandler.url}`).as(
+      'getMessagesUploadsDownloadHandler'
+    )
     cy.intercept(`/_next/*`).as('nextStaticAndImages')
     cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
-    cy.wait(['@getMessagesWithChannelIdHandler', '@nextStaticAndImages']).then(
-      () => {
-        cy.get('.messages-list').children().should('have.length', 2)
-        cy.get('.messages-list p:first').should(
-          'have.text',
-          messageExampleComplete.value
+    cy.wait([
+      '@getMessagesWithChannelIdHandler',
+      '@nextStaticAndImages',
+      '@getMessagesUploadsImageHandler',
+      '@getMessagesUploadsAudioHandler',
+      '@getMessagesUploadsVideoHandler',
+      '@getMessagesUploadsDownloadHandler'
+    ]).then(() => {
+      cy.get('.messages-list').children().should('have.length', 9)
+      cy.get('[data-cy=message-1] p').should(
+        'have.text',
+        messageExampleComplete.value
+      )
+      cy.get('[data-cy=message-1] [data-cy=message-member-user-name]').should(
+        'have.text',
+        messageExampleComplete.member.user.name
+      )
+      cy.get('[data-cy=message-1] [data-cy=message-date]').should(
+        'have.text',
+        date.format(
+          new Date(messageExampleComplete.createdAt),
+          'DD/MM/YYYY - HH:mm:ss'
         )
-        cy.get(
-          '.messages-list [data-cy=message-member-user-name]:first'
-        ).should('have.text', messageExampleComplete.member.user.name)
-        cy.get('.messages-list [data-cy=message-date]:first').should(
-          'have.text',
-          date.format(
-            new Date(messageExampleComplete.createdAt),
-            'DD/MM/YYYY - HH:mm:ss'
-          )
-        )
-        cy.get('.messages-list p:last').should(
-          'have.text',
-          messageExampleComplete2.value
-        )
-      }
-    )
+      )
+      cy.get('[data-cy=message-2] p').should(
+        'have.text',
+        messageExampleComplete2.value
+      )
+      cy.get('[data-cy=message-3] p').should(
+        'have.text',
+        'Message with bold text and italic text.\nNewlines and some emoji: '
+      )
+      cy.get('[data-cy=message-3] strong').should('have.text', 'bold text')
+      cy.get('[data-cy=message-3] em').should('have.text', 'italic text')
+      cy.get('[data-cy=message-3] span[title=smile]').should('exist')
+      cy.get('[data-cy=message-3] span[title=smile]').should(
+        'have.css',
+        'width',
+        '20px'
+      )
+      cy.get('[data-cy=message-3] span[title=smile]').should(
+        'have.css',
+        'height',
+        '20px'
+      )
+      cy.get('[data-cy=message-4] p:first').should(
+        'have.text',
+        'The Quadratic Formula:'
+      )
+      cy.get('[data-cy=message-4] .math').should('have.length', 3)
+      cy.get('[data-cy=message-5] span[title=wave]').should('exist')
+      cy.get('[data-cy=message-5] span[title=wave]').should(
+        'have.css',
+        'width',
+        '40px'
+      )
+      cy.get('[data-cy=message-5] span[title=wave]').should(
+        'have.css',
+        'height',
+        '40px'
+      )
+      cy.get('[data-cy=message-file-image-6]').should('exist')
+      cy.get('[data-cy=message-file-audio-7]').should('exist')
+      cy.get('[data-cy=message-file-video-8]').should('exist')
+      cy.get('[data-cy=message-file-download-9]').should('exist')
+    })
   })
 
   it('should succeeds and display the members in right sidebar correctly', () => {

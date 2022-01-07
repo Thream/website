@@ -2,8 +2,8 @@ import useTranslation from 'next-translate/useTranslation'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Divider } from '../../design/Divider'
-import { Loader } from 'components/design/Loader'
-import { useMembers } from 'contexts/Members'
+import { Loader } from '../../design/Loader'
+import { useMembers } from '../../../contexts/Members'
 import { Member } from './Member'
 import { capitalize } from '../../../tools/utils/capitalize'
 
