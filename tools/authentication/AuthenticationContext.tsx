@@ -23,7 +23,9 @@ export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
 
   const authentication = useMemo(() => {
     return new Authentication(props.authentication.tokens)
-  }, [props.authentication.tokens])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- We only want to run this memo once
+  }, [])
 
   useEffect(() => {
     setLanguage(user.settings.language).catch(() => {})

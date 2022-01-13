@@ -9,7 +9,7 @@ const errorObject: ErrorObject = {
   schemaPath: '/path'
 }
 
-describe('Authentication/getErrorTranslationKey', () => {
+describe('hooks/useForm/getErrorTranslationKey', () => {
   it('returns `errors:invalid` with unknown keyword', async () => {
     expect(
       getErrorTranslationKey({

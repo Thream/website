@@ -1,6 +1,8 @@
 import { Meta, Story } from '@storybook/react'
 
-import { SendMessage as Component } from './SendMessage'
+import { channelExample } from '../../../cypress/fixtures/channels/channel'
+import { guildExample } from '../../../cypress/fixtures/guilds/guild'
+import { SendMessage as Component, SendMessageProps } from './SendMessage'
 
 const Stories: Meta = {
   title: 'SendMessage',
@@ -9,7 +11,9 @@ const Stories: Meta = {
 
 export default Stories
 
-export const SendMessage: Story = (arguments_) => {
+export const SendMessage: Story<SendMessageProps> = (arguments_) => {
   return <Component {...arguments_} />
 }
-SendMessage.args = {}
+SendMessage.args = {
+  path: { channelId: channelExample.id, guildId: guildExample.id }
+}

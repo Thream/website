@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import axios from 'axios'
 import prettyBytes from 'pretty-bytes'
 import { DownloadIcon } from '@heroicons/react/solid'
@@ -48,13 +47,11 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
   if (message.mimetype.startsWith('image/')) {
     return (
       <a href={file.url} target='_blank' rel='noreferrer'>
-        <Image
+        <img
           data-cy={`message-file-image-${message.id}`}
-          className='max-w-xs max-h-xs'
+          className='sm:max-w-xs max-h-80'
           src={file.url}
           alt={message.value}
-          width={320}
-          height={320}
         />
       </a>
     )
@@ -69,7 +66,7 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
   if (message.mimetype.startsWith('video/')) {
     return (
       <video
-        className='max-w-xs max-h-xs'
+        className='max-w-xs max-h-80'
         controls
         data-cy={`message-file-video-${message.id}`}
       >

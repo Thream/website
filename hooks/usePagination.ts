@@ -15,11 +15,14 @@ export interface UsePaginationOptions {
   inverse?: boolean
 }
 
+export type SetItems<T> = React.Dispatch<React.SetStateAction<T[]>>
+
 export interface UsePaginationResult<T> {
   items: T[]
   nextPage: NextPage
   resetPagination: () => void
   hasMore: boolean
+  setItems: SetItems<T>
 }
 
 export const usePagination = <T extends { id: number }>(
@@ -81,5 +84,5 @@ export const usePagination = <T extends { id: number }>(
     setItems([])
   }, [])
 
-  return { items, hasMore, nextPage, resetPagination }
+  return { items, hasMore, nextPage, resetPagination, setItems }
 }

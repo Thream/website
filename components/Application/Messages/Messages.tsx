@@ -29,7 +29,7 @@ export const Messages: React.FC = () => {
     >
       <InfiniteScroll
         scrollableTarget='messages'
-        className='messages-list'
+        className='messages-list !overflow-x-hidden'
         dataLength={messages.length}
         next={nextPage}
         inverse
