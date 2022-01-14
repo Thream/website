@@ -37,7 +37,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
           'blur-3xl select-none': showPopup
         })}
       >
-        <div className='min-w-[850px]'>
+        <div className='max-w-[1000px] px-12'>
           <div className='flex justify-between items-center'>
             <div className='w-max flex items-center'>
               <div className='relative flex justify-center items-center rounded-full overflow-hidden transition-all shadow-lg'>
@@ -99,7 +99,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                 </div>
               </div>
             </div>
-            <div onClick={handlePopupVisibility}>
+            <div className='py-8 px-4' onClick={handlePopupVisibility}>
               <UserProfileGuilds isPublic={user.settings.isPublicEmail} />
             </div>
           </div>
