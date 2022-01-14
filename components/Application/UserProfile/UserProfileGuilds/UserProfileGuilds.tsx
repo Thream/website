@@ -4,22 +4,22 @@ import { EyeOffIcon } from '@heroicons/react/solid'
 import useTranslation from 'next-translate/useTranslation'
 
 export interface UserProfileGuildsProps {
-  isPublic?: boolean
+  isPublicGuilds?: boolean
 }
 
 export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
-  const { isPublic = true } = props
+  const { isPublicGuilds = false } = props
   const { t } = useTranslation()
 
   return (
     <div
       className={classNames('relative cursor-pointer', {
-        'cursor-auto': isPublic
+        'cursor-auto': !isPublicGuilds
       })}
     >
       <div
         className={classNames('flex -space-x-7', {
-          'blur-lg select-none': isPublic
+          'blur-lg select-none': !isPublicGuilds
         })}
       >
         <div className='flex justify-center items-center rounded-full filter drop-shadow-lg'>
@@ -91,7 +91,7 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
       <div
         className={classNames(
           'absolute flex items-center top-1/2 -translate-y-1/2',
-          { hidden: !isPublic }
+          { hidden: isPublicGuilds }
         )}
       >
         <EyeOffIcon height={25} />

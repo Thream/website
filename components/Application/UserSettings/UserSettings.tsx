@@ -50,26 +50,32 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
             </div>
           </div>
           <div className='flex flex-col mx-12'>
-            <Input label='Name' className='!mt-0' defaultValue={user.name} />
             <Input
-              label='Status'
+              label={t('common:name')}
+              placeholder={t('common:name')}
+              className='!mt-0'
+              defaultValue={user.name}
+            />
+            <Input
+              label={t('application:status')}
+              placeholder={t('application:status')}
               className='!mt-4'
               defaultValue={user.status ?? ''}
             />
           </div>
         </div>
         <div className='flex mt-10 flex-col items-center ml-0 lg:ml-24 lg:mt-0'>
-          <UserProfileGuilds />
+          <UserProfileGuilds isPublicGuilds={user.settings.isPublicGuilds} />
           <Checkbox
             label={t('application:label-checkbox-guilds')}
+            defaultChecked={user.settings.isPublicGuilds}
             id='checkbox-public-guilds'
             className='px-8'
-            defaultChecked={user.settings.isPublicGuilds}
           />
         </div>
       </div>
       <div className='flex flex-col w-full justify-between items-center mt-12 lg:flex-row sm:w-fit'>
-        <div className='w-4/5 sm:w-[450px] pr-0 lg:pr-12 border-r-[1px] border-neutral-700'>
+        <div className='w-4/5 sm:w-[450px] pr-0 lg:pr-12 lg:border-r-[1px] lg:border-neutral-700'>
           <Input label='Email' defaultValue={user.email ?? ''} />
           <Checkbox
             label={t('application:label-checkbox-email')}
@@ -78,10 +84,12 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
           />
           <Input
             label={t('application:website')}
+            placeholder={t('application:website')}
             defaultValue={user.website ?? ''}
           />
           <Textarea
             label={t('application:biography')}
+            placeholder={t('application:biography')}
             id='textarea-biography'
             defaultValue={user.biography ?? ''}
           />

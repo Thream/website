@@ -99,8 +99,11 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                 </div>
               </div>
             </div>
+
             <div className='py-8 px-4' onClick={handlePopupVisibility}>
-              <UserProfileGuilds isPublic={user.settings.isPublicEmail} />
+              <UserProfileGuilds
+                isPublicGuilds={user.settings.isPublicGuilds}
+              />
             </div>
           </div>
           <div className='mt-7'>
