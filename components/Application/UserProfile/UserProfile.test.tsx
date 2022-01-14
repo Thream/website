@@ -4,7 +4,6 @@ import {
   userExample,
   userSettingsExample
 } from '../../../cypress/fixtures/users/user'
-
 import { UserProfile } from './UserProfile'
 
 describe('<UserProfile />', () => {

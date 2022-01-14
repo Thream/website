@@ -6,7 +6,7 @@
     "plugin:storybook/recommended",
     "prettier"
   ],
-  "plugins": ["unicorn", "prettier"],
+  "plugins": ["unicorn", "import", "prettier"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -17,6 +17,13 @@
   },
   "rules": {
     "prettier/prettier": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "newlines-between": "always"
+      }
+    ],
     "unicorn/prefer-node-protocol": "error",
     "unicorn/prevent-abbreviations": [
       "error",
@@ -28,6 +35,7 @@
         }
       }
     ],
-    "@typescript-eslint/no-namespace": "off"
+    "@typescript-eslint/no-namespace": "off",
+    "@next/next/no-img-element": "off"
   }
 }

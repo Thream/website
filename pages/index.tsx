@@ -1,7 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-
 import Translation from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -9,8 +8,8 @@ import { Head } from 'components/Head'
 import { Header } from 'components/Header'
 import { Main } from 'components/design/Main'
 import { Footer, FooterProps } from 'components/Footer'
-import { SocialMediaButton } from 'components/design/SocialMediaButton'
-import { Button } from 'components/design/Button'
+import { SocialMediaLink } from 'components/design/SocialMediaButton'
+import { ButtonLink } from 'components/design/Button'
 import { ScrollableBody } from 'components/ScrollableBody'
 
 const Home: NextPage<FooterProps> = (props) => {
@@ -22,8 +21,8 @@ const Home: NextPage<FooterProps> = (props) => {
       <Head />
       <Header />
       <Main>
-        <section className='flex flex-col items-center w-4/5'>
-          <section className='max-w-xs'>
+        <div className='flex flex-col items-center w-4/5'>
+          <div className='max-w-xs'>
             <Link href='/authentication/signup'>
               <a>
                 <Image
@@ -34,8 +33,8 @@ const Home: NextPage<FooterProps> = (props) => {
                 />
               </a>
             </Link>
-          </section>
-          <section className='text-center'>
+          </div>
+          <div className='text-center'>
             <h1 className='my-4 text-3xl font-medium font-headline text-green-800 dark:text-green-400'>
               Thream
             </h1>
@@ -54,21 +53,21 @@ const Home: NextPage<FooterProps> = (props) => {
               />
             </div>
             <div className='flex justify-center items-center text-center mt-8 space-x-4'>
-              <Link href='/authentication/signup'>
-                <a data-cy='get-started'>
-                  <Button>{t('home:get-started')}</Button>
-                </a>
+              <Link href='/authentication/signup' passHref>
+                <ButtonLink data-cy='get-started'>
+                  {t('home:get-started')}
+                </ButtonLink>
               </Link>
-              <a
+
+              <SocialMediaLink
+                socialMedia='GitHub'
                 href='https://github.com/Thream'
                 target='_blank'
                 rel='noopener noreferrer'
-              >
-                <SocialMediaButton socialMedia='GitHub' />
-              </a>
+              />
             </div>
-          </section>
-        </section>
+          </div>
+        </div>
       </Main>
       <Footer version={version} />
     </ScrollableBody>

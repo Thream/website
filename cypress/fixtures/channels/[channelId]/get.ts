@@ -1,5 +1,4 @@
 import { Handler } from '../../handler'
-
 import { channelExample } from '../channel'
 
 export const getChannelWithChannelIdHandler: Handler = {

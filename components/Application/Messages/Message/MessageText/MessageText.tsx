@@ -2,6 +2,10 @@ import { useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+
+import 'katex/dist/katex.min.css'
 
 import { Emoji, emojiPlugin, isStringWithOnlyOneEmoji } from '../../../../Emoji'
 import { MessageWithMember } from '../../../../../models/Message'
@@ -10,7 +14,7 @@ export interface MessageContentProps {
   message: MessageWithMember
 }
 
-export const MessageContent: React.FC<MessageContentProps> = (props) => {
+export const MessageText: React.FC<MessageContentProps> = (props) => {
   const { message } = props
 
   const isMessageWithOnlyOneEmoji = useMemo(() => {
@@ -31,8 +35,8 @@ export const MessageContent: React.FC<MessageContentProps> = (props) => {
     <ReactMarkdown
       disallowedElements={['table']}
       unwrapDisallowed
-      remarkPlugins={[[gfm], [remarkBreaks]]}
-      rehypePlugins={[emojiPlugin]}
+      remarkPlugins={[[gfm], [remarkBreaks], [remarkMath]]}
+      rehypePlugins={[[emojiPlugin], [rehypeKatex]]}
       linkTarget='_blank'
       components={{
         emoji: (props) => {

@@ -11,7 +11,7 @@ import { Button } from '../design/Button'
 import { FormState } from '../design/FormState'
 import { AuthenticationForm } from './'
 import { userSchema } from '../../models/User'
-import { api } from 'tools/api'
+import { api } from '../../tools/api'
 import {
   Tokens,
   Authentication as AuthenticationClass
@@ -85,16 +85,16 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   return (
     <Main>
-      <section className='flex flex-col sm:items-center sm:w-full'>
+      <div className='flex flex-col sm:items-center sm:w-full'>
         <div className='flex flex-col items-center justify-center space-y-6 sm:w-4/6 sm:flex-row sm:space-x-6 sm:space-y-0'>
           <SocialMediaButton socialMedia='Google' />
           <SocialMediaButton socialMedia='GitHub' />
           <SocialMediaButton socialMedia='Discord' />
         </div>
-      </section>
-      <section className='text-center text-lg font-paragraph pt-8'>
+      </div>
+      <div className='text-center text-lg font-paragraph pt-8'>
         {t('authentication:or')}
-      </section>
+      </div>
       <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
         {mode === 'signup' && (
           <Input

@@ -8,7 +8,7 @@ module.exports = nextTranslate(
     images: {
       domains: [
         'api.thream.divlo.fr',
-        ...(process.env.NODE_ENV === 'development' ? ['localhost'] : [])
+        ...(process.env.NODE_ENV !== 'production' ? ['localhost'] : [])
       ]
     },
     reactStrictMode: true,
@@ -27,7 +27,7 @@ module.exports = nextTranslate(
                 scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
                 styleSrc: ["'self'", "'unsafe-inline'"],
                 imgSrc: ['*', 'data:', 'blob:'],
-                mediaSrc: "'none'",
+                mediaSrc: ['*', 'data:', 'blob:'],
                 connectSrc: '*',
                 objectSrc: "'none'",
                 fontSrc: "'self'",

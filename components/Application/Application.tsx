@@ -6,13 +6,13 @@ import { useMediaQuery } from 'react-responsive'
 import { useSwipeable } from 'react-swipeable'
 
 import { Sidebar, DirectionSidebar } from './Sidebar'
-import { IconButton } from 'components/design/IconButton'
-import { IconLink } from 'components/design/IconLink'
+import { IconButton } from '../design/IconButton'
+import { IconLink } from '../design/IconLink'
 import { Guilds } from './Guilds/Guilds'
 import { Divider } from '../design/Divider'
 import { Members } from './Members'
-import { useAuthentication } from 'tools/authentication'
-import { API_URL } from 'tools/api'
+import { useAuthentication } from '../../tools/authentication'
+import { API_URL } from '../../tools/api'
 
 export interface GuildsChannelsPath {
   guildId: number

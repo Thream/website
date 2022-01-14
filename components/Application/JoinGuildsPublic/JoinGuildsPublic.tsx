@@ -2,11 +2,11 @@ import useTranslation from 'next-translate/useTranslation'
 import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { useAuthentication } from 'tools/authentication'
-import { GuildPublic as GuildPublicType } from 'models/Guild'
-import { Loader } from 'components/design/Loader'
+import { useAuthentication } from '../../../tools/authentication'
+import { GuildPublic as GuildPublicType } from '../../../models/Guild'
+import { Loader } from '../../design/Loader'
 import { GuildPublic } from './GuildPublic'
-import { usePagination } from 'hooks/usePagination'
+import { usePagination } from '../../../hooks/usePagination'
 
 export const JoinGuildsPublic: React.FC = () => {
   const [search, setSearch] = useState('')

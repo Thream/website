@@ -47,7 +47,7 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
                   title={`# ${selectedChannel.name}`}
                 >
                   <Messages />
-                  <SendMessage />
+                  <SendMessage path={path} />
                 </Application>
               </MessagesProvider>
             </ChannelsProvider>

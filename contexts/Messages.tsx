@@ -4,6 +4,7 @@ import { NextPage, usePagination } from 'hooks/usePagination'
 import { useAuthentication } from 'tools/authentication'
 import { MessageWithMember } from 'models/Message'
 import { GuildsChannelsPath } from 'components/Application'
+import { handleSocketData, SocketData } from 'tools/handleSocketData'
 
 export interface Messages {
   messages: MessageWithMember[]
@@ -20,19 +21,43 @@ export interface MessagesProviderProps {
 
 export const MessagesProvider: React.FC<MessagesProviderProps> = (props) => {
   const { path, children } = props
-
   const { authentication } = useAuthentication()
 
   const {
     items: messages,
     hasMore,
     nextPage,
-    resetPagination
+    resetPagination,
+    setItems
   } = usePagination<MessageWithMember>({
     api: authentication.api,
     url: `/channels/${path.channelId}/messages`,
     inverse: true
   })
+
+  useEffect(() => {
+    authentication.socket.on(
+      'messages',
+      (data: SocketData<MessageWithMember>) => {
+        if (data.item.channelId === path.channelId) {
+          const messagesDiv = window.document.getElementById(
+            'messages'
+          ) as HTMLDivElement
+          const isAtBottom =
+            messagesDiv.scrollHeight - messagesDiv.scrollTop <=
+            messagesDiv.clientHeight
+          handleSocketData({ data, setItems })
+          if (data.action === 'create' && isAtBottom) {
+            messagesDiv.scrollTo(0, messagesDiv.scrollHeight)
+          }
+        }
+      }
+    )
+
+    return () => {
+      authentication.socket.off('messages')
+    }
+  }, [authentication.socket, setItems, path])
 
   useEffect(() => {
     resetPagination()

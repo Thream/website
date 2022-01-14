@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import { channelExample } from 'cypress/fixtures/channels/channel'
 
+import { channelExample } from '../../../../cypress/fixtures/channels/channel'
 import { Channel } from './Channel'
 
 describe('<Channel />', () => {

@@ -18,8 +18,63 @@ export const messageExampleComplete = {
 }
 
 export const messageExampleComplete2 = {
-  ...messageExample,
+  ...messageExampleComplete,
   id: 2,
-  value: 'Second message',
-  member: memberExampleComplete
+  value: 'Message with bad html: <script>alert("xss")</script>'
+}
+
+export const messageExampleComplete3 = {
+  ...messageExampleComplete,
+  id: 3,
+  value:
+    'Message with **bold text** and *italic text*.\nNewlines and some emoji: :smile:'
+}
+
+export const messageExampleComplete4 = {
+  ...messageExampleComplete,
+  id: 4,
+  value: `The Quadratic Formula:
+
+**Theorem 1**: $(a, b, c) \\in \\mathbb{R}^3$, the solutions of $ax^2 + bx + c = 0$ are:
+
+$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$
+  `
+}
+
+export const messageExampleComplete5 = {
+  ...messageExampleComplete,
+  id: 5,
+  value: ':wave:'
+}
+
+export const messageExampleComplete6 = {
+  ...messageExampleComplete,
+  id: 6,
+  value: '/uploads/messages/image.png',
+  type: 'file',
+  mimetype: 'image/png'
+}
+
+export const messageExampleComplete7 = {
+  ...messageExampleComplete,
+  id: 7,
+  value: '/uploads/messages/audio.mp3',
+  type: 'file',
+  mimetype: 'audio/mp3'
+}
+
+export const messageExampleComplete8 = {
+  ...messageExampleComplete,
+  id: 8,
+  value: '/uploads/messages/video.mp4',
+  type: 'file',
+  mimetype: 'video/mp4'
+}
+
+export const messageExampleComplete9 = {
+  ...messageExampleComplete,
+  id: 9,
+  value: '/uploads/messages/download.zip',
+  type: 'file',
+  mimetype: 'application/zip'
 }
