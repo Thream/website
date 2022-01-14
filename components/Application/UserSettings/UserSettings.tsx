@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { PhotographIcon } from '@heroicons/react/solid'
 import useTranslation from 'next-translate/useTranslation'
-import { API_URL } from 'tools/api'
 
+import { API_URL } from '../../../tools/api'
 import { UserPublic } from '../../../models/User'
-import { UserProfileGuilds } from '../UserProfileGuilds'
+import { UserProfileGuilds } from '../UserProfile/UserProfileGuilds'
 import { Input } from '../../design/Input'
 import { Checkbox } from '../../design/Checkbox'
 import { Textarea } from '../../design/Textarea'

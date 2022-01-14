@@ -17,4 +17,4 @@ export const UserProfileGuilds: Story<UserProfileGuildsProps> = (
 ) => {
   return <Component {...arguments_} />
 }
-UserProfileGuilds.args = { className: 'text-center' }
+UserProfileGuilds.args = {}

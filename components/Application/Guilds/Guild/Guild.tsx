@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { API_URL } from 'tools/api'
 
+import { API_URL } from '../../../../tools/api'
 import { GuildWithDefaultChannelId } from '../../../../models/Guild'
 import { IconLink } from '../../../design/IconLink'
 

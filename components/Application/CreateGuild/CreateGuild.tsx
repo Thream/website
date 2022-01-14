@@ -54,7 +54,11 @@ export const CreateGuild: React.FC = () => {
           label={t('common:name')}
           error={getErrorTranslation(errors.name)}
         />
-        <Textarea label='Description' id='textarea-description' />
+        <Textarea
+          label='Description'
+          placeholder='Description'
+          id='description'
+        />
         <Button className='w-full mt-6' type='submit' data-cy='submit'>
           {t('application:create')}
         </Button>

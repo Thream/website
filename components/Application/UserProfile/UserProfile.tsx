@@ -2,13 +2,13 @@ import Image from 'next/image'
 import { useState } from 'react'
 import classNames from 'classnames'
 import date from 'date-and-time'
-import { API_URL } from 'tools/api'
 import useTranslation from 'next-translate/useTranslation'
 import { XIcon } from '@heroicons/react/solid'
 
+import { API_URL } from '../../../tools/api'
 import { UserPublic } from '../../../models/User'
-import { UserProfileGuilds } from '../UserProfileGuilds'
-import { UserProfileGuild } from './UserProfileGuild'
+import { UserProfileGuilds } from './UserProfileGuilds'
+import { UserProfileGuild } from './UserProfileGuilds/UserProfileGuild'
 
 export interface UserProfileProps {
   className?: string
