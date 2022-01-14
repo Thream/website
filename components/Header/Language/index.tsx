@@ -33,7 +33,7 @@ export const Language: React.FC = () => {
   }
 
   return (
-    <div className='flex flex-col justify-center items-center cursor-pointer'>
+    <div className='relative flex flex-col justify-center items-center cursor-pointer'>
       <div
         data-cy='language-click'
         className='flex items-center mr-5'
@@ -46,7 +46,7 @@ export const Language: React.FC = () => {
       <ul
         data-cy='languages-list'
         className={classNames(
-          'flex flex-col justify-center items-center absolute p-0 top-14 z-10 w-24 mt-3 mr-4 rounded-lg list-none shadow-light dark:shadow-dark bg-white dark:bg-black',
+          'flex flex-col justify-center items-center absolute p-0 -bottom-16 z-10 w-24 mt-3 mr-4 rounded-lg list-none shadow-light dark:shadow-dark bg-white dark:bg-black',
           { hidden: hiddenMenu }
         )}
       >

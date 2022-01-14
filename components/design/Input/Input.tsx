@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+import classNames from 'classnames'
 
 import { FormState } from '../FormState'
 
@@ -8,6 +9,7 @@ export interface InputProps extends React.ComponentPropsWithRef<'input'> {
   label: string
   error?: string | null
   showForgotPassword?: boolean
+  className?: string
 }
 
 export const getInputType = (inputType: string): string => {
@@ -18,6 +20,7 @@ export const Input: React.FC<InputProps> = (props) => {
   const {
     label,
     name,
+    className,
     type = 'text',
     showForgotPassword = false,
     error,
@@ -34,7 +37,9 @@ export const Input: React.FC<InputProps> = (props) => {
   return (
     <>
       <div className='flex flex-col'>
-        <div className='flex justify-between mt-6 mb-2'>
+        <div
+          className={classNames('flex justify-between mt-6 mb-2', className)}
+        >
           <label className='pl-1' htmlFor={name}>
             {label}
           </label>
@@ -53,7 +58,7 @@ export const Input: React.FC<InputProps> = (props) => {
           <input
             data-testid='input'
             data-cy={`input-${name ?? 'name'}`}
-            className='h-11 leading-10 px-3 rounded-lg bg-[#f1f1f1] text-[#2a2a2a] caret-green-600 font-paragraph w-full focus:border focus:outline-none focus:shadow-green border-0'
+            className='h-11 leading-10 px-3 rounded-lg bg-[#f1f1f1] text-[#2a2a2a] border border-transparent caret-green-600 font-paragraph w-full focus:border focus:outline-none focus:shadow-green'
             {...rest}
             id={name}
             name={name}

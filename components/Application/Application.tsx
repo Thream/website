@@ -24,6 +24,7 @@ export type ApplicationPath =
   | '/application/guilds/join'
   | '/application/guilds/create'
   | `/application/users/${number}`
+  | `/application/users/${number}/settings`
   | GuildsChannelsPath
 
 export interface ApplicationProps {
@@ -172,8 +173,8 @@ export const Application: React.FC<ApplicationProps> = (props) => {
         >
           <div className='flex flex-col min-w-[92px] top-0 left-0 z-50 bg-gray-200 dark:bg-gray-800 border-r-2 border-gray-500 dark:border-white/20 py-2 space-y-2'>
             <IconLink
-              href={`/application/users/${user.id}`}
-              selected={path === `/application/users/${user.id}`}
+              href={`/application/users/${user.id}/settings`}
+              selected={path === `/application/users/${user.id}/settings`}
               title='Settings'
             >
               <Image
@@ -199,14 +200,13 @@ export const Application: React.FC<ApplicationProps> = (props) => {
             <Divider />
             <Guilds path={path} />
           </div>
-
           {guildLeftSidebar}
         </Sidebar>
 
         <div
           id='application-page-content'
           className={classNames(
-            'top-0 h-full-without-header flex flex-col flex-1 z-0 overflow-y-auto transition',
+            'top-0 h-full-without-header w-full flex flex-col flex-1 z-0 overflow-y-auto transition',
             {
               'absolute opacity-20':
                 isMobile && (visibleSidebars.left || visibleSidebars.right)

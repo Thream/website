@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { API_URL } from '../../../../tools/api'
 import { GuildWithDefaultChannelId } from '../../../../models/Guild'
 import { IconLink } from '../../../design/IconLink'
 
@@ -22,7 +23,9 @@ export const Guild: React.FC<GuildProps> = (props) => {
         <Image
           className='rounded-full'
           src={
-            guild.icon != null ? guild.icon : '/images/data/guild-default.png'
+            guild.icon != null
+              ? API_URL + guild.icon
+              : '/images/data/guild-default.png'
           }
           alt='logo'
           width={48}
