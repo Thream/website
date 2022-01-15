@@ -7,15 +7,19 @@ import { GuildPublic as GuildPublicType } from '../../../../models/Guild'
 
 export interface GuildPublicProps {
   guild: GuildPublicType
+  handlerClickJoin: () => void
 }
 
 export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
-  const { guild } = props
+  const { guild, handlerClickJoin } = props
 
   const { t } = useTranslation()
 
   return (
-    <div className='flex flex-col items-center justify-center border-gray-500 dark:border-gray-700 p-4 pt-8 cursor-pointer rounded shadow-lg border transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none'>
+    <div
+      className='flex flex-col items-center justify-center border-gray-500 dark:border-gray-700 p-4 pt-8 cursor-pointer rounded shadow-lg border transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none'
+      onClick={handlerClickJoin}
+    >
       <Image
         className='rounded-full'
         src={guild.icon != null ? guild.icon : '/images/data/guild-default.png'}
