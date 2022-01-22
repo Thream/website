@@ -1,9 +1,12 @@
 import Image from 'next/image'
-import { PhotographIcon } from '@heroicons/react/solid'
 import useTranslation from 'next-translate/useTranslation'
+import { useState } from 'react'
+import { Form } from 'react-component-form'
+import { PhotographIcon } from '@heroicons/react/solid'
+import { Type } from '@sinclair/typebox'
+import axios from 'axios'
 
 import { API_URL } from '../../../tools/api'
-import { UserPublic } from '../../../models/User'
 import { UserProfileGuilds } from '../UserProfile/UserProfileGuilds'
 import { Input } from '../../design/Input'
 import { Checkbox } from '../../design/Checkbox'
@@ -11,17 +14,77 @@ import { Textarea } from '../../design/Textarea'
 import { SocialMediaButton } from '../../design/SocialMediaButton'
 import { SwitchTheme } from '../../Header/SwitchTheme'
 import { Language } from '../../Header/Language'
+import { useAuthentication } from '../../../tools/authentication'
+import { Button } from '../../design/Button'
+import { FormState } from '../../design/FormState'
+import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
+import { userSchema } from '../../../models/User'
+import { userSettingsSchema } from '../../../models/UserSettings'
 
-export interface UserSettingsProps {
-  user: UserPublic
-}
-
-export const UserSettings: React.FC<UserSettingsProps> = (props) => {
-  const { user } = props
+export const UserSettings: React.FC = () => {
+  const { user, setUser, authentication } = useAuthentication()
   const { t } = useTranslation()
+  const [inputValues, setInputValues] = useState({
+    name: user.name,
+    status: user.status,
+    email: user.email,
+    website: user.website,
+    biography: user.biography
+  })
+
+  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
+    useForm({
+      validateSchema: {
+        name: userSchema.name,
+        status: Type.Optional(userSchema.status),
+        email: Type.Optional(userSchema.email),
+        website: Type.Optional(userSchema.website),
+        biography: Type.Optional(userSchema.biography),
+        isPublicGuilds: userSettingsSchema.isPublicGuilds,
+        isPublicEmail: userSettingsSchema.isPublicEmail
+      },
+      replaceEmptyStringToNull: true
+    })
+
+  const onSubmit: HandleSubmitCallback = async (formData) => {
+    try {
+      const { data } = await authentication.api.put('/users/current', formData)
+      setUser(data.user)
+      setInputValues(formData as any)
+      return {
+        type: 'success',
+        value: 'common:name'
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 400) {
+        return {
+          type: 'error',
+          value: 'errors:server-error'
+        }
+      }
+      return {
+        type: 'error',
+        value: 'errors:server-error'
+      }
+    }
+  }
+
+  const onChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (event) => {
+    setInputValues((oldInputValues) => {
+      return {
+        ...oldInputValues,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
 
   return (
-    <div className='my-auto lg:min-w-[875px] py-12 justify-center items-center flex flex-col'>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      className='my-auto lg:min-w-[875px] py-12 justify-center items-center flex flex-col'
+    >
       <div className='flex flex-col w-full justify-center items-center lg:flex-row sm:w-fit'>
         <div className=' flex justify-center items-center flex-wrap px-6 w-full sm:w-max'>
           <div className='relative'>
@@ -51,22 +114,29 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
           </div>
           <div className='flex flex-col mx-12'>
             <Input
+              name='name'
               label={t('common:name')}
               placeholder={t('common:name')}
               className='!mt-0'
-              defaultValue={user.name}
+              onChange={onChange}
+              value={inputValues.name ?? ''}
+              error={getErrorTranslation(errors.name)}
             />
             <Input
+              name='status'
               label={t('application:status')}
               placeholder={t('application:status')}
               className='!mt-4'
-              defaultValue={user.status ?? ''}
+              onChange={onChange}
+              value={inputValues.status ?? ''}
+              error={getErrorTranslation(errors.status)}
             />
           </div>
         </div>
         <div className='flex mt-10 flex-col items-center ml-0 lg:ml-24 lg:mt-0'>
           <UserProfileGuilds isPublicGuilds={user.settings.isPublicGuilds} />
           <Checkbox
+            name='isPublicGuilds'
             label={t('application:label-checkbox-guilds')}
             defaultChecked={user.settings.isPublicGuilds}
             id='checkbox-public-guilds'
@@ -76,22 +146,34 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
       </div>
       <div className='flex flex-col w-full justify-between items-center mt-12 lg:flex-row sm:w-fit'>
         <div className='w-4/5 sm:w-[450px] pr-0 lg:pr-12 lg:border-r-[1px] lg:border-neutral-700'>
-          <Input label='Email' defaultValue={user.email ?? ''} />
+          <Input
+            name='email'
+            label='Email'
+            onChange={onChange}
+            value={inputValues.email ?? ''}
+            error={getErrorTranslation(errors.email)}
+          />
           <Checkbox
+            name='isPublicEmail'
             label={t('application:label-checkbox-email')}
             id='checkbox-email-visibility'
             defaultChecked={user.settings.isPublicEmail}
           />
           <Input
+            name='website'
             label={t('application:website')}
             placeholder={t('application:website')}
-            defaultValue={user.website ?? ''}
+            onChange={onChange}
+            value={inputValues.website ?? ''}
+            error={getErrorTranslation(errors.website)}
           />
           <Textarea
+            name='biography'
             label={t('application:biography')}
             placeholder={t('application:biography')}
             id='textarea-biography'
-            defaultValue={user.biography ?? ''}
+            onChange={onChange}
+            value={inputValues.biography ?? ''}
           />
         </div>
         <div className='flex flex-col justify-between items-center w-4/5 sm:w-[415px] h-full pr-0 lg:pl-12'>
@@ -115,6 +197,11 @@ export const UserSettings: React.FC<UserSettingsProps> = (props) => {
           </div>
         </div>
       </div>
-    </div>
+
+      <div className='flex flex-col justify-center items-center mt-12 sm:w-fit'>
+        <Button type='submit'>Sauvegarder</Button>
+        <FormState state={fetchState} message={message} />
+      </div>
+    </Form>
   )
 }

@@ -31,7 +31,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   const { errors, fetchState, message, getErrorTranslation, handleSubmit } =
     useForm({
-      validateSchemaObject: {
+      validateSchema: {
         ...(mode === 'signup' && { name: userSchema.name }),
         email: userSchema.email,
         password: userSchema.password

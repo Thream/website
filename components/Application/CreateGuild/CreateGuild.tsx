@@ -18,7 +18,7 @@ export const CreateGuild: React.FC = () => {
 
   const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
     useForm({
-      validateSchemaObject: {
+      validateSchema: {
         name: guildSchema.name,
         description: guildSchema.description
       }

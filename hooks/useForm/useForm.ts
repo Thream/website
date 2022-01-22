@@ -7,6 +7,7 @@ import type { ErrorObject } from 'ajv'
 import { FetchState, useFetchState } from '../useFetchState'
 import { ajv } from '../../tools/ajv'
 import { getErrorTranslationKey } from './getErrorTranslationKey'
+import { replaceEmptyStringInObjectToNull } from '../../tools/utils/replaceEmptyStringInObjectToNull'
 
 interface Errors {
   [key: string]: ErrorObject<string, any> | null | undefined
@@ -21,7 +22,8 @@ const findError = (
 export type GetErrorTranslation = (error?: ErrorObject | null) => string | null
 
 export interface UseFormOptions {
-  validateSchemaObject: { [key: string]: any }
+  validateSchema: { [key: string]: any }
+  replaceEmptyStringToNull?: boolean
 }
 
 export type HandleSubmit = (callback: HandleSubmitCallback) => HandleForm
@@ -45,7 +47,7 @@ export interface UseFormResult {
 }
 
 export const useForm = (options: UseFormOptions): UseFormResult => {
-  const { validateSchemaObject } = options
+  const { validateSchema, replaceEmptyStringToNull = false } = options
   const { t } = useTranslation()
   const [fetchState, setFetchState] = useFetchState()
   const [messageTranslationKey, setMessageTranslationKey] = useState<
@@ -53,13 +55,13 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
   >(undefined)
   const [errors, setErrors] = useState<Errors>({})
 
-  const validateSchema = useMemo(() => {
-    return Type.Object(validateSchemaObject)
-  }, [validateSchemaObject])
+  const validateSchemaObject = useMemo(() => {
+    return Type.Object(validateSchema)
+  }, [validateSchema])
 
   const validate = useMemo(() => {
-    return ajv.compile(validateSchema)
-  }, [validateSchema])
+    return ajv.compile(validateSchemaObject)
+  }, [validateSchemaObject])
 
   const getErrorTranslation = (error?: ErrorObject | null): string | null => {
     if (error != null) {
@@ -73,11 +75,19 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
 
   const handleSubmit: HandleSubmit = (callback) => {
     return async (formData, formElement) => {
+      console.log(formData)
+      if (replaceEmptyStringToNull) {
+        formData = replaceEmptyStringInObjectToNull(
+          formData,
+          validateSchemaObject.required
+        )
+      }
+      console.log(validateSchemaObject)
       const isValid = validate(formData)
       if (!isValid) {
         setFetchState('error')
         const errors: Errors = {}
-        for (const property in validateSchema.properties) {
+        for (const property in validateSchemaObject.properties) {
           errors[property] = validate.errors?.find(findError(`/${property}`))
         }
         setErrors(errors)
