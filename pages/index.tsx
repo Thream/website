@@ -21,7 +21,7 @@ const Home: NextPage<FooterProps> = (props) => {
       <Head />
       <Header />
       <Main>
-        <div className='flex flex-col items-center w-4/5'>
+        <div className='flex w-4/5 flex-col items-center'>
           <div className='max-w-xs'>
             <Link href='/authentication/signup'>
               <a>
@@ -35,24 +35,24 @@ const Home: NextPage<FooterProps> = (props) => {
             </Link>
           </div>
           <div className='text-center'>
-            <h1 className='my-4 text-3xl font-medium font-headline text-green-800 dark:text-green-400'>
+            <h1 className='my-4 font-headline text-3xl font-medium text-green-800 dark:text-green-400'>
               Thream
             </h1>
             <div
-              className='font-paragraph text-lg max-w-lg'
+              className='max-w-lg font-paragraph text-lg'
               data-cy='main-description'
             >
               <Translation
                 i18nKey='home:description'
                 components={[
                   <strong
-                    className='text-green-800 dark:text-green-400 font-bold'
+                    className='font-bold text-green-800 dark:text-green-400'
                     key='bold'
                   />
                 ]}
               />
             </div>
-            <div className='flex justify-center items-center text-center mt-8 space-x-4'>
+            <div className='mt-8 flex items-center justify-center space-x-4 text-center'>
               <Link href='/authentication/signup' passHref>
                 <ButtonLink data-cy='get-started'>
                   {t('home:get-started')}

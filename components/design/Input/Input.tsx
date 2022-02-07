@@ -38,7 +38,7 @@ export const Input: React.FC<InputProps> = (props) => {
     <>
       <div className='flex flex-col'>
         <div
-          className={classNames('flex justify-between mt-6 mb-2', className)}
+          className={classNames('mt-6 mb-2 flex justify-between', className)}
         >
           <label className='pl-1' htmlFor={name}>
             {label}
@@ -46,7 +46,7 @@ export const Input: React.FC<InputProps> = (props) => {
           {type === 'password' && showForgotPassword ? (
             <Link href='/authentication/forgot-password'>
               <a
-                className='font-headline text-center text-xs sm:text-sm text-green-800 dark:text-green-400 hover:underline'
+                className='text-center font-headline text-xs text-green-800 hover:underline dark:text-green-400 sm:text-sm'
                 data-testid='forgot-password-link'
               >
                 {t('authentication:forgot-password')}
@@ -54,11 +54,11 @@ export const Input: React.FC<InputProps> = (props) => {
             </Link>
           ) : null}
         </div>
-        <div className='mt-0 relative'>
+        <div className='relative mt-0'>
           <input
             data-testid='input'
             data-cy={`input-${name ?? 'name'}`}
-            className='h-11 leading-10 px-3 rounded-lg bg-[#f1f1f1] text-[#2a2a2a] border border-transparent caret-green-600 font-paragraph w-full focus:border focus:outline-none focus:shadow-green'
+            className='h-11 w-full rounded-lg border border-transparent bg-[#f1f1f1] px-3 font-paragraph leading-10 text-[#2a2a2a] caret-green-600 focus:border focus:shadow-green focus:outline-none'
             {...rest}
             id={name}
             name={name}
@@ -68,7 +68,7 @@ export const Input: React.FC<InputProps> = (props) => {
             <div
               data-testid='password-eye'
               onClick={handlePassword}
-              className='password-eye absolute cursor-pointer bg-cover bg-[#f1f1f1]'
+              className='password-eye absolute cursor-pointer bg-[#f1f1f1] bg-cover'
             />
           )}
           <FormState

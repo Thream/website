@@ -93,14 +93,14 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   return (
     <Main>
-      <div className='flex flex-col sm:items-center sm:w-full'>
+      <div className='flex flex-col sm:w-full sm:items-center'>
         <div className='flex flex-col items-center justify-center space-y-6 sm:w-4/6 sm:flex-row sm:space-x-6 sm:space-y-0'>
           <SocialMediaButton socialMedia='Google' />
           <SocialMediaButton socialMedia='GitHub' />
           <SocialMediaButton socialMedia='Discord' />
         </div>
       </div>
-      <div className='text-center text-lg font-paragraph pt-8'>
+      <div className='pt-8 text-center font-paragraph text-lg'>
         {t('authentication:or')}
       </div>
       <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
@@ -128,10 +128,10 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           showForgotPassword={mode === 'signin'}
           error={getErrorTranslation(errors.password)}
         />
-        <Button data-cy='submit' className='w-full mt-6' type='submit'>
+        <Button data-cy='submit' className='mt-6 w-full' type='submit'>
           {t('authentication:submit')}
         </Button>
-        <p className='mt-3 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
+        <p className='mt-3 font-headline text-sm text-green-800 hover:underline dark:text-green-400'>
           <Link
             href={
               mode === 'signup'

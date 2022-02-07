@@ -124,23 +124,23 @@ export const UserSettings: React.FC = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className='my-auto lg:min-w-[875px] py-12 justify-center items-center flex flex-col'
+      className='my-auto flex flex-col items-center justify-center py-12 lg:min-w-[875px]'
     >
-      <div className='flex flex-col w-full justify-center items-center lg:flex-row sm:w-fit'>
-        <div className=' flex justify-center items-center flex-wrap px-6 w-full sm:w-max'>
+      <div className='flex w-full flex-col items-center justify-center sm:w-fit lg:flex-row'>
+        <div className=' flex w-full flex-wrap items-center justify-center px-6 sm:w-max'>
           <div className='relative'>
-            <div className='absolute w-full h-full z-50'>
-              <button className='relative w-full h-full flex items-center justify-center transition hover:scale-110'>
+            <div className='absolute z-50 h-full w-full'>
+              <button className='relative flex h-full w-full items-center justify-center transition hover:scale-110'>
                 <input
                   type='file'
-                  className='absolute w-full h-full opacity-0 cursor-pointer'
+                  className='absolute h-full w-full cursor-pointer opacity-0'
                 />
-                <PhotographIcon color='white' className='w-8 h-8' />
+                <PhotographIcon color='white' className='h-8 w-8' />
               </button>
             </div>
-            <div className='flex justify-center items-center rounded-full shadow-xl bg-black'>
+            <div className='flex items-center justify-center rounded-full bg-black shadow-xl'>
               <Image
-                className='opacity-50 rounded-full'
+                className='rounded-full opacity-50'
                 src={
                   user.logo != null
                     ? API_URL + user.logo
@@ -153,7 +153,7 @@ export const UserSettings: React.FC = () => {
               />
             </div>
           </div>
-          <div className='flex flex-col mx-12'>
+          <div className='mx-12 flex flex-col'>
             <Input
               name='name'
               label={t('common:name')}
@@ -174,7 +174,7 @@ export const UserSettings: React.FC = () => {
             />
           </div>
         </div>
-        <div className='flex mt-10 flex-col items-center ml-0 lg:ml-24 lg:mt-0'>
+        <div className='mt-10 ml-0 flex flex-col items-center lg:ml-24 lg:mt-0'>
           <UserProfileGuilds isPublicGuilds={inputValues.isPublicGuilds} />
           <Checkbox
             name='isPublicGuilds'
@@ -186,8 +186,8 @@ export const UserSettings: React.FC = () => {
           />
         </div>
       </div>
-      <div className='flex flex-col w-full justify-between items-center mt-12 lg:flex-row sm:w-fit'>
-        <div className='w-4/5 sm:w-[450px] pr-0 lg:pr-12 lg:border-r-[1px] lg:border-neutral-700'>
+      <div className='mt-12 flex w-full flex-col items-center justify-between sm:w-fit lg:flex-row'>
+        <div className='w-4/5 pr-0 sm:w-[450px] lg:border-r-[1px] lg:border-neutral-700 lg:pr-12'>
           <Input
             name='email'
             label='Email'
@@ -220,8 +220,8 @@ export const UserSettings: React.FC = () => {
             value={inputValues.biography ?? ''}
           />
         </div>
-        <div className='flex flex-col justify-between items-center w-4/5 sm:w-[415px] h-full pr-0 lg:pl-12'>
-          <div className='flex w-full flex-col gap-4 mt-14'>
+        <div className='flex h-full w-4/5 flex-col items-center justify-between pr-0 sm:w-[415px] lg:pl-12'>
+          <div className='mt-14 flex w-full flex-col gap-4'>
             <SocialMediaButton
               socialMedia='Google'
               className='w-full justify-center'
@@ -235,14 +235,14 @@ export const UserSettings: React.FC = () => {
               className='w-full justify-center'
             />
           </div>
-          <div className='flex justify-between w-full pt-14'>
+          <div className='flex w-full justify-between pt-14'>
             <Language />
             <SwitchTheme />
           </div>
         </div>
       </div>
 
-      <div className='flex flex-col justify-center items-center mt-12 sm:w-fit'>
+      <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
         <Button type='submit'>Sauvegarder</Button>
         <FormState state={fetchState} message={message} />
       </div>

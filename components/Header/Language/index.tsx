@@ -33,10 +33,10 @@ export const Language: React.FC = () => {
   }
 
   return (
-    <div className='relative flex flex-col justify-center items-center cursor-pointer'>
+    <div className='relative flex cursor-pointer flex-col items-center justify-center'>
       <div
         data-cy='language-click'
-        className='flex items-center mr-5'
+        className='mr-5 flex items-center'
         onClick={handleHiddenMenu}
       >
         <LanguageFlag language={currentLanguage} />
@@ -46,7 +46,7 @@ export const Language: React.FC = () => {
       <ul
         data-cy='languages-list'
         className={classNames(
-          'flex flex-col justify-center items-center absolute p-0 -bottom-16 z-10 w-24 mt-3 mr-4 rounded-lg list-none shadow-light dark:shadow-dark bg-white dark:bg-black',
+          'absolute -bottom-16 z-10 mt-3 mr-4 flex w-24 list-none flex-col items-center justify-center rounded-lg bg-white p-0 shadow-light dark:bg-black dark:shadow-dark',
           { hidden: hiddenMenu }
         )}
       >
@@ -57,7 +57,7 @@ export const Language: React.FC = () => {
           return (
             <li
               key={index}
-              className='flex items-center justify-center w-full h-12 hover:bg-[#4f545c] hover:bg-opacity-20 pl-2'
+              className='flex h-12 w-full items-center justify-center pl-2 hover:bg-[#4f545c] hover:bg-opacity-20'
               onClick={async () => await handleLanguage(language)}
             >
               <LanguageFlag language={language} />

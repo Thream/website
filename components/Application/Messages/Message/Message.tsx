@@ -17,13 +17,13 @@ export const Message: React.FC<MessageProps> = (props) => {
 
   return (
     <div
-      className='p-4 flex transition hover:bg-gray-200 dark:hover:bg-gray-900'
+      className='flex p-4 transition hover:bg-gray-200 dark:hover:bg-gray-900'
       data-cy={`message-${message.id}`}
     >
       <Link href={`/application/users/${message.member.user.id}`}>
         <a>
-          <div className='w-12 h-12 mr-4 flex flex-shrink-0 items-center justify-center'>
-            <div className='w-10 h-10 drop-shadow-md'>
+          <div className='mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center'>
+            <div className='h-10 w-10 drop-shadow-md'>
               <Image
                 className='rounded-full'
                 src={
@@ -41,7 +41,7 @@ export const Message: React.FC<MessageProps> = (props) => {
         </a>
       </Link>
       <div className='w-full'>
-        <div className='w-max flex items-center'>
+        <div className='flex w-max items-center'>
           <Link href={`/application/users/${message.member.user.id}`}>
             <a>
               <span
@@ -54,7 +54,7 @@ export const Message: React.FC<MessageProps> = (props) => {
           </Link>
           <span
             data-cy='message-date'
-            className='text-gray-500 dark:text-gray-200 text-xs ml-4 select-none'
+            className='ml-4 select-none text-xs text-gray-500 dark:text-gray-200'
           >
             {date.format(new Date(message.createdAt), 'DD/MM/YYYY - HH:mm:ss')}
           </span>

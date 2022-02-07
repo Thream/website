@@ -18,7 +18,7 @@ describe('<PopupGuildCard />', () => {
         }
         description='Create your own guild and manage everything within a few clicks !'
         link={{
-          icon: <PlusSmIcon className='w-8 h-8 mr-2' />,
+          icon: <PlusSmIcon className='mr-2 h-8 w-8' />,
           text: 'Create a server',
           href: '/application/guilds/create'
         }}

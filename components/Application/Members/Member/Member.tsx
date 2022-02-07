@@ -14,8 +14,8 @@ export const Member: React.FC<MemberProps> = (props) => {
   return (
     <Link href={`/application/users/${member.user.id}`}>
       <a>
-        <div className='flex items-center cursor-pointer py-2 px-4 pr-10 rounded hover:bg-gray-300 dark:hover:bg-gray-900'>
-          <div className='min-w-[50px] flex rounded-full'>
+        <div className='flex cursor-pointer items-center rounded py-2 px-4 pr-10 hover:bg-gray-300 dark:hover:bg-gray-900'>
+          <div className='flex min-w-[50px] rounded-full'>
             <Image
               src={
                 member.user.logo == null
@@ -29,10 +29,10 @@ export const Member: React.FC<MemberProps> = (props) => {
               className='rounded-full'
             />
           </div>
-          <div className='max-w-[145px] ml-4'>
+          <div className='ml-4 max-w-[145px]'>
             <p
               data-cy='member-user-name'
-              className='overflow-hidden whitespace-nowrap overflow-ellipsis'
+              className='overflow-hidden overflow-ellipsis whitespace-nowrap'
             >
               {member.user.name}
             </p>

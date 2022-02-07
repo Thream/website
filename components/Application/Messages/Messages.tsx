@@ -12,7 +12,7 @@ export const Messages: React.FC = () => {
     return (
       <div
         id='messages'
-        className='w-full scrollbar-firefox-support overflow-y-auto transition-all flex-1 flex flex-col text-center mt-8 text-lg'
+        className='scrollbar-firefox-support mt-8 flex w-full flex-1 flex-col overflow-y-auto text-center text-lg transition-all'
       >
         <p>
           Nothing to show here! <Emoji value=':ghost:' size={20} />
@@ -25,7 +25,7 @@ export const Messages: React.FC = () => {
   return (
     <div
       id='messages'
-      className='w-full scrollbar-firefox-support overflow-y-auto transition-all flex-1 flex flex-col-reverse'
+      className='scrollbar-firefox-support flex w-full flex-1 flex-col-reverse overflow-y-auto transition-all'
     >
       <InfiniteScroll
         scrollableTarget='messages'

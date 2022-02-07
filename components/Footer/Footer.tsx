@@ -13,10 +13,10 @@ export const Footer: React.FC<FooterProps> = (props) => {
   const { version } = props
 
   return (
-    <footer className='bg-white flex flex-col items-center justify-center py-6 text-lg border-t-2 border-gray-600 dark:border-gray-400 dark:bg-black'>
+    <footer className='flex flex-col items-center justify-center border-t-2 border-gray-600 bg-white py-6 text-lg dark:border-gray-400 dark:bg-black'>
       <p>
         <Link href='/'>
-          <a className='hover:underline text-green-800 dark:text-green-400'>
+          <a className='text-green-800 hover:underline dark:text-green-400'>
             Thream
           </a>
         </Link>{' '}

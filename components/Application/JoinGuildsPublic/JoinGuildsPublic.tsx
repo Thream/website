@@ -33,14 +33,14 @@ export const JoinGuildsPublic: React.FC = () => {
       <input
         data-cy='search-guild-input'
         onChange={handleChange}
-        className='w-10/12 sm:w-8/12 md:w-6/12 lg:w-5/12 bg-white dark:bg-[#3B3B3B] border-gray-500 dark:border-gray-700 p-3 my-6 mt-16 mx-auto rounded-md border'
+        className='my-6 mx-auto mt-16 w-10/12 rounded-md border border-gray-500 bg-white p-3 dark:border-gray-700 dark:bg-[#3B3B3B] sm:w-8/12 md:w-6/12 lg:w-5/12'
         type='search'
         name='search-guild'
         placeholder={`🔎  ${t('application:search')}...`}
       />
-      <div className='w-full flex items-center justify-center p-12'>
+      <div className='flex w-full items-center justify-center p-12'>
         <InfiniteScroll
-          className='guilds-public-list max-w-[1600px] grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 !overflow-hidden'
+          className='guilds-public-list grid max-w-[1600px] grid-cols-1 gap-8 !overflow-hidden sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
           dataLength={items.length}
           next={nextPage}
           scrollableTarget='application-page-content'

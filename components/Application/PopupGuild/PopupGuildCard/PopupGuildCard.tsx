@@ -14,16 +14,16 @@ export const PopupGuildCard: React.FC<PopupGuildCardProps> = (props) => {
   const { image, description, link } = props
 
   return (
-    <div className='w-80 h-96 m-8 rounded-2xl bg-gray-800'>
-      <div className='flex justify-center items-center h-1/2 w-full'>
+    <div className='m-8 h-96 w-80 rounded-2xl bg-gray-800'>
+      <div className='flex h-1/2 w-full items-center justify-center'>
         {image}
       </div>
-      <div className='flex justify-between flex-col h-1/2 w-full bg-gray-700 rounded-b-2xl mt-2 shadow-sm'>
-        <p className='text-gray-200 text-sm mt-6 text-center px-8'>
+      <div className='mt-2 flex h-1/2 w-full flex-col justify-between rounded-b-2xl bg-gray-700 shadow-sm'>
+        <p className='mt-6 px-8 text-center text-sm text-gray-200'>
           {description}
         </p>
         <Link href={link.href}>
-          <a className='flex justify-center items-center w-4/5 h-10 rounded-2xl transition duration-200 ease-in-out text-white font-bold tracking-wide bg-green-400 self-center mb-6 hover:bg-green-600'>
+          <a className='mb-6 flex h-10 w-4/5 items-center justify-center self-center rounded-2xl bg-green-400 font-bold tracking-wide text-white transition duration-200 ease-in-out hover:bg-green-600'>
             {link.icon}
             {link.text}
           </a>

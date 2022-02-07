@@ -30,14 +30,14 @@ export const FormState: React.FC<FormStateProps> = (props) => {
     <>
       <div
         className={classNames(
-          'mt-6 relative flex flex-row items-center font-medium text-center max-w-xl',
+          'relative mt-6 flex max-w-xl flex-row items-center text-center font-medium',
           {
             'text-red-800 dark:text-red-400': state === 'error',
             'text-green-800 dark:text-green-400': state === 'success'
           }
         )}
       >
-        <div className='thumbnail bg-cover absolute top-0 inline-block font-headline'></div>
+        <div className='thumbnail absolute top-0 inline-block bg-cover font-headline'></div>
         <span id={id} className={classNames({ 'pl-6': state === 'error' })}>
           <b>{t(`errors:${state}`)}:</b> {message}
         </span>

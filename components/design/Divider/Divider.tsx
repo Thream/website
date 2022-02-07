@@ -1,7 +1,7 @@
 export const Divider: React.FC = () => {
   return (
-    <div className='relative flex justify-center h-[2px] w-full mb-3'>
-      <div className='absolute h-[2px] w-8/12 bg-gray-600 dark:bg-white/20 rounded-full'></div>
+    <div className='relative mb-3 flex h-[2px] w-full justify-center'>
+      <div className='absolute h-[2px] w-8/12 rounded-full bg-gray-600 dark:bg-white/20'></div>
     </div>
   )
 }

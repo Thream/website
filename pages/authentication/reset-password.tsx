@@ -62,7 +62,7 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
             name='password'
             label='Password'
           />
-          <Button data-cy='submit' className='w-full mt-6' type='submit'>
+          <Button data-cy='submit' className='mt-6 w-full' type='submit'>
             {t('authentication:submit')}
           </Button>
         </AuthenticationForm>

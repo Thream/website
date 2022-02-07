@@ -1,7 +1,7 @@
 export const FileIcon: React.FC = () => {
   return (
     <svg
-      className='dark:text-white text-black fill-current'
+      className='fill-current text-black dark:text-white'
       width='21'
       height='26'
       viewBox='0 0 21 26'

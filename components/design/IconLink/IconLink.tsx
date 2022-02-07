@@ -13,15 +13,15 @@ export const IconLink: React.FC<IconLinkProps> = (props) => {
 
   return (
     <Link href={href}>
-      <a className='w-full flex justify-center relative group' title={title}>
+      <a className='group relative flex w-full justify-center' title={title}>
         <div
-          className={classNames('w-full flex justify-center group', className)}
+          className={classNames('group flex w-full justify-center', className)}
         >
           {children}
-          <div className='absolute flex items-center w-3 h-12 left-0'>
+          <div className='absolute left-0 flex h-12 w-3 items-center'>
             <span
               className={classNames(
-                'absolute w-4/12 bg-green-700 rounded-r-lg group-hover:h-5',
+                'absolute w-4/12 rounded-r-lg bg-green-700 group-hover:h-5',
                 {
                   'h-full': selected
                 }

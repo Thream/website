@@ -17,9 +17,9 @@ export const Channel: React.FC<ChannelProps> = (props) => {
     <Link href={`/application/${path.guildId}/${channel.id}`}>
       <a
         className={classNames(
-          'hover:bg-gray-100 group flex items-center justify-between text-sm py-2 my-3 mx-3 transition-colors dark:hover:bg-gray-600 duration-200 rounded-lg',
+          'group my-3 mx-3 flex items-center justify-between rounded-lg py-2 text-sm transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-600',
           {
-            'text-green-800 dark:text-green-400 font-semibold': selected
+            'font-semibold text-green-800 dark:text-green-400': selected
           }
         )}
       >

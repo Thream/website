@@ -17,10 +17,10 @@ export const Channels: React.FC<ChannelsProps> = (props) => {
   return (
     <div
       id='channels'
-      className='scrollbar-firefox-support overflow-y-auto flex-1 flex flex-col'
+      className='scrollbar-firefox-support flex flex-1 flex-col overflow-y-auto'
     >
       <InfiniteScroll
-        className='w-full channels-list'
+        className='channels-list w-full'
         scrollableTarget='channels'
         dataLength={channels.length}
         next={nextPage}

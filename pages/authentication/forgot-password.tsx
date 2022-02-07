@@ -58,10 +58,10 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
       <Main>
         <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
           <Input type='email' placeholder='Email' name='email' label='Email' />
-          <Button data-cy='submit' className='w-full mt-6' type='submit'>
+          <Button data-cy='submit' className='mt-6 w-full' type='submit'>
             {t('authentication:submit')}
           </Button>
-          <p className='mt-3 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
+          <p className='mt-3 font-headline text-sm text-green-800 hover:underline dark:text-green-400'>
             <Link href='/authentication/signin'>
               <a>{t('authentication:already-know-password')}</a>
             </Link>
