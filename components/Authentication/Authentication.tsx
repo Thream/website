@@ -35,7 +35,8 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
         ...(mode === 'signup' && { name: userSchema.name }),
         email: userSchema.email,
         password: userSchema.password
-      }
+      },
+      resetOnSuccess: true
     })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
@@ -51,9 +52,16 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
         }
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 400) {
+          const message = error.response.data.message as string
+          if (message.endsWith('already taken.')) {
+            return {
+              type: 'error',
+              value: 'authentication:already-used'
+            }
+          }
           return {
             type: 'error',
-            value: 'authentication:alreadyUsed'
+            value: 'errors:server-error'
           }
         }
         return {

@@ -23,7 +23,10 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
   const { version } = props
 
   const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
-    useForm({ validateSchema: { password: userSchema.password } })
+    useForm({
+      validateSchema: { password: userSchema.password },
+      resetOnSuccess: true
+    })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
     try {

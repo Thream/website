@@ -18,7 +18,7 @@ import { useAuthentication } from '../../../tools/authentication'
 import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
 import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
-import { userSchema } from '../../../models/User'
+import { userCurrentSchema, userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
 
 export const UserSettings: React.FC = () => {
@@ -29,7 +29,9 @@ export const UserSettings: React.FC = () => {
     status: user.status,
     email: user.email,
     website: user.website,
-    biography: user.biography
+    biography: user.biography,
+    isPublicGuilds: user.settings.isPublicGuilds,
+    isPublicEmail: user.settings.isPublicEmail
   })
 
   const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
@@ -37,19 +39,35 @@ export const UserSettings: React.FC = () => {
       validateSchema: {
         name: userSchema.name,
         status: Type.Optional(userSchema.status),
-        email: Type.Optional(userSchema.email),
+        email: Type.Optional(userCurrentSchema.email),
         website: Type.Optional(userSchema.website),
         biography: Type.Optional(userSchema.biography),
         isPublicGuilds: userSettingsSchema.isPublicGuilds,
         isPublicEmail: userSettingsSchema.isPublicEmail
       },
-      replaceEmptyStringToNull: true
+      replaceEmptyStringToNull: true,
+      resetOnSuccess: false
     })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
     try {
-      const { data } = await authentication.api.put('/users/current', formData)
-      setUser(data.user)
+      const { isPublicGuilds, isPublicEmail, ...userData } = formData
+      const userSettings = { isPublicEmail, isPublicGuilds }
+      const { data: userCurrentData } = await authentication.api.put(
+        `/users/current?redirectURI=${window.location.origin}/authentication/signin`,
+        userData
+      )
+      const { data: userCurrentSettings } = await authentication.api.put(
+        '/users/current/settings',
+        userSettings
+      )
+      setUser((oldUser) => {
+        return {
+          ...oldUser,
+          ...userCurrentData,
+          settings: userCurrentSettings.settings
+        }
+      })
       setInputValues(formData as any)
       return {
         type: 'success',
@@ -57,6 +75,18 @@ export const UserSettings: React.FC = () => {
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 400) {
+        const message = error.response.data.message as string
+        if (message.endsWith('already taken.')) {
+          return {
+            type: 'error',
+            value: 'authentication:already-used'
+          }
+        } else if (message.endsWith('email to sign in.')) {
+          return {
+            type: 'error',
+            value: 'authentication:email-required-to-sign-in'
+          }
+        }
         return {
           type: 'error',
           value: 'errors:server-error'
@@ -76,6 +106,17 @@ export const UserSettings: React.FC = () => {
       return {
         ...oldInputValues,
         [event.target.name]: event.target.value
+      }
+    })
+  }
+
+  const onChangeCheckbox: React.ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    setInputValues((oldInputValues) => {
+      return {
+        ...oldInputValues,
+        [event.target.name]: event.target.checked
       }
     })
   }
@@ -134,11 +175,12 @@ export const UserSettings: React.FC = () => {
           </div>
         </div>
         <div className='flex mt-10 flex-col items-center ml-0 lg:ml-24 lg:mt-0'>
-          <UserProfileGuilds isPublicGuilds={user.settings.isPublicGuilds} />
+          <UserProfileGuilds isPublicGuilds={inputValues.isPublicGuilds} />
           <Checkbox
             name='isPublicGuilds'
             label={t('application:label-checkbox-guilds')}
-            defaultChecked={user.settings.isPublicGuilds}
+            onChange={onChangeCheckbox}
+            checked={inputValues.isPublicGuilds}
             id='checkbox-public-guilds'
             className='px-8'
           />
@@ -149,6 +191,7 @@ export const UserSettings: React.FC = () => {
           <Input
             name='email'
             label='Email'
+            placeholder='Email'
             onChange={onChange}
             value={inputValues.email ?? ''}
             error={getErrorTranslation(errors.email)}
@@ -157,7 +200,8 @@ export const UserSettings: React.FC = () => {
             name='isPublicEmail'
             label={t('application:label-checkbox-email')}
             id='checkbox-email-visibility'
-            defaultChecked={user.settings.isPublicEmail}
+            onChange={onChangeCheckbox}
+            checked={inputValues.isPublicEmail}
           />
           <Input
             name='website'

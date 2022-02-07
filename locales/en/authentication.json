@@ -12,5 +12,6 @@
   "success-signup": "You're almost there, please check your emails to confirm registration.",
   "success-forgot-password": "Password-reset request successful, please check your emails!",
   "wrong-credentials": "Invalid credentials. Please try again.",
-  "alreadyUsed": "Name or Email already used."
+  "already-used": "Name or Email already used.",
+  "email-required-to-sign-in": "Email is required if it's your only way to sign in."
 }

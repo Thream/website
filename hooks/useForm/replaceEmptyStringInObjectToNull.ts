@@ -1,6 +1,4 @@
-interface ObjectAny {
-  [key: string]: any
-}
+import type { ObjectAny } from '../../tools/types'
 
 export const replaceEmptyStringInObjectToNull = (
   object: ObjectAny,

@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import { Type } from '@sinclair/typebox'
-import type { FormDataObject, HandleForm } from 'react-component-form'
+import type { HandleForm } from 'react-component-form'
 import type { ErrorObject } from 'ajv'
 
 import { FetchState, useFetchState } from '../useFetchState'
 import { ajv } from '../../tools/ajv'
 import { getErrorTranslationKey } from './getErrorTranslationKey'
-import { replaceEmptyStringInObjectToNull } from '../../tools/utils/replaceEmptyStringInObjectToNull'
+import { replaceEmptyStringInObjectToNull } from './replaceEmptyStringInObjectToNull'
+import type { ObjectAny } from '../../tools/types'
+import { handleCheckboxBoolean } from './handleCheckboxBoolean'
 
 interface Errors {
   [key: string]: ErrorObject<string, any> | null | undefined
@@ -24,6 +26,7 @@ export type GetErrorTranslation = (error?: ErrorObject | null) => string | null
 export interface UseFormOptions {
   validateSchema: { [key: string]: any }
   replaceEmptyStringToNull?: boolean
+  resetOnSuccess?: boolean
 }
 
 export type HandleSubmit = (callback: HandleSubmitCallback) => HandleForm
@@ -34,7 +37,7 @@ interface Message {
 }
 
 export type HandleSubmitCallback = (
-  formData: FormDataObject,
+  formData: ObjectAny,
   formElement: HTMLFormElement
 ) => Promise<Message | null>
 
@@ -47,7 +50,11 @@ export interface UseFormResult {
 }
 
 export const useForm = (options: UseFormOptions): UseFormResult => {
-  const { validateSchema, replaceEmptyStringToNull = false } = options
+  const {
+    validateSchema,
+    replaceEmptyStringToNull = false,
+    resetOnSuccess = false
+  } = options
   const { t } = useTranslation()
   const [fetchState, setFetchState] = useFetchState()
   const [messageTranslationKey, setMessageTranslationKey] = useState<
@@ -74,15 +81,14 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
   }
 
   const handleSubmit: HandleSubmit = (callback) => {
-    return async (formData, formElement) => {
-      console.log(formData)
+    return async (formData: ObjectAny, formElement) => {
       if (replaceEmptyStringToNull) {
         formData = replaceEmptyStringInObjectToNull(
           formData,
           validateSchemaObject.required
         )
       }
-      console.log(validateSchemaObject)
+      formData = handleCheckboxBoolean(formData, validateSchemaObject)
       const isValid = validate(formData)
       if (!isValid) {
         setFetchState('error')
@@ -99,7 +105,9 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
           setMessageTranslationKey(message.value)
           if (message.type === 'success') {
             setFetchState('success')
-            formElement.reset()
+            if (resetOnSuccess) {
+              formElement.reset()
+            }
           } else {
             setFetchState('error')
           }

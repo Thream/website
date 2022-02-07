@@ -21,7 +21,8 @@ export const CreateGuild: React.FC = () => {
       validateSchema: {
         name: guildSchema.name,
         description: guildSchema.description
-      }
+      },
+      resetOnSuccess: true
     })
 
   const { authentication } = useAuthentication()

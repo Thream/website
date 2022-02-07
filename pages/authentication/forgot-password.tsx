@@ -22,7 +22,10 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
   const { version } = props
 
   const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
-    useForm({ validateSchema: { email: userSchema.email } })
+    useForm({
+      validateSchema: { email: userSchema.email },
+      resetOnSuccess: true
+    })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
     try {

@@ -1,4 +1,4 @@
-import { replaceEmptyStringInObjectToNull } from '../replaceEmptyStringInObjectToNull'
+import { replaceEmptyStringInObjectToNull } from './replaceEmptyStringInObjectToNull'
 
 describe('tools/utils/replaceEmptyStringInObjectToNull', () => {
   it('should replace empty string in object to null except for required properties', () => {
