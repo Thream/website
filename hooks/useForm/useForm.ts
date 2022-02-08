@@ -43,7 +43,11 @@ export type HandleSubmitCallback = (
 
 export interface UseFormResult {
   message: string | null
+  setMessageTranslationKey: React.Dispatch<
+    React.SetStateAction<string | undefined>
+  >
   fetchState: FetchState
+  setFetchState: React.Dispatch<React.SetStateAction<FetchState>>
   getErrorTranslation: GetErrorTranslation
   handleSubmit: HandleSubmit
   errors: Errors
@@ -120,7 +124,9 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
     getErrorTranslation,
     errors,
     fetchState,
+    setFetchState,
     handleSubmit,
-    message: messageTranslationKey != null ? t(messageTranslationKey) : null
+    message: messageTranslationKey != null ? t(messageTranslationKey) : null,
+    setMessageTranslationKey
   }
 }

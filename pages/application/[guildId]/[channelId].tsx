@@ -66,7 +66,7 @@ export const getServerSideProps = authenticationFromServerSide({
     if (isNaN(channelId) || isNaN(guildId)) {
       return {
         redirect: {
-          destination: '/application',
+          destination: '/404',
           permanent: false
         }
       }

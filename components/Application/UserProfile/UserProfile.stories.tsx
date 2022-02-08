@@ -1,6 +1,10 @@
 import { Meta, Story } from '@storybook/react'
 
 import {
+  guildExample,
+  guildExample2
+} from '../../../cypress/fixtures/guilds/guild'
+import {
   userExample,
   userSettingsExample
 } from '../../../cypress/fixtures/users/user'
@@ -20,5 +24,6 @@ UserProfile.args = {
   user: {
     ...userExample,
     settings: userSettingsExample
-  }
+  },
+  guilds: [guildExample, guildExample2]
 }

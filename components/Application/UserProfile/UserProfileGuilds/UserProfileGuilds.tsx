@@ -3,8 +3,11 @@ import classNames from 'classnames'
 import { EyeOffIcon } from '@heroicons/react/solid'
 import useTranslation from 'next-translate/useTranslation'
 
+import { Guild } from '../../../../models/Guild'
+
 export interface UserProfileGuildsProps {
   isPublicGuilds?: boolean
+  guilds: Guild[]
 }
 
 export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {

@@ -20,9 +20,11 @@ import { FormState } from '../../design/FormState'
 import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
 import { userCurrentSchema, userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
+import { useGuilds } from '../../../contexts/Guilds'
 
 export const UserSettings: React.FC = () => {
   const { user, setUser, authentication } = useAuthentication()
+  const { guilds } = useGuilds()
   const { t } = useTranslation()
   const [inputValues, setInputValues] = useState({
     name: user.name,
@@ -34,20 +36,27 @@ export const UserSettings: React.FC = () => {
     isPublicEmail: user.settings.isPublicEmail
   })
 
-  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
-    useForm({
-      validateSchema: {
-        name: userSchema.name,
-        status: Type.Optional(userSchema.status),
-        email: Type.Optional(userCurrentSchema.email),
-        website: Type.Optional(userSchema.website),
-        biography: Type.Optional(userSchema.biography),
-        isPublicGuilds: userSettingsSchema.isPublicGuilds,
-        isPublicEmail: userSettingsSchema.isPublicEmail
-      },
-      replaceEmptyStringToNull: true,
-      resetOnSuccess: false
-    })
+  const {
+    fetchState,
+    setFetchState,
+    message,
+    setMessageTranslationKey,
+    errors,
+    getErrorTranslation,
+    handleSubmit
+  } = useForm({
+    validateSchema: {
+      name: userSchema.name,
+      status: Type.Optional(userSchema.status),
+      email: Type.Optional(userCurrentSchema.email),
+      website: Type.Optional(userSchema.website),
+      biography: Type.Optional(userSchema.biography),
+      isPublicGuilds: userSettingsSchema.isPublicGuilds,
+      isPublicEmail: userSettingsSchema.isPublicEmail
+    },
+    replaceEmptyStringToNull: true,
+    resetOnSuccess: false
+  })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
     try {
@@ -121,6 +130,32 @@ export const UserSettings: React.FC = () => {
     })
   }
 
+  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = async (
+    event
+  ) => {
+    const files = event?.target?.files
+    if (files != null && files.length === 1) {
+      const file = files[0]
+      const formData = new FormData()
+      formData.append('logo', file)
+      try {
+        const { data } = await authentication.api.put(
+          `/users/current/logo`,
+          formData
+        )
+        setUser((oldUser) => {
+          return {
+            ...oldUser,
+            logo: data.user.logo
+          }
+        })
+      } catch (error) {
+        setFetchState('error')
+        setMessageTranslationKey('errors:server-error')
+      }
+    }
+  }
+
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
@@ -134,6 +169,7 @@ export const UserSettings: React.FC = () => {
                 <input
                   type='file'
                   className='absolute h-full w-full cursor-pointer opacity-0'
+                  onChange={handleFileChange}
                 />
                 <PhotographIcon color='white' className='h-8 w-8' />
               </button>
@@ -175,7 +211,10 @@ export const UserSettings: React.FC = () => {
           </div>
         </div>
         <div className='mt-10 ml-0 flex flex-col items-center lg:ml-24 lg:mt-0'>
-          <UserProfileGuilds isPublicGuilds={inputValues.isPublicGuilds} />
+          <UserProfileGuilds
+            isPublicGuilds={inputValues.isPublicGuilds}
+            guilds={guilds}
+          />
           <Checkbox
             name='isPublicGuilds'
             label={t('application:label-checkbox-guilds')}

@@ -9,14 +9,16 @@ import { API_URL } from '../../../tools/api'
 import { UserPublic } from '../../../models/User'
 import { UserProfileGuilds } from './UserProfileGuilds'
 import { UserProfileGuild } from './UserProfileGuilds/UserProfileGuild'
+import { Guild } from '../../../models/Guild'
 
 export interface UserProfileProps {
   className?: string
   user: UserPublic
+  guilds: Guild[]
 }
 
 export const UserProfile: React.FC<UserProfileProps> = (props) => {
-  const { user } = props
+  const { user, guilds } = props
   const { t } = useTranslation()
 
   const [showPopup, setShowPopup] = useState<boolean>(false)
@@ -103,6 +105,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
             <div className='py-8 px-4' onClick={handlePopupVisibility}>
               <UserProfileGuilds
                 isPublicGuilds={user.settings.isPublicGuilds}
+                guilds={guilds}
               />
             </div>
           </div>
@@ -113,6 +116,8 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
           </div>
         </div>
       </div>
+
+      {/* TODO: We might want to remove this code */}
       <div
         className={classNames(
           'pointer-events-none absolute top-0 flex h-full w-full items-center justify-center bg-zinc-900/75 opacity-0 transition',
@@ -145,7 +150,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
           >
             <Image
               src='/images/svg/design/join-guild.svg'
-              alt='Joing Guild Illustration'
+              alt='Join Guild Illustration'
               height={150}
               width={150}
             />
