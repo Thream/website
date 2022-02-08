@@ -208,7 +208,11 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
       'refreshToken',
       'refresh-token'
     )
-    cy.visit('/application/abc/abc').location('pathname').should('eq', '/404')
+    cy.visit('/application/abc/abc', {
+      failOnStatusCode: false
+    })
+      .location('pathname')
+      .should('eq', '/404')
   })
 
   it("should redirect the user to `/404` if `guildId` doesn't exist", () => {
