@@ -203,14 +203,12 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
     )
   })
 
-  it('should redirect the user to `/application` if `guildId` or `channelId` are not numbers', () => {
+  it('should redirect the user to `/404` if `guildId` or `channelId` are not numbers', () => {
     cy.task('startMockServer', authenticationHandlers).setCookie(
       'refreshToken',
       'refresh-token'
     )
-    cy.visit('/application/abc/abc')
-      .location('pathname')
-      .should('eq', '/application')
+    cy.visit('/application/abc/abc').location('pathname').should('eq', '/404')
   })
 
   it("should redirect the user to `/404` if `guildId` doesn't exist", () => {

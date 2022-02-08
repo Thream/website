@@ -5,6 +5,7 @@ import { getGuildsHandler } from '../../../fixtures/guilds/get'
 import { authenticationHandlers } from '../../../fixtures/handler'
 import { getGuildMemberWithGuildIdHandler } from '../../../fixtures/guilds/[guildId]/get'
 import { getChannelWithChannelIdHandler } from '../../../fixtures/channels/[channelId]/get'
+import { getUserByIdHandler } from '../../../fixtures/users/[userId]/get'
 
 const applicationPaths = [
   '/application',
@@ -32,7 +33,8 @@ describe('Common > application/authentication', () => {
       ...authenticationHandlers,
       getGuildsHandler,
       getGuildMemberWithGuildIdHandler,
-      getChannelWithChannelIdHandler
+      getChannelWithChannelIdHandler,
+      getUserByIdHandler
     ]).setCookie('refreshToken', 'refresh-token')
     for (const applicationPath of applicationPaths) {
       cy.visit(applicationPath)
