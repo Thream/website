@@ -58,10 +58,16 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
               </div>
               <div className='ml-10 flex flex-col'>
                 <div className='mb-2 flex items-center'>
-                  <p className='space text-3xl font-bold tracking-wide text-white'>
+                  <p
+                    className='space text-3xl font-bold tracking-wide text-white'
+                    data-cy='user-name'
+                  >
                     {user.name}
                   </p>
-                  <p className='ml-8 select-none text-sm tracking-widest text-white opacity-40'>
+                  <p
+                    className='ml-8 select-none text-sm tracking-widest text-white opacity-40'
+                    data-cy='user-createdAt'
+                  >
                     {date.format(new Date(user.createdAt), 'DD/MM/YYYY')}
                   </p>
                 </div>
@@ -74,6 +80,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                         target='_blank'
                         className='relative ml-2 font-normal tracking-wide no-underline opacity-80 transition-all after:absolute after:left-0 after:bottom-[-1px] after:h-[1px] after:w-0 after:bg-black after:transition-all hover:opacity-100 hover:after:w-full dark:after:bg-white'
                         rel='noreferrer'
+                        data-cy='user-email'
                       >
                         {user.email}
                       </a>

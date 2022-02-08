@@ -16,6 +16,8 @@
     "assert": {
       "preset": "lighthouse:recommended",
       "assertions": {
+        "image-size-responsive": "warning",
+        "unsized-images": "warning",
         "csp-xss": "warning",
         "non-composited-animations": "warning",
         "unused-javascript": "warning"
