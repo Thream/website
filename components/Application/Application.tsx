@@ -171,7 +171,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           visible={visibleSidebars.left}
           isMobile={isMobile}
         >
-          <div className='top-0 left-0 z-50 flex min-w-[92px] flex-col space-y-2 border-r-2 border-gray-500 bg-gray-200 py-2 dark:border-white/20 dark:bg-gray-800'>
+          <div className='top-0 left-0 z-50 flex min-w-[92px] flex-col space-y-4 border-r-2 border-gray-500 bg-gray-200 py-2 dark:border-white/20 dark:bg-gray-800'>
             <IconLink
               href={`/application/users/settings`}
               selected={path === `/application/users/settings`}

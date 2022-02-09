@@ -10,6 +10,7 @@ import { usePagination } from '../../../hooks/usePagination'
 
 export const JoinGuildsPublic: React.FC = () => {
   const [search, setSearch] = useState('')
+
   const { authentication } = useAuthentication()
   const { t } = useTranslation()
 
@@ -29,7 +30,7 @@ export const JoinGuildsPublic: React.FC = () => {
   }
 
   return (
-    <>
+    <div className='flex h-full w-full flex-col transition-all'>
       <input
         data-cy='search-guild-input'
         onChange={handleChange}
@@ -38,9 +39,9 @@ export const JoinGuildsPublic: React.FC = () => {
         name='search-guild'
         placeholder={`🔎  ${t('application:search')}...`}
       />
-      <div className='flex w-full items-center justify-center p-12'>
+      <div className='w-full p-12'>
         <InfiniteScroll
-          className='guilds-public-list grid max-w-[1600px] grid-cols-1 gap-8 !overflow-hidden sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+          className='guilds-public-list mx-auto grid max-w-[1400px] grid-cols-[repeat(auto-fill,_minmax(20em,_1fr))] gap-8 !overflow-visible'
           dataLength={items.length}
           next={nextPage}
           scrollableTarget='application-page-content'
@@ -52,6 +53,6 @@ export const JoinGuildsPublic: React.FC = () => {
           })}
         </InfiniteScroll>
       </div>
-    </>
+    </div>
   )
 }

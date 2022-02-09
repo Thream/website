@@ -10,6 +10,7 @@ import { UserPublic } from '../../../models/User'
 import { UserProfileGuilds } from './UserProfileGuilds'
 import { UserProfileGuild } from './UserProfileGuilds/UserProfileGuild'
 import { Guild } from '../../../models/Guild'
+import { ConfirmGuildJoin } from '../ConfirmGuildJoin'
 
 export interface UserProfileProps {
   className?: string
@@ -149,36 +150,13 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
             />
           </div>
 
-          <div
+          <ConfirmGuildJoin
             className={classNames(
               'absolute top-0 left-[150%] flex h-full w-full flex-col items-center justify-center transition-all',
               { 'left-[0%]': confirmation }
             )}
-          >
-            <Image
-              src='/images/svg/design/join-guild.svg'
-              alt='Join Guild Illustration'
-              height={150}
-              width={150}
-            />
-            <div className='mt-8 flex flex-col'>
-              <h1 className='mb-6 text-center text-xl'>Rejoindre la guild ?</h1>
-              <div className='flex gap-7'>
-                <button
-                  className='rounded-3xl bg-success px-8 py-2 transition hover:opacity-50'
-                  onClick={handleConfirmationState}
-                >
-                  Oui
-                </button>
-                <button
-                  className='rounded-3xl bg-error px-8 py-2 transition hover:opacity-50'
-                  onClick={handleConfirmationState}
-                >
-                  Non
-                </button>
-              </div>
-            </div>
-          </div>
+            handleJoinGuild={handleConfirmationState}
+          />
         </div>
         <XIcon
           height={40}
