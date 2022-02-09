@@ -21,7 +21,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
         {
           'top-0 right-0 scrollbar-firefox-support overflow-y-auto flex-col space-y-1':
             direction === 'right',
-          'w-64': direction === 'right' && visible,
+          'w-72': direction === 'right' && visible,
           'w-0 opacity-0': !visible,
           'w-80': direction === 'left' && visible,
           'max-w-max': typeof path !== 'string' && direction === 'left',

@@ -17,7 +17,7 @@ export const Guilds: React.FC<GuildsProps> = (props) => {
   return (
     <div
       id='guilds-list'
-      className='min-w-[92px] mt-[130px] pt-2 h-full border-r-2 border-gray-500 dark:border-white/20 space-y-2 scrollbar-firefox-support overflow-y-auto'
+      className='min-w-[92px] mt-[130px] pt-2 h-full border-r-1 border-gray-500 dark:border-white/20 space-y-2 scrollbar-firefox-support overflow-y-auto'
     >
       <InfiniteScroll
         className='guilds-list'
