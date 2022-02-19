@@ -49,7 +49,7 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
       <a href={file.url} target='_blank' rel='noreferrer'>
         <img
           data-cy={`message-file-image-${message.id}`}
-          className='sm:max-w-xs max-h-80'
+          className='max-h-80 sm:max-w-xs'
           src={file.url}
           alt={message.value}
         />
@@ -66,7 +66,7 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
   if (message.mimetype.startsWith('video/')) {
     return (
       <video
-        className='max-w-xs max-h-80'
+        className='max-h-80 max-w-xs'
         controls
         data-cy={`message-file-video-${message.id}`}
       >
@@ -86,7 +86,7 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
             <p className='mt-1'>{prettyBytes(file.blob.size)}</p>
           </div>
         </div>
-        <DownloadIcon className='ml-4 w-8 h-8' />
+        <DownloadIcon className='ml-4 h-8 w-8' />
       </div>
     </a>
   )

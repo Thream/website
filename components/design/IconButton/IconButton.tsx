@@ -9,7 +9,7 @@ export const IconButton: React.FC<IconButtonProps> = (props) => {
   return (
     <button
       className={classNames(
-        'text-center flex items-center justify-center text-green-800 dark:text-green-400 focus:outline-none focus:animate-pulse hover:animate-pulse',
+        'flex items-center justify-center text-center text-green-800 hover:animate-pulse focus:animate-pulse focus:outline-none dark:text-green-400',
         className
       )}
       {...rest}

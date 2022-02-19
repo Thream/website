@@ -9,15 +9,17 @@ import { API_URL } from '../../../tools/api'
 import { UserPublic } from '../../../models/User'
 import { UserProfileGuilds } from './UserProfileGuilds'
 import { UserProfileGuild } from './UserProfileGuilds/UserProfileGuild'
+import { Guild } from '../../../models/Guild'
 import { ConfirmGuildJoin } from '../ConfirmGuildJoin'
 
 export interface UserProfileProps {
   className?: string
   user: UserPublic
+  guilds: Guild[]
 }
 
 export const UserProfile: React.FC<UserProfileProps> = (props) => {
-  const { user } = props
+  const { user, guilds } = props
   const { t } = useTranslation()
 
   const [showPopup, setShowPopup] = useState<boolean>(false)
@@ -32,16 +34,16 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
   }
 
   return (
-    <div className='relative h-full flex flex-col items-center justify-center'>
+    <div className='relative flex h-full flex-col items-center justify-center'>
       <div
         className={classNames('transition', {
-          'blur-3xl select-none': showPopup
+          'select-none blur-3xl': showPopup
         })}
       >
         <div className='max-w-[1000px] px-12'>
-          <div className='flex justify-between items-center'>
-            <div className='w-max flex items-center'>
-              <div className='relative flex justify-center items-center rounded-full overflow-hidden transition-all shadow-lg'>
+          <div className='flex items-center justify-between'>
+            <div className='flex w-max items-center'>
+              <div className='relative flex items-center justify-center overflow-hidden rounded-full shadow-lg transition-all'>
                 <Image
                   className='rounded-full'
                   src={
@@ -55,24 +57,31 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                   width={125}
                 />
               </div>
-              <div className='flex flex-col ml-10'>
-                <div className='flex items-center mb-2'>
-                  <p className='text-3xl font-bold space tracking-wide text-white'>
+              <div className='ml-10 flex flex-col'>
+                <div className='mb-2 flex items-center'>
+                  <p
+                    className='space text-3xl font-bold tracking-wide text-white'
+                    data-cy='user-name'
+                  >
                     {user.name}
                   </p>
-                  <p className='ml-8 text-sm tracking-widest text-white opacity-40 select-none'>
+                  <p
+                    className='ml-8 select-none text-sm tracking-widest text-white opacity-40'
+                    data-cy='user-createdAt'
+                  >
                     {date.format(new Date(user.createdAt), 'DD/MM/YYYY')}
                   </p>
                 </div>
-                <div className='text-left my-2'>
+                <div className='my-2 text-left'>
                   {user.email != null && (
                     <p className='font-bold'>
                       Email:{' '}
                       <a
                         href={`mailto:${user.email}`}
                         target='_blank'
-                        className='relative ml-2 opacity-80 hover:opacity-100 transition-all no-underline font-normal tracking-wide after:absolute after:left-0 after:bottom-[-1px] after:bg-black dark:after:bg-white after:h-[1px] after:w-0 after:transition-all hover:after:w-full'
+                        className='relative ml-2 font-normal tracking-wide no-underline opacity-80 transition-all after:absolute after:left-0 after:bottom-[-1px] after:h-[1px] after:w-0 after:bg-black after:transition-all hover:opacity-100 hover:after:w-full dark:after:bg-white'
                         rel='noreferrer'
+                        data-cy='user-email'
                       >
                         {user.email}
                       </a>
@@ -83,7 +92,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                       {t('application:website')}:{' '}
                       <a
                         href={user.website}
-                        className='relative ml-2 opacity-80 hover:opacity-100 transition-all no-underline font-normal tracking-wide after:absolute after:left-0 after:bottom-[-2px] after:bg-black dark:after:bg-white after:h-[1px] after:w-0 after:transition-all hover:after:w-full'
+                        className='relative ml-2 font-normal tracking-wide no-underline opacity-80 transition-all after:absolute after:left-0 after:bottom-[-2px] after:h-[1px] after:w-0 after:bg-black after:transition-all hover:opacity-100 hover:after:w-full dark:after:bg-white'
                       >
                         {user.website}
                       </a>
@@ -104,6 +113,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
             <div className='py-8 px-4' onClick={handlePopupVisibility}>
               <UserProfileGuilds
                 isPublicGuilds={user.settings.isPublicGuilds}
+                guilds={guilds}
               />
             </div>
           </div>
@@ -114,22 +124,24 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
           </div>
         </div>
       </div>
+
+      {/* TODO: We might want to remove this code */}
       <div
         className={classNames(
-          'absolute flex justify-center items-center top-0 h-full w-full bg-zinc-900/75 transition opacity-0 pointer-events-none',
+          'pointer-events-none absolute top-0 flex h-full w-full items-center justify-center bg-zinc-900/75 opacity-0 transition',
           {
-            'opacity-100 visible pointer-events-auto': showPopup
+            'pointer-events-auto visible opacity-100': showPopup
           }
         )}
       >
         <div
           className={classNames(
-            'relative h-[400px] w-[400px] py-2 rounded-2xl shadow-xl bg-gray-200 dark:bg-gray-800 scale-0 transition overflow-y-auto overflow-x-hidden',
+            'relative h-[400px] w-[400px] scale-0 overflow-y-auto overflow-x-hidden rounded-2xl bg-gray-200 py-2 shadow-xl transition dark:bg-gray-800',
             { 'scale-100': showPopup }
           )}
         >
           <div
-            className={classNames('relative transition h-full', {
+            className={classNames('relative h-full transition', {
               '-translate-x-[150%]': confirmation
             })}
           >
@@ -140,7 +152,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
 
           <ConfirmGuildJoin
             className={classNames(
-              'absolute w-full h-full flex flex-col justify-center items-center transition-all top-0 left-[150%]',
+              'absolute top-0 left-[150%] flex h-full w-full flex-col items-center justify-center transition-all',
               { 'left-[0%]': confirmation }
             )}
             handleJoinGuild={handleConfirmationState}
@@ -149,7 +161,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
         <XIcon
           height={40}
           onClick={() => setShowPopup(false)}
-          className='absolute top-8 right-8 cursor-pointer hover:rotate-180 transition'
+          className='absolute top-8 right-8 cursor-pointer transition hover:rotate-180'
         />
       </div>
     </div>

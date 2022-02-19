@@ -24,13 +24,13 @@ export const SwitchTheme: React.FC = () => {
         data-cy='switch-theme-click'
         onClick={handleClick}
       >
-        <div className='toggle-theme-button relative cursor-pointer bg-transparent inline-block'>
+        <div className='toggle-theme-button relative inline-block cursor-pointer bg-transparent'>
           <div className='toggle-track'>
             <div
               data-cy='switch-theme-dark'
               className='toggle-track-check absolute'
             >
-              <span className='toggle_Dark flex justify-center items-center relative'>
+              <span className='toggle_Dark relative flex items-center justify-center'>
                 🌜
               </span>
             </div>
@@ -38,7 +38,7 @@ export const SwitchTheme: React.FC = () => {
               data-cy='switch-theme-light'
               className='toggle-track-x absolute'
             >
-              <span className='toggle_Light flex justify-center items-center relative'>
+              <span className='toggle_Light relative flex items-center justify-center'>
                 🌞
               </span>
             </div>

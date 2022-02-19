@@ -12,7 +12,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
 
   return (
     <>
-      <h1 className='my-6 font-semibold text-4xl'>
+      <h1 className='my-6 text-4xl font-semibold'>
         {t('errors:error')}{' '}
         <span
           className='text-green-800 dark:text-green-400'
@@ -24,7 +24,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
       <p className='text-center text-lg'>
         {message}{' '}
         <Link href='/'>
-          <a className='text-green-800 dark:text-green-400 hover:underline'>
+          <a className='text-green-800 hover:underline dark:text-green-400'>
             {t('errors:return-to-home-page')}
           </a>
         </Link>

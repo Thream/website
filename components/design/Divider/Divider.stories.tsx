@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react'
 
-import { Divider as Component } from './'
+import { Divider as Component } from '.'
 
 const Stories: Meta = {
   title: 'Divider',

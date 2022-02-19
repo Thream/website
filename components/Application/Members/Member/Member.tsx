@@ -14,8 +14,8 @@ export const Member: React.FC<MemberProps> = (props) => {
   return (
     <Link href={`/application/users/${member.user.id}`}>
       <a>
-        <div className='flex items-center cursor-pointer py-2 px-6 pr-10 overflow-hidden hover:bg-gray-300 dark:hover:bg-gray-900'>
-          <div className='min-w-[50px] flex rounded-full'>
+        <div className='flex cursor-pointer items-center overflow-hidden py-2 px-6 pr-10 hover:bg-gray-300 dark:hover:bg-gray-900'>
+          <div className='flex min-w-[50px] rounded-full'>
             <Image
               src={
                 member.user.logo == null
@@ -34,7 +34,7 @@ export const Member: React.FC<MemberProps> = (props) => {
               {member.user.name}
             </p>
             {member.user.status != null && (
-              <span className='block truncate w-44'>{member.user.status}</span>
+              <span className='block w-44 truncate'>{member.user.status}</span>
             )}
           </div>
         </div>

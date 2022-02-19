@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react'
 
-import { Footer } from './'
+import { Footer } from '.'
 
 describe('<Footer />', () => {
-  it('should render with appropriate link tag version', async () => {
+  it('should render with appropriate link tag version', () => {
     const version = '1.0.0'
     const { getByText } = render(<Footer version={version} />)
     const versionLink = getByText(`website v${version}`) as HTMLAnchorElement

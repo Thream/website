@@ -10,7 +10,7 @@ export const Main: React.FC<MainProps> = (props) => {
   return (
     <main
       className={classNames(
-        'flex flex-1 flex-col justify-center items-center py-8',
+        'flex flex-1 flex-col items-center justify-center py-8',
         className
       )}
     >

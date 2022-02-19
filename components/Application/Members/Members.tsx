@@ -15,7 +15,7 @@ export const Members: React.FC = () => {
   return (
     <>
       <div className='mb-2'>
-        <h1 data-cy='members-title' className='text-center pt-2 my-2 text-xl'>
+        <h1 data-cy='members-title' className='my-2 pt-2 text-center text-xl'>
           {capitalize(t('application:members'))}
         </h1>
         <Divider />

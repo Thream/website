@@ -10,7 +10,7 @@ const errorObject: ErrorObject = {
 }
 
 describe('hooks/useForm/getErrorTranslationKey', () => {
-  it('returns `errors:invalid` with unknown keyword', async () => {
+  it('returns `errors:invalid` with unknown keyword', () => {
     expect(
       getErrorTranslationKey({
         ...errorObject,

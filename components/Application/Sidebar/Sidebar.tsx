@@ -17,9 +17,9 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
   return (
     <nav
       className={classNames(
-        'h-full-without-header flex z-50 drop-shadow-2xl bg-gray-200 dark:bg-gray-800 transition-all',
+        'h-full-without-header z-50 flex bg-gray-200 drop-shadow-2xl transition-all dark:bg-gray-800',
         {
-          'top-0 right-0 scrollbar-firefox-support overflow-y-auto flex-col space-y-1':
+          'scrollbar-firefox-support top-0 right-0 flex-col space-y-1 overflow-y-auto':
             direction === 'right',
           'w-72': direction === 'right' && visible,
           'w-0 opacity-0': !visible,

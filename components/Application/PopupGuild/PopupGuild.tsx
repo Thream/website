@@ -17,7 +17,7 @@ export const PopupGuild: React.FC<PopupGuildProps> = (props) => {
     <div
       className={classNames(
         className,
-        'flex p-8 flex-wrap justify-center items-center overflow-y-auto h-full-without-header min-w-full'
+        'h-full-without-header flex min-w-full flex-wrap items-center justify-center overflow-y-auto p-8'
       )}
     >
       <PopupGuildCard
@@ -32,7 +32,7 @@ export const PopupGuild: React.FC<PopupGuildProps> = (props) => {
         }
         description={t('application:create-a-guild-description')}
         link={{
-          icon: <PlusSmIcon className='w-8 h-8 mr-2' />,
+          icon: <PlusSmIcon className='mr-2 h-8 w-8' />,
           text: t('application:create-a-guild'),
           href: '/application/guilds/create'
         }}
@@ -49,7 +49,7 @@ export const PopupGuild: React.FC<PopupGuildProps> = (props) => {
         }
         description={t('application:join-a-guild-description')}
         link={{
-          icon: <ArrowDownIcon className='w-6 h-6 mr-2' />,
+          icon: <ArrowDownIcon className='mr-2 h-6 w-6' />,
           text: t('application:join-a-guild'),
           href: '/application/guilds/join'
         }}

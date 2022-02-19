@@ -18,10 +18,11 @@ export const CreateGuild: React.FC = () => {
 
   const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
     useForm({
-      validateSchemaObject: {
+      validateSchema: {
         name: guildSchema.name,
         description: guildSchema.description
-      }
+      },
+      resetOnSuccess: true
     })
 
   const { authentication } = useAuthentication()
@@ -59,7 +60,7 @@ export const CreateGuild: React.FC = () => {
           placeholder='Description'
           id='description'
         />
-        <Button className='w-full mt-6' type='submit' data-cy='submit'>
+        <Button className='mt-6 w-full' type='submit' data-cy='submit'>
           {t('application:create')}
         </Button>
       </Form>

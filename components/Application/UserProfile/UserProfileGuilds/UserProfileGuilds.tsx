@@ -3,8 +3,11 @@ import classNames from 'classnames'
 import { EyeOffIcon } from '@heroicons/react/solid'
 import useTranslation from 'next-translate/useTranslation'
 
+import { Guild } from '../../../../models/Guild'
+
 export interface UserProfileGuildsProps {
   isPublicGuilds?: boolean
+  guilds: Guild[]
 }
 
 export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
@@ -19,10 +22,10 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
     >
       <div
         className={classNames('flex -space-x-7', {
-          'blur-lg select-none': !isPublicGuilds
+          'select-none blur-lg': !isPublicGuilds
         })}
       >
-        <div className='flex justify-center items-center rounded-full filter drop-shadow-lg'>
+        <div className='flex items-center justify-center rounded-full drop-shadow-lg filter'>
           <Image
             className='rounded-full'
             src='/images/guilds/Guild_1.svg'
@@ -32,7 +35,7 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
             width={60}
           />
         </div>
-        <div className='flex justify-center items-center rounded-full filter drop-shadow-lg'>
+        <div className='flex items-center justify-center rounded-full drop-shadow-lg filter'>
           <Image
             className='rounded-full'
             src='/images/guilds/Guild_2.svg'
@@ -42,7 +45,7 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
             width={60}
           />
         </div>
-        <div className='flex justify-center items-center rounded-full filter drop-shadow-lg'>
+        <div className='flex items-center justify-center rounded-full drop-shadow-lg filter'>
           <Image
             className='rounded-full'
             src='/images/guilds/Guild_3.svg'
@@ -52,7 +55,7 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
             width={60}
           />
         </div>
-        <div className='flex justify-center items-center rounded-full filter drop-shadow-lg'>
+        <div className='flex items-center justify-center rounded-full drop-shadow-lg filter'>
           <Image
             className='rounded-full'
             src='/images/guilds/Guild_4.svg'
@@ -62,7 +65,7 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
             width={60}
           />
         </div>
-        <div className='flex justify-center items-center rounded-full filter drop-shadow-lg'>
+        <div className='flex items-center justify-center rounded-full drop-shadow-lg filter'>
           <Image
             className='rounded-full'
             src='/images/guilds/Guild_5.svg'
@@ -72,7 +75,7 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
             width={60}
           />
         </div>
-        <div className='flex justify-center items-center rounded-full filter drop-shadow-lg'>
+        <div className='flex items-center justify-center rounded-full drop-shadow-lg filter'>
           <Image
             className='rounded-full'
             src='/images/guilds/Guild_6.svg'
@@ -82,20 +85,20 @@ export const UserProfileGuilds: React.FC<UserProfileGuildsProps> = (props) => {
             width={60}
           />
         </div>
-        <div className='w-[60px] h-[60px] flex justify-center items-center rounded-full filter drop-shadow-lg bg-gray-300 dark:bg-gray-800 z-10'>
-          <span className='font-bold text-black dark:text-white text-xl select-none'>
+        <div className='z-10 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-gray-300 drop-shadow-lg filter dark:bg-gray-800'>
+          <span className='select-none text-xl font-bold text-black dark:text-white'>
             +4
           </span>
         </div>
       </div>
       <div
         className={classNames(
-          'absolute flex items-center top-1/2 -translate-y-1/2',
+          'absolute top-1/2 flex -translate-y-1/2 items-center',
           { hidden: isPublicGuilds }
         )}
       >
         <EyeOffIcon height={25} />
-        <p className='drop-shadow-2xl ml-4'>
+        <p className='ml-4 drop-shadow-2xl'>
           {t('application:private-user-guilds-list')}
         </p>
       </div>

@@ -12,5 +12,6 @@
   "success-signup": "Vous y êtes presque, veuillez vérifier vos emails pour confirmer votre inscription.",
   "success-forgot-password": "Demande de réinitialisation du mot de passe réussie, veuillez vérifier vos emails!",
   "wrong-credentials": "Informations d'identification invalides. Veuillez réessayer.",
-  "alreadyUsed": "Nom ou Email déjà utilisé."
+  "already-used": "Nom ou Email déjà utilisé.",
+  "email-required-to-sign-in": "L'adresse e-mail est requise si c'est votre seul moyen de vous connecter."
 }

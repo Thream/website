@@ -1,25 +1,29 @@
 import { createContext, useState, useEffect, useMemo, useContext } from 'react'
 import { useTheme } from 'next-themes'
 import setLanguage from 'next-translate/setLanguage'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Authentication, PagePropsWithAuthentication } from '.'
 import { UserCurrent } from '../../models/User'
+import { Language, Theme } from '../../models/UserSettings'
 
 export interface AuthenticationValue {
   authentication: Authentication
   user: UserCurrent
+  setUser: React.Dispatch<React.SetStateAction<UserCurrent>>
 }
 
-const defaultAnthenticationContext: AuthenticationValue = {} as any
+const defaultAuthenticationContext: AuthenticationValue = {} as any
 const AuthenticationContext = createContext<AuthenticationValue>(
-  defaultAnthenticationContext
+  defaultAuthenticationContext
 )
 
 export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
   props
 ) => {
-  const { setTheme } = useTheme()
-  const [user] = useState<UserCurrent>(props.authentication.user)
+  const { lang } = useTranslation()
+  const { theme, setTheme } = useTheme()
+  const [user, setUser] = useState<UserCurrent>(props.authentication.user)
 
   const authentication = useMemo(() => {
     return new Authentication(props.authentication.tokens)
@@ -28,12 +32,32 @@ export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
   }, [])
 
   useEffect(() => {
-    setLanguage(user.settings.language).catch(() => {})
-    setTheme(user.settings.theme)
-  }, [setTheme, user.settings.language, user.settings.theme])
+    setLanguage(props.authentication.user.settings.language).catch(() => {})
+    setTheme(props.authentication.user.settings.theme)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- We only want to run this effect once
+  }, [])
+
+  useEffect(() => {
+    authentication.api
+      .put('/users/current/settings', { theme, language: lang })
+      .then(() => {
+        setUser((oldUser) => {
+          return {
+            ...oldUser,
+            settings: {
+              ...oldUser.settings,
+              theme: theme as Theme,
+              language: lang as Language
+            }
+          }
+        })
+      })
+      .catch(() => {})
+  }, [theme, lang, authentication.api])
 
   return (
-    <AuthenticationContext.Provider value={{ authentication, user }}>
+    <AuthenticationContext.Provider value={{ authentication, user, setUser }}>
       {props.children}
     </AuthenticationContext.Provider>
   )

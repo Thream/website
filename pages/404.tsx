@@ -12,7 +12,7 @@ const Error404: NextPage<FooterProps> = (props) => {
 
   return (
     <>
-      <Head title='Divlo - 404' />
+      <Head title='Thream | 404' />
 
       <Header />
       <main className='flex flex-col md:mx-auto md:max-w-4xl lg:max-w-7xl'>

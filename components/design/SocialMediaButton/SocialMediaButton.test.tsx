@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 
-import { SocialMedia, SocialMediaButton } from './'
+import { SocialMedia, SocialMediaButton } from '.'
 
 describe('<SocialMediaButton />', () => {
   it('should render the social media', async () => {

@@ -11,7 +11,7 @@
     "/authentication/signup": ["authentication", "errors"],
     "/authentication/signin": ["authentication", "errors"],
     "/application/users/[userId]": ["application", "errors"],
-    "/application/users/[userId]/settings": ["application", "errors"],
+    "/application/users/settings": ["application", "authentication", "errors"],
     "/application/guilds/create": ["application", "errors"],
     "/application/guilds/join": ["application", "errors"],
     "/application": ["application", "errors"],

@@ -24,7 +24,7 @@ export type ApplicationPath =
   | '/application/guilds/join'
   | '/application/guilds/create'
   | `/application/users/${number}`
-  | `/application/users/${number}/settings`
+  | `/application/users/settings`
   | GuildsChannelsPath
 
 export interface ApplicationProps {
@@ -135,16 +135,16 @@ export const Application: React.FC<ApplicationProps> = (props) => {
 
   return (
     <>
-      <header className='flex bg-gray-200 dark:bg-gray-800 h-16 px-2 py-3 justify-between items-center shadow-lg z-50'>
+      <header className='z-50 flex h-16 items-center justify-between bg-gray-200 px-2 py-3 shadow-lg dark:bg-gray-800'>
         <IconButton
-          className='p-2 h-10 w-10'
+          className='h-10 w-10 p-2'
           onClick={() => handleToggleSidebars('left')}
         >
           {!visibleSidebars.left ? <MenuIcon /> : <XIcon />}
         </IconButton>
         <div
           data-cy='application-title'
-          className='text-md text-green-800 dark:text-green-400 font-semibold'
+          className='text-md font-semibold text-green-800 dark:text-green-400'
         >
           {title}
         </div>
@@ -152,7 +152,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           {title.startsWith('#') && (
             <IconButton
               data-cy='icon-button-right-sidebar-members'
-              className='p-2 h-10 w-10'
+              className='h-10 w-10 p-2'
               onClick={() => handleToggleSidebars('right')}
             >
               {!visibleSidebars.right ? <UsersIcon /> : <XIcon />}
@@ -162,7 +162,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
       </header>
 
       <main
-        className='relative flex h-full-without-header overflow-hidden'
+        className='h-full-without-header relative flex overflow-hidden'
         onClick={handleCloseSidebars}
         {...swipeableHandlers}
       >
@@ -171,10 +171,10 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           visible={visibleSidebars.left}
           isMobile={isMobile}
         >
-          <div className='flex flex-col min-w-[92px] top-0 left-0 z-50 bg-gray-200 dark:bg-gray-800 border-r-2 border-gray-500 dark:border-white/20 py-2 space-y-4'>
+          <div className='top-0 left-0 z-50 flex min-w-[92px] flex-col space-y-4 border-r-2 border-gray-500 bg-gray-200 py-2 dark:border-white/20 dark:bg-gray-800'>
             <IconLink
-              href={`/application/users/${user.id}/settings`}
-              selected={path === `/application/users/${user.id}/settings`}
+              href={`/application/users/settings`}
+              selected={path === `/application/users/settings`}
               title='Settings'
             >
               <Image
@@ -195,7 +195,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
               selected={path === '/application'}
               title='Join or create a Guild'
             >
-              <PlusIcon className='w-12 h-12 text-green-800 dark:text-green-400' />
+              <PlusIcon className='h-12 w-12 text-green-800 dark:text-green-400' />
             </IconLink>
             <Divider />
             <Guilds path={path} />
@@ -206,7 +206,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
         <div
           id='application-page-content'
           className={classNames(
-            'top-0 h-full-without-header w-full flex flex-col flex-1 z-0 overflow-y-auto transition',
+            'h-full-without-header top-0 z-0 flex w-full flex-1 flex-col overflow-y-auto transition',
             {
               'absolute opacity-20':
                 isMobile && (visibleSidebars.left || visibleSidebars.right)

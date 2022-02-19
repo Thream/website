@@ -1,15 +1,15 @@
 import { render, fireEvent } from '@testing-library/react'
 
-import { Input, getInputType } from './'
+import { Input, getInputType } from '.'
 
 describe('<Input />', () => {
-  it('should render the label', async () => {
+  it('should render the label', () => {
     const labelContent = 'label content'
     const { getByText } = render(<Input label={labelContent} />)
     expect(getByText(labelContent)).toBeInTheDocument()
   })
 
-  it('should not render forgot password link', async () => {
+  it('should not render forgot password link', () => {
     const { queryByTestId } = render(
       <Input type='text' label='content' showForgotPassword />
     )
@@ -17,7 +17,7 @@ describe('<Input />', () => {
     expect(forgotPasswordLink).not.toBeInTheDocument()
   })
 
-  it('should render forgot password link', async () => {
+  it('should render forgot password link', () => {
     const { queryByTestId } = render(
       <Input type='password' label='content' showForgotPassword />
     )
@@ -25,7 +25,7 @@ describe('<Input />', () => {
     expect(forgotPasswordLink).toBeInTheDocument()
   })
 
-  it('should not render the eye icon if the input is not of type "password"', async () => {
+  it('should not render the eye icon if the input is not of type "password"', () => {
     const { queryByTestId } = render(<Input type='text' label='content' />)
     const passwordEye = queryByTestId('password-eye')
     expect(passwordEye).not.toBeInTheDocument()
@@ -42,11 +42,11 @@ describe('<Input />', () => {
 })
 
 describe('getInputType', () => {
-  it('should return `text`', async () => {
+  it('should return `text`', () => {
     expect(getInputType('password')).toEqual('text')
   })
 
-  it('should return `password`', async () => {
+  it('should return `password`', () => {
     expect(getInputType('text')).toEqual('password')
   })
 })

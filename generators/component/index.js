@@ -1,5 +1,4 @@
 /**
- * @param {import('plop').NodePlopAPI} plop
  * @returns {import('node-plop').PlopGeneratorConfig}
  */
 exports.componentGenerator = () => {

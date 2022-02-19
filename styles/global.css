@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 #__next {
-  @apply flex flex-col h-screen;
+  @apply flex h-screen flex-col;
 }
 
 body,
 #preview-storybook {
-  @apply bg-white dark:bg-black text-black dark:text-white font-headline;
+  @apply bg-white font-headline text-black dark:bg-black dark:text-white;
   overflow: hidden;
 }
 

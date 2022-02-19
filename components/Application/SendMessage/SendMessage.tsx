@@ -80,14 +80,14 @@ export const SendMessage: React.FC<SendMessageProps> = (props) => {
     <>
       {isVisibleEmojiPicker && <EmojiPicker onClick={handleEmojiPicker} />}
       <div className='p-6 pb-4'>
-        <div className='w-full h-full py-1 flex rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-200'>
+        <div className='flex h-full w-full rounded-lg bg-gray-200 py-1 text-gray-600 dark:bg-gray-800 dark:text-gray-200'>
           <form
-            className='w-full h-full flex items-center'
+            className='flex h-full w-full items-center'
             onSubmit={handleSubmit}
             onKeyDown={handleTextareaKeyDown}
           >
             <TextareaAutosize
-              className='w-full scrollbar-firefox-support p-2 px-6 my-2 bg-transparent outline-none font-paragraph tracking-wide resize-none'
+              className='scrollbar-firefox-support my-2 w-full resize-none bg-transparent p-2 px-6 font-paragraph tracking-wide outline-none'
               placeholder={t('application:write-a-message')}
               wrap='soft'
               maxRows={6}
@@ -98,17 +98,17 @@ export const SendMessage: React.FC<SendMessageProps> = (props) => {
               autoFocus
             />
           </form>
-          <div className='h-full flex items-center justify-around pr-6'>
+          <div className='flex h-full items-center justify-around pr-6'>
             <button
-              className='w-full h-full flex items-center justify-center p-1 text-2xl transition hover:-translate-y-1'
+              className='flex h-full w-full items-center justify-center p-1 text-2xl transition hover:-translate-y-1'
               onClick={handleVisibleEmojiPicker}
             >
               🙂
             </button>
-            <button className='cursor-pointer relative w-full h-full flex items-center justify-center p-1 text-green-800 dark:text-green-400 transition hover:-translate-y-1'>
+            <button className='relative flex h-full w-full cursor-pointer items-center justify-center p-1 text-green-800 transition hover:-translate-y-1 dark:text-green-400'>
               <input
                 type='file'
-                className='absolute w-full h-full opacity-0 cursor-pointer'
+                className='absolute h-full w-full cursor-pointer opacity-0'
                 onChange={handleFileChange}
               />
               <svg width='25' height='25' viewBox='0 0 22 22'>

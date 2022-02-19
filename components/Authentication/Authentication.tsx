@@ -9,7 +9,7 @@ import { Main } from '../design/Main'
 import { Input } from '../design/Input'
 import { Button } from '../design/Button'
 import { FormState } from '../design/FormState'
-import { AuthenticationForm } from './'
+import { AuthenticationForm } from '.'
 import { userSchema } from '../../models/User'
 import { api } from '../../tools/api'
 import {
@@ -31,11 +31,12 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   const { errors, fetchState, message, getErrorTranslation, handleSubmit } =
     useForm({
-      validateSchemaObject: {
+      validateSchema: {
         ...(mode === 'signup' && { name: userSchema.name }),
         email: userSchema.email,
         password: userSchema.password
-      }
+      },
+      resetOnSuccess: true
     })
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
@@ -51,9 +52,16 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
         }
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 400) {
+          const message = error.response.data.message as string
+          if (message.endsWith('already taken.')) {
+            return {
+              type: 'error',
+              value: 'authentication:already-used'
+            }
+          }
           return {
             type: 'error',
-            value: 'authentication:alreadyUsed'
+            value: 'errors:server-error'
           }
         }
         return {
@@ -85,14 +93,14 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   return (
     <Main>
-      <div className='flex flex-col sm:items-center sm:w-full'>
+      <div className='flex flex-col sm:w-full sm:items-center'>
         <div className='flex flex-col items-center justify-center space-y-6 sm:w-4/6 sm:flex-row sm:space-x-6 sm:space-y-0'>
           <SocialMediaButton socialMedia='Google' />
           <SocialMediaButton socialMedia='GitHub' />
           <SocialMediaButton socialMedia='Discord' />
         </div>
       </div>
-      <div className='text-center text-lg font-paragraph pt-8'>
+      <div className='pt-8 text-center font-paragraph text-lg'>
         {t('authentication:or')}
       </div>
       <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
@@ -120,10 +128,10 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           showForgotPassword={mode === 'signin'}
           error={getErrorTranslation(errors.password)}
         />
-        <Button data-cy='submit' className='w-full mt-6' type='submit'>
+        <Button data-cy='submit' className='mt-6 w-full' type='submit'>
           {t('authentication:submit')}
         </Button>
-        <p className='mt-3 font-headline text-sm text-green-800 dark:text-green-400 hover:underline'>
+        <p className='mt-3 font-headline text-sm text-green-800 hover:underline dark:text-green-400'>
           <Link
             href={
               mode === 'signup'

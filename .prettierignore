@@ -3,7 +3,6 @@
 storybook-static
 coverage
 node_modules
-next-env.d.ts
 **/workbox-*.js
 **/sw.js
 *.hbs

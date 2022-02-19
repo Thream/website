@@ -6,6 +6,10 @@ import { API_DEFAULT_PORT } from '../../tools/api'
 
 /// <reference types="cypress" />
 
+/**
+ * @typedef {import('../fixtures/handler').Method} Method
+ */
+
 /** @type {import('mockttp').Mockttp | null}  */
 let server = null
 
@@ -31,13 +35,16 @@ module.exports = (on, config) => {
       await server.start(API_DEFAULT_PORT)
       for (const handler of handlers) {
         const { isFile = false } = handler.response
+        const method = /** @type {Lowercase<Method>} */ (
+          handler.method.toLowerCase()
+        )
         if (isFile) {
-          await server[handler.method.toLowerCase()](handler.url).thenFromFile(
+          await server[method](handler.url).thenFromFile(
             handler.response.statusCode,
             path.join(UPLOADS_FIXTURES_DIRECTORY, ...handler.response.body)
           )
         } else {
-          await server[handler.method.toLowerCase()](handler.url).thenJson(
+          await server[method](handler.url).thenJson(
             handler.response.statusCode,
             handler.response.body
           )
