@@ -2,7 +2,7 @@ import { CogIcon, PlusIcon } from '@heroicons/react/solid'
 
 import { useGuildMember } from '../../../contexts/GuildMember'
 import { Divider } from '../../design/Divider'
-import { Channels } from '../../Application/Channels'
+import { Channels } from '../Channels'
 import { IconButton } from '../../design/IconButton'
 import { GuildsChannelsPath } from '..'
 

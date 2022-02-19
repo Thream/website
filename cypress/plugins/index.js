@@ -31,13 +31,18 @@ module.exports = (on, config) => {
       await server.start(API_DEFAULT_PORT)
       for (const handler of handlers) {
         const { isFile = false } = handler.response
+        const method =
+          /** @type {Lowercase<import('../fixtures/handler').Method>} */ (
+            handler.method.toLowerCase()
+          )
+        const requestRule = server[method]
         if (isFile) {
-          await server[handler.method.toLowerCase()](handler.url).thenFromFile(
+          await requestRule(handler.url).thenFromFile(
             handler.response.statusCode,
             path.join(UPLOADS_FIXTURES_DIRECTORY, ...handler.response.body)
           )
         } else {
-          await server[handler.method.toLowerCase()](handler.url).thenJson(
+          await requestRule(handler.url).thenJson(
             handler.response.statusCode,
             handler.response.body
           )

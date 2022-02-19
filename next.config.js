@@ -1,4 +1,5 @@
 const nextPWA = require('next-pwa')
+/** @type {any} */
 const nextTranslate = require('next-translate')
 const { createSecureHeaders } = require('next-secure-headers')
 
@@ -16,7 +17,7 @@ module.exports = nextTranslate(
       disable: process.env.NODE_ENV !== 'production',
       dest: 'public'
     },
-    async headers() {
+    headers() {
       return [
         {
           source: '/:path*',

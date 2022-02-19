@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 
-import { Loader } from './'
+import { Loader } from '.'
 
 describe('<Loader />', () => {
   it('should render with correct width and height', async () => {

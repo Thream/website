@@ -9,7 +9,7 @@ import { Main } from '../design/Main'
 import { Input } from '../design/Input'
 import { Button } from '../design/Button'
 import { FormState } from '../design/FormState'
-import { AuthenticationForm } from './'
+import { AuthenticationForm } from '.'
 import { userSchema } from '../../models/User'
 import { api } from '../../tools/api'
 import {

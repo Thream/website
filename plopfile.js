@@ -5,6 +5,6 @@ module.exports = (
   /** @type {import('plop').NodePlopAPI} */
   plop
 ) => {
-  plop.setGenerator('component', componentGenerator(plop))
+  plop.setGenerator('component', componentGenerator())
   plop.setGenerator('language', languageGenerator(plop))
 }

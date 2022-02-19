@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 
-import { Divider } from './'
+import { Divider } from '.'
 
 describe('<Divider />', () => {
   it('should render successfully', () => {

@@ -1,12 +1,13 @@
 {
   "extends": [
-    "standard-with-typescript",
-    "next",
+    "conventions",
     "next/core-web-vitals",
     "plugin:storybook/recommended",
+    "plugin:cypress/recommended",
     "prettier"
   ],
-  "plugins": ["unicorn", "import", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -17,25 +18,6 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal"],
-        "newlines-between": "always"
-      }
-    ],
-    "unicorn/prefer-node-protocol": "error",
-    "unicorn/prevent-abbreviations": [
-      "error",
-      {
-        "replacements": {
-          "props": {
-            "properties": false
-          }
-        }
-      }
-    ],
-    "@typescript-eslint/no-namespace": "off",
     "@next/next/no-img-element": "off"
   }
 }
