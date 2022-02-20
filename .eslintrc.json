@@ -3,10 +3,8 @@
     "conventions",
     "next/core-web-vitals",
     "plugin:storybook/recommended",
-    "plugin:cypress/recommended",
     "prettier"
   ],
-  "parser": "@typescript-eslint/parser",
   "plugins": ["prettier"],
   "parserOptions": {
     "project": "./tsconfig.json"

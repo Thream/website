@@ -10,12 +10,7 @@
     "removeComments": true,
     "noEmit": true,
     "strict": true,
-    "types": [
-      "jest",
-      "@testing-library/jest-dom",
-      "@testing-library/react",
-      "cypress"
-    ],
+    "types": ["jest", "@testing-library/jest-dom", "@testing-library/react"],
     "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -25,6 +20,6 @@
     "isolatedModules": true,
     "incremental": true
   },
-  "exclude": ["dist", ".next", "out", "**/workbox-*.js", "**/sw.js"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+  "exclude": ["dist", ".next", "out", "next.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

@@ -1,5 +1,4 @@
 const nextPWA = require('next-pwa')
-/** @type {any} */
 const nextTranslate = require('next-translate')
 const { createSecureHeaders } = require('next-secure-headers')
 
