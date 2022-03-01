@@ -7,16 +7,16 @@ import {
   AuthenticationProvider,
   PagePropsWithAuthentication
 } from 'tools/authentication'
-import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
+import { CreateChannel } from 'components/Application/CreateChannel'
 import { GuildsProvider } from 'contexts/Guilds'
-import { GuildSettings } from 'components/Application/GuildSettings'
+import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
 
-export interface GuildSettingsPageProps extends PagePropsWithAuthentication {
+export interface CreateChannelPageProps extends PagePropsWithAuthentication {
   guildId: number
   guildMember: GuildMember
 }
 
-const GuildSettingsPage: NextPage<GuildSettingsPageProps> = (props) => {
+const CreateChannelPage: NextPage<CreateChannelPageProps> = (props) => {
   const { guildId, authentication, guildMember } = props
 
   const path = { guildId }
@@ -25,9 +25,15 @@ const GuildSettingsPage: NextPage<GuildSettingsPageProps> = (props) => {
     <AuthenticationProvider authentication={authentication}>
       <GuildsProvider>
         <GuildMemberProvider guildMember={guildMember} path={path}>
-          <Head title='Thream | Guild settings' />
-          <Application path={path} title='Guild settings'>
-            <GuildSettings />
+          <Head
+            title={`Thream | Crée un channel`}
+            description={'Crée un nouveau channel'}
+          />
+          <Application
+            path='/application/guilds/create'
+            title={'Crée un channel'}
+          >
+            <CreateChannel />
           </Application>
         </GuildMemberProvider>
       </GuildsProvider>
@@ -55,4 +61,4 @@ export const getServerSideProps = authenticationFromServerSide({
   }
 })
 
-export default GuildSettingsPage
+export default CreateChannelPage

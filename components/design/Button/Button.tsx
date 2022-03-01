@@ -21,7 +21,7 @@ export const ButtonLink = forwardRef<HTMLAnchorElement, ButtonLinkProps>(
     const {
       children,
       className: givenClassName,
-      color = 'red',
+      color = 'green',
       ...rest
     } = props
 
