@@ -133,6 +133,7 @@ export const UserSettings: React.FC = () => {
   const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = async (
     event
   ) => {
+    setFetchState('loading')
     const files = event?.target?.files
     if (files != null && files.length === 1) {
       const file = files[0]
@@ -149,6 +150,7 @@ export const UserSettings: React.FC = () => {
             logo: data.user.logo
           }
         })
+        setFetchState('idle')
       } catch (error) {
         setFetchState('error')
         setMessageTranslationKey('errors:server-error')

@@ -72,10 +72,28 @@ export const GuildSettings: React.FC = () => {
     })
   }
 
+  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = async (
+    event
+  ) => {
+    setFetchState('loading')
+    const files = event?.target?.files
+    if (files != null && files.length === 1) {
+      const file = files[0]
+      const formData = new FormData()
+      formData.append('icon', file)
+      try {
+        await authentication.api.put(`/guilds/${guild.id}/icon`, formData)
+        setFetchState('idle')
+      } catch (error) {
+        setFetchState('error')
+        setMessageTranslationKey('errors:server-error')
+      }
+    }
+  }
+
   const handleDelete = async (): Promise<void> => {
     try {
       await authentication.api.delete(`/guilds/${guild.id}`)
-      await router.push('/application')
     } catch (error) {
       setFetchState('error')
       setMessageTranslationKey('errors:server-error')
@@ -106,6 +124,7 @@ export const GuildSettings: React.FC = () => {
                   <input
                     type='file'
                     className='absolute h-full w-full cursor-pointer opacity-0'
+                    onChange={handleFileChange}
                   />
                   <PhotographIcon color='white' className='h-8 w-8' />
                 </button>

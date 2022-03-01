@@ -29,10 +29,7 @@ const CreateChannelPage: NextPage<CreateChannelPageProps> = (props) => {
             title={`Thream | Crée un channel`}
             description={'Crée un nouveau channel'}
           />
-          <Application
-            path='/application/guilds/create'
-            title={'Crée un channel'}
-          >
+          <Application path={path} title={'Crée un channel'}>
             <CreateChannel />
           </Application>
         </GuildMemberProvider>
