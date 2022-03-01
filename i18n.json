@@ -15,6 +15,7 @@
     "/application/guilds/create": ["application", "errors"],
     "/application/guilds/join": ["application", "errors"],
     "/application": ["application", "errors"],
+    "/application/[guildId]/settings": ["application", "errors"],
     "/application/[guildId]/[channelId]": ["application", "errors"]
   }
 }

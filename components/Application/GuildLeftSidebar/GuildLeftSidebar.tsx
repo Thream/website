@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { CogIcon, PlusIcon } from '@heroicons/react/solid'
 
 import { useGuildMember } from '../../../contexts/GuildMember'
@@ -13,7 +14,7 @@ export interface GuildLeftSidebarProps {
 export const GuildLeftSidebar: React.FC<GuildLeftSidebarProps> = (props) => {
   const { path } = props
 
-  const { guild } = useGuildMember()
+  const { guild, member } = useGuildMember()
 
   return (
     <div className='mt-2 flex w-full flex-col justify-between'>
@@ -26,12 +27,18 @@ export const GuildLeftSidebar: React.FC<GuildLeftSidebarProps> = (props) => {
       <Channels path={path} />
       <Divider />
       <div className='mb-1 flex items-center justify-center space-x-6 p-2'>
-        <IconButton className='h-10 w-10' title='Add a Channel'>
-          <PlusIcon />
-        </IconButton>
-        <IconButton className='h-7 w-7' title='Settings'>
-          <CogIcon />
-        </IconButton>
+        {member.isOwner && (
+          <IconButton className='h-10 w-10' title='Add a Channel'>
+            <PlusIcon />
+          </IconButton>
+        )}
+        <Link href={`/application/${path.guildId}/settings`} passHref>
+          <a>
+            <IconButton className='h-7 w-7' title='Settings'>
+              <CogIcon />
+            </IconButton>
+          </a>
+        </Link>
       </div>
     </div>
   )

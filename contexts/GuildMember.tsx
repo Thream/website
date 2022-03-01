@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 import { Guild } from 'models/Guild'
 import { Member } from 'models/Member'
-import { GuildsChannelsPath } from 'components/Application'
 import { useAuthentication } from 'tools/authentication'
 
 export interface GuildMember {
@@ -12,7 +11,9 @@ export interface GuildMember {
 
 export interface GuildMemberProps {
   guildMember: GuildMember
-  path: GuildsChannelsPath
+  path: {
+    guildId: number
+  }
 }
 
 const defaultGuildMemberContext = {} as any
