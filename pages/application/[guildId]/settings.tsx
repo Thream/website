@@ -47,7 +47,9 @@ export const getServerSideProps = authenticationFromServerSide({
         }
       }
     }
-    const { data: guildMember } = await api.get(`/guilds/${guildId}`)
+    const { data: guildMember } = await api.get<GuildMember>(
+      `/guilds/${guildId}`
+    )
     return {
       guildId,
       guildMember

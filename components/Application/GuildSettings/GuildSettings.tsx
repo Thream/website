@@ -95,7 +95,7 @@ export const GuildSettings: React.FC = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className='my-auto flex flex-col items-center justify-center py-12 lg:min-w-[875px]'
+      className='my-auto flex flex-col items-center justify-center py-12'
     >
       {member.isOwner && (
         <div className='flex w-full flex-col items-center justify-center sm:w-fit lg:flex-row'>
@@ -133,7 +133,7 @@ export const GuildSettings: React.FC = () => {
                 className='!mt-0'
                 onChange={onChange}
                 value={inputValues.name}
-                error={getErrorTranslation(errors.description)}
+                error={getErrorTranslation(errors.name)}
               />
               <Textarea
                 name='description'
@@ -152,7 +152,7 @@ export const GuildSettings: React.FC = () => {
           {member.isOwner ? (
             <>
               <Button type='submit'>Sauvegarder</Button>
-              <Button color='red' onClick={handleDelete}>
+              <Button type='button' color='red' onClick={handleDelete}>
                 Supprimer
               </Button>
             </>

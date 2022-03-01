@@ -11,3 +11,14 @@ export const channelSchema = {
 }
 const channelObjectSchema = Type.Object(channelSchema)
 export type Channel = Static<typeof channelObjectSchema>
+
+export const channelWithDefaultChannelIdSchema = {
+  ...channelSchema,
+  defaultChannelId: channelSchema.id
+}
+export const channelWithDefaultChannelObjectSchema = Type.Object(
+  channelWithDefaultChannelIdSchema
+)
+export type ChannelWithDefaultChannelId = Static<
+  typeof channelWithDefaultChannelObjectSchema
+>
