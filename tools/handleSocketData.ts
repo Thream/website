@@ -39,7 +39,10 @@ export const handleSocketData = <T extends Item = Item>(
       case 'update': {
         const itemIndex = newItems.findIndex((item) => item.id === data.item.id)
         if (itemIndex !== -1) {
-          newItems[itemIndex] = data.item
+          newItems[itemIndex] = {
+            ...newItems[itemIndex],
+            ...data.item
+          }
         }
         break
       }
