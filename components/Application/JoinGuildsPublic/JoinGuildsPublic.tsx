@@ -7,6 +7,7 @@ import { GuildPublic as GuildPublicType } from '../../../models/Guild'
 import { Loader } from '../../design/Loader'
 import { GuildPublic } from './GuildPublic'
 import { usePagination } from '../../../hooks/usePagination'
+import { SocketData, handleSocketData } from '../../../tools/handleSocketData'
 
 export const JoinGuildsPublic: React.FC = () => {
   const [search, setSearch] = useState('')
@@ -14,11 +15,21 @@ export const JoinGuildsPublic: React.FC = () => {
   const { authentication } = useAuthentication()
   const { t } = useTranslation()
 
-  const { items, hasMore, nextPage, resetPagination } =
+  const { items, hasMore, nextPage, resetPagination, setItems } =
     usePagination<GuildPublicType>({
       api: authentication.api,
       url: '/guilds/public'
     })
+
+  useEffect(() => {
+    authentication.socket.on('guilds', (data: SocketData<GuildPublicType>) => {
+      handleSocketData({ data, setItems })
+    })
+
+    return () => {
+      authentication.socket.off('guilds')
+    }
+  }, [authentication.socket, setItems])
 
   useEffect(() => {
     resetPagination()

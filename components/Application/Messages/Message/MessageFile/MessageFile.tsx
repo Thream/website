@@ -8,6 +8,13 @@ import { MessageWithMember } from '../../../../../models/Message'
 import { Loader } from '../../../../design/Loader'
 import { FileIcon } from './FileIcon'
 
+const supportedImageMimetype = [
+  'image/png',
+  'image/jpg',
+  'image/jpeg',
+  'image/gif'
+]
+
 export interface FileData {
   blob: Blob
   url: string
@@ -44,7 +51,7 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
   if (file == null) {
     return <Loader />
   }
-  if (message.mimetype.startsWith('image/')) {
+  if (supportedImageMimetype.includes(message.mimetype)) {
     return (
       <a href={file.url} target='_blank' rel='noreferrer'>
         <img

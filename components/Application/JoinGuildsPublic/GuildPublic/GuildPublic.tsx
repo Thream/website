@@ -1,12 +1,19 @@
-import { useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import classNames from 'classnames'
+import axios from 'axios'
 
 import { Emoji } from 'components/Emoji'
 import { ConfirmGuildJoin } from 'components/Application/ConfirmGuildJoin'
+import { API_URL } from 'tools/api'
 
-import { GuildPublic as GuildPublicType } from '../../../../models/Guild'
+import {
+  GuildPublic as GuildPublicType,
+  GuildWithDefaultChannelId
+} from '../../../../models/Guild'
+import { useAuthentication } from '../../../../tools/authentication'
 
 export interface GuildPublicProps {
   guild: GuildPublicType
@@ -14,9 +21,36 @@ export interface GuildPublicProps {
 
 export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
   const { guild } = props
+  const router = useRouter()
+  const { authentication } = useAuthentication()
   const [isConfirmed, setIsConfirmed] = useState(false)
-
   const { t } = useTranslation()
+
+  const handleIsConfirmed = (): void => {
+    setIsConfirmed((isConfirmed) => !isConfirmed)
+  }
+
+  const handleYes = async (): Promise<void> => {
+    try {
+      const { data } = await authentication.api.post<{
+        guild: GuildWithDefaultChannelId
+      }>(`/guilds/${guild.id}/members/join`)
+      await router.push(
+        `/application/${guild.id}/${data.guild.defaultChannelId}`
+      )
+    } catch (error) {
+      if (
+        axios.isAxiosError(error) &&
+        error.response?.status === 400 &&
+        typeof error.response?.data.defaultChannelId === 'number'
+      ) {
+        const defaultChannelId = error.response.data.defaultChannelId as number
+        await router.push(`/application/${guild.id}/${defaultChannelId}`)
+      } else {
+        await router.push('/application')
+      }
+    }
+  }
 
   return (
     <div className='relative overflow-hidden rounded border border-gray-500 shadow-lg transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none dark:border-gray-700'>
@@ -25,12 +59,14 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
           'flex h-full cursor-pointer flex-col items-center justify-center p-4 pt-8 transition duration-200 ease-in-out',
           { '-translate-x-full': isConfirmed }
         )}
-        onClick={() => setIsConfirmed(!isConfirmed)}
+        onClick={handleIsConfirmed}
       >
         <Image
           className='rounded-full'
           src={
-            guild.icon != null ? guild.icon : '/images/data/guild-default.png'
+            guild.icon != null
+              ? API_URL + guild.icon
+              : '/images/data/guild-default.png'
           }
           alt='logo'
           width={80}
@@ -65,7 +101,8 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
             '!left-0': isConfirmed
           }
         )}
-        handleJoinGuild={() => setIsConfirmed(!isConfirmed)}
+        handleYes={handleYes}
+        handleNo={handleIsConfirmed}
       />
     </div>
   )

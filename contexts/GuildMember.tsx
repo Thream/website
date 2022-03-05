@@ -1,48 +1,92 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
-import { Guild } from 'models/Guild'
+import { GuildWithDefaultChannelId } from 'models/Guild'
 import { Member } from 'models/Member'
-import { GuildsChannelsPath } from 'components/Application'
 import { useAuthentication } from 'tools/authentication'
+import { SocketData } from 'tools/handleSocketData'
 
 export interface GuildMember {
-  guild: Guild
+  guild: GuildWithDefaultChannelId
   member: Member
+}
+
+export interface GuildMemberResult extends GuildMember {
+  setGuildMember: React.Dispatch<React.SetStateAction<GuildMember>>
 }
 
 export interface GuildMemberProps {
   guildMember: GuildMember
-  path: GuildsChannelsPath
+  path: {
+    guildId: number
+  }
 }
 
 const defaultGuildMemberContext = {} as any
-const GuildMemberContext = createContext<GuildMember>(defaultGuildMemberContext)
+const GuildMemberContext = createContext<GuildMemberResult>(
+  defaultGuildMemberContext
+)
 
 export const GuildMemberProvider: React.FC<GuildMemberProps> = (props) => {
+  const { path, children } = props
+  const router = useRouter()
   const [guildMember, setGuildMember] = useState(props.guildMember)
   const { authentication } = useAuthentication()
 
   useEffect(() => {
     const fetchGuildMember = async (): Promise<void> => {
-      const { data } = await authentication.api.get(
-        `/guilds/${props.path.guildId}`
-      )
+      const { data } = await authentication.api.get(`/guilds/${path.guildId}`)
       setGuildMember(data)
     }
 
     fetchGuildMember().catch((error) => {
       console.error(error)
     })
-  }, [props.path, authentication.api])
+  }, [path, authentication.api])
+
+  useEffect(() => {
+    authentication.socket.on(
+      'guilds',
+      async (data: SocketData<GuildWithDefaultChannelId>) => {
+        if (data.item.id === path.guildId) {
+          switch (data.action) {
+            case 'delete':
+              await router.push('/application')
+              break
+            case 'update':
+              setGuildMember((oldGuildMember) => {
+                return {
+                  ...oldGuildMember,
+                  guild: {
+                    ...oldGuildMember.guild,
+                    ...data.item
+                  }
+                }
+              })
+              break
+          }
+        }
+      }
+    )
+
+    return () => {
+      authentication.socket.off('guilds')
+    }
+  }, [authentication.socket, path.guildId, router])
 
   return (
-    <GuildMemberContext.Provider value={guildMember}>
-      {props.children}
+    <GuildMemberContext.Provider
+      value={{
+        ...guildMember,
+        setGuildMember
+      }}
+    >
+      {children}
     </GuildMemberContext.Provider>
   )
 }
 
-export const useGuildMember = (): GuildMember => {
+export const useGuildMember = (): GuildMemberResult => {
   const guildMember = useContext(GuildMemberContext)
   if (guildMember === defaultGuildMemberContext) {
     throw new Error('useGuildMember must be used within GuildMemberProvider')

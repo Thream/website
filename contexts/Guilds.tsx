@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect } from 'react'
 import { NextPage, usePagination } from 'hooks/usePagination'
 import { useAuthentication } from 'tools/authentication'
 import { GuildWithDefaultChannelId } from 'models/Guild'
+import { handleSocketData, SocketData } from 'tools/handleSocketData'
 
 export interface Guilds {
   guilds: GuildWithDefaultChannelId[]
@@ -22,11 +23,25 @@ export const GuildsProvider: React.FC = (props) => {
     items: guilds,
     hasMore,
     nextPage,
-    resetPagination
+    resetPagination,
+    setItems
   } = usePagination<GuildWithDefaultChannelId>({
     api: authentication.api,
     url: '/guilds'
   })
+
+  useEffect(() => {
+    authentication.socket.on(
+      'guilds',
+      (data: SocketData<GuildWithDefaultChannelId>) => {
+        handleSocketData({ data, setItems })
+      }
+    )
+
+    return () => {
+      authentication.socket.off('guilds')
+    }
+  }, [authentication.socket, setItems])
 
   useEffect(() => {
     resetPagination()

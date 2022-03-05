@@ -24,7 +24,12 @@ module.exports = nextTranslate(
             contentSecurityPolicy: {
               directives: {
                 defaultSrc: ["'self'"],
-                scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
+                scriptSrc: [
+                  "'self'",
+                  'data:',
+                  "'unsafe-eval'",
+                  "'unsafe-inline'"
+                ],
                 styleSrc: ["'self'", "'unsafe-inline'"],
                 imgSrc: ['*', 'data:', 'blob:'],
                 mediaSrc: ['*', 'data:', 'blob:'],

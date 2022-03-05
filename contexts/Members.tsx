@@ -4,6 +4,8 @@ import { NextPage, usePagination } from 'hooks/usePagination'
 import { useAuthentication } from 'tools/authentication'
 import { MemberWithPublicUser } from 'models/Member'
 import { GuildsChannelsPath } from 'components/Application'
+import { handleSocketData, SocketData } from 'tools/handleSocketData'
+import { User } from 'models/User'
 
 export interface Members {
   members: MemberWithPublicUser[]
@@ -27,11 +29,44 @@ export const MembersProviders: React.FC<MembersProviderProps> = (props) => {
     items: members,
     hasMore,
     nextPage,
-    resetPagination
+    resetPagination,
+    setItems
   } = usePagination<MemberWithPublicUser>({
     api: authentication.api,
     url: `/guilds/${path.guildId}/members`
   })
+
+  useEffect(() => {
+    authentication.socket.on(
+      'members',
+      (data: SocketData<MemberWithPublicUser>) => {
+        handleSocketData({ data, setItems })
+      }
+    )
+
+    authentication.socket.on('users', (data: SocketData<User>) => {
+      setItems((oldItems) => {
+        const newItems = [...oldItems]
+        switch (data.action) {
+          case 'update': {
+            for (const member of newItems) {
+              if (member.user.id === data.item.id) {
+                member.user = data.item
+                break
+              }
+            }
+            break
+          }
+        }
+        return newItems
+      })
+    })
+
+    return () => {
+      authentication.socket.off('members')
+      authentication.socket.off('users')
+    }
+  }, [authentication.socket, setItems])
 
   useEffect(() => {
     resetPagination()

@@ -155,7 +155,8 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
               'absolute top-0 left-[150%] flex h-full w-full flex-col items-center justify-center transition-all',
               { 'left-[0%]': confirmation }
             )}
-            handleJoinGuild={handleConfirmationState}
+            handleYes={handleConfirmationState}
+            handleNo={() => {}}
           />
         </div>
         <XIcon

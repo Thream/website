@@ -14,9 +14,16 @@ import { Members } from './Members'
 import { useAuthentication } from '../../tools/authentication'
 import { API_URL } from '../../tools/api'
 
-export interface GuildsChannelsPath {
-  guildId: number
+export interface ChannelsPath {
   channelId: number
+}
+export interface GuildsPath {
+  guildId: number
+}
+export interface GuildsChannelsPath extends GuildsPath, ChannelsPath {}
+
+const isGuildsChannelsPath = (path: any): path is GuildsChannelsPath => {
+  return path.guildId !== undefined && path.channelId !== undefined
 }
 
 export type ApplicationPath =
@@ -26,6 +33,7 @@ export type ApplicationPath =
   | `/application/users/${number}`
   | `/application/users/settings`
   | GuildsChannelsPath
+  | GuildsPath
 
 export interface ApplicationProps {
   path: ApplicationPath
@@ -216,7 +224,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           {children}
         </div>
 
-        {typeof path !== 'string' && (
+        {isGuildsChannelsPath(path) && (
           <Sidebar
             direction='right'
             visible={visibleSidebars.right}

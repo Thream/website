@@ -1,7 +1,6 @@
 import { channelExample } from '../../../fixtures/channels/channel'
 import { guildExample } from '../../../fixtures/guilds/guild'
 import { userExample } from '../../../fixtures/users/user'
-import { getGuildsHandler } from '../../../fixtures/guilds/get'
 import { authenticationHandlers } from '../../../fixtures/handler'
 import { getGuildMemberWithGuildIdHandler } from '../../../fixtures/guilds/[guildId]/get'
 import { getChannelWithChannelIdHandler } from '../../../fixtures/channels/[channelId]/get'
@@ -10,9 +9,13 @@ import { getUserByIdHandler } from '../../../fixtures/users/[userId]/get'
 const applicationPaths = [
   '/application',
   `/application/users/${userExample.id}`,
+  `/application/users/settings`,
   '/application/guilds/create',
   '/application/guilds/join',
-  `/application/${guildExample.id}/${channelExample.id}`
+  `/application/${guildExample.id}/${channelExample.id}`,
+  `/application/${guildExample.id}/${channelExample.id}/settings`,
+  `/application/${guildExample.id}/channels/create`,
+  `/application/${guildExample.id}/settings`
 ]
 
 describe('Common > application/authentication', () => {
@@ -31,7 +34,6 @@ describe('Common > application/authentication', () => {
   it('should not redirect the user if signed in', () => {
     cy.task('startMockServer', [
       ...authenticationHandlers,
-      getGuildsHandler,
       getGuildMemberWithGuildIdHandler,
       getChannelWithChannelIdHandler,
       getUserByIdHandler
