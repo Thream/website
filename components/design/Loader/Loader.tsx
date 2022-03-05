@@ -25,11 +25,13 @@ export const Loader: React.FC<LoaderProps> = (props) => {
       <style jsx>
         {`
           .progress-spinner {
+            display: inline-block;
             position: relative;
             margin: 0 auto;
             width: ${width}px;
             height: ${height}px;
-            display: inline-block;
+            transform: translateX(-50%);
+            left: 50%;
           }
           .progress-spinner::before {
             content: '';
