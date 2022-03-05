@@ -29,7 +29,7 @@ export const GuildLeftSidebar: React.FC<GuildLeftSidebarProps> = (props) => {
       <div className='mb-1 flex items-center justify-center space-x-6 p-2'>
         {member.isOwner && (
           <Link href={`/application/${path.guildId}/channels/create`} passHref>
-            <a>
+            <a data-cy='link-add-channel'>
               <IconButton className='h-10 w-10' title='Add a Channel'>
                 <PlusIcon />
               </IconButton>
@@ -37,7 +37,7 @@ export const GuildLeftSidebar: React.FC<GuildLeftSidebarProps> = (props) => {
           </Link>
         )}
         <Link href={`/application/${path.guildId}/settings`} passHref>
-          <a>
+          <a data-cy='link-settings-guild'>
             <IconButton className='h-7 w-7' title='Settings'>
               <CogIcon />
             </IconButton>

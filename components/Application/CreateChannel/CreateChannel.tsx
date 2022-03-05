@@ -51,8 +51,13 @@ export const CreateChannel: React.FC = () => {
           name='name'
           label={t('common:name')}
           error={getErrorTranslation(errors.name)}
+          data-cy='channel-name-input'
         />
-        <Button className='mt-6 w-full' type='submit' data-cy='submit'>
+        <Button
+          className='mt-6 w-full'
+          type='submit'
+          data-cy='button-create-channel'
+        >
           {t('application:create')}
         </Button>
       </Form>

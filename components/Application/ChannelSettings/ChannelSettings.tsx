@@ -101,6 +101,7 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
               onChange={onChange}
               value={inputValues.name}
               error={getErrorTranslation(errors.name)}
+              data-cy='channel-name-input'
             />
           </div>
         </div>
@@ -108,8 +109,15 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
 
       <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
         <div className='space-x-6'>
-          <Button type='submit'>Sauvegarder</Button>
-          <Button type='button' color='red' onClick={handleDelete}>
+          <Button type='submit' data-cy='button-save-channel-settings'>
+            Sauvegarder
+          </Button>
+          <Button
+            type='button'
+            color='red'
+            onClick={handleDelete}
+            data-cy='button-delete-channel-settings'
+          >
             Supprimer
           </Button>
         </div>

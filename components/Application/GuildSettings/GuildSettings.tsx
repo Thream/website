@@ -153,6 +153,7 @@ export const GuildSettings: React.FC = () => {
                 onChange={onChange}
                 value={inputValues.name}
                 error={getErrorTranslation(errors.name)}
+                data-cy='guild-name-input'
               />
               <Textarea
                 name='description'
@@ -161,6 +162,7 @@ export const GuildSettings: React.FC = () => {
                 id='textarea-description'
                 onChange={onChange}
                 value={inputValues.description ?? ''}
+                data-cy='guild-description-input'
               />
             </div>
           </div>
@@ -170,13 +172,24 @@ export const GuildSettings: React.FC = () => {
         <div className='space-x-6'>
           {member.isOwner ? (
             <>
-              <Button type='submit'>Sauvegarder</Button>
-              <Button type='button' color='red' onClick={handleDelete}>
+              <Button type='submit' data-cy='button-save-guild-settings'>
+                Sauvegarder
+              </Button>
+              <Button
+                type='button'
+                color='red'
+                onClick={handleDelete}
+                data-cy='button-delete-guild-settings'
+              >
                 Supprimer
               </Button>
             </>
           ) : (
-            <Button color='red' onClick={handleLeave}>
+            <Button
+              color='red'
+              onClick={handleLeave}
+              data-cy='button-leave-guild-settings'
+            >
               Quitter {guild.name}
             </Button>
           )}

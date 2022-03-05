@@ -3,34 +3,37 @@ import date from 'date-and-time'
 import {
   channelExample,
   channelExample2
-} from '../../../../fixtures/channels/channel'
-import { guildExample } from '../../../../fixtures/guilds/guild'
-import { getGuildMemberWithGuildIdHandler } from '../../../../fixtures/guilds/[guildId]/get'
-import { getChannelWithChannelIdHandler } from '../../../../fixtures/channels/[channelId]/get'
-import { authenticationHandlers } from '../../../../fixtures/handler'
-import { getGuildsHandler } from '../../../../fixtures/guilds/get'
-import { getChannelsWithGuildIdHandler } from '../../../../fixtures/guilds/[guildId]/channels/get'
-import { getMessagesWithChannelIdHandler } from '../../../../fixtures/channels/[channelId]/messages/get'
+} from '../../../../../fixtures/channels/channel'
+import { guildExample } from '../../../../../fixtures/guilds/guild'
+import {
+  getGuildMemberNotOwnerWithGuildIdHandler,
+  getGuildMemberWithGuildIdHandler
+} from '../../../../../fixtures/guilds/[guildId]/get'
+import { getChannelWithChannelIdHandler } from '../../../../../fixtures/channels/[channelId]/get'
+import { authenticationHandlers } from '../../../../../fixtures/handler'
+import { getGuildsHandler } from '../../../../../fixtures/guilds/get'
+import { getChannelsWithGuildIdHandler } from '../../../../../fixtures/guilds/[guildId]/channels/get'
+import { getMessagesWithChannelIdHandler } from '../../../../../fixtures/channels/[channelId]/messages/get'
 import {
   messageExampleComplete,
   messageExampleComplete2
-} from '../../../../fixtures/messages/message'
-import { getMembersWithGuildIdHandler } from '../../../../fixtures/guilds/[guildId]/members/get'
-import { memberExampleComplete } from '../../../../fixtures/members/member'
-import { API_URL } from '../../../../../tools/api'
+} from '../../../../../fixtures/messages/message'
+import { getMembersWithGuildIdHandler } from '../../../../../fixtures/guilds/[guildId]/members/get'
+import { memberExampleComplete } from '../../../../../fixtures/members/member'
+import { API_URL } from '../../../../../../tools/api'
 import {
   getMessagesUploadsAudioHandler,
   getMessagesUploadsDownloadHandler,
   getMessagesUploadsImageHandler,
   getMessagesUploadsVideoHandler
-} from '../../../../fixtures/uploads/messages/get'
+} from '../../../../../fixtures/uploads/messages/get'
 
 describe('Pages > /application/[guildId]/[channelId]', () => {
   beforeEach(() => {
     cy.task('stopMockServer')
   })
 
-  it('should succeeds and display the guilds in left sidebar correctly', () => {
+  it('should succeeds and display the left sidebar correctly (member is owner)', () => {
     cy.task('startMockServer', [
       ...authenticationHandlers,
       getGuildMemberWithGuildIdHandler,
@@ -50,6 +53,43 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
         guildExample.name
       )
       cy.get('.guilds-list').children().should('have.length', 2)
+      cy.get('[data-cy=link-add-channel]')
+        .should('be.visible')
+        .should(
+          'have.attr',
+          'href',
+          `/application/${guildExample.id}/channels/create`
+        )
+      cy.get('[data-cy=link-settings-guild]')
+        .should('be.visible')
+        .should('have.attr', 'href', `/application/${guildExample.id}/settings`)
+    })
+  })
+
+  it('should succeeds and display the left sidebar correctly (member is not owner)', () => {
+    cy.task('startMockServer', [
+      ...authenticationHandlers,
+      getGuildMemberNotOwnerWithGuildIdHandler,
+      getChannelWithChannelIdHandler,
+      getGuildsHandler
+    ]).setCookie('refreshToken', 'refresh-token')
+    cy.intercept(`${API_URL}${getGuildsHandler.url}*`).as('getGuildsHandler')
+    cy.intercept(`/_next/*`).as('nextStaticAndImages')
+    cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
+    cy.wait(['@getGuildsHandler', '@nextStaticAndImages']).then(() => {
+      cy.get('[data-cy=application-title]').should(
+        'have.text',
+        `# ${channelExample.name}`
+      )
+      cy.get('[data-cy=guild-left-sidebar-title]').should(
+        'have.text',
+        guildExample.name
+      )
+      cy.get('.guilds-list').children().should('have.length', 2)
+      cy.get('[data-cy=link-add-channel]').should('not.exist')
+      cy.get('[data-cy=link-settings-guild]')
+        .should('be.visible')
+        .should('have.attr', 'href', `/application/${guildExample.id}/settings`)
     })
   })
 
