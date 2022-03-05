@@ -18,9 +18,7 @@
 
 Thream's website to stay close with your friends and communities.
 
-This project was bootstrapped with [create-fullstack-app](https://github.com/Divlo/create-fullstack-app).
-
-Using [Thream/api](https://github.com/Thream/api) v1.0.0.
+It uses [Thream/api](https://github.com/Thream/api) v1.0.0.
 
 ## ⚙️ Getting Started
 
