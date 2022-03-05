@@ -53,7 +53,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
   }
 
   return (
-    <div className='relative overflow-hidden rounded border border-gray-500 shadow-lg transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none dark:border-gray-700'>
+    <div className='relative h-80 overflow-hidden rounded border border-gray-500 shadow-lg transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none dark:border-gray-700'>
       <div
         className={classNames(
           'flex h-full cursor-pointer flex-col items-center justify-center p-4 pt-8 transition duration-200 ease-in-out',
