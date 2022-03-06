@@ -19,6 +19,15 @@ export interface PagePropsWithAuthentication {
   }
 }
 
+export const isTokens = (data: { [key: string]: any }): data is Tokens => {
+  return (
+    'accessToken' in data &&
+    'refreshToken' in data &&
+    'type' in data &&
+    'expiresIn' in data
+  )
+}
+
 export * from './Authentication'
 export * from './authenticationFromServerSide'
 export * from './AuthenticationContext'
