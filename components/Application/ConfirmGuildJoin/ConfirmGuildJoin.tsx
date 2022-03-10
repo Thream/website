@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import classNames from 'classnames'
 
 import { Loader } from '../../design/Loader'
 
@@ -23,30 +24,43 @@ export const ConfirmGuildJoin: React.FC<ConfirmGuildJoinProps> = ({
 
   return (
     <div className={props.className}>
-      {isLoading && <Loader />}
-      <Image
-        src='/images/svg/design/join-guild.svg'
-        alt='Join Guild Illustration'
-        height={150}
-        width={150}
+      <Loader
+        className={classNames('absolute scale-0 transition', {
+          'scale-100': isLoading
+        })}
       />
-      <div className='mt-8 flex flex-col'>
-        <h1 className='mb-6 text-center text-xl'>
-          {t('application:join-the-guild')} ?
-        </h1>
-        <div className='flex gap-7'>
-          <button
-            className='rounded-3xl bg-success px-8 py-2 transition hover:opacity-50'
-            onClick={handleYesLoading}
-          >
-            {t('common:yes')}
-          </button>
-          <button
-            className='rounded-3xl bg-error px-8 py-2 transition hover:opacity-50'
-            onClick={props.handleNo}
-          >
-            {t('common:no')}
-          </button>
+      <div
+        className={classNames(
+          'visible flex flex-col items-center opacity-100 transition-all',
+          {
+            'invisible opacity-0': isLoading
+          }
+        )}
+      >
+        <Image
+          src='/images/svg/design/join-guild.svg'
+          alt='Join Guild Illustration'
+          height={150}
+          width={150}
+        />
+        <div className='mt-8 flex flex-col'>
+          <h1 className='mb-6 text-center text-xl'>
+            {t('application:join-the-guild')} ?
+          </h1>
+          <div className='flex gap-7'>
+            <button
+              className='rounded-3xl bg-success px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
+              onClick={handleYesLoading}
+            >
+              {t('common:yes')}
+            </button>
+            <button
+              className='rounded-3xl bg-error px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
+              onClick={props.handleNo}
+            >
+              {t('common:no')}
+            </button>
+          </div>
         </div>
       </div>
     </div>

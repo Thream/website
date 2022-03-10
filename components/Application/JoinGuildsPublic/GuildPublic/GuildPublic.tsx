@@ -83,9 +83,9 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
             {guild.description != null ? (
               guild.description
             ) : (
-              <span className='flex h-full items-center justify-center opacity-25'>
+              <span className='flex h-full items-center justify-center opacity-40 dark:opacity-20'>
                 <Emoji value=':eyes:' size={25} />
-                <span className='ml-2'>Nothing&apos;s here...</span>
+                <span className='ml-2'>{t('application:nothing-here')}</span>
               </span>
             )}
           </p>

@@ -1,13 +1,14 @@
 export interface LoaderProps {
   width?: number
   height?: number
+  className?: string
 }
 
 export const Loader: React.FC<LoaderProps> = (props) => {
   const { width = 50, height = 50 } = props
 
   return (
-    <>
+    <div className={props.className}>
       <div data-testid='progress-spinner' className='progress-spinner'>
         <svg className='progress-spinner-svg' viewBox='25 25 50 50'>
           <circle
@@ -25,13 +26,10 @@ export const Loader: React.FC<LoaderProps> = (props) => {
       <style jsx>
         {`
           .progress-spinner {
-            display: inline-block;
             position: relative;
             margin: 0 auto;
             width: ${width}px;
             height: ${height}px;
-            transform: translateX(-50%);
-            left: 50%;
           }
           .progress-spinner::before {
             content: '';
@@ -78,6 +76,6 @@ export const Loader: React.FC<LoaderProps> = (props) => {
           }
         `}
       </style>
-    </>
+    </div>
   )
 }
