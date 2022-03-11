@@ -127,9 +127,9 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
 
       <div
         className={classNames(
-          'pointer-events-none absolute top-0 flex h-full w-full items-center justify-center bg-zinc-900/75 opacity-0 transition',
+          'pointer-events-none invisible absolute top-0 flex h-full w-full items-center justify-center bg-zinc-900/75 opacity-0 transition',
           {
-            'pointer-events-auto visible opacity-100': showPopup
+            'pointer-events-auto !visible !opacity-100': showPopup
           }
         )}
       >
