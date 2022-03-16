@@ -52,12 +52,12 @@ export const JoinGuildsPublic: React.FC = () => {
       />
       <div className='w-full p-12'>
         <InfiniteScroll
-          className='guilds-public-list mx-auto grid max-w-[1400px] grid-cols-[repeat(auto-fill,_minmax(20em,_1fr))] gap-8 !overflow-visible'
+          className='guilds-public-list relative mx-auto grid max-w-[1400px] grid-cols-[repeat(auto-fill,_minmax(20em,_1fr))] gap-8 !overflow-visible'
           dataLength={items.length}
           next={nextPage}
           scrollableTarget='application-page-content'
           hasMore={hasMore}
-          loader={<Loader />}
+          loader={<Loader className='absolute left-1/2 -translate-x-1/2' />}
         >
           {items.map((guild) => {
             return <GuildPublic guild={guild} key={guild.id} />
