@@ -7,7 +7,6 @@ import { Type } from '@sinclair/typebox'
 import axios from 'axios'
 
 import { API_URL } from '../../../tools/api'
-import { UserProfileGuilds } from '../UserProfile/UserProfileGuilds'
 import { Input } from '../../design/Input'
 import { Checkbox } from '../../design/Checkbox'
 import { Textarea } from '../../design/Textarea'
@@ -20,11 +19,9 @@ import { FormState } from '../../design/FormState'
 import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
 import { userCurrentSchema, userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
-import { useGuilds } from '../../../contexts/Guilds'
 
 export const UserSettings: React.FC = () => {
   const { user, setUser, authentication } = useAuthentication()
-  const { guilds } = useGuilds()
   const { t } = useTranslation()
   const [inputValues, setInputValues] = useState({
     name: user.name,
@@ -211,20 +208,6 @@ export const UserSettings: React.FC = () => {
               error={getErrorTranslation(errors.status)}
             />
           </div>
-        </div>
-        <div className='mt-10 ml-0 flex flex-col items-center lg:ml-24 lg:mt-0'>
-          <UserProfileGuilds
-            isPublicGuilds={inputValues.isPublicGuilds}
-            guilds={guilds}
-          />
-          <Checkbox
-            name='isPublicGuilds'
-            label={t('application:label-checkbox-guilds')}
-            onChange={onChangeCheckbox}
-            checked={inputValues.isPublicGuilds}
-            id='checkbox-public-guilds'
-            className='px-8'
-          />
         </div>
       </div>
       <div className='mt-12 flex w-full flex-col items-center justify-between sm:w-fit lg:flex-row'>

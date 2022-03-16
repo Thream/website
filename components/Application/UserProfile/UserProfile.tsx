@@ -1,16 +1,10 @@
 import Image from 'next/image'
-import React, { useState } from 'react'
-import classNames from 'classnames'
 import date from 'date-and-time'
 import useTranslation from 'next-translate/useTranslation'
-import { XIcon } from '@heroicons/react/solid'
 
 import { API_URL } from '../../../tools/api'
 import { UserPublic } from '../../../models/User'
-import { UserProfileGuilds } from './UserProfileGuilds'
-import { UserProfileGuild } from './UserProfileGuilds/UserProfileGuild'
 import { Guild } from '../../../models/Guild'
-import { ConfirmGuildJoin } from '../ConfirmGuildJoin'
 
 export interface UserProfileProps {
   className?: string
@@ -19,27 +13,12 @@ export interface UserProfileProps {
 }
 
 export const UserProfile: React.FC<UserProfileProps> = (props) => {
-  const { user, guilds } = props
+  const { user } = props
   const { t } = useTranslation()
-
-  const [showPopup, setShowPopup] = useState(false)
-  const [confirmation, setConfirmation] = useState(false)
-
-  const handleConfirmationState = (): void => {
-    setConfirmation((confirmation) => !confirmation)
-  }
-
-  const handlePopupVisibility = (): void => {
-    setShowPopup((showPopup) => !showPopup)
-  }
 
   return (
     <div className='relative flex h-full flex-col items-center justify-center'>
-      <div
-        className={classNames('transition', {
-          'select-none blur-3xl': showPopup
-        })}
-      >
+      <div className='transition'>
         <div className='max-w-[1000px] px-12'>
           <div className='flex items-center justify-between'>
             <div className='flex w-max items-center'>
@@ -109,13 +88,6 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                 </div>
               </div>
             </div>
-
-            <div className='py-8 px-4' onClick={handlePopupVisibility}>
-              <UserProfileGuilds
-                isPublicGuilds={user.settings.isPublicGuilds}
-                guilds={guilds}
-              />
-            </div>
           </div>
           <div className='mt-7'>
             {user.biography != null && (
@@ -123,46 +95,6 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
             )}
           </div>
         </div>
-      </div>
-
-      <div
-        className={classNames(
-          'pointer-events-none invisible absolute top-0 flex h-full w-full items-center justify-center bg-zinc-900/75 opacity-0 transition',
-          {
-            'pointer-events-auto !visible !opacity-100': showPopup
-          }
-        )}
-      >
-        <div
-          className={classNames(
-            'relative h-[400px] w-[400px] scale-0 overflow-y-auto overflow-x-hidden rounded-2xl bg-gray-200 py-2 shadow-xl transition dark:bg-gray-800',
-            { 'scale-100': showPopup }
-          )}
-        >
-          <div
-            className={classNames('relative h-full transition', {
-              '-translate-x-[150%]': confirmation
-            })}
-          >
-            <UserProfileGuild
-              handleConfirmationState={handleConfirmationState}
-            />
-          </div>
-
-          <ConfirmGuildJoin
-            className={classNames(
-              'absolute top-0 left-[150%] flex h-full w-full flex-col items-center justify-center transition-all',
-              { 'left-[0%]': confirmation }
-            )}
-            handleYes={handleConfirmationState}
-            handleNo={() => {}}
-          />
-        </div>
-        <XIcon
-          height={40}
-          onClick={handlePopupVisibility}
-          className='absolute top-8 right-8 cursor-pointer text-white transition hover:rotate-90'
-        />
       </div>
     </div>
   )
