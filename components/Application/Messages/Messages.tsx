@@ -1,3 +1,4 @@
+import useTranslation from 'next-translate/useTranslation'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Loader } from '../../design/Loader'
@@ -6,6 +7,7 @@ import { useMessages } from '../../../contexts/Messages'
 import { Emoji } from '../../Emoji'
 
 export const Messages: React.FC = () => {
+  const { t } = useTranslation()
   const { messages, hasMore, nextPage } = useMessages()
 
   if (messages.length === 0) {
@@ -15,9 +17,9 @@ export const Messages: React.FC = () => {
         className='scrollbar-firefox-support mt-8 flex w-full flex-1 flex-col overflow-y-auto text-center text-lg transition-all'
       >
         <p>
-          Nothing to show here! <Emoji value=':ghost:' size={20} />
+          {t('application:nothing-here')} <Emoji value=':ghost:' size={20} />
         </p>
-        <p>Start chatting to kill this Ghost!</p>
+        <p>{t('application:start-chatting-kill-ghost')}</p>
       </div>
     )
   }

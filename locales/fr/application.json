@@ -13,6 +13,10 @@
   "biography": "Biographie",
   "label-checkbox-email": "Afficher votre email au public.",
   "label-checkbox-guilds": "Afficher la liste des guildes au public.",
-  "private-user-guilds-list": "Liste des guildes privées",
-  "nothing-here": "Il n'y a rien ici..."
+  "nothing-here": "Il n'y a rien ici...",
+  "save": "Sauvegarder",
+  "delete": "Supprimer",
+  "signout": "Se déconnecter",
+  "leave": "Quitter",
+  "start-chatting-kill-ghost": "Commencez à discuter pour tuer ce fantôme !"
 }

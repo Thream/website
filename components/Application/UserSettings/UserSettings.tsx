@@ -155,6 +155,16 @@ export const UserSettings: React.FC = () => {
     }
   }
 
+  const handleSignout = async (): Promise<void> => {
+    try {
+      setFetchState('loading')
+      await authentication.signoutServerSide()
+    } catch (error) {
+      setFetchState('error')
+      setMessageTranslationKey('errors:server-error')
+    }
+  }
+
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
@@ -267,7 +277,12 @@ export const UserSettings: React.FC = () => {
       </div>
 
       <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
-        <Button type='submit'>Sauvegarder</Button>
+        <div className='space-x-6'>
+          <Button type='submit'>{t('application:save')}</Button>
+          <Button type='button' color='red' onClick={handleSignout}>
+            {t('application:signout')}
+          </Button>
+        </div>
         <FormState state={fetchState} message={message} />
       </div>
     </Form>

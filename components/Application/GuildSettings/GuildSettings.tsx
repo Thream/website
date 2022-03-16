@@ -172,7 +172,7 @@ export const GuildSettings: React.FC = () => {
           {member.isOwner ? (
             <>
               <Button type='submit' data-cy='button-save-guild-settings'>
-                Sauvegarder
+                {t('application:save')}
               </Button>
               <Button
                 type='button'
@@ -180,7 +180,7 @@ export const GuildSettings: React.FC = () => {
                 onClick={handleDelete}
                 data-cy='button-delete-guild-settings'
               >
-                Supprimer
+                {t('application:delete')}
               </Button>
             </>
           ) : (
@@ -189,7 +189,7 @@ export const GuildSettings: React.FC = () => {
               onClick={handleLeave}
               data-cy='button-leave-guild-settings'
             >
-              Quitter {guild.name}
+              {t('application:leave')} {guild.name}
             </Button>
           )}
         </div>

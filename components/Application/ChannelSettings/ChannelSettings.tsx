@@ -110,7 +110,7 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
       <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
         <div className='space-x-6'>
           <Button type='submit' data-cy='button-save-channel-settings'>
-            Sauvegarder
+            {t('application:save')}
           </Button>
           <Button
             type='button'
@@ -118,7 +118,7 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
             onClick={handleDelete}
             data-cy='button-delete-channel-settings'
           >
-            Supprimer
+            {t('application:delete')}
           </Button>
         </div>
         <FormState state={fetchState} message={message} />
