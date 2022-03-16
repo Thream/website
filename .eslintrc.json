@@ -2,7 +2,6 @@
   "extends": [
     "conventions",
     "next/core-web-vitals",
-    "plugin:storybook/recommended",
     "prettier"
   ],
   "plugins": ["prettier"],
@@ -16,7 +15,6 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "@next/next/no-img-element": "off",
-    "@typescript-eslint/no-misused-promises": "off"
+    "@next/next/no-img-element": "off"
   }
 }

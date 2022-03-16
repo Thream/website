@@ -1,6 +1,5 @@
 .next
 .lighthouseci
-storybook-static
 coverage
 node_modules
 **/workbox-*.js

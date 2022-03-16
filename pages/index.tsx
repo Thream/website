@@ -4,13 +4,13 @@ import Image from 'next/image'
 import Translation from 'next-translate/Trans'
 import useTranslation from 'next-translate/useTranslation'
 
-import { Head } from 'components/Head'
-import { Header } from 'components/Header'
-import { Main } from 'components/design/Main'
-import { Footer, FooterProps } from 'components/Footer'
-import { SocialMediaLink } from 'components/design/SocialMediaButton'
-import { ButtonLink } from 'components/design/Button'
-import { ScrollableBody } from 'components/ScrollableBody'
+import { Head } from '../components/Head'
+import { Header } from '../components/Header'
+import { Main } from '../components/design/Main'
+import { Footer, FooterProps } from '../components/Footer'
+import { SocialMediaLink } from '../components/design/SocialMediaButton'
+import { ButtonLink } from '../components/design/Button'
+import { ScrollableBody } from '../components/ScrollableBody'
 
 const Home: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()

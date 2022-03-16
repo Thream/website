@@ -6,10 +6,9 @@ import { PhotographIcon } from '@heroicons/react/solid'
 import { Form } from 'react-component-form'
 import useTranslation from 'next-translate/useTranslation'
 
-import { HandleSubmitCallback, useForm } from 'hooks/useForm'
-import { guildSchema } from 'models/Guild'
-import { FormState } from 'components/design/FormState'
-
+import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
+import { guildSchema } from '../../../models/Guild'
+import { FormState } from '../../design/FormState'
 import { API_URL } from '../../../tools/api'
 import { useGuildMember } from '../../../contexts/GuildMember'
 import { Textarea } from '../../design/Textarea'

@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { GuildWithDefaultChannelId } from 'models/Guild'
-import { Member } from 'models/Member'
-import { useAuthentication } from 'tools/authentication'
-import { SocketData } from 'tools/handleSocketData'
+import { GuildWithDefaultChannelId } from '../models/Guild'
+import { Member } from '../models/Member'
+import { useAuthentication } from '../tools/authentication'
+import { SocketData } from '../tools/handleSocketData'
 
 export interface GuildMember {
   guild: GuildWithDefaultChannelId

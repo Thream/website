@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { NextPage, usePagination } from 'hooks/usePagination'
-import { useAuthentication } from 'tools/authentication'
-import { Channel, ChannelWithDefaultChannelId } from 'models/Channel'
-import { GuildsChannelsPath } from 'components/Application'
-import { handleSocketData, SocketData } from 'tools/handleSocketData'
+import { NextPage, usePagination } from '../hooks/usePagination'
+import { useAuthentication } from '../tools/authentication'
+import { Channel, ChannelWithDefaultChannelId } from '../models/Channel'
+import { GuildsChannelsPath } from '../components/Application'
+import { handleSocketData, SocketData } from '../tools/handleSocketData'
 
 export interface Channels {
   channels: Channel[]

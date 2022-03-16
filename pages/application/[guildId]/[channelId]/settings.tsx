@@ -1,19 +1,22 @@
 import { NextPage } from 'next'
 
-import { Head } from 'components/Head'
-import { Application } from 'components/Application'
+import { Head } from '../../../../components/Head'
+import { Application } from '../../../../components/Application'
 import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'tools/authentication'
-import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
-import { GuildLeftSidebar } from 'components/Application/GuildLeftSidebar'
-import { ChannelSettings } from 'components/Application/ChannelSettings'
-import { ChannelsProvider } from 'contexts/Channels'
-import { GuildsProvider } from 'contexts/Guilds'
-import { Channel } from 'models/Channel'
-import { MembersProviders } from 'contexts/Members'
+} from '../../../../tools/authentication'
+import {
+  GuildMember,
+  GuildMemberProvider
+} from '../../../../contexts/GuildMember'
+import { GuildLeftSidebar } from '../../../../components/Application/GuildLeftSidebar'
+import { ChannelSettings } from '../../../../components/Application/ChannelSettings'
+import { ChannelsProvider } from '../../../../contexts/Channels'
+import { GuildsProvider } from '../../../../contexts/Guilds'
+import { Channel } from '../../../../models/Channel'
+import { MembersProviders } from '../../../../contexts/Members'
 
 export interface ChannelSettingsPageProps extends PagePropsWithAuthentication {
   channelId: number

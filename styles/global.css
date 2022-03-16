@@ -6,14 +6,9 @@
   @apply flex h-screen flex-col;
 }
 
-body,
-#preview-storybook {
+body {
   @apply bg-white font-headline text-black dark:bg-black dark:text-white;
   overflow: hidden;
-}
-
-#preview-storybook {
-  @apply min-h-screen p-6;
 }
 
 .h-full-without-header {
