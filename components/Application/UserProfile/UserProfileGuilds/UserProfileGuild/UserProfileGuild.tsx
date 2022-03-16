@@ -1,18 +1,22 @@
 import Image from 'next/image'
 import { LoginIcon } from '@heroicons/react/solid'
+import classNames from 'classnames'
 
 export interface UserProfileGuildProps {
   className?: string
   handleConfirmationState: () => void
 }
 
-export const UserProfileGuild: React.FC<UserProfileGuildProps> = (props) => {
-  const { handleConfirmationState } = props
-
+export const UserProfileGuild: React.FC<UserProfileGuildProps> = ({
+  ...props
+}) => {
   return (
     <div
-      className='group relative flex w-full cursor-pointer transition'
-      onClick={handleConfirmationState}
+      className={classNames(
+        'group relative flex w-full cursor-pointer transition',
+        props.className
+      )}
+      onClick={props.handleConfirmationState}
     >
       <div className='relative w-full px-8 py-5 transition group-hover:-translate-x-20'>
         <div className='flex transition group-hover:opacity-40'>
@@ -28,7 +32,7 @@ export const UserProfileGuild: React.FC<UserProfileGuildProps> = (props) => {
           </div>
           <div className='flex flex-col'>
             <h1 className='text-xl font-bold'>Guild Name</h1>
-            <p className='mt-2 text-gray-300'>
+            <p className='mt-2 text-gray-900 dark:text-gray-300'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
               nam.
             </p>

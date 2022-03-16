@@ -5,6 +5,7 @@
   "create-a-guild": "Create a Guild",
   "create-a-guild-description": "Create your own guild and manage everything.",
   "join-a-guild": "Join a Guild",
+  "join-the-guild": "Join the guild",
   "join-a-guild-description": "Talk, collaborate, share and have fun with your friends by joining an already existing guild!",
   "members": "member(s)",
   "search": "Search",
@@ -12,5 +13,6 @@
   "biography": "Biography",
   "label-checkbox-email": "Show your email to everyone.",
   "label-checkbox-guilds": "Show the list of guilds to everyone.",
-  "private-user-guilds-list": "List of private guilds"
+  "private-user-guilds-list": "List of private guilds",
+  "nothing-here": "Nothing's here..."
 }

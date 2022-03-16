@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 import date from 'date-and-time'
 import useTranslation from 'next-translate/useTranslation'
@@ -22,8 +22,8 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
   const { user, guilds } = props
   const { t } = useTranslation()
 
-  const [showPopup, setShowPopup] = useState<boolean>(false)
-  const [confirmation, setConfirmation] = useState<boolean>(false)
+  const [showPopup, setShowPopup] = useState(false)
+  const [confirmation, setConfirmation] = useState(false)
 
   const handleConfirmationState = (): void => {
     setConfirmation((confirmation) => !confirmation)
@@ -60,7 +60,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
               <div className='ml-10 flex flex-col'>
                 <div className='mb-2 flex items-center'>
                   <p
-                    className='space text-3xl font-bold tracking-wide text-white'
+                    className='space text-dark text-3xl font-bold tracking-wide dark:text-white'
                     data-cy='user-name'
                   >
                     {user.name}
@@ -125,12 +125,11 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
         </div>
       </div>
 
-      {/* TODO: We might want to remove this code */}
       <div
         className={classNames(
-          'pointer-events-none absolute top-0 flex h-full w-full items-center justify-center bg-zinc-900/75 opacity-0 transition',
+          'pointer-events-none invisible absolute top-0 flex h-full w-full items-center justify-center bg-zinc-900/75 opacity-0 transition',
           {
-            'pointer-events-auto visible opacity-100': showPopup
+            'pointer-events-auto !visible !opacity-100': showPopup
           }
         )}
       >
@@ -161,8 +160,8 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
         </div>
         <XIcon
           height={40}
-          onClick={() => setShowPopup(false)}
-          className='absolute top-8 right-8 cursor-pointer transition hover:rotate-180'
+          onClick={handlePopupVisibility}
+          className='absolute top-8 right-8 cursor-pointer text-white transition hover:rotate-90'
         />
       </div>
     </div>

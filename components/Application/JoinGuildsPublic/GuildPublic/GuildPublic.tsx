@@ -53,7 +53,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
   }
 
   return (
-    <div className='relative overflow-hidden rounded border border-gray-500 shadow-lg transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none dark:border-gray-700'>
+    <div className='relative h-80 overflow-hidden rounded border border-gray-500 shadow-lg transition duration-200 ease-in-out hover:-translate-y-2 hover:shadow-none dark:border-gray-700'>
       <div
         className={classNames(
           'flex h-full cursor-pointer flex-col items-center justify-center p-4 pt-8 transition duration-200 ease-in-out',
@@ -83,9 +83,9 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
             {guild.description != null ? (
               guild.description
             ) : (
-              <span className='flex h-full items-center justify-center opacity-25'>
+              <span className='flex h-full items-center justify-center opacity-40 dark:opacity-20'>
                 <Emoji value=':eyes:' size={25} />
-                <span className='ml-2'>Nothing&apos;s here...</span>
+                <span className='ml-2'>{t('application:nothing-here')}</span>
               </span>
             )}
           </p>
