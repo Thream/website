@@ -4,7 +4,6 @@ import useTranslation from 'next-translate/useTranslation'
 import { useTheme } from 'next-themes'
 import axios from 'axios'
 
-import { SocialMediaButton } from '../design/SocialMediaButton'
 import { Main } from '../design/Main'
 import { Input } from '../design/Input'
 import { Button } from '../design/Button'
@@ -17,6 +16,7 @@ import {
   Authentication as AuthenticationClass
 } from '../../tools/authentication'
 import { useForm, HandleSubmitCallback } from '../../hooks/useForm'
+import { AuthenticationSocialMedia } from './AuthenticationSocialMedia'
 
 export interface AuthenticationProps {
   mode: 'signup' | 'signin'
@@ -93,13 +93,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   return (
     <Main>
-      <div className='flex flex-col sm:w-full sm:items-center'>
-        <div className='flex flex-col items-center justify-center space-y-6 sm:w-4/6 sm:flex-row sm:space-x-6 sm:space-y-0'>
-          <SocialMediaButton socialMedia='Google' />
-          <SocialMediaButton socialMedia='GitHub' />
-          <SocialMediaButton socialMedia='Discord' />
-        </div>
-      </div>
+      <AuthenticationSocialMedia />
       <div className='pt-8 text-center font-paragraph text-lg'>
         {t('authentication:or')}
       </div>

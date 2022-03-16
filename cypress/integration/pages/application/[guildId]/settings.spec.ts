@@ -1,5 +1,4 @@
-import { deleteLeaveMembersWithGuildIdHandler } from 'cypress/fixtures/guilds/[guildId]/members/leave'
-
+import { deleteLeaveMembersWithGuildIdHandler } from '../../../../fixtures/guilds/[guildId]/members/leave'
 import { guildExample } from '../../../../fixtures/guilds/guild'
 import {
   getGuildMemberNotOwnerWithGuildIdHandler,

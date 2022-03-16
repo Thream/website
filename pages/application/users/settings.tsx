@@ -1,14 +1,14 @@
 import { NextPage } from 'next'
 
-import { Head } from 'components/Head'
-import { Application } from 'components/Application'
+import { Head } from '../../../components/Head'
+import { Application } from '../../../components/Application'
 import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'tools/authentication'
-import { UserSettings } from 'components/Application/UserSettings'
-import { GuildsProvider } from 'contexts/Guilds'
+} from '../../../tools/authentication'
+import { UserSettings } from '../../../components/Application/UserSettings'
+import { GuildsProvider } from '../../../contexts/Guilds'
 
 const UserSettingsPage: NextPage<PagePropsWithAuthentication> = (props) => {
   return (

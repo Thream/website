@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect } from 'react'
 
-import { NextPage, usePagination } from 'hooks/usePagination'
-import { useAuthentication } from 'tools/authentication'
-import { GuildWithDefaultChannelId } from 'models/Guild'
-import { handleSocketData, SocketData } from 'tools/handleSocketData'
+import { NextPage, usePagination } from '../hooks/usePagination'
+import { useAuthentication } from '../tools/authentication'
+import { GuildWithDefaultChannelId } from '../models/Guild'
+import { handleSocketData, SocketData } from '../tools/handleSocketData'
 
 export interface Guilds {
   guilds: GuildWithDefaultChannelId[]

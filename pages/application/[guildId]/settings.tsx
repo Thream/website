@@ -1,15 +1,15 @@
 import { NextPage } from 'next'
 
-import { Head } from 'components/Head'
-import { Application } from 'components/Application'
+import { Head } from '../../../components/Head'
+import { Application } from '../../../components/Application'
 import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'tools/authentication'
-import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
-import { GuildsProvider } from 'contexts/Guilds'
-import { GuildSettings } from 'components/Application/GuildSettings'
+} from '../../../tools/authentication'
+import { GuildMember, GuildMemberProvider } from '../../../contexts/GuildMember'
+import { GuildsProvider } from '../../../contexts/Guilds'
+import { GuildSettings } from '../../../components/Application/GuildSettings'
 
 export interface GuildSettingsPageProps extends PagePropsWithAuthentication {
   guildId: number

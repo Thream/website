@@ -1,10 +1,10 @@
 import { GetStaticProps, NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 
-import { ErrorPage } from 'components/ErrorPage'
-import { Head } from 'components/Head'
-import { Header } from 'components/Header'
-import { Footer, FooterProps } from 'components/Footer'
+import { ErrorPage } from '../components/ErrorPage'
+import { Head } from '../components/Head'
+import { Header } from '../components/Header'
+import { Footer, FooterProps } from '../components/Footer'
 
 const Error500: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()

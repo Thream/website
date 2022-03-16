@@ -1,15 +1,18 @@
 import { NextPage } from 'next'
 
-import { Head } from 'components/Head'
-import { Application } from 'components/Application'
+import { Head } from '../../../../components/Head'
+import { Application } from '../../../../components/Application'
 import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'tools/authentication'
-import { CreateChannel } from 'components/Application/CreateChannel'
-import { GuildsProvider } from 'contexts/Guilds'
-import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
+} from '../../../../tools/authentication'
+import { CreateChannel } from '../../../../components/Application/CreateChannel'
+import { GuildsProvider } from '../../../../contexts/Guilds'
+import {
+  GuildMember,
+  GuildMemberProvider
+} from '../../../../contexts/GuildMember'
 
 export interface CreateChannelPageProps extends PagePropsWithAuthentication {
   guildId: number

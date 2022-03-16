@@ -1,21 +1,24 @@
 import { NextPage } from 'next'
 
-import { Head } from 'components/Head'
-import { Application } from 'components/Application'
-import { Messages } from 'components/Application/Messages'
-import { SendMessage } from 'components/Application/SendMessage'
+import { Head } from '../../../../components/Head'
+import { Application } from '../../../../components/Application'
+import { Messages } from '../../../../components/Application/Messages'
+import { SendMessage } from '../../../../components/Application/SendMessage'
 import {
   authenticationFromServerSide,
   AuthenticationProvider,
   PagePropsWithAuthentication
-} from 'tools/authentication'
-import { GuildMember, GuildMemberProvider } from 'contexts/GuildMember'
-import { GuildLeftSidebar } from 'components/Application/GuildLeftSidebar'
-import { ChannelsProvider } from 'contexts/Channels'
-import { GuildsProvider } from 'contexts/Guilds'
-import { Channel } from 'models/Channel'
-import { MessagesProvider } from 'contexts/Messages'
-import { MembersProviders } from 'contexts/Members'
+} from '../../../../tools/authentication'
+import {
+  GuildMember,
+  GuildMemberProvider
+} from '../../../../contexts/GuildMember'
+import { GuildLeftSidebar } from '../../../../components/Application/GuildLeftSidebar'
+import { ChannelsProvider } from '../../../../contexts/Channels'
+import { GuildsProvider } from '../../../../contexts/Guilds'
+import { Channel } from '../../../../models/Channel'
+import { MessagesProvider } from '../../../../contexts/Messages'
+import { MembersProviders } from '../../../../contexts/Members'
 
 export interface ChannelPageProps extends PagePropsWithAuthentication {
   channelId: number

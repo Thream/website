@@ -5,10 +5,9 @@ import useTranslation from 'next-translate/useTranslation'
 import classNames from 'classnames'
 import axios from 'axios'
 
-import { Emoji } from 'components/Emoji'
-import { ConfirmGuildJoin } from 'components/Application/ConfirmGuildJoin'
-import { API_URL } from 'tools/api'
-
+import { Emoji } from '../../../Emoji'
+import { ConfirmGuildJoin } from '../../ConfirmGuildJoin'
+import { API_URL } from '../../../../tools/api'
 import {
   GuildPublic as GuildPublicType,
   GuildWithDefaultChannelId
