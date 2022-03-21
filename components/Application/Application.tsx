@@ -99,6 +99,15 @@ export const Application: React.FC<ApplicationProps> = (props) => {
     }
   }
 
+  const handleCloseSidebars = (): void => {
+    if (isMobile && (visibleSidebars.left || visibleSidebars.right)) {
+      return setVisibleSidebars({
+        left: false,
+        right: false
+      })
+    }
+  }
+
   const swipeableHandlers = useSwipeable({
     trackMouse: false,
     trackTouch: true,
@@ -202,6 +211,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
 
         <div
           id='application-page-content'
+          onClick={handleCloseSidebars}
           className={classNames(
             'h-full-without-header top-0 z-0 flex w-full flex-1 flex-col overflow-y-auto transition',
             {
