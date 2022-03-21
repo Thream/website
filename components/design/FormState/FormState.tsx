@@ -37,7 +37,7 @@ export const FormState: React.FC<FormStateProps> = (props) => {
           }
         )}
       >
-        <div className='thumbnail absolute top-0 inline-block bg-cover font-headline'></div>
+        <div className='thumbnail inline bg-cover font-headline'></div>
         <span id={id} className={classNames({ 'pl-6': state === 'error' })}>
           <b>{t(`errors:${state}`)}:</b> {message}
         </span>
