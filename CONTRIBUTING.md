@@ -21,7 +21,7 @@ All work on **Thream/website** happens directly on [GitHub](https://github.com/T
 
 - **Please first discuss** the change you wish to make via issues.
 
-- Ensure your code respect `eslint` and `prettier`.
+- Ensure your code respect linting.
 
 - Make sure your **code passes the tests**.
 

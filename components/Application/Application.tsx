@@ -46,15 +46,15 @@ export const Application: React.FC<ApplicationProps> = (props) => {
 
   const { user } = useAuthentication()
 
-  const [visibleSidebars, setVisibleSidebars] = useState({
-    left: true,
-    right: false
-  })
-
   const [mounted, setMounted] = useState(false)
 
   const isMobile = useMediaQuery({
     query: '(max-width: 900px)'
+  })
+
+  const [visibleSidebars, setVisibleSidebars] = useState({
+    left: !isMobile,
+    right: false
   })
 
   const handleToggleSidebars = (direction: DirectionSidebar): void => {
@@ -96,16 +96,6 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           right: !visibleSidebars.right
         })
       }
-    }
-    handleCloseSidebars()
-  }
-
-  const handleCloseSidebars = (): void => {
-    if (isMobile && (visibleSidebars.left || visibleSidebars.right)) {
-      setVisibleSidebars({
-        left: false,
-        right: false
-      })
     }
   }
 
@@ -171,7 +161,6 @@ export const Application: React.FC<ApplicationProps> = (props) => {
 
       <main
         className='h-full-without-header relative flex overflow-hidden'
-        onClick={handleCloseSidebars}
         {...swipeableHandlers}
       >
         <Sidebar
