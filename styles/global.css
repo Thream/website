@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --app-height: 100vh;
+  --scroll-bar-color: #c5c5c5;
+  --scroll-bar-bg-color: transparent;
+}
+
 #__next {
   @apply flex h-screen flex-col;
 }
@@ -12,12 +18,7 @@ body {
 }
 
 .h-full-without-header {
-  height: calc(100vh - 64px);
-}
-
-:root {
-  --scroll-bar-color: #c5c5c5;
-  --scroll-bar-bg-color: transparent;
+  height: calc(var(--app-height) - 64px);
 }
 
 ::-webkit-scrollbar {
