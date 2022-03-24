@@ -128,7 +128,6 @@ export const UserSettings: React.FC = () => {
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = async (
     event
   ) => {
