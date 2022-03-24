@@ -2,9 +2,10 @@ import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import { useState } from 'react'
 import { Form } from 'react-component-form'
-import { PhotographIcon } from '@heroicons/react/solid'
+import { EyeIcon, PhotographIcon } from '@heroicons/react/solid'
 import { Type } from '@sinclair/typebox'
 import axios from 'axios'
+import Link from 'next/link'
 
 import { API_URL } from '../../../tools/api'
 import { Input } from '../../design/Input'
@@ -127,6 +128,7 @@ export const UserSettings: React.FC = () => {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = async (
     event
   ) => {
@@ -269,9 +271,22 @@ export const UserSettings: React.FC = () => {
               className='w-full justify-center'
             />
           </div>
-          <div className='flex w-full justify-between pt-14'>
+          <div className='flex w-full items-center pt-14'>
             <Language />
-            <SwitchTheme />
+            <div className='ml-auto flex'>
+              <SwitchTheme />
+              <Link href={`/application/users/${user.id}`}>
+                <a
+                  className='group ml-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg bg-slate-200 transition-colors hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-800'
+                  title='Preview Public Profile'
+                >
+                  <EyeIcon
+                    height={20}
+                    className='opacity-50 transition-opacity group-hover:opacity-100'
+                  />
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -279,7 +294,7 @@ export const UserSettings: React.FC = () => {
       <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
         <div className='space-x-6'>
           <Button type='submit'>{t('application:save')}</Button>
-          <Button type='button' color='red' onClick={handleSignout}>
+          <Button type='button' color='red' onClick={() => handleSignout}>
             {t('application:signout')}
           </Button>
         </div>
