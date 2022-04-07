@@ -104,7 +104,6 @@ export const SendMessage: React.FC<SendMessageProps> = (props) => {
             onChange={handleTextareaChange}
             value={message}
             ref={textareaReference}
-            autoFocus
           />
         </form>
         <div className='flex h-full items-center justify-around pr-6'>

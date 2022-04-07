@@ -26,6 +26,7 @@ const Home: NextPage<FooterProps> = (props) => {
             <Link href='/authentication/signup'>
               <a>
                 <Image
+                  quality={100}
                   width={351}
                   height={341}
                   src='/images/svg/design/home.svg'

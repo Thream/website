@@ -25,7 +25,7 @@ export const userSchema = {
     Type.String({
       minLength: 1,
       maxLength: 255,
-      format: 'uri-reference'
+      format: 'uri'
     }),
     Type.Null()
   ]),

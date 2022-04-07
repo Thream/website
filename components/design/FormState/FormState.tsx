@@ -4,14 +4,14 @@ import useTranslation from 'next-translate/useTranslation'
 import { FetchState as FormStateType } from '../../../hooks/useFetchState'
 import { Loader } from '../Loader'
 
-export interface FormStateProps {
+export interface FormStateProps extends React.ComponentPropsWithoutRef<'div'> {
   state: FormStateType
   message?: string | null
   id?: string
 }
 
 export const FormState: React.FC<FormStateProps> = (props) => {
-  const { state, message, id } = props
+  const { state, message, id, ...rest } = props
   const { t } = useTranslation()
 
   if (state === 'loading') {
@@ -29,25 +29,26 @@ export const FormState: React.FC<FormStateProps> = (props) => {
   return (
     <>
       <div
+        {...rest}
         className={classNames(
-          'relative mt-6 flex max-w-xl flex-row items-center text-center font-medium',
+          props.className,
+          'mt-6 flex max-w-xl items-center text-center font-medium',
           {
             'text-red-800 dark:text-red-400': state === 'error',
             'text-green-800 dark:text-green-400': state === 'success'
           }
         )}
       >
-        <div className='thumbnail absolute top-0 inline-block bg-cover font-headline'></div>
-        <span id={id} className={classNames({ 'pl-6': state === 'error' })}>
+        <div className='thumbnail inline bg-cover font-headline' />
+        <span id={id} className='pl-2'>
           <b>{t(`errors:${state}`)}:</b> {message}
         </span>
       </div>
 
       <style jsx>{`
         .thumbnail {
-          min-width: 20px;
+          height: 20px;
           width: 20px;
-          height: ${state === 'error' ? '20px' : '25px'};
           background-image: url('/images/svg/icons/input/${state}.svg');
         }
       `}</style>

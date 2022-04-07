@@ -20,6 +20,14 @@ const Application = ({ Component, pageProps }: AppProps): JSX.Element => {
 
   useEffect(() => {
     cookies.set('NEXT_LOCALE', lang)
+    const appHeight = (): void => {
+      document.documentElement.style.setProperty(
+        '--app-height',
+        `${window.innerHeight}px`
+      )
+    }
+    window.addEventListener('resize', appHeight)
+    appHeight()
   }, [lang])
 
   return (

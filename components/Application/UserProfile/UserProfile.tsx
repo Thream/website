@@ -24,6 +24,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
             <div className='flex w-max items-center'>
               <div className='relative flex items-center justify-center overflow-hidden rounded-full shadow-lg transition-all'>
                 <Image
+                  quality={100}
                   className='rounded-full'
                   src={
                     user.logo != null

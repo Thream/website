@@ -184,6 +184,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
               title='Settings'
             >
               <Image
+                quality={100}
                 className='rounded-full'
                 src={
                   user.logo == null

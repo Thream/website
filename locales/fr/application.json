@@ -15,6 +15,8 @@
   "label-checkbox-guilds": "Afficher la liste des guildes au public.",
   "nothing-here": "Il n'y a rien ici...",
   "save": "Sauvegarder",
+  "saved-information": "Les informations ont été enregistrées.",
+  "success-email-changed": "Veuillez vérifier vos emails pour confirmer votre nouvelle adresse email. Vous êtes maintenant déconnecté.",
   "delete": "Supprimer",
   "signout": "Se déconnecter",
   "leave": "Quitter",

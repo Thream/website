@@ -38,6 +38,7 @@ export const ConfirmGuildJoin: React.FC<ConfirmGuildJoinProps> = ({
         )}
       >
         <Image
+          quality={100}
           src='/images/svg/design/join-guild.svg'
           alt='Join Guild Illustration'
           height={150}

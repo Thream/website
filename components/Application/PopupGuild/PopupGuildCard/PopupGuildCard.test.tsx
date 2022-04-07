@@ -10,6 +10,7 @@ describe('<PopupGuildCard />', () => {
       <PopupGuildCard
         image={
           <Image
+            quality={100}
             src='/images/svg/design/create-server.svg'
             alt=''
             width={230}

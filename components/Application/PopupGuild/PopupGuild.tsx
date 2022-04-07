@@ -23,6 +23,7 @@ export const PopupGuild: React.FC<PopupGuildProps> = (props) => {
       <PopupGuildCard
         image={
           <Image
+            quality={100}
             src='/images/svg/design/create-guild.svg'
             alt={t('application:create-a-guild')}
             draggable='false'
@@ -40,6 +41,7 @@ export const PopupGuild: React.FC<PopupGuildProps> = (props) => {
       <PopupGuildCard
         image={
           <Image
+            quality={100}
             src='/images/svg/design/join-guild.svg'
             alt={t('application:join-a-guild')}
             draggable='false'

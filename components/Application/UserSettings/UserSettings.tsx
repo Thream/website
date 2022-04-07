@@ -2,9 +2,10 @@ import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import { useState } from 'react'
 import { Form } from 'react-component-form'
-import { PhotographIcon } from '@heroicons/react/solid'
+import { EyeIcon, PhotographIcon } from '@heroicons/react/solid'
 import { Type } from '@sinclair/typebox'
 import axios from 'axios'
+import Link from 'next/link'
 
 import { API_URL } from '../../../tools/api'
 import { Input } from '../../design/Input'
@@ -17,7 +18,7 @@ import { useAuthentication } from '../../../tools/authentication'
 import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
 import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
-import { userCurrentSchema, userSchema } from '../../../models/User'
+import { userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
 
 export const UserSettings: React.FC = () => {
@@ -45,7 +46,7 @@ export const UserSettings: React.FC = () => {
     validateSchema: {
       name: userSchema.name,
       status: Type.Optional(userSchema.status),
-      email: Type.Optional(userCurrentSchema.email),
+      email: Type.Optional(Type.Union([userSchema.email, Type.Null()])),
       website: Type.Optional(userSchema.website),
       biography: Type.Optional(userSchema.biography),
       isPublicGuilds: userSettingsSchema.isPublicGuilds,
@@ -63,6 +64,14 @@ export const UserSettings: React.FC = () => {
         `/users/current?redirectURI=${window.location.origin}/authentication/signin`,
         userData
       )
+      setInputValues(formData as any)
+      const hasEmailChanged = user.email !== userCurrentData.user.email
+      if (hasEmailChanged) {
+        return {
+          type: 'success',
+          value: 'application:success-email-changed'
+        }
+      }
       const { data: userCurrentSettings } = await authentication.api.put(
         '/users/current/settings',
         userSettings
@@ -74,10 +83,9 @@ export const UserSettings: React.FC = () => {
           settings: userCurrentSettings.settings
         }
       })
-      setInputValues(formData as any)
       return {
         type: 'success',
-        value: 'common:name'
+        value: 'application:saved-information'
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 400) {
@@ -185,6 +193,7 @@ export const UserSettings: React.FC = () => {
             </div>
             <div className='flex items-center justify-center rounded-full bg-black shadow-xl'>
               <Image
+                quality={100}
                 className='rounded-full opacity-50'
                 src={
                   user.logo != null
@@ -255,6 +264,24 @@ export const UserSettings: React.FC = () => {
           />
         </div>
         <div className='flex h-full w-4/5 flex-col items-center justify-between pr-0 sm:w-[415px] lg:pl-12'>
+          <div className='flex w-full items-center pt-14'>
+            <Language className='!top-12' />
+            <div className='ml-auto flex'>
+              <SwitchTheme />
+              <Link href={`/application/users/${user.id}`}>
+                <a
+                  className='group ml-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg bg-slate-200 transition-colors hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-800'
+                  title='Preview Public Profile'
+                >
+                  <EyeIcon
+                    height={20}
+                    className='opacity-50 transition-opacity group-hover:opacity-100'
+                  />
+                </a>
+              </Link>
+            </div>
+          </div>
+
           <div className='mt-14 flex w-full flex-col gap-4'>
             <SocialMediaButton
               socialMedia='Google'
@@ -268,10 +295,6 @@ export const UserSettings: React.FC = () => {
               socialMedia='GitHub'
               className='w-full justify-center'
             />
-          </div>
-          <div className='flex w-full justify-between pt-14'>
-            <Language />
-            <SwitchTheme />
           </div>
         </div>
       </div>

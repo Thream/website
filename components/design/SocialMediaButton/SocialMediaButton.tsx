@@ -2,7 +2,9 @@ import { useMemo } from 'react'
 import Image from 'next/image'
 import classNames from 'classnames'
 
-export type SocialMedia = 'Discord' | 'GitHub' | 'Google'
+import { ProviderOAuth } from '../../../models/OAuth'
+
+export type SocialMedia = ProviderOAuth
 
 type SocialMediaColors = {
   [key in SocialMedia]: string
@@ -27,6 +29,7 @@ const SocialMediaChildren: React.FC<SocialMediaChildrenProps> = (props) => {
   return (
     <>
       <Image
+        quality={100}
         width={20}
         height={20}
         src={`/images/svg/web/${socialMedia}.svg`}

@@ -7,7 +7,12 @@ import { Arrow } from './Arrow'
 import { LanguageFlag } from './LanguageFlag'
 import i18n from '../../../i18n.json'
 
-export const Language: React.FC = () => {
+export interface LanguageProps {
+  className?: string
+}
+
+export const Language: React.FC<LanguageProps> = (props) => {
+  const { className } = props
   const { lang: currentLanguage } = useTranslation()
   const [hiddenMenu, setHiddenMenu] = useState(true)
 
@@ -46,7 +51,8 @@ export const Language: React.FC = () => {
       <ul
         data-cy='languages-list'
         className={classNames(
-          'absolute -bottom-16 z-10 mt-3 mr-4 flex w-24 list-none flex-col items-center justify-center rounded-lg bg-white p-0 shadow-light dark:bg-black dark:shadow-dark',
+          className,
+          'absolute top-16 z-10 mr-4 flex w-24 list-none flex-col items-center justify-center rounded-lg bg-white p-0 shadow-lightFlag dark:bg-black dark:shadow-darkFlag',
           { hidden: hiddenMenu }
         )}
       >

@@ -25,6 +25,7 @@ export const Message: React.FC<MessageProps> = (props) => {
           <div className='mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center'>
             <div className='h-10 w-10 drop-shadow-md'>
               <Image
+                quality={100}
                 className='rounded-full'
                 src={
                   message.member.user.logo == null

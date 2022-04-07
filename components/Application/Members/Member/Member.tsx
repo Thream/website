@@ -33,9 +33,7 @@ export const Member: React.FC<MemberProps> = (props) => {
             <p data-cy='member-user-name' className='truncate font-bold'>
               {member.user.name}
             </p>
-            {member.user.status != null && (
-              <span className='block w-44 truncate'>{member.user.status}</span>
-            )}
+            {member.user.status != null && member.user.status}
           </div>
         </div>
       </a>

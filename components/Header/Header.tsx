@@ -12,6 +12,7 @@ export const Header: React.FC = () => {
           <a>
             <div className='flex items-center justify-center'>
               <Image
+                quality={100}
                 width={60}
                 height={60}
                 src='/images/icons/Thream.png'
