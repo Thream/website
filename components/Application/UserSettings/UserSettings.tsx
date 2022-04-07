@@ -18,7 +18,7 @@ import { useAuthentication } from '../../../tools/authentication'
 import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
 import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
-import { userCurrentSchema, userSchema } from '../../../models/User'
+import { userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
 
 export const UserSettings: React.FC = () => {
@@ -46,7 +46,7 @@ export const UserSettings: React.FC = () => {
     validateSchema: {
       name: userSchema.name,
       status: Type.Optional(userSchema.status),
-      email: Type.Optional(userCurrentSchema.email),
+      email: Type.Optional(Type.Union([userSchema.email, Type.Null()])),
       website: Type.Optional(userSchema.website),
       biography: Type.Optional(userSchema.biography),
       isPublicGuilds: userSettingsSchema.isPublicGuilds,
@@ -64,6 +64,14 @@ export const UserSettings: React.FC = () => {
         `/users/current?redirectURI=${window.location.origin}/authentication/signin`,
         userData
       )
+      setInputValues(formData as any)
+      const hasEmailChanged = user.email !== userCurrentData.user.email
+      if (hasEmailChanged) {
+        return {
+          type: 'success',
+          value: 'application:success-email-changed'
+        }
+      }
       const { data: userCurrentSettings } = await authentication.api.put(
         '/users/current/settings',
         userSettings
@@ -75,10 +83,9 @@ export const UserSettings: React.FC = () => {
           settings: userCurrentSettings.settings
         }
       })
-      setInputValues(formData as any)
       return {
         type: 'success',
-        value: 'common:name'
+        value: 'application:saved-information'
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 400) {

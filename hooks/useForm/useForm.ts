@@ -86,6 +86,8 @@ export const useForm = (options: UseFormOptions): UseFormResult => {
 
   const handleSubmit: HandleSubmit = (callback) => {
     return async (formData: ObjectAny, formElement) => {
+      setErrors({})
+      setMessageTranslationKey(undefined)
       if (replaceEmptyStringToNull) {
         formData = replaceEmptyStringInObjectToNull(
           formData,

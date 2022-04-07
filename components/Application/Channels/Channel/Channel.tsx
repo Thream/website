@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { CogIcon } from '@heroicons/react/solid'
 
 import { GuildsChannelsPath } from '../../Application'
@@ -15,6 +16,7 @@ export interface ChannelProps {
 
 export const Channel: React.FC<ChannelProps> = (props) => {
   const { channel, path, selected = false } = props
+  const router = useRouter()
 
   const { member } = useGuildMember()
 
@@ -36,6 +38,11 @@ export const Channel: React.FC<ChannelProps> = (props) => {
         </span>
         {member.isOwner && (
           <IconButton
+            onClick={async () => {
+              await router.push(
+                `/application/${channel.guildId}/${channel.id}/settings`
+              )
+            }}
             className='bg-unherit absolute -right-10 h-full w-8 transition-all group-hover:right-0 group-hover:shadow-lg dark:group-hover:bg-gray-600'
             title='Settings'
           >

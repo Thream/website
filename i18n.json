@@ -3,21 +3,21 @@
   "defaultLocale": "en",
   "pages": {
     "*": ["common"],
-    "/": ["home"],
     "/404": ["errors"],
     "/500": ["errors"],
-    "/authentication/forgot-password": ["authentication", "errors"],
-    "/authentication/reset-password": ["authentication", "errors"],
-    "/authentication/signup": ["authentication", "errors"],
-    "/authentication/signin": ["authentication", "errors"],
-    "/application/users/[userId]": ["application", "errors"],
-    "/application/users/settings": ["application", "authentication", "errors"],
-    "/application/guilds/create": ["application", "errors"],
-    "/application/guilds/join": ["application", "errors"],
+    "/": ["home"],
     "/application": ["application", "errors"],
     "/application/[guildId]/settings": ["application", "errors"],
     "/application/[guildId]/[channelId]": ["application", "errors"],
     "/application/[guildId]/[channelId]/settings": ["application", "errors"],
-    "/application/[guildId]/channels/create": ["application", "errors"]
+    "/application/[guildId]/channels/create": ["application", "errors"],
+    "/application/guilds/create": ["application", "errors"],
+    "/application/guilds/join": ["application", "errors"],
+    "/application/users/[userId]": ["application", "errors"],
+    "/application/users/settings": ["application", "authentication", "errors"],
+    "/authentication/forgot-password": ["authentication", "errors"],
+    "/authentication/reset-password": ["authentication", "errors"],
+    "/authentication/signin": ["authentication", "errors"],
+    "/authentication/signup": ["authentication", "errors"]
   }
 }

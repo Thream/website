@@ -2,7 +2,9 @@ import { useMemo } from 'react'
 import Image from 'next/image'
 import classNames from 'classnames'
 
-export type SocialMedia = 'Discord' | 'GitHub' | 'Google'
+import { ProviderOAuth } from '../../../models/OAuth'
+
+export type SocialMedia = ProviderOAuth
 
 type SocialMediaColors = {
   [key in SocialMedia]: string

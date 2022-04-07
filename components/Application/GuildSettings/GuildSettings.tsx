@@ -50,7 +50,7 @@ export const GuildSettings: React.FC = () => {
       setInputValues(formData as any)
       return {
         type: 'success',
-        value: 'common:name'
+        value: 'application:saved-information'
       }
     } catch (error) {
       return {
@@ -194,7 +194,10 @@ export const GuildSettings: React.FC = () => {
             </Button>
           )}
         </div>
-        <FormState state={fetchState} message={message} />
+        <FormState
+          state={fetchState}
+          message={getErrorTranslation(errors.description) ?? message}
+        />
       </div>
     </Form>
   )
