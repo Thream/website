@@ -95,6 +95,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
         </p>
       </div>
       <ConfirmGuildJoin
+        title={`${t('application:join-the-guild')} ?`}
         className={classNames(
           'w-ful h-ful translate-x- absolute top-1/2 left-full flex h-full w-full -translate-y-1/2 flex-col items-center justify-center rounded-2xl transition-all',
           {

@@ -5,6 +5,7 @@ import { Type } from '@sinclair/typebox'
 import { PhotographIcon } from '@heroicons/react/solid'
 import { Form } from 'react-component-form'
 import useTranslation from 'next-translate/useTranslation'
+import classNames from 'classnames'
 
 import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { guildSchema } from '../../../models/Guild'
@@ -15,6 +16,7 @@ import { Textarea } from '../../design/Textarea'
 import { Input } from '../../design/Input'
 import { Button } from '../../design/Button'
 import { useAuthentication } from '../../../tools/authentication'
+import { ConfirmGuildJoin } from '../ConfirmGuildJoin'
 
 export const GuildSettings: React.FC = () => {
   const { t } = useTranslation()
@@ -26,6 +28,12 @@ export const GuildSettings: React.FC = () => {
     name: guild.name,
     description: guild.description
   })
+
+  const [confirmation, setConfirmation] = useState(false)
+
+  const handleConfirmation = (): void => {
+    return setConfirmation(!confirmation)
+  }
 
   const {
     fetchState,
@@ -110,95 +118,112 @@ export const GuildSettings: React.FC = () => {
   }
 
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit)}
-      className='my-auto flex flex-col items-center justify-center py-12'
-    >
-      {member.isOwner && (
-        <div className='flex w-full flex-col items-center justify-center sm:w-fit lg:flex-row'>
-          <div className=' flex w-full flex-wrap items-center justify-center px-6 sm:w-max'>
-            <div className='relative'>
-              <div className='absolute z-50 h-full w-full'>
-                <button className='relative flex h-full w-full items-center justify-center transition hover:scale-110'>
-                  <input
-                    type='file'
-                    className='absolute h-full w-full cursor-pointer opacity-0'
-                    onChange={handleFileChange}
+    <>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        className='my-auto flex flex-col items-center justify-center py-12'
+      >
+        {member.isOwner && (
+          <div className='flex w-full flex-col items-center justify-center sm:w-fit lg:flex-row'>
+            <div className=' flex w-full flex-wrap items-center justify-center px-6 sm:w-max'>
+              <div className='relative'>
+                <div className='absolute z-50 h-full w-full'>
+                  <button className='relative flex h-full w-full items-center justify-center transition hover:scale-110'>
+                    <input
+                      type='file'
+                      className='absolute h-full w-full cursor-pointer opacity-0'
+                      onChange={handleFileChange}
+                    />
+                    <PhotographIcon color='white' className='h-8 w-8' />
+                  </button>
+                </div>
+                <div className='flex items-center justify-center rounded-full bg-black shadow-xl'>
+                  <Image
+                    quality={100}
+                    className='rounded-full opacity-50'
+                    src={
+                      guild.icon == null
+                        ? '/images/data/guild-default.png'
+                        : API_URL + guild.icon
+                    }
+                    alt='Profil Picture'
+                    draggable='false'
+                    height={125}
+                    width={125}
                   />
-                  <PhotographIcon color='white' className='h-8 w-8' />
-                </button>
+                </div>
               </div>
-              <div className='flex items-center justify-center rounded-full bg-black shadow-xl'>
-                <Image
-                  quality={100}
-                  className='rounded-full opacity-50'
-                  src={
-                    guild.icon == null
-                      ? '/images/data/guild-default.png'
-                      : API_URL + guild.icon
-                  }
-                  alt='Profil Picture'
-                  draggable='false'
-                  height={125}
-                  width={125}
+              <div className='mx-12 flex flex-col'>
+                <Input
+                  name='name'
+                  label={t('common:name')}
+                  placeholder={t('common:name')}
+                  className='!mt-0'
+                  onChange={onChange}
+                  value={inputValues.name}
+                  error={getErrorTranslation(errors.name)}
+                  data-cy='guild-name-input'
+                />
+                <Textarea
+                  name='description'
+                  label={'Description'}
+                  placeholder={'Description'}
+                  id='textarea-description'
+                  onChange={onChange}
+                  value={inputValues.description ?? ''}
+                  data-cy='guild-description-input'
                 />
               </div>
             </div>
-            <div className='mx-12 flex flex-col'>
-              <Input
-                name='name'
-                label={t('common:name')}
-                placeholder={t('common:name')}
-                className='!mt-0'
-                onChange={onChange}
-                value={inputValues.name}
-                error={getErrorTranslation(errors.name)}
-                data-cy='guild-name-input'
-              />
-              <Textarea
-                name='description'
-                label={'Description'}
-                placeholder={'Description'}
-                id='textarea-description'
-                onChange={onChange}
-                value={inputValues.description ?? ''}
-                data-cy='guild-description-input'
-              />
-            </div>
           </div>
-        </div>
-      )}
-      <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
-        <div className='space-x-6'>
-          {member.isOwner ? (
-            <>
-              <Button type='submit' data-cy='button-save-guild-settings'>
-                {t('application:save')}
-              </Button>
+        )}
+        <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
+          <div className='space-x-6'>
+            {member.isOwner ? (
+              <>
+                <Button type='submit' data-cy='button-save-guild-settings'>
+                  {t('application:save')}
+                </Button>
+                <Button
+                  type='button'
+                  color='red'
+                  onClick={handleConfirmation}
+                  data-cy='button-delete-guild-settings'
+                >
+                  {t('application:delete')}
+                </Button>
+              </>
+            ) : (
               <Button
-                type='button'
                 color='red'
-                onClick={handleDelete}
-                data-cy='button-delete-guild-settings'
+                onClick={handleLeave}
+                data-cy='button-leave-guild-settings'
               >
-                {t('application:delete')}
+                {t('application:leave')} {guild.name}
               </Button>
-            </>
-          ) : (
-            <Button
-              color='red'
-              onClick={handleLeave}
-              data-cy='button-leave-guild-settings'
-            >
-              {t('application:leave')} {guild.name}
-            </Button>
-          )}
+            )}
+          </div>
+          <FormState
+            state={fetchState}
+            message={getErrorTranslation(errors.description) ?? message}
+          />
         </div>
-        <FormState
-          state={fetchState}
-          message={getErrorTranslation(errors.description) ?? message}
+      </Form>
+      <div
+        className={classNames(
+          'pointer-events-none invisible absolute z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-90 opacity-0 backdrop-blur-md transition-all',
+          { 'pointer-events-auto !visible !opacity-100': confirmation }
+        )}
+      >
+        <ConfirmGuildJoin
+          className={classNames('relative top-8 transition-all', {
+            '!top-0': confirmation
+          })}
+          handleYes={handleDelete}
+          handleNo={handleConfirmation}
+          title={`${t('application:remove-the-guild')} ?`}
         />
       </div>
-    </Form>
+    </>
   )
 }
