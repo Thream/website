@@ -21,6 +21,7 @@ export const Guild: React.FC<GuildProps> = (props) => {
     >
       <div className='pl-[6px]'>
         <Image
+          quality={100}
           className='rounded-full'
           src={
             guild.icon != null

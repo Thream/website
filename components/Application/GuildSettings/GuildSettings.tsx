@@ -130,6 +130,7 @@ export const GuildSettings: React.FC = () => {
               </div>
               <div className='flex items-center justify-center rounded-full bg-black shadow-xl'>
                 <Image
+                  quality={100}
                   className='rounded-full opacity-50'
                   src={
                     guild.icon == null

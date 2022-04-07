@@ -186,6 +186,7 @@ export const UserSettings: React.FC = () => {
             </div>
             <div className='flex items-center justify-center rounded-full bg-black shadow-xl'>
               <Image
+                quality={100}
                 className='rounded-full opacity-50'
                 src={
                   user.logo != null
@@ -256,22 +257,8 @@ export const UserSettings: React.FC = () => {
           />
         </div>
         <div className='flex h-full w-4/5 flex-col items-center justify-between pr-0 sm:w-[415px] lg:pl-12'>
-          <div className='mt-14 flex w-full flex-col gap-4'>
-            <SocialMediaButton
-              socialMedia='Google'
-              className='w-full justify-center'
-            />
-            <SocialMediaButton
-              socialMedia='Discord'
-              className='w-full justify-center'
-            />
-            <SocialMediaButton
-              socialMedia='GitHub'
-              className='w-full justify-center'
-            />
-          </div>
           <div className='flex w-full items-center pt-14'>
-            <Language />
+            <Language className='!top-12' />
             <div className='ml-auto flex'>
               <SwitchTheme />
               <Link href={`/application/users/${user.id}`}>
@@ -287,13 +274,28 @@ export const UserSettings: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          <div className='mt-14 flex w-full flex-col gap-4'>
+            <SocialMediaButton
+              socialMedia='Google'
+              className='w-full justify-center'
+            />
+            <SocialMediaButton
+              socialMedia='Discord'
+              className='w-full justify-center'
+            />
+            <SocialMediaButton
+              socialMedia='GitHub'
+              className='w-full justify-center'
+            />
+          </div>
         </div>
       </div>
 
       <div className='mt-12 flex flex-col items-center justify-center sm:w-fit'>
         <div className='space-x-6'>
           <Button type='submit'>{t('application:save')}</Button>
-          <Button type='button' color='red' onClick={() => handleSignout}>
+          <Button type='button' color='red' onClick={handleSignout}>
             {t('application:signout')}
           </Button>
         </div>

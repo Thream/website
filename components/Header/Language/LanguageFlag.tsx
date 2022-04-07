@@ -10,6 +10,7 @@ export const LanguageFlag: React.FC<LanguageFlagProps> = (props) => {
   return (
     <>
       <Image
+        quality={100}
         width={35}
         height={35}
         src={`/images/svg/languages/${language}.svg`}

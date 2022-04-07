@@ -61,6 +61,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
         onClick={handleIsConfirmed}
       >
         <Image
+          quality={100}
           className='rounded-full'
           src={
             guild.icon != null

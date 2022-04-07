@@ -27,6 +27,7 @@ const SocialMediaChildren: React.FC<SocialMediaChildrenProps> = (props) => {
   return (
     <>
       <Image
+        quality={100}
         width={20}
         height={20}
         src={`/images/svg/web/${socialMedia}.svg`}
