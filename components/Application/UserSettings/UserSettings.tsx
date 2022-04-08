@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Form } from 'react-component-form'
 import { EyeIcon, PhotographIcon } from '@heroicons/react/solid'
 import { Type } from '@sinclair/typebox'
@@ -20,6 +20,7 @@ import { FormState } from '../../design/FormState'
 import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
 import { userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
+import { ProviderOAuth, providers } from '../../../models/OAuth'
 
 export const UserSettings: React.FC = () => {
   const { user, setUser, authentication } = useAuthentication()
@@ -55,6 +56,10 @@ export const UserSettings: React.FC = () => {
     replaceEmptyStringToNull: true,
     resetOnSuccess: false
   })
+
+  const hasAllProviders = useMemo(() => {
+    return providers.every((provider) => user.strategies.includes(provider))
+  }, [user.strategies])
 
   const onSubmit: HandleSubmitCallback = async (formData) => {
     try {
@@ -173,6 +178,41 @@ export const UserSettings: React.FC = () => {
     }
   }
 
+  const handleDeletionProvider = (
+    provider: ProviderOAuth
+  ): (() => Promise<void>) => {
+    return async () => {
+      try {
+        setFetchState('loading')
+        await authentication.api.delete(`/users/oauth2/${provider}`)
+        setUser((oldUser) => {
+          return {
+            ...oldUser,
+            strategies: oldUser.strategies.filter(
+              (strategy) => strategy !== provider
+            )
+          }
+        })
+        setMessageTranslationKey('application:success-deleted-provider')
+      } catch (error) {
+        setFetchState('error')
+        setMessageTranslationKey('errors:server-error')
+      }
+    }
+  }
+
+  const handleAddProvider = (
+    provider: ProviderOAuth
+  ): (() => Promise<void>) => {
+    return async () => {
+      const redirect = window.location.href
+      const { data: url } = await authentication.api.get(
+        `/users/oauth2/${provider.toLowerCase()}/add-strategy?redirectURI=${redirect}`
+      )
+      window.location.href = url
+    }
+  }
+
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
@@ -264,7 +304,7 @@ export const UserSettings: React.FC = () => {
           />
         </div>
         <div className='flex h-full w-4/5 flex-col items-center justify-between pr-0 sm:w-[415px] lg:pl-12'>
-          <div className='flex w-full items-center pt-14'>
+          <div className='flex w-full items-center pt-10 lg:pt-0'>
             <Language className='!top-12' />
             <div className='ml-auto flex'>
               <SwitchTheme />
@@ -283,18 +323,46 @@ export const UserSettings: React.FC = () => {
           </div>
 
           <div className='mt-14 flex w-full flex-col gap-4'>
-            <SocialMediaButton
-              socialMedia='Google'
-              className='w-full justify-center'
-            />
-            <SocialMediaButton
-              socialMedia='Discord'
-              className='w-full justify-center'
-            />
-            <SocialMediaButton
-              socialMedia='GitHub'
-              className='w-full justify-center'
-            />
+            {!hasAllProviders ? (
+              <div className='flex w-full flex-col gap-4'>
+                <h3 className='text-center'>
+                  {t('application:signin-with-an-account')}
+                </h3>
+                {providers.map((provider, index) => {
+                  if (!user.strategies.includes(provider)) {
+                    return (
+                      <SocialMediaButton
+                        key={index}
+                        socialMedia={provider}
+                        className='w-full justify-center'
+                        onClick={handleAddProvider(provider)}
+                      />
+                    )
+                  }
+                  return null
+                })}
+              </div>
+            ) : null}
+            {user.strategies.length !== 1 && (
+              <div className='mt-4 flex w-full flex-col gap-4'>
+                <h3 className='text-center'>
+                  {t('application:signout-with-an-account')}
+                </h3>
+                {providers.map((provider, index) => {
+                  if (user.strategies.includes(provider)) {
+                    return (
+                      <SocialMediaButton
+                        key={index}
+                        socialMedia={provider}
+                        className='w-full justify-center'
+                        onClick={handleDeletionProvider(provider)}
+                      />
+                    )
+                  }
+                  return null
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

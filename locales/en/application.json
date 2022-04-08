@@ -19,6 +19,9 @@
   "success-email-changed": "Please check your emails to confirm your new email address. You are now signed out.",
   "delete": "Delete",
   "signout": "Sign out",
+  "signin-with-an-account": "Sign in with an account",
+  "signout-with-an-account": "Sign out with an account",
+  "success-deleted-provider": "The provider has been deleted.",
   "leave": "Leave",
   "start-chatting-kill-ghost": "Start chatting to kill this ghost!"
 }
