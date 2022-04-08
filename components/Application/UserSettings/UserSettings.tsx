@@ -84,7 +84,10 @@ export const UserSettings: React.FC = () => {
         return {
           ...oldUser,
           ...userCurrentData,
-          settings: userCurrentSettings.settings
+          settings: {
+            ...oldUser.settings,
+            ...userCurrentSettings.settings
+          }
         }
       })
       return {

@@ -5,7 +5,6 @@ import useTranslation from 'next-translate/useTranslation'
 
 import { Authentication, PagePropsWithAuthentication } from '.'
 import { UserCurrent } from '../../models/User'
-import { Language, Theme } from '../../models/UserSettings'
 
 export interface AuthenticationValue {
   authentication: Authentication
@@ -41,14 +40,13 @@ export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
   useEffect(() => {
     authentication.api
       .put('/users/current/settings', { theme, language: lang })
-      .then(() => {
+      .then(({ data: userCurrentSettings }) => {
         setUser((oldUser) => {
           return {
             ...oldUser,
             settings: {
               ...oldUser.settings,
-              theme: theme as Theme,
-              language: lang as Language
+              ...userCurrentSettings.settings
             }
           }
         })
