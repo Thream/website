@@ -90,9 +90,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
             </div>
           </div>
           <div className='mt-7'>
-            {user.biography != null && (
-              <p className='w-[45%]'>{user.biography}</p>
-            )}
+            {user.biography != null && <p>{user.biography}</p>}
           </div>
         </div>
       </div>
