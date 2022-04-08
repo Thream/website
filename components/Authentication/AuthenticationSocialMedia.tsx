@@ -13,7 +13,7 @@ export const AuthenticationSocialMedia: React.FC = () => {
     socialMedia: SocialMedia
   ): (() => Promise<void>) => {
     return async () => {
-      const redirect = window.location.href
+      const redirect = window.location.href.replace(location.search, '')
       const { data: url } = await api.get(
         `/users/oauth2/${socialMedia.toLowerCase()}/signin?redirectURI=${redirect}`
       )

@@ -204,7 +204,7 @@ export const UserSettings: React.FC = () => {
     provider: ProviderOAuth
   ): (() => Promise<void>) => {
     return async () => {
-      const redirect = window.location.href
+      const redirect = window.location.href.replace(location.search, '')
       const { data: url } = await authentication.api.get(
         `/users/oauth2/${provider.toLowerCase()}/add-strategy?redirectURI=${redirect}`
       )
