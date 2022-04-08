@@ -7,8 +7,8 @@
     "url": "https://github.com/Thream/website"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
   },
   "scripts": {
     "dev": "next dev",

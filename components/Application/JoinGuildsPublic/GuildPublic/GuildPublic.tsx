@@ -7,7 +7,6 @@ import axios from 'axios'
 
 import { Emoji } from '../../../Emoji'
 import { ConfirmGuildJoin } from '../../ConfirmGuildJoin'
-import { API_URL } from '../../../../tools/api'
 import {
   GuildPublic as GuildPublicType,
   GuildWithDefaultChannelId
@@ -64,9 +63,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
           quality={100}
           className='rounded-full'
           src={
-            guild.icon != null
-              ? API_URL + guild.icon
-              : '/images/data/guild-default.png'
+            guild.icon != null ? guild.icon : '/images/data/guild-default.png'
           }
           alt='logo'
           width={80}

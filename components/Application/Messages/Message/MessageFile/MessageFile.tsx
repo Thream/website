@@ -3,10 +3,10 @@ import axios from 'axios'
 import prettyBytes from 'pretty-bytes'
 import { DownloadIcon } from '@heroicons/react/solid'
 
-import { useAuthentication } from '../../../../../tools/authentication'
 import { MessageWithMember } from '../../../../../models/Message'
 import { Loader } from '../../../../design/Loader'
 import { FileIcon } from './FileIcon'
+import { api } from '../../../../../tools/api'
 
 const supportedImageMimetype = [
   'image/png',
@@ -27,14 +27,13 @@ export interface MessageContentProps {
 export const MessageFile: React.FC<MessageContentProps> = (props) => {
   const { message } = props
 
-  const { authentication } = useAuthentication()
   const [file, setFile] = useState<FileData | null>(null)
 
   useEffect(() => {
     const ourRequest = axios.CancelToken.source()
 
     const fetchData = async (): Promise<void> => {
-      const { data } = await authentication.api.get(message.value, {
+      const { data } = await api.get(message.value, {
         responseType: 'blob',
         cancelToken: ourRequest.token
       })
@@ -46,7 +45,7 @@ export const MessageFile: React.FC<MessageContentProps> = (props) => {
     return () => {
       ourRequest.cancel()
     }
-  }, [message.value, authentication.api])
+  }, [message.value])
 
   if (file == null) {
     return <Loader />

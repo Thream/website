@@ -12,7 +12,6 @@ import { Guilds } from './Guilds/Guilds'
 import { Divider } from '../design/Divider'
 import { Members } from './Members'
 import { useAuthentication } from '../../tools/authentication'
-import { API_URL } from '../../tools/api'
 
 export interface ChannelsPath {
   channelId: number
@@ -189,7 +188,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
                 src={
                   user.logo == null
                     ? '/images/data/user-default.png'
-                    : API_URL + user.logo
+                    : user.logo
                 }
                 alt={"Users's profil picture"}
                 draggable={false}
