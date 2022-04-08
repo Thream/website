@@ -10,7 +10,6 @@ import classNames from 'classnames'
 import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { guildSchema } from '../../../models/Guild'
 import { FormState } from '../../design/FormState'
-import { API_URL } from '../../../tools/api'
 import { useGuildMember } from '../../../contexts/GuildMember'
 import { Textarea } from '../../design/Textarea'
 import { Input } from '../../design/Input'
@@ -144,7 +143,7 @@ export const GuildSettings: React.FC = () => {
                     src={
                       guild.icon == null
                         ? '/images/data/guild-default.png'
-                        : API_URL + guild.icon
+                        : guild.icon
                     }
                     alt='Profil Picture'
                     draggable='false'

@@ -9,6 +9,7 @@ module.exports = nextTranslate(
       domains: [
         'api.thream.divlo.fr',
         'thream-api.herokuapp.com',
+        'file-uploads-api.thream.divlo.fr',
         ...(process.env.NODE_ENV !== 'production' ? ['localhost'] : [])
       ]
     },
