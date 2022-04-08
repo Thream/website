@@ -3,7 +3,6 @@ import Link from 'next/link'
 import date from 'date-and-time'
 
 import { MessageWithMember } from '../../../../models/Message'
-import { API_URL } from '../../../../tools/api'
 import { MessageText } from './MessageText'
 import { Loader } from '../../../design/Loader'
 import { MessageFile } from './MessageFile'
@@ -30,7 +29,7 @@ export const Message: React.FC<MessageProps> = (props) => {
                 src={
                   message.member.user.logo == null
                     ? '/images/data/user-default.png'
-                    : API_URL + message.member.user.logo
+                    : message.member.user.logo
                 }
                 alt={"Users's profil picture"}
                 width={50}

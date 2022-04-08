@@ -7,7 +7,6 @@ import { Type } from '@sinclair/typebox'
 import axios from 'axios'
 import Link from 'next/link'
 
-import { API_URL } from '../../../tools/api'
 import { Input } from '../../design/Input'
 import { Checkbox } from '../../design/Checkbox'
 import { Textarea } from '../../design/Textarea'
@@ -237,7 +236,7 @@ export const UserSettings: React.FC = () => {
                 className='rounded-full opacity-50'
                 src={
                   user.logo != null
-                    ? API_URL + user.logo
+                    ? user.logo
                     : '/images/data/user-default.png'
                 }
                 alt='Profil Picture'

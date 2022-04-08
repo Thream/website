@@ -2,7 +2,6 @@ import Image from 'next/image'
 import date from 'date-and-time'
 import useTranslation from 'next-translate/useTranslation'
 
-import { API_URL } from '../../../tools/api'
 import { UserPublic } from '../../../models/User'
 import { Guild } from '../../../models/Guild'
 
@@ -28,7 +27,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                   className='rounded-full'
                   src={
                     user.logo != null
-                      ? API_URL + user.logo
+                      ? user.logo
                       : '/images/data/user-default.png'
                   }
                   alt='Profil Picture'
