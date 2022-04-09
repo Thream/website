@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from '../../../../components/Head'
 import { Application } from '../../../../components/Application'
@@ -21,6 +22,7 @@ export interface CreateChannelPageProps extends PagePropsWithAuthentication {
 
 const CreateChannelPage: NextPage<CreateChannelPageProps> = (props) => {
   const { guildId, authentication, guildMember } = props
+  const { t } = useTranslation()
 
   const path = { guildId }
 
@@ -29,10 +31,10 @@ const CreateChannelPage: NextPage<CreateChannelPageProps> = (props) => {
       <GuildsProvider>
         <GuildMemberProvider guildMember={guildMember} path={path}>
           <Head
-            title={`Thream | Crée un channel`}
-            description={'Crée un nouveau channel'}
+            title={`Thream | ${t('application:create-a-channel')}`}
+            description={t('application:create-a-channel')}
           />
-          <Application path={path} title={'Crée un channel'}>
+          <Application path={path} title={t('application:create-a-channel')}>
             <CreateChannel />
           </Application>
         </GuildMemberProvider>

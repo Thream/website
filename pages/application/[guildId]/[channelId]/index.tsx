@@ -43,7 +43,7 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
           <MembersProviders path={path}>
             <ChannelsProvider path={path}>
               <MessagesProvider path={path}>
-                <Head title='Thream | Application' />
+                <Head title={`Thream | ${selectedChannel.name}`} />
                 <Application
                   path={path}
                   guildLeftSidebar={<GuildLeftSidebar path={path} />}

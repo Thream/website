@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from '../../../components/Head'
 import { Application } from '../../../components/Application'
@@ -18,6 +19,7 @@ export interface GuildSettingsPageProps extends PagePropsWithAuthentication {
 
 const GuildSettingsPage: NextPage<GuildSettingsPageProps> = (props) => {
   const { guildId, authentication, guildMember } = props
+  const { t } = useTranslation()
 
   const path = { guildId }
 
@@ -25,8 +27,8 @@ const GuildSettingsPage: NextPage<GuildSettingsPageProps> = (props) => {
     <AuthenticationProvider authentication={authentication}>
       <GuildsProvider>
         <GuildMemberProvider guildMember={guildMember} path={path}>
-          <Head title='Thream | Guild settings' />
-          <Application path={path} title='Guild settings'>
+          <Head title={`Thream | ${t('application:guild-settings')}`} />
+          <Application path={path} title={t('application:guild-settings')}>
             <GuildSettings />
           </Application>
         </GuildMemberProvider>
