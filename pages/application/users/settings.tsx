@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from '../../../components/Head'
 import { Application } from '../../../components/Application'
@@ -11,11 +12,16 @@ import { UserSettings } from '../../../components/Application/UserSettings'
 import { GuildsProvider } from '../../../contexts/Guilds'
 
 const UserSettingsPage: NextPage<PagePropsWithAuthentication> = (props) => {
+  const { t } = useTranslation()
+
   return (
     <AuthenticationProvider authentication={props.authentication}>
       <GuildsProvider>
-        <Head title='Thream | Settings' />
-        <Application path={`/application/users/settings`} title='Settings'>
+        <Head title={`Thream | ${t('application:user-settings')}`} />
+        <Application
+          path='/application/users/settings'
+          title={t('application:user-settings')}
+        >
           <UserSettings />
         </Application>
       </GuildsProvider>

@@ -6,6 +6,8 @@
   "delete-channel-only-one": "La guilde doit avoir au moins un channel. Vous ne pouvez pas supprimer le seul channel de la guilde.",
   "create-a-guild": "Créer une Guilde",
   "create-a-guild-description": "Créez votre propre guilde et gérez tout.",
+  "user-settings": "Paramètres utilisateur",
+  "guild-settings": "Paramètres de la guilde",
   "join-a-guild": "Rejoindre une Guilde",
   "join-the-guild": "Rejoindre la guilde",
   "join-a-guild-description": "Discutez, collaborez, partagez et amusez-vous avec vos amis en rejoignant une guilde déjà existante!",

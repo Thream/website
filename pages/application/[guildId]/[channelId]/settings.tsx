@@ -40,7 +40,7 @@ const ChannelSettingsPage: NextPage<ChannelSettingsPageProps> = (props) => {
         <GuildMemberProvider guildMember={guildMember} path={path}>
           <MembersProviders path={path}>
             <ChannelsProvider path={path}>
-              <Head title='Thream | Application' />
+              <Head title={`Thream | ${selectedChannel.name}`} />
               <Application
                 path={path}
                 guildLeftSidebar={<GuildLeftSidebar path={path} />}

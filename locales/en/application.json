@@ -6,6 +6,8 @@
   "delete-channel-only-one": "The guild should have at least one channel. You can't delete the only channel of the guild.",
   "create-a-guild": "Create a Guild",
   "create-a-guild-description": "Create your own guild and manage everything.",
+  "user-settings": "User settings",
+  "guild-settings": "Guild settings",
   "join-a-guild": "Join a Guild",
   "join-the-guild": "Join the guild",
   "join-a-guild-description": "Talk, collaborate, share and have fun with your friends by joining an already existing guild!",
