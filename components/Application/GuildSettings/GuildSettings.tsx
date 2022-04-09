@@ -15,7 +15,7 @@ import { Textarea } from '../../design/Textarea'
 import { Input } from '../../design/Input'
 import { Button } from '../../design/Button'
 import { useAuthentication } from '../../../tools/authentication'
-import { ConfirmGuildJoin } from '../ConfirmGuildJoin'
+import { ConfirmPopup } from '../ConfirmPopup'
 
 export const GuildSettings: React.FC = () => {
   const { t } = useTranslation()
@@ -214,13 +214,13 @@ export const GuildSettings: React.FC = () => {
           { 'pointer-events-auto !visible !opacity-100': confirmation }
         )}
       >
-        <ConfirmGuildJoin
+        <ConfirmPopup
           className={classNames('relative top-8 transition-all', {
             '!top-0': confirmation
           })}
           handleYes={handleDelete}
           handleNo={handleConfirmation}
-          title={`${t('application:remove-the-guild')} ?`}
+          title={`${t('application:delete-the-guild')} ?`}
         />
       </div>
     </>

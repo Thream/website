@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import axios from 'axios'
 
 import { Emoji } from '../../../Emoji'
-import { ConfirmGuildJoin } from '../../ConfirmGuildJoin'
+import { ConfirmPopup } from '../../ConfirmPopup'
 import {
   GuildPublic as GuildPublicType,
   GuildWithDefaultChannelId
@@ -91,7 +91,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
           {guild.membersCount} {t('application:members')}
         </p>
       </div>
-      <ConfirmGuildJoin
+      <ConfirmPopup
         title={`${t('application:join-the-guild')} ?`}
         className={classNames(
           'w-ful h-ful translate-x- absolute top-1/2 left-full flex h-full w-full -translate-y-1/2 flex-col items-center justify-center rounded-2xl transition-all',

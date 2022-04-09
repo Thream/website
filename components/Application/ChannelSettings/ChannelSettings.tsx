@@ -16,7 +16,7 @@ import {
   channelSchema,
   ChannelWithDefaultChannelId
 } from '../../../models/Channel'
-import { ConfirmGuildJoin } from '../ConfirmGuildJoin'
+import { ConfirmPopup } from '../ConfirmPopup'
 
 export interface ChannelSettingsProps {
   channel: Channel
@@ -144,13 +144,13 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
           { 'pointer-events-auto !visible !opacity-100': confirmation }
         )}
       >
-        <ConfirmGuildJoin
+        <ConfirmPopup
           className={classNames('relative top-8 transition-all', {
             '!top-0': confirmation
           })}
           handleYes={handleDelete}
           handleNo={handleConfirmation}
-          title={`${t('application:remove-the-guild')} ?`}
+          title={`${t('application:delete-the-channel')} ?`}
         />
       </div>
     </>

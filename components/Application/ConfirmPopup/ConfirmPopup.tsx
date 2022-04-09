@@ -5,16 +5,14 @@ import classNames from 'classnames'
 
 import { Loader } from '../../design/Loader'
 
-export interface ConfirmGuildJoinProps {
+export interface ConfirmPopupProps {
   className?: string
   title: string
   handleYes: () => void | Promise<void>
   handleNo: () => void | Promise<void>
 }
 
-export const ConfirmGuildJoin: React.FC<ConfirmGuildJoinProps> = ({
-  ...props
-}) => {
+export const ConfirmPopup: React.FC<ConfirmPopupProps> = ({ ...props }) => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -44,7 +42,7 @@ export const ConfirmGuildJoin: React.FC<ConfirmGuildJoinProps> = ({
         <Image
           quality={100}
           src='/images/svg/design/join-guild.svg'
-          alt='Join Guild Illustration'
+          alt='Illustration'
           height={150}
           width={150}
         />
