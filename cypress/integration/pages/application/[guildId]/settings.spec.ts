@@ -69,6 +69,7 @@ describe('Pages > /application/[guildId]/settings', () => {
     )
     cy.visit(`/application/${guildExample.id}/settings`)
     cy.get('[data-cy=button-delete-guild-settings]').click()
+    cy.get('[data-cy=confirm-popup-yes-button]').click()
     cy.wait('@deleteGuildWithGuildIdHandler').then((interception) => {
       expect(interception.response).to.not.be.eql(undefined)
       if (interception.response !== undefined) {

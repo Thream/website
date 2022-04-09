@@ -57,6 +57,7 @@ describe('Pages > /application/[guildId]/[channelId]/settings', () => {
     )
     cy.visit(`/application/${guildExample.id}/${channelExample.id}/settings`)
     cy.get('[data-cy=button-delete-channel-settings]').click()
+    cy.get('[data-cy=confirm-popup-yes-button]').click()
     cy.wait('@deleteChannelWithChannelIdHandler').then(() => {
       cy.location('pathname').should(
         'eq',

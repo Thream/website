@@ -215,7 +215,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
           id='application-page-content'
           onClick={handleCloseSidebars}
           className={classNames(
-            'h-full-without-header top-0 z-0 flex w-full flex-1 flex-col overflow-y-auto transition',
+            'h-full-without-header relative top-0 z-0 flex w-full flex-1 flex-col overflow-y-auto transition',
             {
               'absolute opacity-20':
                 isMobile && (visibleSidebars.left || visibleSidebars.right)

@@ -5,15 +5,14 @@ import classNames from 'classnames'
 
 import { Loader } from '../../design/Loader'
 
-export interface ConfirmGuildJoinProps {
+export interface ConfirmPopupProps {
   className?: string
+  title: string
   handleYes: () => void | Promise<void>
   handleNo: () => void | Promise<void>
 }
 
-export const ConfirmGuildJoin: React.FC<ConfirmGuildJoinProps> = ({
-  ...props
-}) => {
+export const ConfirmPopup: React.FC<ConfirmPopupProps> = ({ ...props }) => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -25,9 +24,12 @@ export const ConfirmGuildJoin: React.FC<ConfirmGuildJoinProps> = ({
   return (
     <div className={props.className}>
       <Loader
-        className={classNames('absolute scale-0 transition', {
-          'scale-100': isLoading
-        })}
+        className={classNames(
+          'absolute top-1/2 left-1/2 scale-0 transition-all',
+          {
+            'scale-100': isLoading
+          }
+        )}
       />
       <div
         className={classNames(
@@ -40,24 +42,24 @@ export const ConfirmGuildJoin: React.FC<ConfirmGuildJoinProps> = ({
         <Image
           quality={100}
           src='/images/svg/design/join-guild.svg'
-          alt='Join Guild Illustration'
+          alt='Illustration'
           height={150}
           width={150}
         />
         <div className='mt-8 flex flex-col'>
-          <h1 className='mb-6 text-center text-xl'>
-            {t('application:join-the-guild')} ?
-          </h1>
+          <h1 className='mb-6 text-center text-xl'>{props.title}</h1>
           <div className='flex gap-7'>
             <button
               className='rounded-3xl bg-success px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
               onClick={handleYesLoading}
+              data-cy='confirm-popup-yes-button'
             >
               {t('common:yes')}
             </button>
             <button
               className='rounded-3xl bg-error px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
               onClick={props.handleNo}
+              data-cy='confirm-popup-no-button'
             >
               {t('common:no')}
             </button>
