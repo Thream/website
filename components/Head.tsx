@@ -13,7 +13,7 @@ export const Head: React.FC<HeadProps> = (props) => {
 
   const {
     title = 'Thream',
-    image = '/images/icons/96x96.png',
+    image = 'https://thream.divlo.fr/images/icons/128x128.png',
     description = t('common:description'),
     url = 'https://thream.divlo.fr/'
   } = props
@@ -42,7 +42,7 @@ export const Head: React.FC<HeadProps> = (props) => {
       <meta name='twitter:card' content='summary' />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:title' content={title} />
-      <meta name='twitter:image:src' content={image} />
+      <meta name='twitter:image' content={image} />
 
       {/* PWA Data */}
       <link rel='manifest' href='/manifest.json' />
