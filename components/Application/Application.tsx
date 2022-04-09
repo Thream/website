@@ -121,13 +121,15 @@ export const Application: React.FC<ApplicationProps> = (props) => {
       })
     },
     onSwipedLeft: () => {
-      if (visibleSidebars.left) {
-        return setVisibleSidebars({ ...visibleSidebars, left: false })
+      if (isGuildsChannelsPath(path)) {
+        if (visibleSidebars.left) {
+          return setVisibleSidebars({ ...visibleSidebars, left: false })
+        }
+        setVisibleSidebars({
+          ...visibleSidebars,
+          right: true
+        })
       }
-      setVisibleSidebars({
-        ...visibleSidebars,
-        right: true
-      })
     }
   })
 
