@@ -52,12 +52,14 @@ export const ConfirmPopup: React.FC<ConfirmPopupProps> = ({ ...props }) => {
             <button
               className='rounded-3xl bg-success px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
               onClick={handleYesLoading}
+              data-cy='confirm-popup-yes-button'
             >
               {t('common:yes')}
             </button>
             <button
               className='rounded-3xl bg-error px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
               onClick={props.handleNo}
+              data-cy='confirm-popup-no-button'
             >
               {t('common:no')}
             </button>
