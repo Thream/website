@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { Form } from 'react-component-form'
 import useTranslation from 'next-translate/useTranslation'
+import axios from 'axios'
 
 import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { FormState } from '../../design/FormState'
@@ -81,7 +82,11 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
       await router.push(`/application/${guild.id}/${data.defaultChannelId}`)
     } catch (error) {
       setFetchState('error')
-      setMessageTranslationKey('errors:server-error')
+      if (axios.isAxiosError(error) && error.response?.status === 400) {
+        setMessageTranslationKey('application:delete-channel-only-one')
+      } else {
+        setMessageTranslationKey('errors:server-error')
+      }
     }
   }
 

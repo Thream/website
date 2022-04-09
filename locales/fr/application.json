@@ -3,6 +3,7 @@
   "create": "Créer",
   "status": "Statut",
   "create-a-channel": "Créer un channel",
+  "delete-channel-only-one": "La guilde doit avoir au moins un channel. Vous ne pouvez pas supprimer le seul channel de la guilde.",
   "create-a-guild": "Créer une Guilde",
   "create-a-guild-description": "Créez votre propre guilde et gérez tout.",
   "join-a-guild": "Rejoindre une Guilde",
