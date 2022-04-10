@@ -6,6 +6,7 @@ import { MessageWithMember } from '../../../../models/Message'
 import { MessageText } from './MessageText'
 import { Loader } from '../../../design/Loader'
 import { MessageFile } from './MessageFile'
+import { Emoji } from '../../../Emoji'
 
 export interface MessageProps {
   message: MessageWithMember
@@ -16,7 +17,7 @@ export const Message: React.FC<MessageProps> = (props) => {
 
   return (
     <div
-      className='flex p-4 transition hover:bg-gray-200 dark:hover:bg-gray-900'
+      className='group flex w-full p-4 transition hover:bg-gray-200 dark:hover:bg-gray-900'
       data-cy={`message-${message.id}`}
     >
       <Link href={`/application/users/${message.member.user.id}`}>
@@ -40,7 +41,7 @@ export const Message: React.FC<MessageProps> = (props) => {
           </div>
         </a>
       </Link>
-      <div className='w-full'>
+      <div className='relative w-full'>
         <div className='flex w-max items-center'>
           <Link href={`/application/users/${message.member.user.id}`}>
             <a>
@@ -58,6 +59,14 @@ export const Message: React.FC<MessageProps> = (props) => {
           >
             {date.format(new Date(message.createdAt), 'DD/MM/YYYY - HH:mm:ss')}
           </span>
+        </div>
+        <div className='absolute right-6 -top-8 flex opacity-0 transition-opacity group-hover:opacity-100'>
+          <div className='flex h-9 w-9 cursor-pointer items-center justify-center rounded-l-lg border-l-slate-600 bg-slate-900 transition-colors hover:bg-slate-800'>
+            <Emoji value=':pencil2:' size={18} />
+          </div>
+          <div className='flex h-9 w-9 cursor-pointer items-center justify-center rounded-r-lg border-r-slate-600 bg-slate-900 transition-colors hover:bg-slate-800'>
+            <Emoji value=':wastebasket:' size={18} />
+          </div>
         </div>
         {message.type === 'text' ? (
           <MessageText message={message} />
