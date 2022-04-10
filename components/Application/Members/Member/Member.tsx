@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { MemberWithPublicUser } from '../../../../models/Member'
+import { Emoji } from '../../../Emoji'
 
 export interface MemberProps {
   member: MemberWithPublicUser
@@ -29,8 +30,13 @@ export const Member: React.FC<MemberProps> = (props) => {
             />
           </div>
           <div className='ml-5'>
-            <p data-cy='member-user-name' className='truncate font-bold'>
+            <p data-cy='member-user-name' className='flex truncate font-bold'>
               {member.user.name}
+              {member.isOwner && (
+                <span className='ml-4'>
+                  <Emoji value=':crown:' size={18} />
+                </span>
+              )}
             </p>
             {member.user.status != null && member.user.status}
           </div>
