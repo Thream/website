@@ -43,3 +43,7 @@ body {
   scrollbar-color: var(--scroll-bar-color) var(--scroll-bar-bg-color);
   z-index: 0;
 }
+
+.message-options {
+  @apply flex h-9 w-9 cursor-pointer items-center justify-center bg-gray-200 transition-colors hover:bg-gray-300 dark:bg-slate-900 hover:dark:bg-slate-800;
+}

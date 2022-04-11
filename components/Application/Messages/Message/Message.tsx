@@ -61,10 +61,10 @@ export const Message: React.FC<MessageProps> = (props) => {
           </span>
         </div>
         <div className='absolute right-6 -top-8 flex opacity-0 transition-opacity group-hover:opacity-100'>
-          <div className='flex h-9 w-9 cursor-pointer items-center justify-center rounded-l-lg border-l-slate-600 bg-slate-900 transition-colors hover:bg-slate-800'>
+          <div className='message-options rounded-l-lg border-l-slate-600'>
             <Emoji value=':pencil2:' size={18} />
           </div>
-          <div className='flex h-9 w-9 cursor-pointer items-center justify-center rounded-r-lg border-r-slate-600 bg-slate-900 transition-colors hover:bg-slate-800'>
+          <div className='message-options rounded-r-lg border-r-slate-600'>
             <Emoji value=':wastebasket:' size={18} />
           </div>
         </div>
