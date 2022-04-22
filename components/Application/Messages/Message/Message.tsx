@@ -15,6 +15,8 @@ export interface MessageProps {
 export const Message: React.FC<MessageProps> = (props) => {
   const { message } = props
 
+  const handleConfirmation = (): void => {}
+
   return (
     <div
       className='group flex w-full p-4 transition hover:bg-gray-200 dark:hover:bg-gray-900'
@@ -64,7 +66,10 @@ export const Message: React.FC<MessageProps> = (props) => {
           <div className='message-options rounded-l-lg border-l-slate-600'>
             <Emoji value=':pencil2:' size={18} />
           </div>
-          <div className='message-options rounded-r-lg border-r-slate-600'>
+          <div
+            className='message-options rounded-r-lg border-r-slate-600'
+            onClick={handleConfirmation}
+          >
             <Emoji value=':wastebasket:' size={18} />
           </div>
         </div>
