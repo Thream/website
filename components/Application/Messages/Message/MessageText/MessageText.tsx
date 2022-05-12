@@ -4,6 +4,8 @@ import gfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 import 'katex/dist/katex.min.css'
 
@@ -41,6 +43,24 @@ export const MessageText: React.FC<MessageContentProps> = (props) => {
       components={{
         emoji: (props) => {
           return <Emoji value={props.value} size={20} />
+        },
+        code: (properties) => {
+          const { inline, className, children, ...props } = properties
+          const match = /language-(\w+)/.exec(className ?? '')
+          return !(inline as boolean) && match != null ? (
+            <SyntaxHighlighter
+              style={vscDarkPlus as any}
+              language={match[1]}
+              PreTag='div'
+              {...props}
+            >
+              {String(children).replace(/\n$/, '')}
+            </SyntaxHighlighter>
+          ) : (
+            <code className={className} {...props}>
+              {children}
+            </code>
+          )
         }
       }}
     >
