@@ -19,7 +19,9 @@ export interface MessagesProviderProps {
   path: GuildsChannelsPath
 }
 
-export const MessagesProvider: React.FC<MessagesProviderProps> = (props) => {
+export const MessagesProvider: React.FC<
+  React.PropsWithChildren<MessagesProviderProps>
+> = (props) => {
   const { path, children } = props
   const { authentication } = useAuthentication()
 

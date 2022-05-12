@@ -20,7 +20,9 @@ export interface ChannelsProviderProps {
   path: GuildsChannelsPath
 }
 
-export const ChannelsProvider: React.FC<ChannelsProviderProps> = (props) => {
+export const ChannelsProvider: React.FC<
+  React.PropsWithChildren<ChannelsProviderProps>
+> = (props) => {
   const { path, children } = props
   const router = useRouter()
   const { authentication } = useAuthentication()

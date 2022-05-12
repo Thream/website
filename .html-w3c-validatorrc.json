@@ -1,9 +1,0 @@
-{
-  "urls": [
-    "http://localhost:3000/",
-    "http://localhost:3000/authentication/forgot-password",
-    "http://localhost:3000/authentication/reset-password",
-    "http://localhost:3000/authentication/signin",
-    "http://localhost:3000/authentication/signup"
-  ]
-}

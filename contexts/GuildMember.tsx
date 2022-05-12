@@ -27,7 +27,9 @@ const GuildMemberContext = createContext<GuildMemberResult>(
   defaultGuildMemberContext
 )
 
-export const GuildMemberProvider: React.FC<GuildMemberProps> = (props) => {
+export const GuildMemberProvider: React.FC<
+  React.PropsWithChildren<GuildMemberProps>
+> = (props) => {
   const { path, children } = props
   const router = useRouter()
   const [guildMember, setGuildMember] = useState(props.guildMember)

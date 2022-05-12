@@ -17,9 +17,9 @@ const AuthenticationContext = createContext<AuthenticationValue>(
   defaultAuthenticationContext
 )
 
-export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
-  props
-) => {
+export const AuthenticationProvider: React.FC<
+  React.PropsWithChildren<PagePropsWithAuthentication>
+> = (props) => {
   const { lang } = useTranslation()
   const { theme, setTheme } = useTheme()
   const [user, setUser] = useState<UserCurrent>(props.authentication.user)

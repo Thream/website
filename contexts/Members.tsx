@@ -20,7 +20,9 @@ export interface MembersProviderProps {
   path: GuildsChannelsPath
 }
 
-export const MembersProviders: React.FC<MembersProviderProps> = (props) => {
+export const MembersProviders: React.FC<
+  React.PropsWithChildren<MembersProviderProps>
+> = (props) => {
   const { children, path } = props
 
   const { authentication } = useAuthentication()

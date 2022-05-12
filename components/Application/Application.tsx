@@ -40,7 +40,9 @@ export interface ApplicationProps {
   title: string
 }
 
-export const Application: React.FC<ApplicationProps> = (props) => {
+export const Application: React.FC<
+  React.PropsWithChildren<ApplicationProps>
+> = (props) => {
   const { children, path, guildLeftSidebar, title } = props
 
   const { user } = useAuthentication()
@@ -110,7 +112,7 @@ export const Application: React.FC<ApplicationProps> = (props) => {
   const swipeableHandlers = useSwipeable({
     trackMouse: false,
     trackTouch: true,
-    preventDefaultTouchmoveEvent: true,
+    preventScrollOnSwipe: true,
     onSwipedRight: () => {
       if (visibleSidebars.right) {
         return setVisibleSidebars({ ...visibleSidebars, right: false })

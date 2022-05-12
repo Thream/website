@@ -40,7 +40,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
       if (
         axios.isAxiosError(error) &&
         error.response?.status === 400 &&
-        typeof error.response?.data.defaultChannelId === 'number'
+        typeof error?.response?.data.defaultChannelId === 'number'
       ) {
         const defaultChannelId = error.response.data.defaultChannelId as number
         await router.push(`/application/${guild.id}/${defaultChannelId}`)

@@ -4,7 +4,7 @@ export interface MainProps {
   className?: string
 }
 
-export const Main: React.FC<MainProps> = (props) => {
+export const Main: React.FC<React.PropsWithChildren<MainProps>> = (props) => {
   const { children, className } = props
 
   return (

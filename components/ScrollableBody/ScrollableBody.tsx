@@ -1,4 +1,6 @@
-export const ScrollableBody: React.FC = (props) => {
+export const ScrollableBody: React.FC<React.PropsWithChildren<{}>> = (
+  props
+) => {
   const { children } = props
 
   return (
