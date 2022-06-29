@@ -20,9 +20,8 @@ describe('Pages > /application/guilds/join', () => {
     cy.intercept(`${API_URL}${getGuildsPublicHandler.url}*`).as(
       'getGuildsPublicHandler'
     )
-    cy.intercept(`/_next/*`).as('nextStaticAndImages')
     cy.visit('/application/guilds/join')
-    cy.wait(['@getGuildsPublicHandler', '@nextStaticAndImages']).then(() => {
+    cy.wait(['@getGuildsPublicHandler']).then(() => {
       cy.get('[data-cy=application-title]').should('have.text', 'Join a Guild')
       cy.get('.guilds-public-list').children().should('have.length', 2)
       cy.get('.guilds-public-list [data-cy=guild-name]:first').should(
@@ -45,8 +44,7 @@ describe('Pages > /application/guilds/join', () => {
     cy.intercept(`${API_URL}${getGuildsPublicHandler.url}*`).as(
       'getGuildsPublicHandler'
     )
-    cy.intercept(`/_next/*`).as('nextStaticAndImages')
-    cy.wait(['@getGuildsPublicHandler', '@nextStaticAndImages']).then(() => {
+    cy.wait(['@getGuildsPublicHandler']).then(() => {
       cy.get('[data-cy=search-guild-input]').type(guildExample2.name)
       cy.get('.guilds-public-list').children().should('have.length', 1)
       cy.get('.guilds-public-list [data-cy=guild-name]:first').should(

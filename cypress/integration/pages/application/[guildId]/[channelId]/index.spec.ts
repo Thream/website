@@ -41,9 +41,8 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
       getGuildsHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.intercept(`${API_URL}${getGuildsHandler.url}*`).as('getGuildsHandler')
-    cy.intercept(`/_next/*`).as('nextStaticAndImages')
     cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
-    cy.wait(['@getGuildsHandler', '@nextStaticAndImages']).then(() => {
+    cy.wait(['@getGuildsHandler']).then(() => {
       cy.get('[data-cy=application-title]').should(
         'have.text',
         `# ${channelExample.name}`
@@ -74,9 +73,8 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
       getGuildsHandler
     ]).setCookie('refreshToken', 'refresh-token')
     cy.intercept(`${API_URL}${getGuildsHandler.url}*`).as('getGuildsHandler')
-    cy.intercept(`/_next/*`).as('nextStaticAndImages')
     cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
-    cy.wait(['@getGuildsHandler', '@nextStaticAndImages']).then(() => {
+    cy.wait(['@getGuildsHandler']).then(() => {
       cy.get('[data-cy=application-title]').should(
         'have.text',
         `# ${channelExample.name}`
@@ -103,21 +101,18 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
     cy.intercept(`${API_URL}${getChannelsWithGuildIdHandler.url}*`).as(
       'getChannelsWithGuildIdHandler'
     )
-    cy.intercept(`/_next/*`).as('nextStaticAndImages')
     cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
-    cy.wait(['@getChannelsWithGuildIdHandler', '@nextStaticAndImages']).then(
-      () => {
-        cy.get('.channels-list').children().should('have.length', 2)
-        cy.get('.channels-list [data-cy=channel-name]:first').should(
-          'have.text',
-          `# ${channelExample.name}`
-        )
-        cy.get('.channels-list [data-cy=channel-name]:last').should(
-          'have.text',
-          `# ${channelExample2.name}`
-        )
-      }
-    )
+    cy.wait(['@getChannelsWithGuildIdHandler']).then(() => {
+      cy.get('.channels-list').children().should('have.length', 2)
+      cy.get('.channels-list [data-cy=channel-name]:first').should(
+        'have.text',
+        `# ${channelExample.name}`
+      )
+      cy.get('.channels-list [data-cy=channel-name]:last').should(
+        'have.text',
+        `# ${channelExample2.name}`
+      )
+    })
   })
 
   it('should succeeds and display the messages correctly', () => {
@@ -146,11 +141,9 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
     cy.intercept(`${API_URL}${getMessagesUploadsDownloadHandler.url}`).as(
       'getMessagesUploadsDownloadHandler'
     )
-    cy.intercept(`/_next/*`).as('nextStaticAndImages')
     cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
     cy.wait([
       '@getMessagesWithChannelIdHandler',
-      '@nextStaticAndImages',
       '@getMessagesUploadsImageHandler',
       '@getMessagesUploadsAudioHandler',
       '@getMessagesUploadsVideoHandler',
@@ -226,21 +219,18 @@ describe('Pages > /application/[guildId]/[channelId]', () => {
     cy.intercept(`${API_URL}${getMembersWithGuildIdHandler.url}*`).as(
       'getMembersWithGuildIdHandler'
     )
-    cy.intercept(`/_next/*`).as('nextStaticAndImages')
     cy.visit(`/application/${guildExample.id}/${channelExample.id}`)
-    cy.wait(['@getMembersWithGuildIdHandler', '@nextStaticAndImages']).then(
-      () => {
-        cy.get('.members-list').should('not.be.visible')
-        cy.get('[data-cy=icon-button-right-sidebar-members]').click()
-        cy.get('.members-list').should('be.visible')
-        cy.get('[data-cy=members-title]').should('have.text', 'Member(s)')
-        cy.get('.members-list').children().should('have.length', 1)
-        cy.get('.members-list [data-cy=member-user-name]:first').should(
-          'have.text',
-          memberExampleComplete.user.name
-        )
-      }
-    )
+    cy.wait(['@getMembersWithGuildIdHandler']).then(() => {
+      cy.get('.members-list').should('not.be.visible')
+      cy.get('[data-cy=icon-button-right-sidebar-members]').click()
+      cy.get('.members-list').should('be.visible')
+      cy.get('[data-cy=members-title]').should('have.text', 'Member(s)')
+      cy.get('.members-list').children().should('have.length', 1)
+      cy.get('.members-list [data-cy=member-user-name]:first').should(
+        'have.text',
+        memberExampleComplete.user.name
+      )
+    })
   })
 
   it('should redirect the user to `/404` if `guildId` or `channelId` are not numbers', () => {
