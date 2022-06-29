@@ -23,7 +23,7 @@ export const MessagesProvider: React.FC<
   React.PropsWithChildren<MessagesProviderProps>
 > = (props) => {
   const { path, children } = props
-  const { authentication } = useAuthentication()
+  const { authentication, user } = useAuthentication()
 
   const {
     items: messages,
@@ -49,7 +49,10 @@ export const MessagesProvider: React.FC<
             messagesDiv.scrollHeight - messagesDiv.scrollTop <=
             messagesDiv.clientHeight
           handleSocketData({ data, setItems })
-          if (data.action === 'create' && isAtBottom) {
+          if (
+            data.action === 'create' &&
+            (isAtBottom || data.item.member.userId === user.id)
+          ) {
             messagesDiv.scrollTo(0, messagesDiv.scrollHeight)
           }
         }
@@ -59,7 +62,7 @@ export const MessagesProvider: React.FC<
     return () => {
       authentication.socket.off('messages')
     }
-  }, [authentication.socket, setItems, path])
+  }, [authentication.socket, setItems, path, user.id])
 
   useEffect(() => {
     resetPagination()
