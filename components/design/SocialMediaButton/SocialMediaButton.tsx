@@ -54,7 +54,6 @@ export const SocialMediaButton: React.FC<SocialMediaButtonProps> = (props) => {
   return (
     <>
       <button
-        data-testid='social-media-button'
         {...rest}
         className={classNames(className, 'button', givenClassName)}
       >

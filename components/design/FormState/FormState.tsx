@@ -16,7 +16,7 @@ export const FormState: React.FC<FormStateProps> = (props) => {
 
   if (state === 'loading') {
     return (
-      <div data-testid='loader' className='mt-8 flex justify-center'>
+      <div data-cy='loader' className='mt-8 flex justify-center'>
         <Loader />
       </div>
     )

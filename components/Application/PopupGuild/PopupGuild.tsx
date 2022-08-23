@@ -3,7 +3,8 @@ import { PlusSmIcon, ArrowDownIcon } from '@heroicons/react/solid'
 import classNames from 'classnames'
 import Image from 'next/image'
 
-import { PopupGuildCard } from './PopupGuildCard/PopupGuildCard'
+import { PopupGuildCard } from './PopupGuildCard'
+
 export interface PopupGuildProps {
   className?: string
 }

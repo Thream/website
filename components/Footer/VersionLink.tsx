@@ -8,6 +8,7 @@ export const VersionLink: React.FC<VersionLinkProps> = (props) => {
 
   return (
     <a
+      data-cy={`version-link-${repository}`}
       className='text-green-800 hover:underline dark:text-green-400'
       href={`https://github.com/Thream/${repository}/releases/tag/v${version}`}
       target='_blank'

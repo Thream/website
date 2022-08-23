@@ -10,7 +10,7 @@
     "removeComments": true,
     "noEmit": true,
     "strict": true,
-    "types": ["jest", "@testing-library/jest-dom", "@testing-library/react"],
+    "types": ["cypress"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "dom.iterable", "esnext"],
