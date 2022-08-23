@@ -41,6 +41,14 @@ export const MessageText: React.FC<MessageContentProps> = (props) => {
       rehypePlugins={[[emojiPlugin], [rehypeKatex]]}
       linkTarget='_blank'
       components={{
+        a: (props) => {
+          return (
+            <a
+              className='text-green-800 hover:underline dark:text-green-400'
+              {...props}
+            />
+          )
+        },
         emoji: (props) => {
           return <Emoji value={props.value} size={20} />
         },
