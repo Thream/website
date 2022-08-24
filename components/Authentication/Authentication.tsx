@@ -72,7 +72,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
     } else {
       try {
         const { data } = await api.post<Tokens>('/users/signin', formData)
-        const authentication = new AuthenticationClass(data)
+        const authentication = new AuthenticationClass(data, true)
         authentication.signin()
         await router.push('/application')
         return null

@@ -71,7 +71,7 @@ export const authenticationFromServerSide = (
       } else {
         try {
           let data: any = {}
-          const authentication = new Authentication(tokens)
+          const authentication = new Authentication(tokens, true)
           const { data: currentUser } = await authentication.api.get<
             unknown,
             AxiosResponse<UserCurrent>

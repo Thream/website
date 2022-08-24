@@ -6,6 +6,7 @@ import { MemberWithPublicUser } from '../models/Member'
 import { GuildsChannelsPath } from '../components/Application'
 import { handleSocketData, SocketData } from '../tools/handleSocketData'
 import { User } from '../models/User'
+import { CacheKey, MEMBERS_CACHE_KEY } from '../tools/cache'
 
 export interface Members {
   members: MemberWithPublicUser[]
@@ -27,6 +28,8 @@ export const MembersProviders: React.FC<
 
   const { authentication } = useAuthentication()
 
+  const cacheKey: CacheKey = `${path.guildId}-${MEMBERS_CACHE_KEY}`
+
   const {
     items: members,
     hasMore,
@@ -35,18 +38,19 @@ export const MembersProviders: React.FC<
     setItems
   } = usePagination<MemberWithPublicUser>({
     api: authentication.api,
-    url: `/guilds/${path.guildId}/members`
+    url: `/guilds/${path.guildId}/members`,
+    cacheKey
   })
 
   useEffect(() => {
-    authentication.socket.on(
+    authentication?.socket?.on(
       'members',
       (data: SocketData<MemberWithPublicUser>) => {
-        handleSocketData({ data, setItems })
+        handleSocketData({ data, setItems, cacheKey })
       }
     )
 
-    authentication.socket.on('users', (data: SocketData<User>) => {
+    authentication?.socket?.on('users', (data: SocketData<User>) => {
       setItems((oldItems) => {
         const newItems = [...oldItems]
         switch (data.action) {
@@ -65,10 +69,10 @@ export const MembersProviders: React.FC<
     })
 
     return () => {
-      authentication.socket.off('members')
-      authentication.socket.off('users')
+      authentication?.socket?.off('members')
+      authentication?.socket?.off('users')
     }
-  }, [authentication.socket, setItems])
+  }, [authentication.socket, setItems, cacheKey])
 
   useEffect(() => {
     resetPagination()

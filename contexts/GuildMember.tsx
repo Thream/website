@@ -47,7 +47,7 @@ export const GuildMemberProvider: React.FC<
   }, [path, authentication.api])
 
   useEffect(() => {
-    authentication.socket.on(
+    authentication?.socket?.on(
       'guilds',
       async (data: SocketData<GuildWithDefaultChannelId>) => {
         if (data.item.id === path.guildId) {
@@ -72,7 +72,7 @@ export const GuildMemberProvider: React.FC<
     )
 
     return () => {
-      authentication.socket.off('guilds')
+      authentication?.socket?.off('guilds')
     }
   }, [authentication.socket, path.guildId, router])
 

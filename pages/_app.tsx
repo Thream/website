@@ -28,6 +28,9 @@ const Application = ({ Component, pageProps }: AppProps): JSX.Element => {
     }
     window.addEventListener('resize', appHeight)
     appHeight()
+    return () => {
+      window.removeEventListener('resize', appHeight)
+    }
   }, [lang])
 
   return (

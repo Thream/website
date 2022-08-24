@@ -5,6 +5,7 @@ import { useAuthentication } from '../tools/authentication'
 import { MessageWithMember } from '../models/Message'
 import { GuildsChannelsPath } from '../components/Application'
 import { handleSocketData, SocketData } from '../tools/handleSocketData'
+import { CacheKey, MESSAGES_CACHE_KEY } from '../tools/cache'
 
 export interface Messages {
   messages: MessageWithMember[]
@@ -25,6 +26,8 @@ export const MessagesProvider: React.FC<
   const { path, children } = props
   const { authentication, user } = useAuthentication()
 
+  const cacheKey: CacheKey = `${path.channelId}-${MESSAGES_CACHE_KEY}`
+
   const {
     items: messages,
     hasMore,
@@ -34,11 +37,12 @@ export const MessagesProvider: React.FC<
   } = usePagination<MessageWithMember>({
     api: authentication.api,
     url: `/channels/${path.channelId}/messages`,
-    inverse: true
+    inverse: true,
+    cacheKey
   })
 
   useEffect(() => {
-    authentication.socket.on(
+    authentication?.socket?.on(
       'messages',
       (data: SocketData<MessageWithMember>) => {
         if (data.item.channelId === path.channelId) {
@@ -48,7 +52,7 @@ export const MessagesProvider: React.FC<
           const isAtBottom =
             messagesDiv.scrollHeight - messagesDiv.scrollTop <=
             messagesDiv.clientHeight
-          handleSocketData({ data, setItems })
+          handleSocketData({ data, setItems, cacheKey })
           if (
             data.action === 'create' &&
             (isAtBottom || data.item.member.userId === user.id)
@@ -60,9 +64,9 @@ export const MessagesProvider: React.FC<
     )
 
     return () => {
-      authentication.socket.off('messages')
+      authentication?.socket?.off('messages')
     }
-  }, [authentication.socket, setItems, path, user.id])
+  }, [authentication.socket, setItems, path, user.id, cacheKey])
 
   useEffect(() => {
     resetPagination()

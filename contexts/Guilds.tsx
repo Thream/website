@@ -4,6 +4,7 @@ import { NextPage, usePagination } from '../hooks/usePagination'
 import { useAuthentication } from '../tools/authentication'
 import { GuildWithDefaultChannelId } from '../models/Guild'
 import { handleSocketData, SocketData } from '../tools/handleSocketData'
+import { GUILDS_CACHE_KEY } from '../tools/cache'
 
 export interface Guilds {
   guilds: GuildWithDefaultChannelId[]
@@ -29,19 +30,20 @@ export const GuildsProvider: React.FC<React.PropsWithChildren<{}>> = (
     setItems
   } = usePagination<GuildWithDefaultChannelId>({
     api: authentication.api,
-    url: '/guilds'
+    url: '/guilds',
+    cacheKey: GUILDS_CACHE_KEY
   })
 
   useEffect(() => {
-    authentication.socket.on(
+    authentication?.socket?.on(
       'guilds',
       (data: SocketData<GuildWithDefaultChannelId>) => {
-        handleSocketData({ data, setItems })
+        handleSocketData({ data, setItems, cacheKey: GUILDS_CACHE_KEY })
       }
     )
 
     return () => {
-      authentication.socket.off('guilds')
+      authentication?.socket?.off('guilds')
     }
   }, [authentication.socket, setItems])
 

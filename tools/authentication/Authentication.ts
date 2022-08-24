@@ -9,27 +9,36 @@ import { fetchRefreshToken } from './authenticationFromServerSide'
 export class Authentication {
   public tokens: Tokens
   public accessTokenAge: number
-  public socket: Socket
+  public socket?: Socket
   public api: AxiosInstance
 
-  constructor(tokens: Tokens) {
+  constructor(tokens: Tokens, disableSocketIO: boolean = false) {
     this.tokens = tokens
     this.accessTokenAge = Date.now()
-    this.socket = io(API_URL, {
-      auth: { token: `Bearer ${tokens.accessToken}` }
-    })
-    this.socket.on('connect_error', (error) => {
-      if (error.message.startsWith('Unauthorized')) {
-        fetchRefreshToken(this.tokens.refreshToken)
-          .then(({ accessToken }) => {
-            this.setAccessToken(accessToken)
-          })
-          .catch(async () => {
-            this.signout()
-            return await Promise.reject(error)
-          })
-      }
-    })
+    if (disableSocketIO || typeof window === 'undefined') {
+      this.socket = undefined
+    } else {
+      this.socket = io(API_URL, {
+        auth: { token: `Bearer ${tokens.accessToken}` }
+      })
+      this.socket.on('connect', () => {
+        console.log(
+          `Connected to socket with clientId: ${this.socket?.id ?? 'undefined'}`
+        )
+      })
+      this.socket.on('connect_error', (error) => {
+        if (error.message.startsWith('Unauthorized')) {
+          fetchRefreshToken(this.tokens.refreshToken)
+            .then(({ accessToken }) => {
+              this.setAccessToken(accessToken)
+            })
+            .catch(async () => {
+              this.signout()
+              return await Promise.reject(error)
+            })
+        }
+      })
+    }
     this.api = axios.create({
       baseURL: API_URL,
       headers: {
@@ -83,13 +92,14 @@ export class Authentication {
     this.tokens.accessToken = accessToken
     this.accessTokenAge = Date.now()
     const token = `${this.tokens.type} ${this.tokens.accessToken}`
-    if (typeof this.socket.auth !== 'function') {
+    if (typeof this?.socket?.auth !== 'function' && this.socket != null) {
       this.socket.auth.token = token
     }
   }
 
   public signout(): void {
     cookies.remove('refreshToken')
+    window.localStorage.clear()
     window.location.href = '/authentication/signin'
   }
 

@@ -6,6 +6,7 @@ import { useAuthentication } from '../tools/authentication'
 import { Channel, ChannelWithDefaultChannelId } from '../models/Channel'
 import { GuildsChannelsPath } from '../components/Application'
 import { handleSocketData, SocketData } from '../tools/handleSocketData'
+import { CacheKey, CHANNELS_CACHE_KEY } from '../tools/cache'
 
 export interface Channels {
   channels: Channel[]
@@ -27,6 +28,8 @@ export const ChannelsProvider: React.FC<
   const router = useRouter()
   const { authentication } = useAuthentication()
 
+  const cacheKey: CacheKey = `${path.guildId}-${CHANNELS_CACHE_KEY}`
+
   const {
     items: channels,
     hasMore,
@@ -35,14 +38,15 @@ export const ChannelsProvider: React.FC<
     setItems
   } = usePagination<Channel>({
     api: authentication.api,
-    url: `/guilds/${path.guildId}/channels`
+    url: `/guilds/${path.guildId}/channels`,
+    cacheKey
   })
 
   useEffect(() => {
-    authentication.socket.on(
+    authentication?.socket?.on(
       'channels',
       async (data: SocketData<ChannelWithDefaultChannelId>) => {
-        handleSocketData({ data, setItems })
+        handleSocketData({ data, setItems, cacheKey })
         if (data.action === 'delete') {
           await router.push(
             `/application/${path.guildId}/${data.item.defaultChannelId}`
@@ -52,9 +56,9 @@ export const ChannelsProvider: React.FC<
     )
 
     return () => {
-      authentication.socket.off('channels')
+      authentication?.socket?.off('channels')
     }
-  }, [authentication.socket, path.guildId, router, setItems])
+  }, [authentication.socket, path.guildId, router, setItems, cacheKey])
 
   useEffect(() => {
     resetPagination()
