@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { AxiosInstance } from 'axios'
+import type { FetchState } from 'react-component-form'
 
-import { FetchState } from './useFetchState'
 import {
   CacheKey,
   getPaginationCache,

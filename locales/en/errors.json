@@ -7,6 +7,6 @@
   "required": "Oops, this field is required 🙈.",
   "minLength": "The field must contain at least {expected} characters.",
   "maxLength": "The field must contain at most {expected} characters.",
-  "email": "Mmm… It seems that this email is not valid 🤔.",
+  "invalid-email": "Mmm… It seems that this email is not valid 🤔.",
   "invalid": "Invalid value."
 }

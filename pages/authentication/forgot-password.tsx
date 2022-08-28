@@ -2,6 +2,8 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import axios from 'axios'
+import { useForm } from 'react-component-form'
+import type { HandleUseFormCallback } from 'react-component-form'
 
 import { AuthenticationForm } from '../../components/Authentication'
 import { Head } from '../../components/Head'
@@ -15,24 +17,29 @@ import { authenticationFromServerSide } from '../../tools/authentication'
 import { ScrollableBody } from '../../components/ScrollableBody'
 import { userSchema } from '../../models/User'
 import { api } from '../../tools/api'
-import { HandleSubmitCallback, useForm } from '../../hooks/useForm'
+import { useFormTranslation } from '../../hooks/useFormTranslation'
+
+const schema = {
+  email: userSchema.email
+}
 
 const ForgotPassword: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
   const { version } = props
 
-  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
-    useForm({
-      validateSchema: { email: userSchema.email },
-      resetOnSuccess: true
-    })
+  const { handleUseForm, fetchState, message, errors } = useForm(schema)
+  const { getFirstErrorTranslation } = useFormTranslation()
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (
+    formData,
+    formElement
+  ) => {
     try {
       await api.post(
         `/users/reset-password?redirectURI=${window.location.origin}/authentication/reset-password`,
         formData
       )
+      formElement.reset()
       return {
         type: 'success',
         value: 'authentication:success-forgot-password'
@@ -41,7 +48,7 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
       if (axios.isAxiosError(error) && error.response?.status === 400) {
         return {
           type: 'error',
-          value: 'errors:email'
+          value: 'errors:invalid-email'
         }
       }
       return {
@@ -56,7 +63,7 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
       <Head title={`Thream | ${t('authentication:forgot-password')}`} />
       <Header />
       <Main>
-        <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
+        <AuthenticationForm onSubmit={handleUseForm(onSubmit)}>
           <Input type='email' placeholder='Email' name='email' label='Email' />
           <Button data-cy='submit' className='mt-6 w-full' type='submit'>
             {t('authentication:submit')}
@@ -71,7 +78,9 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
           id='message'
           state={fetchState}
           message={
-            message != null ? message : getErrorTranslation(errors.email)
+            message != null
+              ? t(message)
+              : getFirstErrorTranslation(errors.email)
           }
         />
       </Main>

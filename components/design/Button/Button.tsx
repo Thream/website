@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 const className =
   'py-2 px-6 font-paragraph rounded-lg bg-transparent border  hover:text-white dark:hover:text-black fill-current stroke-current transform transition-colors duration-300 ease-in-out focus:outline-none focus:text-white dark:focus:text-black'

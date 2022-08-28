@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 import { FormState } from '../FormState'
 

@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import TextareaAutosize from 'react-textarea-autosize'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 import { GuildsChannelsPath } from '..'
 import { useAuthentication } from '../../../tools/authentication'

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { PlusIcon, MenuIcon, UsersIcon, XIcon } from '@heroicons/react/solid'
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { useMediaQuery } from 'react-responsive'
 import { useSwipeable } from 'react-swipeable'
 

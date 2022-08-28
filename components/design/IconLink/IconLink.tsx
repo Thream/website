@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 export interface IconLinkProps {
   selected?: boolean

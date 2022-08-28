@@ -1,33 +1,33 @@
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import { Form } from 'react-component-form'
+import { Form, useForm } from 'react-component-form'
 import { AxiosResponse } from 'axios'
+import type { HandleUseFormCallback } from 'react-component-form'
 
 import { useAuthentication } from '../../../tools/authentication'
-import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { GuildComplete, guildSchema } from '../../../models/Guild'
 import { Input } from '../../design/Input'
 import { Main } from '../../design/Main'
 import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
 import { Textarea } from '../../design/Textarea'
+import { useFormTranslation } from '../../../hooks/useFormTranslation'
+
+const schema = {
+  name: guildSchema.name,
+  description: guildSchema.description
+}
 
 export const CreateGuild: React.FC = () => {
   const { t } = useTranslation()
   const router = useRouter()
 
-  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
-    useForm({
-      validateSchema: {
-        name: guildSchema.name,
-        description: guildSchema.description
-      },
-      resetOnSuccess: true
-    })
+  const { handleUseForm, fetchState, message, errors } = useForm(schema as any)
+  const { getFirstErrorTranslation } = useFormTranslation()
 
   const { authentication } = useAuthentication()
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const onSubmit: HandleUseFormCallback<any> = async (formData) => {
     try {
       const { data } = await authentication.api.post<
         any,
@@ -47,13 +47,13 @@ export const CreateGuild: React.FC = () => {
 
   return (
     <Main>
-      <Form className='w-4/6 max-w-xs' onSubmit={handleSubmit(onSubmit)}>
+      <Form className='w-4/6 max-w-xs' onSubmit={handleUseForm(onSubmit)}>
         <Input
           type='text'
           placeholder={t('common:name')}
           name='name'
           label={t('common:name')}
-          error={getErrorTranslation(errors.name)}
+          error={getFirstErrorTranslation(errors.name)}
         />
         <Textarea
           label='Description'
@@ -64,7 +64,11 @@ export const CreateGuild: React.FC = () => {
           {t('application:create')}
         </Button>
       </Form>
-      <FormState id='message' state={fetchState} message={message} />
+      <FormState
+        id='message'
+        state={fetchState}
+        message={message != null ? t(message) : undefined}
+      />
     </Main>
   )
 }

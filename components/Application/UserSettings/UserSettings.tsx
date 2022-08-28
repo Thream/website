@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import { useState, useMemo } from 'react'
-import { Form } from 'react-component-form'
+import { Form, useForm } from 'react-component-form'
 import { EyeIcon, PhotographIcon } from '@heroicons/react/solid'
 import { Type } from '@sinclair/typebox'
 import axios from 'axios'
 import Link from 'next/link'
+import type { HandleUseFormCallback } from 'react-component-form'
 
 import { Input } from '../../design/Input'
 import { Checkbox } from '../../design/Checkbox'
@@ -16,10 +17,20 @@ import { Language } from '../../Header/Language'
 import { useAuthentication } from '../../../tools/authentication'
 import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
-import { useForm, HandleSubmitCallback } from '../../../hooks/useForm'
 import { userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
 import { ProviderOAuth, providers } from '../../../models/OAuth'
+import { useFormTranslation } from '../../../hooks/useFormTranslation'
+
+const schema = {
+  name: userSchema.name,
+  status: Type.Optional(userSchema.status),
+  email: Type.Optional(Type.Union([userSchema.email, Type.Null()])),
+  website: Type.Optional(userSchema.website),
+  biography: Type.Optional(userSchema.biography),
+  isPublicGuilds: userSettingsSchema.isPublicGuilds,
+  isPublicEmail: userSettingsSchema.isPublicEmail
+}
 
 export const UserSettings: React.FC = () => {
   const { user, setUser, authentication } = useAuthentication()
@@ -35,32 +46,20 @@ export const UserSettings: React.FC = () => {
   })
 
   const {
+    handleUseForm,
     fetchState,
     setFetchState,
     message,
-    setMessageTranslationKey,
-    errors,
-    getErrorTranslation,
-    handleSubmit
-  } = useForm({
-    validateSchema: {
-      name: userSchema.name,
-      status: Type.Optional(userSchema.status),
-      email: Type.Optional(Type.Union([userSchema.email, Type.Null()])),
-      website: Type.Optional(userSchema.website),
-      biography: Type.Optional(userSchema.biography),
-      isPublicGuilds: userSettingsSchema.isPublicGuilds,
-      isPublicEmail: userSettingsSchema.isPublicEmail
-    },
-    replaceEmptyStringToNull: true,
-    resetOnSuccess: false
-  })
+    setMessage,
+    errors
+  } = useForm(schema)
+  const { getFirstErrorTranslation } = useFormTranslation()
 
   const hasAllProviders = useMemo(() => {
     return providers.every((provider) => user.strategies.includes(provider))
   }, [user.strategies])
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (formData) => {
     try {
       const { isPublicGuilds, isPublicEmail, ...userData } = formData
       const userSettings = { isPublicEmail, isPublicGuilds }
@@ -68,7 +67,7 @@ export const UserSettings: React.FC = () => {
         `/users/current?redirectURI=${window.location.origin}/authentication/signin`,
         userData
       )
-      setInputValues(formData as any)
+      setInputValues(formData as unknown as any)
       const hasEmailChanged = user.email !== userCurrentData.user.email
       if (hasEmailChanged) {
         return {
@@ -165,7 +164,7 @@ export const UserSettings: React.FC = () => {
         setFetchState('idle')
       } catch (error) {
         setFetchState('error')
-        setMessageTranslationKey('errors:server-error')
+        setMessage('errors:server-error')
       }
     }
   }
@@ -176,7 +175,7 @@ export const UserSettings: React.FC = () => {
       await authentication.signoutServerSide()
     } catch (error) {
       setFetchState('error')
-      setMessageTranslationKey('errors:server-error')
+      setMessage('errors:server-error')
     }
   }
 
@@ -195,10 +194,10 @@ export const UserSettings: React.FC = () => {
             )
           }
         })
-        setMessageTranslationKey('application:success-deleted-provider')
+        setMessage('application:success-deleted-provider')
       } catch (error) {
         setFetchState('error')
-        setMessageTranslationKey('errors:server-error')
+        setMessage('errors:server-error')
       }
     }
   }
@@ -217,7 +216,7 @@ export const UserSettings: React.FC = () => {
 
   return (
     <Form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleUseForm(onSubmit)}
       className='my-auto flex flex-col items-center justify-center py-12 lg:min-w-[875px]'
     >
       <div className='flex w-full flex-col items-center justify-center sm:w-fit lg:flex-row'>
@@ -257,7 +256,7 @@ export const UserSettings: React.FC = () => {
               className='!mt-0'
               onChange={onChange}
               value={inputValues.name ?? ''}
-              error={getErrorTranslation(errors.name)}
+              error={getFirstErrorTranslation(errors.name)}
             />
             <Input
               name='status'
@@ -266,7 +265,7 @@ export const UserSettings: React.FC = () => {
               className='!mt-4'
               onChange={onChange}
               value={inputValues.status ?? ''}
-              error={getErrorTranslation(errors.status)}
+              error={getFirstErrorTranslation(errors.status)}
             />
           </div>
         </div>
@@ -279,7 +278,7 @@ export const UserSettings: React.FC = () => {
             placeholder='Email'
             onChange={onChange}
             value={inputValues.email ?? ''}
-            error={getErrorTranslation(errors.email)}
+            error={getFirstErrorTranslation(errors.email)}
           />
           <Checkbox
             name='isPublicEmail'
@@ -294,7 +293,7 @@ export const UserSettings: React.FC = () => {
             placeholder={t('application:website')}
             onChange={onChange}
             value={inputValues.website ?? ''}
-            error={getErrorTranslation(errors.website)}
+            error={getFirstErrorTranslation(errors.website)}
           />
           <Textarea
             name='biography'
@@ -376,7 +375,10 @@ export const UserSettings: React.FC = () => {
             {t('application:signout')}
           </Button>
         </div>
-        <FormState state={fetchState} message={message} />
+        <FormState
+          state={fetchState}
+          message={message != null ? t(message) : undefined}
+        />
       </div>
     </Form>
   )

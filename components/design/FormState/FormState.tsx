@@ -1,7 +1,7 @@
-import classNames from 'classnames'
+import classNames from 'clsx'
 import useTranslation from 'next-translate/useTranslation'
+import type { FetchState as FormStateType } from 'react-component-form'
 
-import { FetchState as FormStateType } from '../../../hooks/useFetchState'
 import { Loader } from '../Loader'
 
 export interface FormStateProps extends React.ComponentPropsWithoutRef<'div'> {

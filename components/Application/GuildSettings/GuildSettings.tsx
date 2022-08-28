@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { Type } from '@sinclair/typebox'
 import { PhotographIcon } from '@heroicons/react/solid'
-import { Form } from 'react-component-form'
+import { Form, useForm } from 'react-component-form'
 import useTranslation from 'next-translate/useTranslation'
-import classNames from 'classnames'
+import classNames from 'clsx'
+import type { HandleUseFormCallback } from 'react-component-form'
 
-import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { guildSchema } from '../../../models/Guild'
 import { FormState } from '../../design/FormState'
 import { useGuildMember } from '../../../contexts/GuildMember'
@@ -16,6 +16,12 @@ import { Input } from '../../design/Input'
 import { Button } from '../../design/Button'
 import { useAuthentication } from '../../../tools/authentication'
 import { ConfirmPopup } from '../ConfirmPopup'
+import { useFormTranslation } from '../../../hooks/useFormTranslation'
+
+const schema = {
+  name: guildSchema.name,
+  description: Type.Optional(guildSchema.description)
+}
 
 export const GuildSettings: React.FC = () => {
   const { t } = useTranslation()
@@ -35,26 +41,19 @@ export const GuildSettings: React.FC = () => {
   }
 
   const {
+    handleUseForm,
     fetchState,
     message,
     errors,
-    getErrorTranslation,
-    handleSubmit,
     setFetchState,
-    setMessageTranslationKey
-  } = useForm({
-    validateSchema: {
-      name: guildSchema.name,
-      description: Type.Optional(guildSchema.description)
-    },
-    replaceEmptyStringToNull: true,
-    resetOnSuccess: false
-  })
+    setMessage
+  } = useForm(schema as any)
+  const { getFirstErrorTranslation } = useFormTranslation()
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const onSubmit: HandleUseFormCallback<any> = async (formData) => {
     try {
       await authentication.api.put(`/guilds/${guild.id}`, formData)
-      setInputValues(formData as any)
+      setInputValues(formData as unknown as any)
       return {
         type: 'success',
         value: 'application:saved-information'
@@ -92,7 +91,7 @@ export const GuildSettings: React.FC = () => {
         setFetchState('idle')
       } catch (error) {
         setFetchState('error')
-        setMessageTranslationKey('errors:server-error')
+        setMessage('errors:server-error')
       }
     }
   }
@@ -102,7 +101,7 @@ export const GuildSettings: React.FC = () => {
       await authentication.api.delete(`/guilds/${guild.id}`)
     } catch (error) {
       setFetchState('error')
-      setMessageTranslationKey('errors:server-error')
+      setMessage('errors:server-error')
     }
   }
 
@@ -112,14 +111,14 @@ export const GuildSettings: React.FC = () => {
       await router.push('/application')
     } catch (error) {
       setFetchState('error')
-      setMessageTranslationKey('errors:server-error')
+      setMessage('errors:server-error')
     }
   }
 
   return (
     <>
       <Form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleUseForm(onSubmit)}
         className='my-auto flex flex-col items-center justify-center py-12'
       >
         {member.isOwner && (
@@ -160,7 +159,7 @@ export const GuildSettings: React.FC = () => {
                   className='!mt-0'
                   onChange={onChange}
                   value={inputValues.name}
-                  error={getErrorTranslation(errors.name)}
+                  error={getFirstErrorTranslation(errors.name)}
                   data-cy='guild-name-input'
                 />
                 <Textarea
@@ -204,7 +203,11 @@ export const GuildSettings: React.FC = () => {
           </div>
           <FormState
             state={fetchState}
-            message={getErrorTranslation(errors.description) ?? message}
+            message={
+              message != null
+                ? t(message)
+                : getFirstErrorTranslation(errors.email)
+            }
           />
         </div>
       </Form>

@@ -2,6 +2,8 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import axios from 'axios'
+import { useForm } from 'react-component-form'
+import type { HandleUseFormCallback } from 'react-component-form'
 
 import { Head } from '../../components/Head'
 import { Header } from '../../components/Header'
@@ -13,22 +15,23 @@ import { Button } from '../../components/design/Button'
 import { authenticationFromServerSide } from '../../tools/authentication'
 import { AuthenticationForm } from '../../components/Authentication'
 import { ScrollableBody } from '../../components/ScrollableBody'
-import { HandleSubmitCallback, useForm } from '../../hooks/useForm'
 import { api } from '../../tools/api'
 import { userSchema } from '../../models/User'
+import { useFormTranslation } from '../../hooks/useFormTranslation'
+
+const schema = {
+  password: userSchema.password
+}
 
 const ResetPassword: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
   const router = useRouter()
   const { version } = props
 
-  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
-    useForm({
-      validateSchema: { password: userSchema.password },
-      resetOnSuccess: true
-    })
+  const { handleUseForm, fetchState, message, errors } = useForm(schema)
+  const { getFirstErrorTranslation } = useFormTranslation()
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (formData) => {
     try {
       await api.put(`/users/reset-password`, {
         ...formData,
@@ -55,7 +58,7 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
       <Head title={`Thream | ${t('authentication:reset-password')}`} />
       <Header />
       <Main>
-        <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
+        <AuthenticationForm onSubmit={handleUseForm(onSubmit)}>
           <Input
             type='password'
             placeholder='Password'
@@ -70,7 +73,9 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
           id='message'
           state={fetchState}
           message={
-            message != null ? message : getErrorTranslation(errors.password)
+            message != null
+              ? t(message)
+              : getFirstErrorTranslation(errors.password)
           }
         />
       </Main>

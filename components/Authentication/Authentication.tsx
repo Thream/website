@@ -1,8 +1,11 @@
+import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import { useTheme } from 'next-themes'
 import axios from 'axios'
+import { useForm } from 'react-component-form'
+import type { HandleUseFormCallback } from 'react-component-form'
 
 import { Main } from '../design/Main'
 import { Input } from '../design/Input'
@@ -15,8 +18,8 @@ import {
   Tokens,
   Authentication as AuthenticationClass
 } from '../../tools/authentication'
-import { useForm, HandleSubmitCallback } from '../../hooks/useForm'
 import { AuthenticationSocialMedia } from './AuthenticationSocialMedia'
+import { useFormTranslation } from '../../hooks/useFormTranslation'
 
 export interface AuthenticationProps {
   mode: 'signup' | 'signin'
@@ -29,23 +32,28 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
   const { lang, t } = useTranslation()
   const { theme } = useTheme()
 
-  const { errors, fetchState, message, getErrorTranslation, handleSubmit } =
-    useForm({
-      validateSchema: {
-        ...(mode === 'signup' && { name: userSchema.name }),
-        email: userSchema.email,
-        password: userSchema.password
-      },
-      resetOnSuccess: true
-    })
+  const schema = useMemo(() => {
+    return {
+      ...(mode === 'signup' && { name: userSchema.name }),
+      email: userSchema.email,
+      password: userSchema.password
+    }
+  }, [mode])
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const { handleUseForm, errors, fetchState, message } = useForm(schema)
+  const { getFirstErrorTranslation } = useFormTranslation()
+
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (
+    formData,
+    formElement
+  ) => {
     if (mode === 'signup') {
       try {
         await api.post(
           `/users/signup?redirectURI=${window.location.origin}/authentication/signin`,
           { ...formData, language: lang, theme }
         )
+        formElement.reset()
         return {
           type: 'success',
           value: 'authentication:success-signup'
@@ -97,14 +105,14 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
       <div className='pt-8 text-center font-paragraph text-lg'>
         {t('authentication:or')}
       </div>
-      <AuthenticationForm onSubmit={handleSubmit(onSubmit)}>
+      <AuthenticationForm onSubmit={handleUseForm(onSubmit)}>
         {mode === 'signup' && (
           <Input
             type='text'
             placeholder={t('common:name')}
             name='name'
             label={t('common:name')}
-            error={getErrorTranslation(errors.name)}
+            error={getFirstErrorTranslation(errors.name)}
           />
         )}
         <Input
@@ -112,7 +120,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           placeholder='Email'
           name='email'
           label='Email'
-          error={getErrorTranslation(errors.email)}
+          error={getFirstErrorTranslation(errors.email)}
         />
         <Input
           type='password'
@@ -120,7 +128,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           name='password'
           label={t('authentication:password')}
           showForgotPassword={mode === 'signin'}
-          error={getErrorTranslation(errors.password)}
+          error={getFirstErrorTranslation(errors.password)}
         />
         <Button data-cy='submit' className='mt-6 w-full' type='submit'>
           {t('authentication:submit')}
@@ -141,7 +149,11 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           </Link>
         </p>
       </AuthenticationForm>
-      <FormState id='message' state={fetchState} message={message} />
+      <FormState
+        id='message'
+        state={fetchState}
+        message={message != null ? t(message) : undefined}
+      />
     </Main>
   )
 }

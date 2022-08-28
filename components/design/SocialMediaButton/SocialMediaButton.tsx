@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import Image from 'next/image'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 import { ProviderOAuth } from '../../../models/OAuth'
 

@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
+import { useCallback, useState, useRef } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import setLanguage from 'next-translate/setLanguage'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
+import i18n from '../../../i18n.json'
 import { Arrow } from './Arrow'
 import { LanguageFlag } from './LanguageFlag'
-import i18n from '../../../i18n.json'
+import { useClickOutsideAlerter } from '../../../hooks/useClickOutsideAlerter'
 
 export interface LanguageProps {
   className?: string
@@ -21,31 +22,19 @@ export const Language: React.FC<LanguageProps> = (props) => {
     setHiddenMenu((oldHiddenMenu) => !oldHiddenMenu)
   }, [])
 
-  useEffect(() => {
-    const handleClickEvent = (event: MouseEvent): void => {
-      if (languageClickRef.current == null || event.target == null) {
-        return
-      }
-      if (!languageClickRef.current.contains(event.target as Node)) {
-        setHiddenMenu(true)
-      }
-    }
-
-    window.document.addEventListener('click', handleClickEvent)
-
-    return () => {
-      return window.removeEventListener('click', handleClickEvent)
-    }
-  }, [])
+  useClickOutsideAlerter(languageClickRef, () => setHiddenMenu(true))
 
   const handleLanguage = async (language: string): Promise<void> => {
     await setLanguage(language)
+    handleHiddenMenu()
   }
 
   return (
-    <div className='relative flex cursor-pointer flex-col items-center justify-center'>
+    <div
+      className='relative flex cursor-pointer flex-col items-center justify-center'
+      ref={languageClickRef}
+    >
       <div
-        ref={languageClickRef}
         data-cy='language-click'
         className='mr-5 flex items-center'
         onClick={handleHiddenMenu}
