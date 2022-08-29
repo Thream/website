@@ -27,7 +27,7 @@ export const MessageText: React.FC<MessageContentProps> = (props) => {
     return (
       <div>
         <p>
-          <Emoji value={message.value} size={40} />
+          <Emoji value={message.value} size={40} tooltip />
         </p>
       </div>
     )
@@ -50,7 +50,7 @@ export const MessageText: React.FC<MessageContentProps> = (props) => {
           )
         },
         emoji: (props) => {
-          return <Emoji value={props.value} size={20} />
+          return <Emoji value={props.value} size={20} tooltip />
         },
         code: (properties) => {
           const { inline, className, children, ...props } = properties
