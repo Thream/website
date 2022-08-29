@@ -1,4 +1,3 @@
-version: '3.0'
 services:
   thream-website:
     container_name: ${COMPOSE_PROJECT_NAME}

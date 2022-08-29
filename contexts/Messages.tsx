@@ -5,6 +5,7 @@ import { useAuthentication } from '../tools/authentication'
 import { MessageWithMember } from '../models/Message'
 import { GuildsChannelsPath } from '../components/Application'
 import { handleSocketData, SocketData } from '../tools/handleSocketData'
+import { CacheKey, MESSAGES_CACHE_KEY } from '../tools/cache'
 
 export interface Messages {
   messages: MessageWithMember[]
@@ -19,9 +20,13 @@ export interface MessagesProviderProps {
   path: GuildsChannelsPath
 }
 
-export const MessagesProvider: React.FC<MessagesProviderProps> = (props) => {
+export const MessagesProvider: React.FC<
+  React.PropsWithChildren<MessagesProviderProps>
+> = (props) => {
   const { path, children } = props
-  const { authentication } = useAuthentication()
+  const { authentication, user } = useAuthentication()
+
+  const cacheKey: CacheKey = `${path.channelId}-${MESSAGES_CACHE_KEY}`
 
   const {
     items: messages,
@@ -32,11 +37,12 @@ export const MessagesProvider: React.FC<MessagesProviderProps> = (props) => {
   } = usePagination<MessageWithMember>({
     api: authentication.api,
     url: `/channels/${path.channelId}/messages`,
-    inverse: true
+    inverse: true,
+    cacheKey
   })
 
   useEffect(() => {
-    authentication.socket.on(
+    authentication?.socket?.on(
       'messages',
       (data: SocketData<MessageWithMember>) => {
         if (data.item.channelId === path.channelId) {
@@ -46,8 +52,11 @@ export const MessagesProvider: React.FC<MessagesProviderProps> = (props) => {
           const isAtBottom =
             messagesDiv.scrollHeight - messagesDiv.scrollTop <=
             messagesDiv.clientHeight
-          handleSocketData({ data, setItems })
-          if (data.action === 'create' && isAtBottom) {
+          handleSocketData({ data, setItems, cacheKey })
+          if (
+            data.action === 'create' &&
+            (isAtBottom || data.item.member.userId === user.id)
+          ) {
             messagesDiv.scrollTo(0, messagesDiv.scrollHeight)
           }
         }
@@ -55,9 +64,9 @@ export const MessagesProvider: React.FC<MessagesProviderProps> = (props) => {
     )
 
     return () => {
-      authentication.socket.off('messages')
+      authentication?.socket?.off('messages')
     }
-  }, [authentication.socket, setItems, path])
+  }, [authentication.socket, setItems, path, user.id, cacheKey])
 
   useEffect(() => {
     resetPagination()

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 import { ApplicationProps } from '..'
 
@@ -11,7 +11,9 @@ export interface SidebarProps {
   isMobile: boolean
 }
 
-export const Sidebar: React.FC<SidebarProps> = (props) => {
+export const Sidebar: React.FC<React.PropsWithChildren<SidebarProps>> = (
+  props
+) => {
   const { direction, visible, children, path, isMobile } = props
 
   return (

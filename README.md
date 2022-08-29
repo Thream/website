@@ -18,7 +18,7 @@
 
 Thream's website to stay close with your friends and communities.
 
-It uses [Thream/api](https://github.com/Thream/api) [v1.0.1](https://github.com/Thream/api/releases/tag/v1.0.1).
+It uses [Thream/api](https://github.com/Thream/api) [v1.2.0](https://github.com/Thream/api/releases/tag/v1.2.0).
 
 ## ⚙️ Getting Started
 
@@ -56,7 +56,7 @@ npm run dev
 
 ```sh
 # Setup and run all the services for you
-docker-compose up --build
+docker compose up --build
 ```
 
 #### Services started

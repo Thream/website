@@ -1,4 +1,5 @@
 import { SetItems } from '../hooks/usePagination'
+import { CacheKey, savePaginationCache } from './cache'
 
 export interface Item {
   id: number
@@ -13,6 +14,7 @@ export interface SocketData<T extends Item = Item> {
 export interface HandleSocketDataOptions<T extends Item = Item> {
   setItems: SetItems<T>
   data: SocketData<T>
+  cacheKey?: CacheKey
 }
 
 export type SocketListener = (data: SocketData) => void
@@ -20,7 +22,8 @@ export type SocketListener = (data: SocketData) => void
 export const handleSocketData = <T extends Item = Item>(
   options: HandleSocketDataOptions<T>
 ): void => {
-  const { data, setItems } = options
+  const { data, setItems, cacheKey } = options
+  console.log('socket.io data received: ', data)
 
   setItems((oldItems) => {
     const newItems = [...oldItems]
@@ -46,6 +49,9 @@ export const handleSocketData = <T extends Item = Item>(
         }
         break
       }
+    }
+    if (cacheKey != null) {
+      savePaginationCache(cacheKey, newItems)
     }
     return newItems
   })

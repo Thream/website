@@ -17,15 +17,16 @@ const AuthenticationContext = createContext<AuthenticationValue>(
   defaultAuthenticationContext
 )
 
-export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
-  props
-) => {
+export const AuthenticationProvider: React.FC<
+  React.PropsWithChildren<PagePropsWithAuthentication>
+> = (props) => {
   const { lang } = useTranslation()
   const { theme, setTheme } = useTheme()
   const [user, setUser] = useState<UserCurrent>(props.authentication.user)
 
   const authentication = useMemo(() => {
-    return new Authentication(props.authentication.tokens)
+    const disableSocketIO = typeof window === 'undefined'
+    return new Authentication(props.authentication.tokens, disableSocketIO)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps -- We only want to run this memo once
   }, [])
@@ -33,7 +34,9 @@ export const AuthenticationProvider: React.FC<PagePropsWithAuthentication> = (
   useEffect(() => {
     setLanguage(props.authentication.user.settings.language).catch(() => {})
     setTheme(props.authentication.user.settings.theme)
-
+    return () => {
+      authentication?.socket?.disconnect()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- We only want to run this effect once
   }, [])
 

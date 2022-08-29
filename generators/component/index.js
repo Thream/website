@@ -19,16 +19,6 @@ exports.componentGenerator = () => {
     actions: [
       {
         type: 'add',
-        path: 'components/{{folder}}/{{properCase name}}/{{properCase name}}.stories.tsx',
-        templateFile: 'generators/component/Component.stories.tsx.hbs'
-      },
-      {
-        type: 'add',
-        path: 'components/{{folder}}/{{properCase name}}/{{properCase name}}.test.tsx',
-        templateFile: 'generators/component/Component.test.tsx.hbs'
-      },
-      {
-        type: 'add',
         path: 'components/{{folder}}/{{properCase name}}/{{properCase name}}.tsx',
         templateFile: 'generators/component/Component.tsx.hbs'
       },

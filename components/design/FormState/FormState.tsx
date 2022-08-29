@@ -1,7 +1,7 @@
-import classNames from 'classnames'
+import classNames from 'clsx'
 import useTranslation from 'next-translate/useTranslation'
+import type { FetchState as FormStateType } from 'react-component-form'
 
-import { FetchState as FormStateType } from '../../../hooks/useFetchState'
 import { Loader } from '../Loader'
 
 export interface FormStateProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -16,7 +16,7 @@ export const FormState: React.FC<FormStateProps> = (props) => {
 
   if (state === 'loading') {
     return (
-      <div data-testid='loader' className='mt-8 flex justify-center'>
+      <div data-cy='loader' className='mt-8 flex justify-center'>
         <Loader />
       </div>
     )
@@ -27,31 +27,21 @@ export const FormState: React.FC<FormStateProps> = (props) => {
   }
 
   return (
-    <>
-      <div
-        {...rest}
-        className={classNames(
-          props.className,
-          'mt-6 flex max-w-xl items-center text-center font-medium',
-          {
-            'text-red-800 dark:text-red-400': state === 'error',
-            'text-green-800 dark:text-green-400': state === 'success'
-          }
-        )}
-      >
-        <div className='thumbnail inline bg-cover font-headline' />
-        <span id={id} className='pl-2'>
-          <b>{t(`errors:${state}`)}:</b> {message}
-        </span>
-      </div>
-
-      <style jsx>{`
-        .thumbnail {
-          height: 20px;
-          width: 20px;
-          background-image: url('/images/svg/icons/input/${state}.svg');
+    <div
+      {...rest}
+      className={classNames(
+        props.className,
+        'mt-6 flex max-w-xl items-center text-center font-medium',
+        {
+          'text-red-800 dark:text-red-400': state === 'error',
+          'text-green-800 dark:text-green-400': state === 'success'
         }
-      `}</style>
-    </>
+      )}
+    >
+      <div className='inline bg-cover font-headline' />
+      <span id={id} className='pl-2'>
+        <b>{t(`errors:${state}`)}:</b> {message}
+      </span>
+    </div>
   )
 }

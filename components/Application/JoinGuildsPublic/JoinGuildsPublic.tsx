@@ -22,12 +22,15 @@ export const JoinGuildsPublic: React.FC = () => {
     })
 
   useEffect(() => {
-    authentication.socket.on('guilds', (data: SocketData<GuildPublicType>) => {
-      handleSocketData({ data, setItems })
-    })
+    authentication?.socket?.on(
+      'guilds',
+      (data: SocketData<GuildPublicType>) => {
+        handleSocketData({ data, setItems })
+      }
+    )
 
     return () => {
-      authentication.socket.off('guilds')
+      authentication?.socket?.off('guilds')
     }
   }, [authentication.socket, setItems])
 

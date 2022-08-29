@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 export interface IconLinkProps {
   selected?: boolean
@@ -8,7 +8,9 @@ export interface IconLinkProps {
   className?: string
 }
 
-export const IconLink: React.FC<IconLinkProps> = (props) => {
+export const IconLink: React.FC<React.PropsWithChildren<IconLinkProps>> = (
+  props
+) => {
   const { children, selected, href, title, className } = props
 
   return (

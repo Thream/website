@@ -1,32 +1,32 @@
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import { Form } from 'react-component-form'
+import { Form, useForm } from 'react-component-form'
+import type { HandleUseFormCallback } from 'react-component-form'
 
 import { useAuthentication } from '../../../tools/authentication'
-import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { Input } from '../../design/Input'
 import { Main } from '../../design/Main'
 import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
 import { Channel, channelSchema } from '../../../models/Channel'
 import { useGuildMember } from '../../../contexts/GuildMember'
+import { useFormTranslation } from '../../../hooks/useFormTranslation'
+
+const schema = {
+  name: channelSchema.name
+}
 
 export const CreateChannel: React.FC = () => {
   const { t } = useTranslation()
   const router = useRouter()
   const { guild } = useGuildMember()
 
-  const { fetchState, message, errors, getErrorTranslation, handleSubmit } =
-    useForm({
-      validateSchema: {
-        name: channelSchema.name
-      },
-      resetOnSuccess: true
-    })
+  const { handleUseForm, fetchState, message, errors } = useForm(schema)
+  const { getFirstErrorTranslation } = useFormTranslation()
 
   const { authentication } = useAuthentication()
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (formData) => {
     try {
       const { data: channel } = await authentication.api.post<Channel>(
         `/guilds/${guild.id}/channels`,
@@ -44,13 +44,13 @@ export const CreateChannel: React.FC = () => {
 
   return (
     <Main>
-      <Form className='w-4/6 max-w-xs' onSubmit={handleSubmit(onSubmit)}>
+      <Form className='w-4/6 max-w-xs' onSubmit={handleUseForm(onSubmit)}>
         <Input
           type='text'
           placeholder={t('common:name')}
           name='name'
           label={t('common:name')}
-          error={getErrorTranslation(errors.name)}
+          error={getFirstErrorTranslation(errors.name)}
           data-cy='channel-name-input'
         />
         <Button

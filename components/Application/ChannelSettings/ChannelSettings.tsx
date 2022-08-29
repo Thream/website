@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Form } from 'react-component-form'
+import { Form, useForm } from 'react-component-form'
 import useTranslation from 'next-translate/useTranslation'
-import classNames from 'classnames'
+import classNames from 'clsx'
 import axios from 'axios'
+import type { HandleUseFormCallback } from 'react-component-form'
 
-import { HandleSubmitCallback, useForm } from '../../../hooks/useForm'
 import { FormState } from '../../design/FormState'
 import { useGuildMember } from '../../../contexts/GuildMember'
 import { Input } from '../../design/Input'
@@ -17,6 +17,11 @@ import {
   ChannelWithDefaultChannelId
 } from '../../../models/Channel'
 import { ConfirmPopup } from '../ConfirmPopup'
+import { useFormTranslation } from '../../../hooks/useFormTranslation'
+
+const schema = {
+  name: channelSchema.name
+}
 
 export interface ChannelSettingsProps {
   channel: Channel
@@ -41,25 +46,19 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
   }
 
   const {
+    handleUseForm,
     fetchState,
     message,
     errors,
-    getErrorTranslation,
-    handleSubmit,
     setFetchState,
-    setMessageTranslationKey
-  } = useForm({
-    validateSchema: {
-      name: channelSchema.name
-    },
-    replaceEmptyStringToNull: true,
-    resetOnSuccess: false
-  })
+    setMessage
+  } = useForm(schema)
+  const { getFirstErrorTranslation } = useFormTranslation()
 
-  const onSubmit: HandleSubmitCallback = async (formData) => {
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (formData) => {
     try {
       await authentication.api.put(`/channels/${channel.id}`, formData)
-      setInputValues(formData as any)
+      setInputValues(formData)
       await router.push(`/application/${guild.id}/${channel.id}`)
       return null
     } catch (error) {
@@ -91,9 +90,9 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
     } catch (error) {
       setFetchState('error')
       if (axios.isAxiosError(error) && error.response?.status === 400) {
-        setMessageTranslationKey('application:delete-channel-only-one')
+        setMessage('application:delete-channel-only-one')
       } else {
-        setMessageTranslationKey('errors:server-error')
+        setMessage('errors:server-error')
       }
     }
   }
@@ -101,7 +100,7 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
   return (
     <>
       <Form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleUseForm(onSubmit)}
         className='my-auto flex flex-col items-center justify-center py-12'
       >
         <div className='flex w-full flex-col items-center justify-center sm:w-fit lg:flex-row'>
@@ -114,7 +113,7 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
                 className='!mt-0'
                 onChange={onChange}
                 value={inputValues.name}
-                error={getErrorTranslation(errors.name)}
+                error={getFirstErrorTranslation(errors.name)}
                 data-cy='channel-name-input'
               />
             </div>

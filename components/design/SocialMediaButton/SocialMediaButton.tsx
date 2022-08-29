@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import Image from 'next/image'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 import { ProviderOAuth } from '../../../models/OAuth'
 
@@ -54,7 +54,6 @@ export const SocialMediaButton: React.FC<SocialMediaButtonProps> = (props) => {
   return (
     <>
       <button
-        data-testid='social-media-button'
         {...rest}
         className={classNames(className, 'button', givenClassName)}
       >

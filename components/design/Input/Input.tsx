@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 import { FormState } from '../FormState'
 
@@ -47,7 +47,7 @@ export const Input: React.FC<InputProps> = (props) => {
             <Link href='/authentication/forgot-password'>
               <a
                 className='text-center font-headline text-xs text-green-800 hover:underline dark:text-green-400 sm:text-sm'
-                data-testid='forgot-password-link'
+                data-cy='forgot-password-link'
               >
                 {t('authentication:forgot-password')}
               </a>
@@ -56,7 +56,6 @@ export const Input: React.FC<InputProps> = (props) => {
         </div>
         <div className='relative mt-0'>
           <input
-            data-testid='input'
             data-cy={`input-${name ?? 'name'}`}
             className='h-11 w-full rounded-lg border border-transparent bg-[#f1f1f1] px-3 font-paragraph leading-10 text-[#2a2a2a] caret-green-600 focus:border focus:shadow-green focus:outline-none'
             {...rest}
@@ -66,7 +65,7 @@ export const Input: React.FC<InputProps> = (props) => {
           />
           {type === 'password' && (
             <div
-              data-testid='password-eye'
+              data-cy='password-eye'
               onClick={handlePassword}
               className='password-eye absolute cursor-pointer bg-[#f1f1f1] bg-cover'
             />

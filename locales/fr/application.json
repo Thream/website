@@ -25,6 +25,7 @@
   "success-email-changed": "Veuillez vérifier vos emails pour confirmer votre nouvelle adresse email. Vous êtes maintenant déconnecté.",
   "delete": "Supprimer",
   "signout": "Se déconnecter",
+  "signout-all-devices": "Se déconnecter de tous les appareils",
   "signin-with-an-account": "Se connecter avec un compte",
   "signout-with-an-account": "Se déconnecter avec un compte",
   "success-deleted-provider": "Le moyen de connexion a été supprimé.",

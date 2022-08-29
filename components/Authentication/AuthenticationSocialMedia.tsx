@@ -24,7 +24,7 @@ export const AuthenticationSocialMedia: React.FC = () => {
   useEffect(() => {
     const data = router.query
     if (isTokens(data)) {
-      const authentication = new Authentication(data)
+      const authentication = new Authentication(data, true)
       authentication.signin()
       router.push('/application').catch(() => {})
     }

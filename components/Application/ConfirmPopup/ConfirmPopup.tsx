@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 import { Loader } from '../../design/Loader'
 

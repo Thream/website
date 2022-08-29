@@ -1,9 +1,10 @@
 import useTranslation from 'next-translate/useTranslation'
 import { PlusSmIcon, ArrowDownIcon } from '@heroicons/react/solid'
-import classNames from 'classnames'
+import classNames from 'clsx'
 import Image from 'next/image'
 
-import { PopupGuildCard } from './PopupGuildCard/PopupGuildCard'
+import { PopupGuildCard } from './PopupGuildCard'
+
 export interface PopupGuildProps {
   className?: string
 }

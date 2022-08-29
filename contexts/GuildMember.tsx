@@ -27,7 +27,9 @@ const GuildMemberContext = createContext<GuildMemberResult>(
   defaultGuildMemberContext
 )
 
-export const GuildMemberProvider: React.FC<GuildMemberProps> = (props) => {
+export const GuildMemberProvider: React.FC<
+  React.PropsWithChildren<GuildMemberProps>
+> = (props) => {
   const { path, children } = props
   const router = useRouter()
   const [guildMember, setGuildMember] = useState(props.guildMember)
@@ -45,7 +47,7 @@ export const GuildMemberProvider: React.FC<GuildMemberProps> = (props) => {
   }, [path, authentication.api])
 
   useEffect(() => {
-    authentication.socket.on(
+    authentication?.socket?.on(
       'guilds',
       async (data: SocketData<GuildWithDefaultChannelId>) => {
         if (data.item.id === path.guildId) {
@@ -70,7 +72,7 @@ export const GuildMemberProvider: React.FC<GuildMemberProps> = (props) => {
     )
 
     return () => {
-      authentication.socket.off('guilds')
+      authentication?.socket?.off('guilds')
     }
   }, [authentication.socket, path.guildId, router])
 
