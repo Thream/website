@@ -25,6 +25,7 @@
   "success-email-changed": "Please check your emails to confirm your new email address. You are now signed out.",
   "delete": "Delete",
   "signout": "Sign out",
+  "signout-all-devices": "Sign out of all devices",
   "signin-with-an-account": "Sign in with an account",
   "signout-with-an-account": "Sign out with an account",
   "success-deleted-provider": "The provider has been deleted.",

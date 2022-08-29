@@ -170,13 +170,13 @@ export const UserSettings: React.FC = () => {
   }
 
   const handleSignout = async (): Promise<void> => {
-    try {
-      setFetchState('loading')
-      await authentication.signoutServerSide()
-    } catch (error) {
-      setFetchState('error')
-      setMessage('errors:server-error')
-    }
+    setFetchState('loading')
+    await authentication.signoutServerSide()
+  }
+
+  const handleSignoutAllDevices = async (): Promise<void> => {
+    setFetchState('loading')
+    await authentication.signoutAllDevicesServerSide()
   }
 
   const handleDeletionProvider = (
@@ -373,6 +373,11 @@ export const UserSettings: React.FC = () => {
           <Button type='submit'>{t('application:save')}</Button>
           <Button type='button' color='red' onClick={handleSignout}>
             {t('application:signout')}
+          </Button>
+        </div>
+        <div className='mt-4'>
+          <Button type='button' color='red' onClick={handleSignoutAllDevices}>
+            {t('application:signout-all-devices')}
           </Button>
         </div>
         <FormState

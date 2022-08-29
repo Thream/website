@@ -112,6 +112,13 @@ export class Authentication {
     this.signout()
   }
 
+  public async signoutAllDevicesServerSide(): Promise<void> {
+    try {
+      await this.api.delete('/users/signout')
+    } catch {}
+    this.signout()
+  }
+
   public signin(): void {
     cookies.set('refreshToken', this.tokens.refreshToken)
   }
