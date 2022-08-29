@@ -104,9 +104,11 @@ export class Authentication {
   }
 
   public async signoutServerSide(): Promise<void> {
-    await this.api.post('/users/signout', {
-      refreshToken: this.tokens.refreshToken
-    })
+    try {
+      await this.api.post('/users/signout', {
+        refreshToken: this.tokens.refreshToken
+      })
+    } catch {}
     this.signout()
   }
 
