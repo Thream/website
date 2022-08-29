@@ -96,7 +96,7 @@ export const SendMessage: React.FC<SendMessageProps> = (props) => {
           onKeyDown={handleTextareaKeyDown}
         >
           <TextareaAutosize
-            className='scrollbar-firefox-support my-2 w-full resize-none bg-transparent p-2 px-6 font-paragraph tracking-wide outline-none'
+            className='scrollbar-firefox-support my-2 w-full resize-none bg-transparent p-2 px-6 tracking-wide outline-none'
             placeholder={t('application:write-a-message')}
             wrap='soft'
             maxRows={6}

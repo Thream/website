@@ -45,5 +45,5 @@ body {
 }
 
 .message-options {
-  @apply flex h-9 w-9 cursor-pointer items-center justify-center bg-gray-200 transition-colors hover:bg-gray-300 dark:bg-slate-900 hover:dark:bg-slate-800;
+  @apply flex h-16 w-9 cursor-pointer items-center justify-center bg-gray-200 transition-colors hover:bg-gray-300 dark:bg-slate-900 hover:dark:bg-slate-800;
 }

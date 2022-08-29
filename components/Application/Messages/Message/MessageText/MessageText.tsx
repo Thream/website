@@ -19,10 +19,6 @@ export interface MessageContentProps {
 export const MessageText: React.FC<MessageContentProps> = (props) => {
   const { message } = props
 
-  const containsWhitespace = (string: string): boolean => {
-    return /\s/.test(string)
-  }
-
   const isMessageWithOnlyOneEmoji = useMemo(() => {
     return isStringWithOnlyOneEmoji(message.value)
   }, [message.value])
@@ -51,17 +47,6 @@ export const MessageText: React.FC<MessageContentProps> = (props) => {
               className='text-green-800 hover:underline dark:text-green-400'
               {...props}
             />
-          )
-        },
-        p: () => {
-          return (
-            <p
-              className={
-                containsWhitespace(message.value) ? 'break-words' : 'break-all'
-              }
-            >
-              {message.value}
-            </p>
           )
         },
         emoji: (props) => {
