@@ -27,31 +27,21 @@ export const FormState: React.FC<FormStateProps> = (props) => {
   }
 
   return (
-    <>
-      <div
-        {...rest}
-        className={classNames(
-          props.className,
-          'mt-6 flex max-w-xl items-center text-center font-medium',
-          {
-            'text-red-800 dark:text-red-400': state === 'error',
-            'text-green-800 dark:text-green-400': state === 'success'
-          }
-        )}
-      >
-        <div className='thumbnail inline bg-cover font-headline' />
-        <span id={id} className='pl-2'>
-          <b>{t(`errors:${state}`)}:</b> {message}
-        </span>
-      </div>
-
-      <style jsx>{`
-        .thumbnail {
-          height: 20px;
-          width: 20px;
-          background-image: url('/images/svg/icons/input/${state}.svg');
+    <div
+      {...rest}
+      className={classNames(
+        props.className,
+        'mt-6 flex max-w-xl items-center text-center font-medium',
+        {
+          'text-red-800 dark:text-red-400': state === 'error',
+          'text-green-800 dark:text-green-400': state === 'success'
         }
-      `}</style>
-    </>
+      )}
+    >
+      <div className='inline bg-cover font-headline' />
+      <span id={id} className='pl-2'>
+        <b>{t(`errors:${state}`)}:</b> {message}
+      </span>
+    </div>
   )
 }
