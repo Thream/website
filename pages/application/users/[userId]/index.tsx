@@ -38,10 +38,7 @@ export const getServerSideProps = authenticationFromServerSide({
     const userId = Number(context?.params?.userId)
     if (isNaN(userId)) {
       return {
-        redirect: {
-          destination: '/404',
-          permanent: false
-        }
+        notFound: true
       }
     }
     const { data } = await api.get(`/users/${userId}`)

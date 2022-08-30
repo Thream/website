@@ -45,15 +45,6 @@ export const usePagination = <T extends PaginationItem>(
   const fetchState = useRef<FetchState>('idle')
   const afterId = useRef<number | null>(null)
 
-  const updateAfterId = (newItems: T[]): void => {
-    if (!inverse) {
-      afterId.current =
-        newItems.length > 0 ? newItems[newItems.length - 1].id : null
-    } else {
-      afterId.current = newItems.length > 0 ? newItems[0].id : null
-    }
-  }
-
   const nextPageAsync: NextPageAsync = useCallback(
     async (query) => {
       if (fetchState.current !== 'idle') {
@@ -68,21 +59,33 @@ export const usePagination = <T extends PaginationItem>(
       const { data: newItems } = await api.get<T[]>(
         `${url}?${searchParameters.toString()}`
       )
-      updateAfterId(newItems)
+      if (!inverse) {
+        afterId.current =
+          newItems.length > 0 ? newItems[newItems.length - 1].id : null
+      } else {
+        afterId.current = newItems.length > 0 ? newItems[0].id : null
+      }
       setItems((oldItems) => {
         const updatedItems = inverse
           ? [...newItems, ...oldItems]
           : [...oldItems, ...newItems]
+        const unique = updatedItems.reduce<T[]>((accumulator, item) => {
+          const isExisting = accumulator.some(
+            (itemSome) => itemSome.id === item.id
+          )
+          if (!isExisting) {
+            accumulator.push(item)
+          }
+          return accumulator
+        }, [])
         if (cacheKey != null) {
-          savePaginationCache(cacheKey, updatedItems)
+          savePaginationCache(cacheKey, unique)
         }
-        return updatedItems
+        return unique
       })
       setHasMore(newItems.length > 0)
       fetchState.current = 'idle'
     },
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- We don't want infinite loops with updateAfterId
     [api, url, inverse, cacheKey]
   )
 
@@ -106,13 +109,18 @@ export const usePagination = <T extends PaginationItem>(
       afterId.current = null
       setItems([])
     } else {
+      fetchState.current = 'loading'
       const newItems = getPaginationCache<T>(cacheKey)
       setItems(newItems)
-      updateAfterId(newItems)
+      if (!inverse) {
+        afterId.current =
+          newItems.length > 0 ? newItems[newItems.length - 1].id : null
+      } else {
+        afterId.current = newItems.length > 0 ? newItems[0].id : null
+      }
+      fetchState.current = 'idle'
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- We don't want infinite loops with updateAfterId
-  }, [cacheKey])
+  }, [cacheKey, inverse])
 
   return { items, hasMore, nextPage, resetPagination, setItems }
 }

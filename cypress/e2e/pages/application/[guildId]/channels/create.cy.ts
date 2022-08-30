@@ -56,8 +56,8 @@ describe('Pages > /application/[guildId]/channels/create', () => {
     cy.visit('/application/abc/channels/create', {
       failOnStatusCode: false
     })
-      .location('pathname')
-      .should('eq', '/404')
+      .get('[data-cy=status-code]')
+      .contains('404')
   })
 
   it("should redirect the user to `/404` if `guildId` doesn't exist", () => {
@@ -68,8 +68,8 @@ describe('Pages > /application/[guildId]/channels/create', () => {
     cy.visit(`/application/123/channels/create`, {
       failOnStatusCode: false
     })
-      .location('pathname')
-      .should('eq', '/404')
+      .get('[data-cy=status-code]')
+      .contains('404')
   })
 })
 

@@ -63,10 +63,7 @@ export const getServerSideProps = authenticationFromServerSide({
     const guildId = Number(context?.params?.guildId)
     if (isNaN(channelId) || isNaN(guildId)) {
       return {
-        redirect: {
-          destination: '/404',
-          permanent: false
-        }
+        notFound: true
       }
     }
     const { data: guildMember } = await api.get<GuildMember>(
@@ -74,10 +71,7 @@ export const getServerSideProps = authenticationFromServerSide({
     )
     if (!guildMember.member.isOwner) {
       return {
-        redirect: {
-          destination: '/404',
-          permanent: false
-        }
+        notFound: true
       }
     }
     const { data: selectedChannelData } = await api.get(

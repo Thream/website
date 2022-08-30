@@ -49,10 +49,7 @@ export const getServerSideProps = authenticationFromServerSide({
     const guildId = Number(context?.params?.guildId)
     if (isNaN(guildId)) {
       return {
-        redirect: {
-          destination: '/404',
-          permanent: false
-        }
+        notFound: true
       }
     }
     const { data: guildMember } = await api.get(`/guilds/${guildId}`)

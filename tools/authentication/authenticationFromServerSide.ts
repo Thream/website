@@ -54,9 +54,12 @@ export const authenticationFromServerSide = (
           }
         }
       } else {
-        let data = {}
+        let data: any = {}
         if (fetchData != null) {
           data = await fetchData(context, api)
+        }
+        if (data.notFound != null) {
+          return data
         }
         return { props: data }
       }
@@ -71,7 +74,7 @@ export const authenticationFromServerSide = (
       } else {
         try {
           let data: any = {}
-          const authentication = new Authentication(tokens, true)
+          const authentication = new Authentication(tokens)
           const { data: currentUser } = await authentication.api.get<
             unknown,
             AxiosResponse<UserCurrent>
@@ -79,7 +82,7 @@ export const authenticationFromServerSide = (
           if (fetchData != null) {
             data = await fetchData(context, authentication.api)
           }
-          if (data.redirect != null) {
+          if (data.notFound != null) {
             return data
           }
           return {
@@ -87,10 +90,7 @@ export const authenticationFromServerSide = (
           }
         } catch {
           return {
-            redirect: {
-              destination: '/404',
-              permanent: false
-            }
+            notFound: true
           }
         }
       }

@@ -16,7 +16,7 @@ export class Authentication {
   constructor(tokens: Tokens, disableSocketIO: boolean = false) {
     this.tokens = tokens
     this.accessTokenAge = Date.now()
-    if (disableSocketIO || typeof window === 'undefined') {
+    if (typeof window === 'undefined' || disableSocketIO) {
       this.socket = undefined
     } else {
       this.socket = io(API_URL, {

@@ -25,8 +25,7 @@ export const AuthenticationProvider: React.FC<
   const [user, setUser] = useState<UserCurrent>(props.authentication.user)
 
   const authentication = useMemo(() => {
-    const disableSocketIO = typeof window === 'undefined'
-    return new Authentication(props.authentication.tokens, disableSocketIO)
+    return new Authentication(props.authentication.tokens)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps -- We only want to run this memo once
   }, [])

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -8,7 +9,7 @@ export interface MemberProps {
   member: MemberWithPublicUser
 }
 
-export const Member: React.FC<MemberProps> = (props) => {
+const MemberMemo: React.FC<MemberProps> = (props) => {
   const { member } = props
 
   return (
@@ -45,3 +46,5 @@ export const Member: React.FC<MemberProps> = (props) => {
     </Link>
   )
 }
+
+export const Member = memo(MemberMemo)

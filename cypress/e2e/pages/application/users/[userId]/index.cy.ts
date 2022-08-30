@@ -29,8 +29,8 @@ describe('Pages > /application/users/[userId]', () => {
       'refresh-token'
     )
     cy.visit(`/application/users/123`, { failOnStatusCode: false })
-      .location('pathname')
-      .should('eq', '/404')
+      .get('[data-cy=status-code]')
+      .contains('404')
   })
 })
 

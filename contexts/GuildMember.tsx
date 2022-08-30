@@ -11,9 +11,7 @@ export interface GuildMember {
   member: Member
 }
 
-export interface GuildMemberResult extends GuildMember {
-  setGuildMember: React.Dispatch<React.SetStateAction<GuildMember>>
-}
+export interface GuildMemberResult extends GuildMember {}
 
 export interface GuildMemberProps {
   guildMember: GuildMember
@@ -79,8 +77,7 @@ export const GuildMemberProvider: React.FC<
   return (
     <GuildMemberContext.Provider
       value={{
-        ...guildMember,
-        setGuildMember
+        ...guildMember
       }}
     >
       {children}
@@ -91,7 +88,9 @@ export const GuildMemberProvider: React.FC<
 export const useGuildMember = (): GuildMemberResult => {
   const guildMember = useContext(GuildMemberContext)
   if (guildMember === defaultGuildMemberContext) {
-    throw new Error('useGuildMember must be used within GuildMemberProvider')
+    throw new Error(
+      '`useGuildMember` must be used within `GuildMemberProvider`'
+    )
   }
   return guildMember
 }

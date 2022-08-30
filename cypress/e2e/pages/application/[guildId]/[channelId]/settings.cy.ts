@@ -92,8 +92,8 @@ describe('Pages > /application/[guildId]/[channelId]/settings', () => {
     cy.visit(`/application/${guildExample.id}/${channelExample.id}/settings`, {
       failOnStatusCode: false
     })
-      .location('pathname')
-      .should('eq', '/404')
+      .get('[data-cy=status-code]')
+      .contains('404')
   })
 
   it('should redirect the user to `/404` if `guildId` or `channelId` are not numbers', () => {
@@ -104,8 +104,8 @@ describe('Pages > /application/[guildId]/[channelId]/settings', () => {
     cy.visit('/application/abc/abc/settings', {
       failOnStatusCode: false
     })
-      .location('pathname')
-      .should('eq', '/404')
+      .get('[data-cy=status-code]')
+      .contains('404')
   })
 
   it("should redirect the user to `/404` if `guildId` doesn't exist", () => {
@@ -116,8 +116,8 @@ describe('Pages > /application/[guildId]/[channelId]/settings', () => {
     cy.visit(`/application/123/${channelExample.id}/settings`, {
       failOnStatusCode: false
     })
-      .location('pathname')
-      .should('eq', '/404')
+      .get('[data-cy=status-code]')
+      .contains('404')
   })
 
   it("should redirect the user to `/404` if `channelId` doesn't exist", () => {
@@ -128,8 +128,8 @@ describe('Pages > /application/[guildId]/[channelId]/settings', () => {
     cy.visit(`/application/${guildExample.id}/123/settings`, {
       failOnStatusCode: false
     })
-      .location('pathname')
-      .should('eq', '/404')
+      .get('[data-cy=status-code]')
+      .contains('404')
   })
 })
 

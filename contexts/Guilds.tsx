@@ -62,7 +62,7 @@ export const GuildsProvider: React.FC<React.PropsWithChildren<{}>> = (
 export const useGuilds = (): Guilds => {
   const guilds = useContext(GuildsContext)
   if (guilds === defaultGuildsContext) {
-    throw new Error('useGuilds must be used within GuildsProvider')
+    throw new Error('`useGuilds` must be used within `GuildsProvider`')
   }
   return guilds
 }
