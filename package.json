@@ -20,7 +20,7 @@
     "lint:editorconfig": "editorconfig-checker",
     "lint:markdown": "markdownlint-cli2",
     "lint:typescript": "eslint \"**/*.{js,jsx,ts,tsx}\" --ignore-path \".gitignore\"",
-    "lint:prettier": "prettier \".\" --check",
+    "lint:prettier": "prettier \".\" --check --ignore-path \".gitignore\"",
     "lint:staged": "lint-staged",
     "test:unit": "cypress run --component",
     "test:html-w3c-validator": "start-server-and-test \"start\" \"http://localhost:3000\" \"html-w3c-validator\"",
