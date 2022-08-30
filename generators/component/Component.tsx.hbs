@@ -4,7 +4,7 @@ export interface {{ properCase name }}Props {
   className?: string
 }
 
-export const {{ properCase name }}: React.FC<React.PropsWithChildren{{ properCase name }}Props>> = (props) => {
+export const {{ properCase name }}: React.FC<React.PropsWithChildren<{{ properCase name }}Props>> = (props) => {
   const { children, className } = props
 
   return <main className={classNames(className, '')}>{children}</main>
