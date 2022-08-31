@@ -1,5 +1,6 @@
 import useTranslation from 'next-translate/useTranslation'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { AnimatePresence } from 'framer-motion'
 
 import { Loader } from '../../design/Loader'
 import { Message } from './Message'
@@ -38,9 +39,11 @@ export const Messages: React.FC = () => {
         hasMore={hasMore}
         loader={<Loader />}
       >
-        {messages.map((message) => {
-          return <Message key={message.id} message={message} />
-        })}
+        <AnimatePresence>
+          {messages.map((message) => (
+            <Message key={message.id} message={message} />
+          ))}
+        </AnimatePresence>
       </InfiniteScroll>
     </div>
   )
