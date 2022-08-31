@@ -1,6 +1,5 @@
-import TextareaAutosize, {
-  TextareaAutosizeProps
-} from 'react-textarea-autosize'
+import type { TextareaAutosizeProps } from 'react-textarea-autosize'
+import TextareaAutosize from 'react-textarea-autosize'
 
 export interface TextareaProps extends TextareaAutosizeProps {
   label: string

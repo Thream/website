@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import Image from 'next/image'
 
-import { GuildWithDefaultChannelId } from '../../../models/Guild'
+import type { GuildWithDefaultChannelId } from '../../../models/Guild'
 import { IconLink } from '../../design/IconLink'
 
 export interface GuildProps {

@@ -3,7 +3,7 @@ import axios from 'axios'
 import prettyBytes from 'pretty-bytes'
 import { DownloadIcon } from '@heroicons/react/solid'
 
-import { MessageWithMember } from '../../../../../models/Message'
+import type { MessageWithMember } from '../../../../../models/Message'
 import { Loader } from '../../../../design/Loader'
 import { FileIcon } from './FileIcon'
 import { api } from '../../../../../tools/api'

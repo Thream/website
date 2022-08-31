@@ -1,4 +1,5 @@
-import { Type, Static } from '@sinclair/typebox'
+import type { Static } from '@sinclair/typebox'
+import { Type } from '@sinclair/typebox'
 
 import { channelSchema } from './Channel'
 import { memberSchema } from './Member'

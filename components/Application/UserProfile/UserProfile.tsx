@@ -2,8 +2,8 @@ import Image from 'next/image'
 import date from 'date-and-time'
 import useTranslation from 'next-translate/useTranslation'
 
-import { UserPublic } from '../../../models/User'
-import { Guild } from '../../../models/Guild'
+import type { UserPublic } from '../../../models/User'
+import type { Guild } from '../../../models/Guild'
 
 export interface UserProfileProps {
   className?: string

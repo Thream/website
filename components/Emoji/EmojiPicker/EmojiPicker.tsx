@@ -1,5 +1,6 @@
 import 'emoji-mart/css/emoji-mart.css'
-import { EmojiData, Picker } from 'emoji-mart'
+import type { EmojiData } from 'emoji-mart'
+import { Picker } from 'emoji-mart'
 import { useTheme } from 'next-themes'
 
 import { EMOJI_SET } from '../emojiPlugin'

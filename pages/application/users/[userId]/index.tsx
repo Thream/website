@@ -1,16 +1,16 @@
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 
 import { Head } from '../../../../components/Head'
 import { Application } from '../../../../components/Application'
+import type { PagePropsWithAuthentication } from '../../../../tools/authentication'
 import {
   authenticationFromServerSide,
-  AuthenticationProvider,
-  PagePropsWithAuthentication
+  AuthenticationProvider
 } from '../../../../tools/authentication'
 import { UserProfile } from '../../../../components/Application/UserProfile'
 import { GuildsProvider } from '../../../../contexts/Guilds'
-import { UserPublic } from '../../../../models/User'
-import { Guild } from '../../../../models/Guild'
+import type { UserPublic } from '../../../../models/User'
+import type { Guild } from '../../../../models/Guild'
 
 export interface UserProfilePageProps extends PagePropsWithAuthentication {
   user: UserPublic

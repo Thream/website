@@ -1,4 +1,4 @@
-import { Handler } from '../../handler'
+import type { Handler } from '../../handler'
 
 export const postUsersSigninHandler: Handler = {
   method: 'POST',

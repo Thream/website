@@ -1,5 +1,7 @@
 describe('Common > Header', () => {
-  beforeEach(() => cy.visit('/'))
+  beforeEach(() => {
+    return cy.visit('/')
+  })
 
   describe('Switch theme color (dark/light)', () => {
     it('should switch theme from `dark` (default) to `light`', () => {

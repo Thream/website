@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit'
-import { Plugin, Transformer } from 'unified'
-import { Literal, Parent } from 'unist'
+import type { Plugin, Transformer } from 'unified'
+import type { Literal, Parent } from 'unist'
 import type { ElementContent } from 'hast'
 import type { EmojiSet } from 'emoji-mart'
 

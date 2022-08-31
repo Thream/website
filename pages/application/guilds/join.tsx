@@ -1,12 +1,12 @@
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import useTranslation from 'next-translate/useTranslation'
 
 import { Head } from '../../../components/Head'
 import { Application } from '../../../components/Application'
+import type { PagePropsWithAuthentication } from '../../../tools/authentication'
 import {
   authenticationFromServerSide,
-  AuthenticationProvider,
-  PagePropsWithAuthentication
+  AuthenticationProvider
 } from '../../../tools/authentication'
 import { JoinGuildsPublic } from '../../../components/Application/JoinGuildsPublic'
 import { GuildsProvider } from '../../../contexts/Guilds'

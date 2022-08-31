@@ -1,11 +1,11 @@
-import { AxiosInstance, AxiosResponse } from 'axios'
-import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import type { AxiosInstance, AxiosResponse } from 'axios'
+import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import { api } from '../api'
 import { Cookies } from '../cookies'
-import { RefreshTokenResponse, Tokens } from './index'
+import type { RefreshTokenResponse, Tokens } from './index'
 import { Authentication } from './Authentication'
-import { UserCurrent } from '../../models/User'
+import type { UserCurrent } from '../../models/User'
 
 export const fetchRefreshToken = async (
   refreshToken: string

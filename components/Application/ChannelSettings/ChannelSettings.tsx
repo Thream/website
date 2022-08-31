@@ -11,11 +11,11 @@ import { useGuildMember } from '../../../contexts/GuildMember'
 import { Input } from '../../design/Input'
 import { Button } from '../../design/Button'
 import { useAuthentication } from '../../../tools/authentication'
-import {
+import type {
   Channel,
-  channelSchema,
   ChannelWithDefaultChannelId
 } from '../../../models/Channel'
+import { channelSchema } from '../../../models/Channel'
 import { ConfirmPopup } from '../ConfirmPopup'
 import { useFormTranslation } from '../../../hooks/useFormTranslation'
 

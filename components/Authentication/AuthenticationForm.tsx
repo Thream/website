@@ -1,5 +1,6 @@
 import classNames from 'clsx'
-import { Form, FormProps } from 'react-component-form'
+import type { FormProps } from 'react-component-form'
+import { Form } from 'react-component-form'
 
 export const AuthenticationForm: React.FC<FormProps> = (props) => {
   const { className, children, ...rest } = props

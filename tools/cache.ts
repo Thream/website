@@ -1,4 +1,4 @@
-import { PaginationItem } from '../hooks/usePagination'
+import type { PaginationItem } from '../hooks/usePagination'
 
 export const GUILDS_CACHE_KEY = 'guilds' as const
 export const CHANNELS_CACHE_KEY = 'channels' as const

@@ -5,7 +5,7 @@ import { getLocal } from 'mockttp'
 import type { Mockttp } from 'mockttp'
 
 import { API_DEFAULT_PORT } from './tools/api'
-import { Handlers, Method } from './cypress/fixtures/handler'
+import type { Handlers, Method } from './cypress/fixtures/handler'
 
 const UPLOADS_FIXTURES_DIRECTORY = path.join(
   process.cwd(),

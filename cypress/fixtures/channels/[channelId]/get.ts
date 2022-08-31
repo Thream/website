@@ -1,4 +1,4 @@
-import { Handler } from '../../handler'
+import type { Handler } from '../../handler'
 import { channelExample, channelExample2 } from '../channel'
 
 export const getChannelWithChannelIdHandler: Handler = {

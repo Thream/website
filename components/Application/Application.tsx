@@ -5,7 +5,8 @@ import classNames from 'clsx'
 import { useMediaQuery } from 'react-responsive'
 import { useSwipeable } from 'react-swipeable'
 
-import { Sidebar, DirectionSidebar } from './Sidebar'
+import type { DirectionSidebar } from './Sidebar'
+import { Sidebar } from './Sidebar'
 import { IconButton } from '../design/IconButton'
 import { IconLink } from '../design/IconLink'
 import { Guilds } from './Guilds/Guilds'
@@ -148,7 +149,9 @@ export const Application: React.FC<
       <header className='z-50 flex h-16 items-center justify-between bg-gray-200 px-2 py-3 shadow-lg dark:bg-gray-800'>
         <IconButton
           className='h-10 w-10 p-2'
-          onClick={() => handleToggleSidebars('left')}
+          onClick={() => {
+            return handleToggleSidebars('left')
+          }}
         >
           {!visibleSidebars.left ? <MenuIcon /> : <XIcon />}
         </IconButton>
@@ -163,7 +166,9 @@ export const Application: React.FC<
             <IconButton
               data-cy='icon-button-right-sidebar-members'
               className='h-10 w-10 p-2'
-              onClick={() => handleToggleSidebars('right')}
+              onClick={() => {
+                return handleToggleSidebars('right')
+              }}
             >
               {!visibleSidebars.right ? <UsersIcon /> : <XIcon />}
             </IconButton>

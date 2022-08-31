@@ -1,7 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { useChannels } from '../../../contexts/Channels'
-import { GuildsChannelsPath } from '../Application'
+import type { GuildsChannelsPath } from '../Application'
 import { Loader } from '../../design/Loader'
 import { Channel } from './Channel'
 

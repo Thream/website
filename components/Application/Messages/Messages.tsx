@@ -1,5 +1,6 @@
 import useTranslation from 'next-translate/useTranslation'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { AnimatePresence } from 'framer-motion'
 
 import { Loader } from '../../design/Loader'
 import { Message } from './Message'
@@ -29,19 +30,21 @@ export const Messages: React.FC = () => {
       id='messages'
       className='scrollbar-firefox-support flex w-full flex-1 flex-col-reverse overflow-y-auto transition-all'
     >
-      <InfiniteScroll
-        scrollableTarget='messages'
-        className='messages-list !overflow-x-hidden'
-        dataLength={messages.length}
-        next={nextPage}
-        inverse
-        hasMore={hasMore}
-        loader={<Loader />}
-      >
-        {messages.map((message) => {
-          return <Message key={message.id} message={message} />
-        })}
-      </InfiniteScroll>
+      <AnimatePresence>
+        <InfiniteScroll
+          scrollableTarget='messages'
+          className='messages-list !overflow-x-hidden'
+          dataLength={messages.length}
+          next={nextPage}
+          inverse
+          hasMore={hasMore}
+          loader={<Loader />}
+        >
+          {messages.map((message) => {
+            return <Message key={message.id} message={message} />
+          })}
+        </InfiniteScroll>
+      </AnimatePresence>
     </div>
   )
 }

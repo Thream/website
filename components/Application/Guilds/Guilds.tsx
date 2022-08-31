@@ -2,7 +2,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Loader } from '../../design/Loader'
 import { useGuilds } from '../../../contexts/Guilds'
-import { GuildsPath } from '..'
+import type { GuildsPath } from '..'
 import { Guild } from './Guild'
 
 export interface GuildsProps {

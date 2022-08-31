@@ -1,5 +1,6 @@
-import { SetItems } from '../hooks/usePagination'
-import { CacheKey, savePaginationCache } from './cache'
+import type { SetItems } from '../hooks/usePagination'
+import type { CacheKey } from './cache'
+import { savePaginationCache } from './cache'
 
 export interface Item {
   id: number
@@ -33,14 +34,18 @@ export const handleSocketData = <T extends Item = Item>(
         break
       }
       case 'delete': {
-        const itemIndex = newItems.findIndex((item) => item.id === data.item.id)
+        const itemIndex = newItems.findIndex((item) => {
+          return item.id === data.item.id
+        })
         if (itemIndex !== -1) {
           newItems.splice(itemIndex, 1)
         }
         break
       }
       case 'update': {
-        const itemIndex = newItems.findIndex((item) => item.id === data.item.id)
+        const itemIndex = newItems.findIndex((item) => {
+          return item.id === data.item.id
+        })
         if (itemIndex !== -1) {
           newItems[itemIndex] = {
             ...newItems[itemIndex],

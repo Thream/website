@@ -1,6 +1,6 @@
 import classNames from 'clsx'
 
-import { ApplicationProps } from '..'
+import type { ApplicationProps } from '..'
 
 export type DirectionSidebar = 'left' | 'right'
 

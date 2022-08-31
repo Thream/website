@@ -1,4 +1,4 @@
-import { Handler } from '../../handler'
+import type { Handler } from '../../handler'
 import { userExample, userSettingsExample } from '../user'
 
 export const postUsersSignupHandler: Handler = {

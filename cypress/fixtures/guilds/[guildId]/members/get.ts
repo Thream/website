@@ -1,5 +1,5 @@
 import { guildExample } from '../../guild'
-import { Handler } from '../../../handler'
+import type { Handler } from '../../../handler'
 import { memberExampleComplete } from '../../../members/member'
 
 export const getMembersWithGuildIdHandler: Handler = {

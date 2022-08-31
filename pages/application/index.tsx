@@ -1,12 +1,12 @@
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 
 import { Head } from '../../components/Head'
 import { Application } from '../../components/Application'
 import { PopupGuild } from '../../components/Application/PopupGuild'
+import type { PagePropsWithAuthentication } from '../../tools/authentication'
 import {
   authenticationFromServerSide,
-  AuthenticationProvider,
-  PagePropsWithAuthentication
+  AuthenticationProvider
 } from '../../tools/authentication'
 import { GuildsProvider } from '../../contexts/Guilds'
 

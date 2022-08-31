@@ -19,7 +19,8 @@ import { Button } from '../../design/Button'
 import { FormState } from '../../design/FormState'
 import { userSchema } from '../../../models/User'
 import { userSettingsSchema } from '../../../models/UserSettings'
-import { ProviderOAuth, providers } from '../../../models/OAuth'
+import type { ProviderOAuth } from '../../../models/OAuth'
+import { providers } from '../../../models/OAuth'
 import { useFormTranslation } from '../../../hooks/useFormTranslation'
 
 const schema = {
@@ -56,7 +57,9 @@ export const UserSettings: React.FC = () => {
   const { getFirstErrorTranslation } = useFormTranslation()
 
   const hasAllProviders = useMemo(() => {
-    return providers.every((provider) => user.strategies.includes(provider))
+    return providers.every((provider) => {
+      return user.strategies.includes(provider)
+    })
   }, [user.strategies])
 
   const onSubmit: HandleUseFormCallback<typeof schema> = async (formData) => {
@@ -189,9 +192,9 @@ export const UserSettings: React.FC = () => {
         setUser((oldUser) => {
           return {
             ...oldUser,
-            strategies: oldUser.strategies.filter(
-              (strategy) => strategy !== provider
-            )
+            strategies: oldUser.strategies.filter((strategy) => {
+              return strategy !== provider
+            })
           }
         })
         setMessage('application:success-deleted-provider')

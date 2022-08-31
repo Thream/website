@@ -3,9 +3,10 @@ import useTranslation from 'next-translate/useTranslation'
 import TextareaAutosize from 'react-textarea-autosize'
 import classNames from 'clsx'
 
-import { GuildsChannelsPath } from '..'
+import type { GuildsChannelsPath } from '..'
 import { useAuthentication } from '../../../tools/authentication'
-import { EmojiPicker, EmojiPickerOnClick } from '../../Emoji'
+import type { EmojiPickerOnClick } from '../../Emoji'
+import { EmojiPicker } from '../../Emoji'
 
 export interface SendMessageProps {
   path: GuildsChannelsPath
@@ -65,7 +66,9 @@ export const SendMessage: React.FC<SendMessageProps> = (props) => {
   }
 
   const handleVisibleEmojiPicker = (): void => {
-    setIsVisibleEmojiPicker((isVisible) => !isVisible)
+    setIsVisibleEmojiPicker((isVisible) => {
+      return !isVisible
+    })
   }
 
   const handleEmojiPicker: EmojiPickerOnClick = (emoji) => {

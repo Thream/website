@@ -1,4 +1,4 @@
-import { UserCurrent } from '../../models/User'
+import type { UserCurrent } from '../../models/User'
 
 export interface RefreshTokenResponse {
   accessToken: string

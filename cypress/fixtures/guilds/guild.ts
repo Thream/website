@@ -1,4 +1,4 @@
-import { Guild } from '../../../models/Guild'
+import type { Guild } from '../../../models/Guild'
 
 export const guildExample: Guild = {
   id: 1,

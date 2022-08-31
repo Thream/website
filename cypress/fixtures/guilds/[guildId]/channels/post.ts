@@ -1,5 +1,5 @@
 import { guildExample } from '../../guild'
-import { Handler } from '../../../handler'
+import type { Handler } from '../../../handler'
 import { channelExample, channelExample2 } from '../../../channels/channel'
 
 export const postChannelsWithGuildIdHandler: Handler = {
