@@ -2,7 +2,7 @@ import { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { MemberWithPublicUser } from '../../../models/Member'
+import type { MemberWithPublicUser } from '../../../models/Member'
 import { Emoji } from '../../Emoji'
 
 export interface MemberProps {

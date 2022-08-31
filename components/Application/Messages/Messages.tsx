@@ -40,9 +40,9 @@ export const Messages: React.FC = () => {
           hasMore={hasMore}
           loader={<Loader />}
         >
-          {messages.map((message) => (
-            <Message key={message.id} message={message} />
-          ))}
+          {messages.map((message) => {
+            return <Message key={message.id} message={message} />
+          })}
         </InfiniteScroll>
       </AnimatePresence>
     </div>

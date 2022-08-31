@@ -1,4 +1,4 @@
-import { Handler } from '../../handler'
+import type { Handler } from '../../handler'
 import { guildExample, guildExample2 } from '../guild'
 
 export const getGuildsPublicEmptyHandler: Handler = {

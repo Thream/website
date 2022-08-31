@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import Image from 'next/image'
 import classNames from 'clsx'
 
-import { ProviderOAuth } from '../../../models/OAuth'
+import type { ProviderOAuth } from '../../../models/OAuth'
 
 export type SocialMedia = ProviderOAuth
 

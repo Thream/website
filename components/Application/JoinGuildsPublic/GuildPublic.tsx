@@ -7,7 +7,7 @@ import axios from 'axios'
 
 import { Emoji } from '../../Emoji'
 import { ConfirmPopup } from '../ConfirmPopup'
-import {
+import type {
   GuildPublic as GuildPublicType,
   GuildWithDefaultChannelId
 } from '../../../models/Guild'
@@ -25,7 +25,9 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
   const { t } = useTranslation()
 
   const handleIsConfirmed = (): void => {
-    setIsConfirmed((isConfirmed) => !isConfirmed)
+    setIsConfirmed((isConfirmed) => {
+      return !isConfirmed
+    })
   }
 
   const handleYes = async (): Promise<void> => {

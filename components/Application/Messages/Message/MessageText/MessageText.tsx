@@ -10,7 +10,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import 'katex/dist/katex.min.css'
 
 import { Emoji, emojiPlugin, isStringWithOnlyOneEmoji } from '../../../../Emoji'
-import { MessageWithMember } from '../../../../../models/Message'
+import type { MessageWithMember } from '../../../../../models/Message'
 
 export interface MessageContentProps {
   message: MessageWithMember

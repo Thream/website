@@ -1,7 +1,7 @@
 import useTranslation from 'next-translate/useTranslation'
 import TextareaAutosize from 'react-textarea-autosize'
 
-import { MessageProps } from '../Message'
+import type { MessageProps } from '../Message'
 
 export interface EditMessageProps extends MessageProps {
   handleEdit: () => Promise<void>

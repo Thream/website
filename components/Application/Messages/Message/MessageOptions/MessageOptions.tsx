@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation'
 
 import { useAuthentication } from '../../../../../tools/authentication'
 import { Emoji } from '../../../../Emoji'
-import { MessageProps } from '../Message'
+import type { MessageProps } from '../Message'
 
 interface MessageOptionsProps extends MessageProps {
   handleEdit: () => void

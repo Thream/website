@@ -17,7 +17,9 @@ export const ConfirmPopup: React.FC<ConfirmPopupProps> = ({ ...props }) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleYesLoading = async (): Promise<void> => {
-    setIsLoading((isLoading) => !isLoading)
+    setIsLoading((isLoading) => {
+      return !isLoading
+    })
     await props.handleYes()
   }
 

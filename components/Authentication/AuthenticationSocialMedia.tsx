@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 
 import { api } from '../../tools/api'
 import { Authentication, isTokens } from '../../tools/authentication'
-import { SocialMediaButton, SocialMedia } from '../design/SocialMediaButton'
+import type { SocialMedia } from '../design/SocialMediaButton'
+import { SocialMediaButton } from '../design/SocialMediaButton'
 import { providers } from '../../models/OAuth'
 
 export const AuthenticationSocialMedia: React.FC = () => {

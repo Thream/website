@@ -1,12 +1,15 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
 
-import { NextPage, usePagination } from '../hooks/usePagination'
+import type { NextPage } from '../hooks/usePagination'
+import { usePagination } from '../hooks/usePagination'
 import { useAuthentication } from '../tools/authentication'
-import { MemberWithPublicUser } from '../models/Member'
-import { GuildsChannelsPath } from '../components/Application'
-import { handleSocketData, SocketData } from '../tools/handleSocketData'
-import { User } from '../models/User'
-import { CacheKey, MEMBERS_CACHE_KEY } from '../tools/cache'
+import type { MemberWithPublicUser } from '../models/Member'
+import type { GuildsChannelsPath } from '../components/Application'
+import type { SocketData } from '../tools/handleSocketData'
+import { handleSocketData } from '../tools/handleSocketData'
+import type { User } from '../models/User'
+import type { CacheKey } from '../tools/cache'
+import { MEMBERS_CACHE_KEY } from '../tools/cache'
 
 export interface Members {
   members: MemberWithPublicUser[]

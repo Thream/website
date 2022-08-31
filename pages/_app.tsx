@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import useTranslation from 'next-translate/useTranslation'
 

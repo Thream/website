@@ -1,12 +1,9 @@
 import { useState, useRef, useCallback } from 'react'
-import { AxiosInstance } from 'axios'
+import type { AxiosInstance } from 'axios'
 import type { FetchState } from 'react-component-form'
 
-import {
-  CacheKey,
-  getPaginationCache,
-  savePaginationCache
-} from '../tools/cache'
+import type { CacheKey } from '../tools/cache'
+import { getPaginationCache, savePaginationCache } from '../tools/cache'
 
 export interface Query {
   [key: string]: string
@@ -70,9 +67,9 @@ export const usePagination = <T extends PaginationItem>(
           ? [...newItems, ...oldItems]
           : [...oldItems, ...newItems]
         const unique = updatedItems.reduce<T[]>((accumulator, item) => {
-          const isExisting = accumulator.some(
-            (itemSome) => itemSome.id === item.id
-          )
+          const isExisting = accumulator.some((itemSome) => {
+            return itemSome.id === item.id
+          })
           if (!isExisting) {
             accumulator.push(item)
           }

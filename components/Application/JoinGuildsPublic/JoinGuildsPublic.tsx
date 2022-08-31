@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { useAuthentication } from '../../../tools/authentication'
-import { GuildPublic as GuildPublicType } from '../../../models/Guild'
+import type { GuildPublic as GuildPublicType } from '../../../models/Guild'
 import { Loader } from '../../design/Loader'
 import { GuildPublic } from './GuildPublic'
 import { usePagination } from '../../../hooks/usePagination'
-import { SocketData, handleSocketData } from '../../../tools/handleSocketData'
+import type { SocketData } from '../../../tools/handleSocketData'
+import { handleSocketData } from '../../../tools/handleSocketData'
 
 export const JoinGuildsPublic: React.FC = () => {
   const [search, setSearch] = useState('')

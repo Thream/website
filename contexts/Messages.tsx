@@ -1,11 +1,14 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
 
-import { NextPage, usePagination } from '../hooks/usePagination'
+import type { NextPage } from '../hooks/usePagination'
+import { usePagination } from '../hooks/usePagination'
 import { useAuthentication } from '../tools/authentication'
-import { MessageWithMember } from '../models/Message'
-import { GuildsChannelsPath } from '../components/Application'
-import { handleSocketData, SocketData } from '../tools/handleSocketData'
-import { CacheKey, MESSAGES_CACHE_KEY } from '../tools/cache'
+import type { MessageWithMember } from '../models/Message'
+import type { GuildsChannelsPath } from '../components/Application'
+import type { SocketData } from '../tools/handleSocketData'
+import { handleSocketData } from '../tools/handleSocketData'
+import type { CacheKey } from '../tools/cache'
+import { MESSAGES_CACHE_KEY } from '../tools/cache'
 
 export interface Messages {
   messages: MessageWithMember[]

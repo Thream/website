@@ -1,9 +1,11 @@
-import axios, { AxiosInstance } from 'axios'
-import { io, Socket } from 'socket.io-client'
+import type { AxiosInstance } from 'axios'
+import axios from 'axios'
+import type { Socket } from 'socket.io-client'
+import { io } from 'socket.io-client'
 
 import { API_URL } from '../api'
 import { cookies } from '../cookies'
-import { Tokens } from '.'
+import type { Tokens } from '.'
 import { fetchRefreshToken } from './authenticationFromServerSide'
 import { clearCache } from '../cache'
 

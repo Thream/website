@@ -3,8 +3,9 @@ import { useTheme } from 'next-themes'
 import setLanguage from 'next-translate/setLanguage'
 import useTranslation from 'next-translate/useTranslation'
 
-import { Authentication, PagePropsWithAuthentication } from '.'
-import { UserCurrent } from '../../models/User'
+import type { PagePropsWithAuthentication } from '.'
+import { Authentication } from '.'
+import type { UserCurrent } from '../../models/User'
 
 export interface AuthenticationValue {
   authentication: Authentication

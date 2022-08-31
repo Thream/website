@@ -1,7 +1,8 @@
-import { Type, Static } from '@sinclair/typebox'
+import type { Static } from '@sinclair/typebox'
+import { Type } from '@sinclair/typebox'
 
 import { date, id } from './utils'
-import { MemberWithPublicUser } from './Member'
+import type { MemberWithPublicUser } from './Member'
 
 export const types = [Type.Literal('text'), Type.Literal('file')]
 

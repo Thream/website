@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { CogIcon } from '@heroicons/react/solid'
 
-import { GuildsChannelsPath } from '../Application'
-import { Channel as ChannelType } from '../../../models/Channel'
+import type { GuildsChannelsPath } from '../Application'
+import type { Channel as ChannelType } from '../../../models/Channel'
 import { useGuildMember } from '../../../contexts/GuildMember'
 import { IconButton } from '../../design/IconButton'
 

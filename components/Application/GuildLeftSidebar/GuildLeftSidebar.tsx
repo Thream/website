@@ -5,7 +5,7 @@ import { useGuildMember } from '../../../contexts/GuildMember'
 import { Divider } from '../../design/Divider'
 import { Channels } from '../Channels'
 import { IconButton } from '../../design/IconButton'
-import { GuildsChannelsPath } from '..'
+import type { GuildsChannelsPath } from '..'
 
 export interface GuildLeftSidebarProps {
   path: GuildsChannelsPath

@@ -14,10 +14,8 @@ import { FormState } from '../design/FormState'
 import { AuthenticationForm } from '.'
 import { userSchema } from '../../models/User'
 import { api } from '../../tools/api'
-import {
-  Tokens,
-  Authentication as AuthenticationClass
-} from '../../tools/authentication'
+import type { Tokens } from '../../tools/authentication'
+import { Authentication as AuthenticationClass } from '../../tools/authentication'
 import { AuthenticationSocialMedia } from './AuthenticationSocialMedia'
 import { useFormTranslation } from '../../hooks/useFormTranslation'
 

@@ -1,5 +1,5 @@
-import { UserSettings } from '../../../models/UserSettings'
-import { User } from '../../../models/User'
+import type { UserSettings } from '../../../models/UserSettings'
+import type { User } from '../../../models/User'
 
 export const userExample: User = {
   id: 1,
