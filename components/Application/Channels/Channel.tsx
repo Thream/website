@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import classNames from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -14,7 +15,7 @@ export interface ChannelProps {
   selected?: boolean
 }
 
-export const Channel: React.FC<ChannelProps> = (props) => {
+const ChannelMemo: React.FC<ChannelProps> = (props) => {
   const { channel, path, selected = false } = props
   const router = useRouter()
 
@@ -53,3 +54,5 @@ export const Channel: React.FC<ChannelProps> = (props) => {
     </Link>
   )
 }
+
+export const Channel = memo(ChannelMemo)

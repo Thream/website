@@ -14,7 +14,7 @@ export type CacheKey =
 export const getPaginationCache = <T extends PaginationItem>(
   key: CacheKey
 ): T[] => {
-  const cache = localStorage.getItem(key)
+  const cache = sessionStorage.getItem(key)
   if (cache != null) {
     try {
       const data = JSON.parse(cache)
@@ -30,5 +30,9 @@ export const savePaginationCache = <T extends PaginationItem>(
   key: CacheKey,
   data: T[]
 ): void => {
-  localStorage.setItem(key, JSON.stringify(data))
+  sessionStorage.setItem(key, JSON.stringify(data))
+}
+
+export const clearCache = (): void => {
+  sessionStorage.clear()
 }

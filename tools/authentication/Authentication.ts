@@ -5,6 +5,7 @@ import { API_URL } from '../api'
 import { cookies } from '../cookies'
 import { Tokens } from '.'
 import { fetchRefreshToken } from './authenticationFromServerSide'
+import { clearCache } from '../cache'
 
 export class Authentication {
   public tokens: Tokens
@@ -15,7 +16,7 @@ export class Authentication {
   constructor(tokens: Tokens, disableSocketIO: boolean = false) {
     this.tokens = tokens
     this.accessTokenAge = Date.now()
-    if (disableSocketIO || typeof window === 'undefined') {
+    if (typeof window === 'undefined' || disableSocketIO) {
       this.socket = undefined
     } else {
       this.socket = io(API_URL, {
@@ -99,7 +100,7 @@ export class Authentication {
 
   public signout(): void {
     cookies.remove('refreshToken')
-    window.localStorage.clear()
+    clearCache()
     window.location.href = '/authentication/signin'
   }
 
@@ -120,6 +121,7 @@ export class Authentication {
   }
 
   public signin(): void {
+    clearCache()
     cookies.set('refreshToken', this.tokens.refreshToken)
   }
 }

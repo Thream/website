@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 
 import { NextPage, usePagination } from '../hooks/usePagination'
@@ -28,7 +28,9 @@ export const ChannelsProvider: React.FC<
   const router = useRouter()
   const { authentication } = useAuthentication()
 
-  const cacheKey: CacheKey = `${path.guildId}-${CHANNELS_CACHE_KEY}`
+  const cacheKey = useMemo<CacheKey>(() => {
+    return `${path.guildId}-${CHANNELS_CACHE_KEY}`
+  }, [path.guildId])
 
   const {
     items: channels,
@@ -75,7 +77,7 @@ export const ChannelsProvider: React.FC<
 export const useChannels = (): Channels => {
   const channels = useContext(ChannelsContext)
   if (channels === defaultChannelsContext) {
-    throw new Error('useChannels must be used within ChannelsProvider')
+    throw new Error('`useChannels` must be used within `ChannelsProvider`')
   }
   return channels
 }

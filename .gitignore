@@ -49,3 +49,4 @@ npm-debug.log*
 .DS_Store
 .lighthouseci
 .vercel
+*.hbs

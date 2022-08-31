@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 
 import { NextPage, usePagination } from '../hooks/usePagination'
 import { useAuthentication } from '../tools/authentication'
@@ -28,7 +28,9 @@ export const MembersProviders: React.FC<
 
   const { authentication } = useAuthentication()
 
-  const cacheKey: CacheKey = `${path.guildId}-${MEMBERS_CACHE_KEY}`
+  const cacheKey = useMemo<CacheKey>(() => {
+    return `${path.guildId}-${MEMBERS_CACHE_KEY}`
+  }, [path.guildId])
 
   const {
     items: members,
@@ -89,7 +91,7 @@ export const MembersProviders: React.FC<
 export const useMembers = (): Members => {
   const members = useContext(MembersContext)
   if (members === defaultMembersContext) {
-    throw new Error('useMembers must be used within MembersProvider')
+    throw new Error('`useMembers` must be used within `MembersProvider`')
   }
   return members
 }

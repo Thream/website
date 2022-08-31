@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Image from 'next/image'
 
 import { GuildWithDefaultChannelId } from '../../../models/Guild'
@@ -8,7 +9,7 @@ export interface GuildProps {
   selected?: boolean
 }
 
-export const Guild: React.FC<GuildProps> = (props) => {
+const GuildMemo: React.FC<GuildProps> = (props) => {
   const { guild, selected } = props
 
   return (
@@ -34,3 +35,5 @@ export const Guild: React.FC<GuildProps> = (props) => {
     </IconLink>
   )
 }
+
+export const Guild = memo(GuildMemo)

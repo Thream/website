@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 
 import { NextPage, usePagination } from '../hooks/usePagination'
 import { useAuthentication } from '../tools/authentication'
@@ -26,7 +26,9 @@ export const MessagesProvider: React.FC<
   const { path, children } = props
   const { authentication, user } = useAuthentication()
 
-  const cacheKey: CacheKey = `${path.channelId}-${MESSAGES_CACHE_KEY}`
+  const cacheKey = useMemo<CacheKey>(() => {
+    return `${path.channelId}-${MESSAGES_CACHE_KEY}`
+  }, [path.channelId])
 
   const {
     items: messages,
@@ -88,7 +90,7 @@ export const MessagesProvider: React.FC<
 export const useMessages = (): Messages => {
   const messages = useContext(MessagesContext)
   if (messages === defaultMessagesContext) {
-    throw new Error('useMessages must be used within a MessagesProvider')
+    throw new Error('`useMessages` must be used within a `MessagesProvider`')
   }
   return messages
 }
