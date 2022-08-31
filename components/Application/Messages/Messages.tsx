@@ -30,21 +30,21 @@ export const Messages: React.FC = () => {
       id='messages'
       className='scrollbar-firefox-support flex w-full flex-1 flex-col-reverse overflow-y-auto transition-all'
     >
-      <InfiniteScroll
-        scrollableTarget='messages'
-        className='messages-list !overflow-x-hidden'
-        dataLength={messages.length}
-        next={nextPage}
-        inverse
-        hasMore={hasMore}
-        loader={<Loader />}
-      >
-        <AnimatePresence>
+      <AnimatePresence>
+        <InfiniteScroll
+          scrollableTarget='messages'
+          className='messages-list !overflow-x-hidden'
+          dataLength={messages.length}
+          next={nextPage}
+          inverse
+          hasMore={hasMore}
+          loader={<Loader />}
+        >
           {messages.map((message) => (
             <Message key={message.id} message={message} />
           ))}
-        </AnimatePresence>
-      </InfiniteScroll>
+        </InfiniteScroll>
+      </AnimatePresence>
     </div>
   )
 }
