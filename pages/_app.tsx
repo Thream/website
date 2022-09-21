@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import type { AppProps } from 'next/app'
+import type { AppType } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import useTranslation from 'next-translate/useTranslation'
 
@@ -15,7 +15,7 @@ import '@fontsource/roboto/700.css'
 
 import { cookies } from '../tools/cookies'
 
-const Application = ({ Component, pageProps }: AppProps): JSX.Element => {
+const Application: AppType = ({ Component, pageProps }) => {
   const { lang } = useTranslation()
 
   useEffect(() => {

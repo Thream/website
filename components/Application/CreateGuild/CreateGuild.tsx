@@ -23,12 +23,12 @@ export const CreateGuild: React.FC = () => {
   const { t } = useTranslation()
   const router = useRouter()
 
-  const { handleUseForm, fetchState, message, errors } = useForm(schema as any)
+  const { handleUseForm, fetchState, message, errors } = useForm(schema)
   const { getFirstErrorTranslation } = useFormTranslation()
 
   const { authentication } = useAuthentication()
 
-  const onSubmit: HandleUseFormCallback<any> = async (formData) => {
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (formData) => {
     try {
       const { data } = await authentication.api.post<
         any,

@@ -47,10 +47,10 @@ export const GuildSettings: React.FC = () => {
     errors,
     setFetchState,
     setMessage
-  } = useForm(schema as any)
+  } = useForm(schema)
   const { getFirstErrorTranslation } = useFormTranslation()
 
-  const onSubmit: HandleUseFormCallback<any> = async (formData) => {
+  const onSubmit: HandleUseFormCallback<typeof schema> = async (formData) => {
     try {
       await authentication.api.put(`/guilds/${guild.id}`, formData)
       setInputValues(formData as unknown as any)
@@ -206,7 +206,7 @@ export const GuildSettings: React.FC = () => {
             message={
               message != null
                 ? t(message)
-                : getFirstErrorTranslation(errors.email)
+                : getFirstErrorTranslation(errors.name)
             }
           />
         </div>

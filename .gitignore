@@ -50,3 +50,7 @@ npm-debug.log*
 .lighthouseci
 .vercel
 *.hbs
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
