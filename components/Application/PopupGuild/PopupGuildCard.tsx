@@ -23,11 +23,12 @@ export const PopupGuildCard: React.FC<PopupGuildCardProps> = (props) => {
         <p className='mt-6 px-8 text-center text-sm text-gray-200'>
           {description}
         </p>
-        <Link href={link.href}>
-          <a className='mb-6 flex h-10 w-4/5 items-center justify-center self-center rounded-2xl bg-green-400 font-bold tracking-wide text-white transition duration-200 ease-in-out hover:bg-green-600'>
-            {link.icon}
-            {link.text}
-          </a>
+        <Link
+          href={link.href}
+          className='mb-6 flex h-10 w-4/5 items-center justify-center self-center rounded-2xl bg-green-400 font-bold tracking-wide text-white transition duration-200 ease-in-out hover:bg-green-600'
+        >
+          {link.icon}
+          {link.text}
         </Link>
       </div>
     </div>

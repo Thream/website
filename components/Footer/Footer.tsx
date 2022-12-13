@@ -15,10 +15,11 @@ export const Footer: React.FC<FooterProps> = (props) => {
   return (
     <footer className='flex flex-col items-center justify-center border-t-2 border-gray-600 bg-white py-6 text-lg dark:border-gray-400 dark:bg-black'>
       <p>
-        <Link href='/'>
-          <a className='text-green-800 hover:underline dark:text-green-400'>
-            Thream
-          </a>
+        <Link
+          href='/'
+          className='text-green-800 hover:underline dark:text-green-400'
+        >
+          Thream
         </Link>{' '}
         | {t('common:all-rights-reserved')}
       </p>

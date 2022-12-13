@@ -25,15 +25,14 @@ const Home: NextPage<FooterProps> = (props) => {
         <div className='flex w-4/5 flex-col items-center'>
           <div className='max-w-xs'>
             <Link href='/authentication/signup'>
-              <a>
-                <Image
-                  quality={100}
-                  width={351}
-                  height={341}
-                  src='/images/svg/design/home.svg'
-                  alt={"Thream's chat app"}
-                />
-              </a>
+              <Image
+                quality={100}
+                width={351}
+                height={341}
+                src='/images/svg/design/home.svg'
+                alt={"Thream's chat app"}
+                priority
+              />
             </Link>
           </div>
           <div className='text-center'>
@@ -55,7 +54,7 @@ const Home: NextPage<FooterProps> = (props) => {
               />
             </div>
             <div className='mt-8 flex items-center justify-center space-x-4 text-center'>
-              <Link href='/authentication/signup' passHref>
+              <Link href='/authentication/signup' passHref legacyBehavior>
                 <ButtonLink data-cy='get-started'>
                   {t('home:get-started')}
                 </ButtonLink>

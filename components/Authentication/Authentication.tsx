@@ -139,11 +139,9 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
                 : '/authentication/signup'
             }
           >
-            <a>
-              {mode === 'signup'
-                ? t('authentication:already-have-an-account')
-                : t('authentication:dont-have-an-account')}
-            </a>
+            {mode === 'signup'
+              ? t('authentication:already-have-an-account')
+              : t('authentication:dont-have-an-account')}
           </Link>
         </p>
       </AuthenticationForm>

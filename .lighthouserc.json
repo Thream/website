@@ -5,11 +5,11 @@
       "startServerReadyPattern": "ready on",
       "startServerReadyTimeout": 20000,
       "url": [
-        "http://localhost:3000/",
-        "http://localhost:3000/authentication/forgot-password",
-        "http://localhost:3000/authentication/reset-password",
-        "http://localhost:3000/authentication/signin",
-        "http://localhost:3000/authentication/signup"
+        "http://127.0.0.1:3000/",
+        "http://127.0.0.1:3000/authentication/forgot-password",
+        "http://127.0.0.1:3000/authentication/reset-password",
+        "http://127.0.0.1:3000/authentication/signin",
+        "http://127.0.0.1:3000/authentication/signup"
       ],
       "numberOfRuns": 1
     },

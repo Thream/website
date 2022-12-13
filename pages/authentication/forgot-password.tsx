@@ -71,7 +71,7 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
           </Button>
           <p className='mt-3 font-headline text-sm text-green-800 hover:underline dark:text-green-400'>
             <Link href='/authentication/signin'>
-              <a>{t('authentication:already-know-password')}</a>
+              {t('authentication:already-know-password')}
             </Link>
           </p>
         </AuthenticationForm>

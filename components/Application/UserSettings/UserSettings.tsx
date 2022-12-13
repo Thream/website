@@ -312,16 +312,15 @@ export const UserSettings: React.FC = () => {
             <Language className='!top-12' />
             <div className='ml-auto flex'>
               <SwitchTheme />
-              <Link href={`/application/users/${user.id}`}>
-                <a
-                  className='group ml-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg bg-slate-200 transition-colors hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-800'
-                  title='Preview Public Profile'
-                >
-                  <EyeIcon
-                    height={20}
-                    className='opacity-50 transition-opacity group-hover:opacity-100'
-                  />
-                </a>
+              <Link
+                href={`/application/users/${user.id}`}
+                className='group ml-3 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg bg-slate-200 transition-colors hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-800'
+                title='Preview Public Profile'
+              >
+                <EyeIcon
+                  height={20}
+                  className='opacity-50 transition-opacity group-hover:opacity-100'
+                />
               </Link>
             </div>
           </div>

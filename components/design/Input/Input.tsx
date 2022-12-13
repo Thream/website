@@ -44,13 +44,12 @@ export const Input: React.FC<InputProps> = (props) => {
             {label}
           </label>
           {type === 'password' && showForgotPassword ? (
-            <Link href='/authentication/forgot-password'>
-              <a
-                className='text-center font-headline text-xs text-green-800 hover:underline dark:text-green-400 sm:text-sm'
-                data-cy='forgot-password-link'
-              >
-                {t('authentication:forgot-password')}
-              </a>
+            <Link
+              href='/authentication/forgot-password'
+              className='text-center font-headline text-xs text-green-800 hover:underline dark:text-green-400 sm:text-sm'
+              data-cy='forgot-password-link'
+            >
+              {t('authentication:forgot-password')}
             </Link>
           ) : null}
         </div>
