@@ -11,6 +11,7 @@ export const Header: React.FC = () => {
         <Link href='/'>
           <div className='flex items-center justify-center'>
             <Image
+              priority
               quality={100}
               width={60}
               height={60}
