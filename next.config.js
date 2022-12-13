@@ -5,16 +5,16 @@ const nextPWA = require('next-pwa')({
 const nextTranslate = require('next-translate')
 
 /** @type {import("next").NextConfig} */
-module.exports = nextTranslate(
-  nextPWA({
-    reactStrictMode: false,
-    images: {
-      domains: [
-        'api.thream.divlo.fr',
-        'thream-api.herokuapp.com',
-        'file-uploads-api.thream.divlo.fr',
-        ...(process.env.NODE_ENV !== 'production' ? ['localhost'] : [])
-      ]
-    }
-  })
-)
+const nextConfig = {
+  reactStrictMode: false,
+  output: 'standalone',
+  images: {
+    domains: [
+      'api.thream.divlo.fr',
+      'file-uploads-api.thream.divlo.fr',
+      ...(process.env.NODE_ENV !== 'production' ? ['127.0.0.1'] : [])
+    ]
+  }
+}
+
+module.exports = nextTranslate(nextPWA(nextConfig))
