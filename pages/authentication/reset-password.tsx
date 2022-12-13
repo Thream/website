@@ -15,7 +15,6 @@ import { Input } from '../../components/design/Input'
 import { Button } from '../../components/design/Button'
 import { authenticationFromServerSide } from '../../tools/authentication'
 import { AuthenticationForm } from '../../components/Authentication'
-import { ScrollableBody } from '../../components/ScrollableBody'
 import { api } from '../../tools/api'
 import { userSchema } from '../../models/User'
 import { useFormTranslation } from '../../hooks/useFormTranslation'
@@ -55,7 +54,7 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
   }
 
   return (
-    <ScrollableBody>
+    <>
       <Head title={`Thream | ${t('authentication:reset-password')}`} />
       <Header />
       <Main>
@@ -81,7 +80,7 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
         />
       </Main>
       <Footer version={version} />
-    </ScrollableBody>
+    </>
   )
 }
 

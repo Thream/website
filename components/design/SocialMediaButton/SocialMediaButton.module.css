@@ -1,0 +1,11 @@
+.buttonGoogle {
+  color: #000;
+  border: 1px solid #000;
+}
+.buttonMedia {
+  color: #fff;
+  border: none;
+}
+.button:focus {
+  box-shadow: 0 0 0 2px #27b05e;
+}

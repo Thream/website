@@ -3,6 +3,7 @@ import Image from 'next/image'
 import classNames from 'clsx'
 
 import type { ProviderOAuth } from '../../../models/OAuth'
+import styles from './SocialMediaButton.module.css'
 
 export type SocialMedia = ProviderOAuth
 
@@ -52,27 +53,21 @@ export const SocialMediaButton: React.FC<SocialMediaButtonProps> = (props) => {
   }, [socialMedia])
 
   return (
-    <>
-      <button
-        {...rest}
-        className={classNames(className, 'button', givenClassName)}
-      >
-        <SocialMediaChildren socialMedia={socialMedia} />
-      </button>
-
-      <style jsx>
-        {`
-          .button {
-            background: ${socialMediaColor};
-            color: ${socialMedia === 'Google' ? '#000' : '#fff'};
-            border: ${socialMedia === 'Google' ? '1px solid #000' : 'none'};
-          }
-          .button:focus {
-            box-shadow: 0 0 0 2px #27b05e;
-          }
-        `}
-      </style>
-    </>
+    <button
+      {...rest}
+      style={{ background: socialMediaColor }}
+      className={classNames(
+        className,
+        styles.button,
+        {
+          [styles.buttonGoogle]: socialMedia === 'Google',
+          [styles.buttonMedia]: socialMedia !== 'Google'
+        },
+        givenClassName
+      )}
+    >
+      <SocialMediaChildren socialMedia={socialMedia} />
+    </button>
   )
 }
 
@@ -88,23 +83,20 @@ export const SocialMediaLink: React.FC<SocialMediaLinkProps> = (props) => {
   }, [socialMedia])
 
   return (
-    <>
-      <a {...rest} className={classNames(className, 'link', givenClassName)}>
-        <SocialMediaChildren socialMedia={socialMedia} />
-      </a>
-
-      <style jsx>
-        {`
-          .link {
-            background: ${socialMediaColor};
-            color: ${socialMedia === 'Google' ? '#000' : '#fff'};
-            border: ${socialMedia === 'Google' ? '1px solid #000' : 'none'};
-          }
-          .link:focus {
-            box-shadow: 0 0 0 2px #27b05e;
-          }
-        `}
-      </style>
-    </>
+    <a
+      {...rest}
+      style={{ background: socialMediaColor }}
+      className={classNames(
+        className,
+        styles.button,
+        {
+          [styles.buttonGoogle]: socialMedia === 'Google',
+          [styles.buttonMedia]: socialMedia !== 'Google'
+        },
+        givenClassName
+      )}
+    >
+      <SocialMediaChildren socialMedia={socialMedia} />
+    </a>
   )
 }

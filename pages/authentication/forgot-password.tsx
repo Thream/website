@@ -15,7 +15,6 @@ import { Input } from '../../components/design/Input'
 import { Button } from '../../components/design/Button'
 import { FormState } from '../../components/design/FormState'
 import { authenticationFromServerSide } from '../../tools/authentication'
-import { ScrollableBody } from '../../components/ScrollableBody'
 import { userSchema } from '../../models/User'
 import { api } from '../../tools/api'
 import { useFormTranslation } from '../../hooks/useFormTranslation'
@@ -60,7 +59,7 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
   }
 
   return (
-    <ScrollableBody>
+    <>
       <Head title={`Thream | ${t('authentication:forgot-password')}`} />
       <Header />
       <Main>
@@ -86,7 +85,7 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
         />
       </Main>
       <Footer version={version} />
-    </ScrollableBody>
+    </>
   )
 }
 

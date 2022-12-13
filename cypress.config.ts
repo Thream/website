@@ -19,9 +19,7 @@ let server: Mockttp | null = null
 export default defineConfig({
   fixturesFolder: false,
   video: false,
-  downloadsFolder: undefined,
   screenshotOnRunFailure: false,
-
   e2e: {
     baseUrl: 'http://127.0.0.1:3000',
     supportFile: false,
@@ -62,7 +60,6 @@ export default defineConfig({
       return config
     }
   },
-
   component: {
     devServer: {
       framework: 'next',

@@ -5,7 +5,6 @@ import { ErrorPage } from '../components/ErrorPage'
 import { Head } from '../components/Head'
 import { Header } from '../components/Header'
 import type { FooterProps } from '../components/Footer'
-import { Footer } from '../components/Footer'
 
 const Error500: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
@@ -16,10 +15,11 @@ const Error500: NextPage<FooterProps> = (props) => {
       <Head title='Thream | 500' />
 
       <Header />
-      <main className='flex flex-col md:mx-auto md:max-w-4xl lg:max-w-7xl'>
-        <ErrorPage statusCode={500} message={t('errors:server-error')} />
-      </main>
-      <Footer version={version} />
+      <ErrorPage
+        statusCode={500}
+        message={t('errors:server-error')}
+        version={version}
+      />
     </>
   )
 }

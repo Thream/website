@@ -11,14 +11,13 @@ import type { FooterProps } from '../components/Footer'
 import { Footer } from '../components/Footer'
 import { SocialMediaLink } from '../components/design/SocialMediaButton'
 import { ButtonLink } from '../components/design/Button'
-import { ScrollableBody } from '../components/ScrollableBody'
 
 const Home: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
   const { version } = props
 
   return (
-    <ScrollableBody>
+    <>
       <Head />
       <Header />
       <Main>
@@ -71,7 +70,7 @@ const Home: NextPage<FooterProps> = (props) => {
         </div>
       </Main>
       <Footer version={version} />
-    </ScrollableBody>
+    </>
   )
 }
 

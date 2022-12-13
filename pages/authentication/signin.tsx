@@ -7,19 +7,18 @@ import { Header } from '../../components/Header'
 import type { FooterProps } from '../../components/Footer'
 import { Footer } from '../../components/Footer'
 import { authenticationFromServerSide } from '../../tools/authentication'
-import { ScrollableBody } from '../../components/ScrollableBody'
 
 const Signin: NextPage<FooterProps> = (props) => {
   const { version } = props
   const { t } = useTranslation()
 
   return (
-    <ScrollableBody>
+    <>
       <Head title={`Thream | ${t('authentication:signin')}`} />
       <Header />
       <Authentication mode='signin' />
       <Footer version={version} />
-    </ScrollableBody>
+    </>
   )
 }
 
