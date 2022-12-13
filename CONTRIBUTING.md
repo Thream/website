@@ -16,6 +16,7 @@ All work on **Thream/website** happens directly on [GitHub](https://github.com/T
 - Suggest a new feature idea.
 - Correct spelling errors, improvements or additions to documentation files.
 - Improve structure/format/performance/refactor/tests of the code.
+- [Add translations](#add-a-translation).
 
 ## Pull Requests
 
@@ -61,3 +62,15 @@ Scopes define what part of the code changed.
 git commit -m "feat(components): add Button"
 git commit -m "docs(readme): update installation process"
 ```
+
+## Add a translation
+
+[Reference issue](https://github.com/Thream/website/issues/24)
+
+Feel free to contribute to Thream and add new languages, we would appreciate your help!
+
+To add a new language:
+
+- `npm install`
+- `npm run generate`
+- Start editing JSON files with the translation in `locales/{{locale}}` (e.g: `locales/en`)
