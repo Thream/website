@@ -2,8 +2,6 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import date from 'date-and-time'
-import type { MotionProps } from 'framer-motion'
-import { motion } from 'framer-motion'
 
 import type { MessageWithMember } from '../../../../models/Message'
 import { MessageText } from './MessageText'
@@ -13,7 +11,7 @@ import { useAuthentication } from '../../../../tools/authentication'
 import { MessageOptions } from './MessageOptions'
 import { EditMessage } from './EditMessage'
 
-export interface MessageProps extends MotionProps {
+export interface MessageProps {
   message: MessageWithMember
 }
 
@@ -58,19 +56,9 @@ export const Message: React.FC<MessageProps> = (props) => {
   }
 
   return (
-    <motion.div
-      layout
-      initial='initial'
-      animate='animate'
-      exit='exit'
+    <div
       data-cy={`message-${message.id}`}
       className='group flex w-full p-4 transition hover:bg-gray-200 dark:hover:bg-gray-900'
-      transition={{ type: 'spring', stiffness: 500, damping: 60 }}
-      variants={{
-        initial: { x: -100, opacity: 0 },
-        animate: { x: 0, opacity: 1 },
-        exit: { opacity: 0 }
-      }}
     >
       <Link href={`/application/users/${message.member.user.id}`}>
         <div className='mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center'>
@@ -136,6 +124,6 @@ export const Message: React.FC<MessageProps> = (props) => {
           <Loader />
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
