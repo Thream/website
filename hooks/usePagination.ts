@@ -57,10 +57,13 @@ export const usePagination = <T extends PaginationItem>(
         `${url}?${searchParameters.toString()}`
       )
       if (!inverse) {
+        const endIndex = newItems.length - 1
+        const lastItem = newItems[endIndex]
         afterId.current =
-          newItems.length > 0 ? newItems[newItems.length - 1].id : null
+          newItems.length > 0 && lastItem != null ? lastItem.id : null
       } else {
-        afterId.current = newItems.length > 0 ? newItems[0].id : null
+        afterId.current =
+          newItems.length > 0 && newItems[0] != null ? newItems[0].id : null
       }
       setItems((oldItems) => {
         const updatedItems = inverse
@@ -110,10 +113,13 @@ export const usePagination = <T extends PaginationItem>(
       const newItems = getPaginationCache<T>(cacheKey)
       setItems(newItems)
       if (!inverse) {
+        const endIndex = newItems.length - 1
+        const lastItem = newItems[endIndex]
         afterId.current =
-          newItems.length > 0 ? newItems[newItems.length - 1].id : null
+          newItems.length > 0 && lastItem != null ? lastItem.id : null
       } else {
-        afterId.current = newItems.length > 0 ? newItems[0].id : null
+        afterId.current =
+          newItems.length > 0 && newItems[0] != null ? newItems[0].id : null
       }
       fetchState.current = 'idle'
     }

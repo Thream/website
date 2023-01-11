@@ -35,7 +35,7 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
     try {
       await api.put(`/users/reset-password`, {
         ...formData,
-        temporaryToken: router.query.temporaryToken
+        temporaryToken: router.query['temporaryToken']
       })
       await router.push('/authentication/signin')
       return null

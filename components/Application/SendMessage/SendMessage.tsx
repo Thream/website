@@ -54,7 +54,7 @@ export const SendMessage: React.FC<SendMessageProps> = (props) => {
     event
   ) => {
     const files = event?.target?.files
-    if (files != null && files.length === 1) {
+    if (files != null && files.length === 1 && files[0] != null) {
       const file = files[0]
       const formData = new FormData()
       formData.append('file', file)

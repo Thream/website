@@ -35,7 +35,7 @@ const UserProfilePage: NextPage<UserProfilePageProps> = (props) => {
 export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true,
   fetchData: async (context, api) => {
-    const userId = Number(context?.params?.userId)
+    const userId = Number(context?.params?.['userId'])
     if (isNaN(userId)) {
       return {
         notFound: true

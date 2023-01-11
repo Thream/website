@@ -59,7 +59,9 @@ export class Authentication {
           this.setAccessToken(accessToken)
         }
         config.headers = config.headers == null ? {} : config.headers
-        config.headers.Authorization = `${this.tokens.type} ${this.tokens.accessToken}`
+        config.headers[
+          'Authorization'
+        ] = `${this.tokens.type} ${this.tokens.accessToken}`
         return config
       },
       async (error) => {
@@ -96,7 +98,7 @@ export class Authentication {
     this.accessTokenAge = Date.now()
     const token = `${this.tokens.type} ${this.tokens.accessToken}`
     if (typeof this?.socket?.auth !== 'function' && this.socket != null) {
-      this.socket.auth.token = token
+      this.socket.auth['token'] = token
     }
   }
 

@@ -41,7 +41,7 @@ const GuildSettingsPage: NextPage<GuildSettingsPageProps> = (props) => {
 export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true,
   fetchData: async (context, api) => {
-    const guildId = Number(context?.params?.guildId)
+    const guildId = Number(context?.params?.['guildId'])
     if (isNaN(guildId)) {
       return {
         notFound: true

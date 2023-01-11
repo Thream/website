@@ -149,7 +149,7 @@ export const UserSettings: React.FC = () => {
   ) => {
     setFetchState('loading')
     const files = event?.target?.files
-    if (files != null && files.length === 1) {
+    if (files != null && files.length === 1 && files[0] != null) {
       const file = files[0]
       const formData = new FormData()
       formData.append('logo', file)

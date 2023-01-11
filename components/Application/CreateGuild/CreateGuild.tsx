@@ -35,7 +35,11 @@ export const CreateGuild: React.FC = () => {
         AxiosResponse<{ guild: GuildComplete }>
       >('/guilds', { name: formData.name, description: formData.description })
       const guildId = data.guild.id
-      const channelId = data.guild.channels[0].id
+      const channel = data.guild.channels[0]
+      if (channel == null) {
+        throw new Error('No channel found')
+      }
+      const channelId = channel.id
       await router.push(`/application/${guildId}/${channelId}`)
       return null
     } catch (error) {

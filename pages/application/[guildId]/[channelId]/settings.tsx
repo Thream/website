@@ -57,8 +57,8 @@ const ChannelSettingsPage: NextPage<ChannelSettingsPageProps> = (props) => {
 export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true,
   fetchData: async (context, api) => {
-    const channelId = Number(context?.params?.channelId)
-    const guildId = Number(context?.params?.guildId)
+    const channelId = Number(context?.params?.['channelId'])
+    const guildId = Number(context?.params?.['guildId'])
     if (isNaN(channelId) || isNaN(guildId)) {
       return {
         notFound: true

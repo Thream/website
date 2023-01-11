@@ -16,9 +16,9 @@ export const Loader: React.FC<LoaderProps> = (props) => {
         className='relative my-0 mx-auto before:block before:pt-[100%] before:content-none'
         style={{ width: `${width}px`, height: `${height}px` }}
       >
-        <svg className={styles.progressSpinnerSvg} viewBox='25 25 50 50'>
+        <svg className={styles['progressSpinnerSvg']} viewBox='25 25 50 50'>
           <circle
-            className={styles.progressSpinnerCircle}
+            className={styles['progressSpinnerCircle']}
             cx='50'
             cy='50'
             r='20'

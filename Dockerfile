@@ -1,21 +1,21 @@
-FROM node:18.12.1 AS dependencies
-WORKDIR /usr/src/app
+FROM node:18.13.0 AS builder-dependencies
+WORKDIR /usr/src/application
 COPY ./package*.json ./
 RUN npm install
 
-FROM node:18.12.1 AS builder
-WORKDIR /usr/src/app
+FROM node:18.13.0 AS builder
+WORKDIR /usr/src/application
+COPY --from=builder-dependencies /usr/src/application/node_modules ./node_modules
 COPY ./ ./
-COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 RUN npm run build
 
-FROM node:18.12.1 AS runner
-WORKDIR /usr/src/app
+FROM gcr.io/distroless/nodejs18-debian11:latest AS runner
+WORKDIR /usr/src/application
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-COPY --from=builder /usr/src/app/.next/standalone ./
-COPY --from=builder /usr/src/app/.next/static ./.next/static
-COPY --from=builder /usr/src/app/public ./public
-COPY --from=builder /usr/src/app/locales ./locales
-COPY --from=builder /usr/src/app/next.config.js ./next.config.js
-CMD ["node", "server.js"]
+COPY --from=builder /usr/src/application/.next/standalone ./
+COPY --from=builder /usr/src/application/.next/static ./.next/static
+COPY --from=builder /usr/src/application/public ./public
+COPY --from=builder /usr/src/application/locales ./locales
+COPY --from=builder /usr/src/application/next.config.js ./next.config.js
+CMD ["./server.js"]

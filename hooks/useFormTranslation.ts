@@ -13,7 +13,7 @@ const getErrorTranslationKey = (error: Error): string => {
       return 'errors:required'
     }
     if (error.keyword === 'format') {
-      if (error.params.format === 'email') {
+      if (error.params['format'] === 'email') {
         return 'errors:invalid-email'
       }
       return 'errors:invalid'
@@ -43,7 +43,7 @@ export const useFormTranslation = (): UseFormTranslationResult => {
     if (error != null) {
       return t(getErrorTranslationKey(error)).replace(
         '{expected}',
-        error?.params?.limit
+        error?.params?.['limit']
       )
     }
     return undefined

@@ -58,10 +58,10 @@ export const SocialMediaButton: React.FC<SocialMediaButtonProps> = (props) => {
       style={{ background: socialMediaColor }}
       className={classNames(
         className,
-        styles.button,
+        styles['button'],
         {
-          [styles.buttonGoogle]: socialMedia === 'Google',
-          [styles.buttonMedia]: socialMedia !== 'Google'
+          [styles['buttonGoogle'] as string]: socialMedia === 'Google',
+          [styles['buttonMedia'] as string]: socialMedia !== 'Google'
         },
         givenClassName
       )}
@@ -88,10 +88,10 @@ export const SocialMediaLink: React.FC<SocialMediaLinkProps> = (props) => {
       style={{ background: socialMediaColor }}
       className={classNames(
         className,
-        styles.button,
+        styles['button'],
         {
-          [styles.buttonGoogle]: socialMedia === 'Google',
-          [styles.buttonMedia]: socialMedia !== 'Google'
+          [styles['buttonGoogle'] as string]: socialMedia === 'Google',
+          [styles['buttonMedia'] as string]: socialMedia !== 'Google'
         },
         givenClassName
       )}

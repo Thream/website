@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export const API_VERSION = '1.2.3'
+export const API_VERSION = '1.2.4'
 
 export const API_DEFAULT_PORT = 8080
 
 export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL != null
-    ? process.env.NEXT_PUBLIC_API_URL
+  process.env['NEXT_PUBLIC_API_URL'] != null
+    ? process.env['NEXT_PUBLIC_API_URL']
     : `http://127.0.0.1:${API_DEFAULT_PORT}`
 
 export const api = axios.create({
