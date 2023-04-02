@@ -42,18 +42,18 @@ const ForgotPassword: NextPage<FooterProps> = (props) => {
       formElement.reset()
       return {
         type: 'success',
-        value: 'authentication:success-forgot-password'
+        message: 'authentication:success-forgot-password'
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 400) {
         return {
           type: 'error',
-          value: 'errors:invalid-email'
+          message: 'errors:invalid-email'
         }
       }
       return {
         type: 'error',
-        value: 'errors:server-error'
+        message: 'errors:server-error'
       }
     }
   }

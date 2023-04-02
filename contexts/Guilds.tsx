@@ -17,9 +17,7 @@ export interface Guilds {
 const defaultGuildsContext = {} as any
 const GuildsContext = createContext<Guilds>(defaultGuildsContext)
 
-export const GuildsProvider: React.FC<React.PropsWithChildren<{}>> = (
-  props
-) => {
+export const GuildsProvider: React.FC<React.PropsWithChildren> = (props) => {
   const { children } = props
 
   const { authentication } = useAuthentication()

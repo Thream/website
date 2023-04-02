@@ -49,7 +49,7 @@ export const JoinGuildsPublic: React.FC = () => {
       <input
         data-cy='search-guild-input'
         onChange={handleChange}
-        className='my-6 mx-auto mt-16 w-10/12 rounded-md border border-gray-500 bg-white p-3 dark:border-gray-700 dark:bg-[#3B3B3B] sm:w-8/12 md:w-6/12 lg:w-5/12'
+        className='mx-auto my-6 mt-16 w-10/12 rounded-md border border-gray-500 bg-white p-3 dark:border-gray-700 dark:bg-[#3B3B3B] sm:w-8/12 md:w-6/12 lg:w-5/12'
         type='search'
         name='search-guild'
         placeholder={`🔎  ${t('application:search')}...`}

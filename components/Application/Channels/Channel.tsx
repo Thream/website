@@ -25,7 +25,7 @@ const ChannelMemo: React.FC<ChannelProps> = (props) => {
     <Link
       href={`/application/${path.guildId}/${channel.id}`}
       className={classNames(
-        'group relative my-3 mx-3 flex items-center justify-between overflow-hidden rounded-lg py-2 text-sm transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-600',
+        'group relative mx-3 my-3 flex items-center justify-between overflow-hidden rounded-lg py-2 text-sm transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-600',
         {
           'font-semibold text-green-800 dark:text-green-400': selected
         }

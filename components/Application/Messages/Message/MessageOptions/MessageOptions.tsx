@@ -22,7 +22,7 @@ export const MessageOptions: React.FC<
   }
 
   return (
-    <div className='absolute right-6 -top-8 flex opacity-0 transition-opacity group-hover:opacity-100'>
+    <div className='absolute -top-8 right-6 flex opacity-0 transition-opacity group-hover:opacity-100'>
       {message.type === 'text' && (
         <div
           className='message-options rounded-l-lg border-l-slate-600'

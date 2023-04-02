@@ -58,7 +58,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                       <a
                         href={`mailto:${user.email}`}
                         target='_blank'
-                        className='relative ml-2 font-normal tracking-wide no-underline opacity-80 transition-all after:absolute after:left-0 after:bottom-[-1px] after:h-[1px] after:w-0 after:bg-black after:transition-all hover:opacity-100 hover:after:w-full dark:after:bg-white'
+                        className='relative ml-2 font-normal tracking-wide no-underline opacity-80 transition-all after:absolute after:bottom-[-1px] after:left-0 after:h-[1px] after:w-0 after:bg-black after:transition-all hover:opacity-100 hover:after:w-full dark:after:bg-white'
                         rel='noreferrer'
                         data-cy='user-email'
                       >
@@ -73,7 +73,7 @@ export const UserProfile: React.FC<UserProfileProps> = (props) => {
                         target='_blank'
                         rel='noreferrer'
                         href={user.website}
-                        className='relative ml-2 font-normal tracking-wide no-underline opacity-80 transition-all after:absolute after:left-0 after:bottom-[-2px] after:h-[1px] after:w-0 after:bg-black after:transition-all hover:opacity-100 hover:after:w-full dark:after:bg-white'
+                        className='relative ml-2 font-normal tracking-wide no-underline opacity-80 transition-all after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:w-0 after:bg-black after:transition-all hover:opacity-100 hover:after:w-full dark:after:bg-white'
                       >
                         {user.website}
                       </a>

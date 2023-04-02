@@ -38,7 +38,7 @@ export const CreateChannel: React.FC = () => {
     } catch (error) {
       return {
         type: 'error',
-        value: 'errors:server-error'
+        message: 'errors:server-error'
       }
     }
   }

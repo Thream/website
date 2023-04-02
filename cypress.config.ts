@@ -5,7 +5,7 @@ import { getLocal } from 'mockttp'
 import type { Mockttp } from 'mockttp'
 
 import { API_DEFAULT_PORT } from './tools/api'
-import type { Handlers, Method } from './cypress/fixtures/handler'
+import type { Handlers } from './cypress/fixtures/handler'
 
 const UPLOADS_FIXTURES_DIRECTORY = path.join(
   process.cwd(),
@@ -26,25 +26,38 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       on('task', {
         async startMockServer(handlers: Handlers): Promise<null> {
-          server = getLocal({
-            cors: true
-          })
+          server = getLocal({ cors: true })
           await server.start(API_DEFAULT_PORT)
           for (const handler of handlers) {
             const { isFile = false } = handler.response
-            const method = handler.method.toLowerCase() as Lowercase<Method>
+            let requestBuilder = server.forGet(handler.url)
+            switch (handler.method) {
+              case 'GET':
+                requestBuilder = server.forGet(handler.url)
+                break
+              case 'POST':
+                requestBuilder = server.forPost(handler.url)
+                break
+              case 'PUT':
+                requestBuilder = server.forPut(handler.url)
+                break
+              case 'DELETE':
+                requestBuilder = server.forDelete(handler.url)
+                break
+            }
             if (isFile) {
-              await server[method](handler.url).thenFromFile(
+              await requestBuilder.thenFromFile(
                 handler.response.statusCode,
                 path.join(UPLOADS_FIXTURES_DIRECTORY, ...handler.response.body)
               )
             } else {
-              await server[method](handler.url).thenJson(
+              await requestBuilder.thenJson(
                 handler.response.statusCode,
                 handler.response.body
               )
             }
           }
+
           return null
         },
 

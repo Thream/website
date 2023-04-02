@@ -96,7 +96,7 @@ export const GuildPublic: React.FC<GuildPublicProps> = (props) => {
       <ConfirmPopup
         title={`${t('application:join-the-guild')} ?`}
         className={classNames(
-          'w-ful h-ful translate-x- absolute top-1/2 left-full flex h-full w-full -translate-y-1/2 flex-col items-center justify-center rounded-2xl transition-all',
+          'w-ful h-ful translate-x- absolute left-full top-1/2 flex h-full w-full -translate-y-1/2 flex-col items-center justify-center rounded-2xl transition-all',
           {
             '!left-0': isConfirmed
           }

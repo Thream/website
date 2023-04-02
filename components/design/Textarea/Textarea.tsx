@@ -10,7 +10,7 @@ export const Textarea: React.FC<TextareaProps> = (props) => {
 
   return (
     <div className='flex flex-col'>
-      <div className='mt-6 mb-2 flex justify-between'>
+      <div className='mb-2 mt-6 flex justify-between'>
         <label className='pl-1' htmlFor={id}>
           {label}
         </label>

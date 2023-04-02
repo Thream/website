@@ -2,6 +2,7 @@ import type { AxiosInstance } from 'axios'
 import axios from 'axios'
 import type { Socket } from 'socket.io-client'
 import { io } from 'socket.io-client'
+import { isUnauthorizedError } from '@thream/socketio-jwt'
 
 import { API_URL } from '../api'
 import { cookies } from '../cookies'
@@ -30,7 +31,7 @@ export class Authentication {
         )
       })
       this.socket.on('connect_error', (error) => {
-        if (error.message.startsWith('Unauthorized')) {
+        if (isUnauthorizedError(error)) {
           fetchRefreshToken(this.tokens.refreshToken)
             .then(({ accessToken }) => {
               this.setAccessToken(accessToken)
@@ -58,10 +59,7 @@ export class Authentication {
           )
           this.setAccessToken(accessToken)
         }
-        config.headers = config.headers == null ? {} : config.headers
-        config.headers[
-          'Authorization'
-        ] = `${this.tokens.type} ${this.tokens.accessToken}`
+        config.headers.Authorization = `${this.tokens.type} ${this.tokens.accessToken}`
         return config
       },
       async (error) => {

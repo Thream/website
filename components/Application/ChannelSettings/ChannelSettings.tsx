@@ -64,7 +64,7 @@ export const ChannelSettings: React.FC<ChannelSettingsProps> = (props) => {
     } catch (error) {
       return {
         type: 'error',
-        value: 'errors:server-error'
+        message: 'errors:server-error'
       }
     }
   }

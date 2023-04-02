@@ -56,12 +56,12 @@ export const GuildSettings: React.FC = () => {
       setInputValues(formData as unknown as any)
       return {
         type: 'success',
-        value: 'application:saved-information'
+        message: 'application:saved-information'
       }
     } catch (error) {
       return {
         type: 'error',
-        value: 'errors:server-error'
+        message: 'errors:server-error'
       }
     }
   }

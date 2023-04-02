@@ -27,7 +27,7 @@ export const ConfirmPopup: React.FC<ConfirmPopupProps> = ({ ...props }) => {
     <div className={props.className}>
       <Loader
         className={classNames(
-          'absolute top-1/2 left-1/2 scale-0 transition-all',
+          'absolute left-1/2 top-1/2 scale-0 transition-all',
           {
             'scale-100': isLoading
           }

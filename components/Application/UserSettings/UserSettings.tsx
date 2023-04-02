@@ -75,7 +75,7 @@ export const UserSettings: React.FC = () => {
       if (hasEmailChanged) {
         return {
           type: 'success',
-          value: 'application:success-email-changed'
+          message: 'application:success-email-changed'
         }
       }
       const { data: userCurrentSettings } = await authentication.api.put(
@@ -94,7 +94,7 @@ export const UserSettings: React.FC = () => {
       })
       return {
         type: 'success',
-        value: 'application:saved-information'
+        message: 'application:saved-information'
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 400) {
@@ -102,22 +102,22 @@ export const UserSettings: React.FC = () => {
         if (message.endsWith('already taken.')) {
           return {
             type: 'error',
-            value: 'authentication:already-used'
+            message: 'authentication:already-used'
           }
         } else if (message.endsWith('email to sign in.')) {
           return {
             type: 'error',
-            value: 'authentication:email-required-to-sign-in'
+            message: 'authentication:email-required-to-sign-in'
           }
         }
         return {
           type: 'error',
-          value: 'errors:server-error'
+          message: 'errors:server-error'
         }
       }
       return {
         type: 'error',
-        value: 'errors:server-error'
+        message: 'errors:server-error'
       }
     }
   }

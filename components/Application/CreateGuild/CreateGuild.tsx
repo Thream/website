@@ -45,7 +45,7 @@ export const CreateGuild: React.FC = () => {
     } catch (error) {
       return {
         type: 'error',
-        value: 'errors:server-error'
+        message: 'errors:server-error'
       }
     }
   }

@@ -36,7 +36,7 @@ export const Input: React.FC<InputProps> = (props) => {
 
   return (
     <div className='flex flex-col'>
-      <div className={classNames('mt-6 mb-2 flex justify-between', className)}>
+      <div className={classNames('mb-2 mt-6 flex justify-between', className)}>
         <label className='pl-1' htmlFor={name}>
           {label}
         </label>
@@ -66,7 +66,7 @@ export const Input: React.FC<InputProps> = (props) => {
             style={{
               backgroundImage: `url('/images/svg/icons/input/${inputType}.svg')`
             }}
-            className='absolute top-3 right-4 z-10 h-5 w-5 cursor-pointer bg-[#f1f1f1] bg-cover'
+            className='absolute right-4 top-3 z-10 h-5 w-5 cursor-pointer bg-[#f1f1f1] bg-cover'
           />
         )}
         <FormState

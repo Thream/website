@@ -43,12 +43,12 @@ const ResetPassword: NextPage<FooterProps> = (props) => {
       if (axios.isAxiosError(error) && error.response?.status === 400) {
         return {
           type: 'error',
-          value: 'errors:invalid'
+          message: 'errors:invalid'
         }
       }
       return {
         type: 'error',
-        value: 'errors:server-error'
+        message: 'errors:server-error'
       }
     }
   }

@@ -29,7 +29,7 @@ export const SwitchTheme: React.FC = () => {
           <div
             data-cy='switch-theme-dark'
             className={classNames(
-              'absolute top-0 bottom-0 left-[8px] mt-auto mb-auto h-[10px] w-[14px] leading-[0] transition-opacity duration-[250ms] ease-in-out',
+              'absolute bottom-0 left-[8px] top-0 mb-auto mt-auto h-[10px] w-[14px] leading-[0] transition-opacity duration-[250ms] ease-in-out',
               {
                 'opacity-100': theme === 'dark',
                 'opacity-0': theme === 'light'
@@ -43,7 +43,7 @@ export const SwitchTheme: React.FC = () => {
           <div
             data-cy='switch-theme-light'
             className={classNames(
-              'absolute right-[10px] top-0 bottom-0 mt-auto mb-auto h-[10px] w-[10px] leading-[0]',
+              'absolute bottom-0 right-[10px] top-0 mb-auto mt-auto h-[10px] w-[10px] leading-[0]',
               {
                 'opacity-100': theme === 'light',
                 'opacity-0': theme === 'dark'

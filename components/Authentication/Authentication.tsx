@@ -54,7 +54,7 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
         formElement.reset()
         return {
           type: 'success',
-          value: 'authentication:success-signup'
+          message: 'authentication:success-signup'
         }
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 400) {
@@ -62,17 +62,17 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
           if (message.endsWith('already taken.')) {
             return {
               type: 'error',
-              value: 'authentication:already-used'
+              message: 'authentication:already-used'
             }
           }
           return {
             type: 'error',
-            value: 'errors:server-error'
+            message: 'errors:server-error'
           }
         }
         return {
           type: 'error',
-          value: 'errors:server-error'
+          message: 'errors:server-error'
         }
       }
     } else {
@@ -86,12 +86,12 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
         if (axios.isAxiosError(error) && error.response?.status === 400) {
           return {
             type: 'error',
-            value: 'authentication:wrong-credentials'
+            message: 'authentication:wrong-credentials'
           }
         }
         return {
           type: 'error',
-          value: 'errors:server-error'
+          message: 'errors:server-error'
         }
       }
     }

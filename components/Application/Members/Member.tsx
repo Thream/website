@@ -14,7 +14,7 @@ const MemberMemo: React.FC<MemberProps> = (props) => {
 
   return (
     <Link href={`/application/users/${member.user.id}`}>
-      <div className='flex cursor-pointer items-center overflow-hidden py-2 px-6 pr-10 hover:bg-gray-300 dark:hover:bg-gray-900'>
+      <div className='flex cursor-pointer items-center overflow-hidden px-6 py-2 pr-10 hover:bg-gray-300 dark:hover:bg-gray-900'>
         <div className='flex min-w-[50px] rounded-full'>
           <Image
             src={
