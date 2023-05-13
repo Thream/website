@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_VERSION = '1.2.5'
+export const API_VERSION = '1.2.6'
 
 export const API_DEFAULT_PORT = 8080
 
