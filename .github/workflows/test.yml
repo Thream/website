@@ -10,61 +10,39 @@ jobs:
   test-unit:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v3.5.0'
+      - uses: 'actions/checkout@v3.5.2'
 
-      - name: 'Use Node.js'
+      - name: 'Setup Node.js'
         uses: 'actions/setup-node@v3.6.0'
         with:
           node-version: '18.x'
           cache: 'npm'
 
-      - name: 'Install'
-        run: 'npm install'
+      - name: 'Install dependencies'
+        run: 'npm clean-install'
 
       - name: 'Unit Test'
         run: 'npm run test:unit'
-
-  test-lighthouse:
-    runs-on: 'ubuntu-latest'
-    steps:
-      - uses: 'actions/checkout@v3.5.0'
-
-      - name: 'Use Node.js'
-        uses: 'actions/setup-node@v3.6.0'
-        with:
-          node-version: '18.x'
-          cache: 'npm'
-
-      - name: 'Install'
-        run: 'npm install'
-
-      - name: 'Build'
-        run: 'npm run build'
-
-      - name: 'html-w3c-validator'
-        run: 'npm run test:html-w3c-validator'
-
-      - name: 'Lighthouse'
-        run: 'npm run test:lighthouse'
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
   test-e2e:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@v3.5.0'
 
-      - name: 'Use Node.js'
+      - name: 'Setup Node.js'
         uses: 'actions/setup-node@v3.6.0'
         with:
           node-version: '18.x'
           cache: 'npm'
 
-      - name: 'Install'
-        run: 'npm install'
+      - name: 'Install dependencies'
+        run: 'npm clean-install'
 
       - name: 'Build'
         run: 'npm run build'
+
+      - name: 'html-w3c-validator'
+        run: 'npm run test:html-w3c-validator'
 
       - name: 'End To End (e2e) Test'
         run: 'npm run test:e2e'

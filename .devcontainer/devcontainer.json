@@ -3,18 +3,22 @@
   "dockerComposeFile": "./docker-compose.yml",
   "service": "workspace",
   "workspaceFolder": "/workspace",
-  "settings": {
-    "remote.autoForwardPorts": false
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "remote.autoForwardPorts": false
+      },
+      "extensions": [
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "mikestead.dotenv",
+        "davidanson.vscode-markdownlint",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
   },
-  "extensions": [
-    "editorconfig.editorconfig",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "bradlc.vscode-tailwindcss",
-    "mikestead.dotenv",
-    "davidanson.vscode-markdownlint",
-    "ms-azuretools.vscode-docker"
-  ],
   "forwardPorts": [3000],
   "postAttachCommand": ["npm", "install"],
   "remoteUser": "node"
