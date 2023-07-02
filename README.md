@@ -18,7 +18,7 @@
 
 Thream's website to stay close with your friends and communities.
 
-It uses [Thream/api](https://github.com/Thream/api) [v1.2.6](https://github.com/Thream/api/releases/tag/v1.2.6).
+It uses [Thream/api](https://github.com/Thream/api) [v1.2.7](https://github.com/Thream/api/releases/tag/v1.2.7).
 
 ## ⚙️ Getting Started
 
@@ -31,7 +31,7 @@ It uses [Thream/api](https://github.com/Thream/api) [v1.2.6](https://github.com/
 
 ```sh
 # Clone the repository
-git clone https://github.com/Thream/website.git
+git clone git@github.com:Thream/website.git
 
 # Go to the project root
 cd website
