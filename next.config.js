@@ -7,7 +7,7 @@ const nextConfig = {
   images: {
     domains: [
       'api.thream.theoludwig.fr',
-      'file-uploads-api.theoludwig.fr',
+      'file-uploads-api.thream.theoludwig.fr',
       ...(process.env.NODE_ENV !== 'production' ? ['127.0.0.1'] : [])
     ]
   }
