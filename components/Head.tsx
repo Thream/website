@@ -13,9 +13,9 @@ export const Head: React.FC<HeadProps> = (props) => {
 
   const {
     title = 'Thream',
-    image = 'https://thream.divlo.fr/images/icons/128x128.png',
+    image = 'https://thream.theoludwig.fr/images/icon-128x128.png',
     description = t('common:description'),
-    url = 'https://thream.divlo.fr/'
+    url = 'https://thream.theoludwig.fr/'
   } = props
 
   return (
@@ -26,7 +26,7 @@ export const Head: React.FC<HeadProps> = (props) => {
       {/* Meta Tag */}
       <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       <meta name='description' content={description} />
-      <meta name='Language' content='fr, en' />
+      <meta name='Language' content='fr-FR, en-US' />
       <meta name='theme-color' content='#27B05E' />
 
       {/* Open Graph Metadata */}
@@ -35,7 +35,7 @@ export const Head: React.FC<HeadProps> = (props) => {
       <meta property='og:url' content={url} />
       <meta property='og:image' content={image} />
       <meta property='og:description' content={description} />
-      <meta property='og:locale' content='fr_FR, en_US' />
+      <meta property='og:locale' content='fr-FR, en-US' />
       <meta property='og:site_name' content={title} />
 
       {/* Twitter card Metadata */}
@@ -43,12 +43,6 @@ export const Head: React.FC<HeadProps> = (props) => {
       <meta name='twitter:description' content={description} />
       <meta name='twitter:title' content={title} />
       <meta name='twitter:image' content={image} />
-
-      {/* PWA Data */}
-      <link rel='manifest' href='/manifest.json' />
-      <meta name='apple-mobile-web-app-capable' content='yes' />
-      <meta name='mobile-web-app-capable' content='yes' />
-      <link rel='apple-touch-icon' href={image} />
     </NextHead>
   )
 }

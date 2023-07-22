@@ -60,7 +60,12 @@ export const SendMessage: React.FC<SendMessageProps> = (props) => {
       formData.append('file', file)
       await authentication.api.post(
         `/channels/${path.channelId}/messages/uploads`,
-        formData
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
       )
     }
   }

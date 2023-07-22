@@ -18,10 +18,6 @@ cypress/screenshots
 cypress/videos
 cypress/downloads
 
-# PWA
-**/workbox-*.js
-**/sw.js
-
 # envs
 .env
 .env.production
@@ -47,8 +43,6 @@ npm-debug.log*
 
 # misc
 .DS_Store
-.lighthouseci
-.vercel
 *.hbs
 
 # typescript

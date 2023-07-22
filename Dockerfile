@@ -1,15 +1,16 @@
-FROM node:18.16.1 AS builder-dependencies
+FROM node:20.5.0 AS builder-dependencies
 WORKDIR /usr/src/application
+COPY ./.npmrc ./
 COPY ./package*.json ./
-RUN npm install
+RUN npm clean-install
 
-FROM node:18.16.1 AS builder
+FROM node:20.5.0 AS builder
 WORKDIR /usr/src/application
 COPY --from=builder-dependencies /usr/src/application/node_modules ./node_modules
 COPY ./ ./
 RUN npm run build
 
-FROM gcr.io/distroless/nodejs18-debian11:latest AS runner
+FROM gcr.io/distroless/nodejs20-debian11:latest AS runner
 WORKDIR /usr/src/application
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

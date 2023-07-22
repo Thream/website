@@ -59,7 +59,7 @@ export const getServerSideProps = authenticationFromServerSide({
   fetchData: async (context, api) => {
     const channelId = Number(context?.params?.['channelId'])
     const guildId = Number(context?.params?.['guildId'])
-    if (isNaN(channelId) || isNaN(guildId)) {
+    if (Number.isNaN(channelId) || Number.isNaN(guildId)) {
       return {
         notFound: true
       }

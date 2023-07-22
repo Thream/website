@@ -36,7 +36,7 @@ export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true,
   fetchData: async (context, api) => {
     const userId = Number(context?.params?.['userId'])
-    if (isNaN(userId)) {
+    if (Number.isNaN(userId)) {
       return {
         notFound: true
       }

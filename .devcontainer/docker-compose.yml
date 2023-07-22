@@ -6,3 +6,4 @@ services:
     volumes:
       - '..:/workspace:cached'
     command: 'sleep infinity'
+    network_mode: 'host'

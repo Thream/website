@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://thream.divlo.fr/">Thream/website</a></h1>
+<h1 align="center"><a href="https://thream.theoludwig.fr/">Thream/website</a></h1>
 
 <p align="center">
   <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" /></a>
@@ -18,7 +18,7 @@
 
 Thream's website to stay close with your friends and communities.
 
-It uses [Thream/api](https://github.com/Thream/api) [v1.2.7](https://github.com/Thream/api/releases/tag/v1.2.7).
+It uses [Thream/api](https://github.com/Thream/api) [v1.2.8](https://github.com/Thream/api/releases/tag/v1.2.8).
 
 ## ⚙️ Getting Started
 
@@ -40,7 +40,7 @@ cd website
 cp .env.example .env
 
 # Install
-npm install
+npm clean-install
 ```
 
 You will need to configure the environment variables by creating an `.env` file at

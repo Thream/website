@@ -6,7 +6,8 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "remote.autoForwardPorts": false
+        "remote.autoForwardPorts": false,
+        "remote.localPortHost": "allInterfaces"
       },
       "extensions": [
         "editorconfig.editorconfig",
@@ -19,7 +20,5 @@
       ]
     }
   },
-  "forwardPorts": [3000],
-  "postAttachCommand": ["npm", "install"],
   "remoteUser": "node"
 }

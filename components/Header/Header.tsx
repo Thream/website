@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
               quality={100}
               width={60}
               height={60}
-              src='/images/icons/Thream.png'
+              src='/images/Thream.png'
               alt='Thream'
             />
             <span className='ml-1 hidden font-headline font-medium text-green-800 dark:text-green-400 xs:block'>

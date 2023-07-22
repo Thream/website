@@ -156,7 +156,12 @@ export const UserSettings: React.FC = () => {
       try {
         const { data } = await authentication.api.put(
           `/users/current/logo`,
-          formData
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
         )
         setUser((oldUser) => {
           return {

@@ -47,6 +47,6 @@ Feel free to contribute to **Thream** and add new languages, we would appreciate
 
 To add a new language:
 
-- `npm install`
+- `npm clean-install`
 - `npm run generate`
 - Start editing JSON files with the translation in `locales/{{locale}}` (e.g: `locales/en`)

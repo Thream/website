@@ -29,7 +29,7 @@ export default defineConfig({
           server = getLocal({ cors: true })
           await server.start(API_DEFAULT_PORT)
           for (const handler of handlers) {
-            const { isFile = false } = handler.response
+            const { isFile = false, statusCode, body } = handler.response
             let requestBuilder = server.forGet(handler.url)
             switch (handler.method) {
               case 'GET':
@@ -47,14 +47,11 @@ export default defineConfig({
             }
             if (isFile) {
               await requestBuilder.thenFromFile(
-                handler.response.statusCode,
-                path.join(UPLOADS_FIXTURES_DIRECTORY, ...handler.response.body)
+                statusCode,
+                path.join(UPLOADS_FIXTURES_DIRECTORY, ...body)
               )
             } else {
-              await requestBuilder.thenJson(
-                handler.response.statusCode,
-                handler.response.body
-              )
+              await requestBuilder.thenJson(statusCode, body)
             }
           }
 

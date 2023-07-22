@@ -87,7 +87,11 @@ export const GuildSettings: React.FC = () => {
       const formData = new FormData()
       formData.append('icon', file)
       try {
-        await authentication.api.put(`/guilds/${guild.id}/icon`, formData)
+        await authentication.api.put(`/guilds/${guild.id}/icon`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
         setFetchState('idle')
       } catch (error) {
         setFetchState('error')
