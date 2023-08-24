@@ -10,10 +10,10 @@ jobs:
   test-unit:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v3.5.3'
+      - uses: 'actions/checkout@v3.6.0'
 
       - name: 'Setup Node.js'
-        uses: 'actions/setup-node@v3.6.0'
+        uses: 'actions/setup-node@v3.8.1'
         with:
           node-version: '20.x'
           cache: 'npm'
@@ -27,10 +27,10 @@ jobs:
   test-e2e:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v3.5.3'
+      - uses: 'actions/checkout@v3.6.0'
 
       - name: 'Setup Node.js'
-        uses: 'actions/setup-node@v3.6.0'
+        uses: 'actions/setup-node@v3.8.1'
         with:
           node-version: '20.x'
           cache: 'npm'
