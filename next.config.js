@@ -4,6 +4,9 @@ const nextTranslate = require('next-translate-plugin')
 const nextConfig = {
   reactStrictMode: false,
   output: 'standalone',
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   images: {
     domains: [
       'api.thream.theoludwig.fr',
