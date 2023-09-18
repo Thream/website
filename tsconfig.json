@@ -2,8 +2,9 @@
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
     "lib": ["dom", "dom.iterable", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
@@ -11,7 +12,6 @@
     },
     "types": ["cypress"],
     "noEmit": true,
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "preserve",
     "incremental": true,

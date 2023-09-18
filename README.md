@@ -18,7 +18,7 @@
 
 Thream's website to stay close with your friends and communities.
 
-It uses [Thream/api](https://github.com/Thream/api) [v1.2.8](https://github.com/Thream/api/releases/tag/v1.2.8).
+It uses [Thream/api](https://github.com/Thream/api) [v1.2.9](https://github.com/Thream/api/releases/tag/v1.2.9).
 
 ## ⚙️ Getting Started
 
