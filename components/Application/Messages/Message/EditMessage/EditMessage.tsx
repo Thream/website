@@ -1,7 +1,7 @@
-import useTranslation from 'next-translate/useTranslation'
-import TextareaAutosize from 'react-textarea-autosize'
+import useTranslation from "next-translate/useTranslation"
+import TextareaAutosize from "react-textarea-autosize"
 
-import type { MessageProps } from '../Message'
+import type { MessageProps } from "../Message"
 
 export interface EditMessageProps extends MessageProps {
   handleEdit: () => Promise<void>
@@ -15,7 +15,7 @@ export const EditMessage: React.FC<
   const { t } = useTranslation()
 
   const handleEditSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    event
+    event,
   ) => {
     event.preventDefault()
     await handleEdit()
@@ -23,23 +23,23 @@ export const EditMessage: React.FC<
 
   return (
     <form
-      className='flex h-full w-full items-center'
+      className="flex h-full w-full items-center"
       onSubmit={handleEditSubmit}
       onKeyDown={handleKeyDown}
     >
       <TextareaAutosize
-        className='scrollbar-firefox-support w-full resize-none bg-transparent p-2 tracking-wide outline-none'
-        placeholder={t('application:write-a-message')}
-        wrap='soft'
+        className="scrollbar-firefox-support w-full resize-none bg-transparent p-2 tracking-wide outline-none"
+        placeholder={t("application:write-a-message")}
+        wrap="soft"
         maxRows={6}
-        name='message'
+        name="message"
         defaultValue={message.value}
         ref={textareaRef}
         autoFocus
         onFocus={(event) => {
           event.currentTarget.setSelectionRange(
             event.currentTarget.value.length,
-            event.currentTarget.value.length
+            event.currentTarget.value.length,
           )
         }}
       />

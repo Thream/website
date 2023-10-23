@@ -1,6 +1,6 @@
-import { Emoji as EmojiMart } from 'emoji-mart'
+import { Emoji as EmojiMart } from "emoji-mart"
 
-import { EMOJI_SET } from './emojiPlugin'
+import { EMOJI_SET } from "./emojiPlugin"
 
 export interface EmojiProps {
   value: string

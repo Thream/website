@@ -1,8 +1,8 @@
-import type { Static } from '@sinclair/typebox'
-import { Type } from '@sinclair/typebox'
+import type { Static } from "@sinclair/typebox"
+import { Type } from "@sinclair/typebox"
 
-import { date, id } from './utils'
-import type { UserPublicWithoutSettings } from './User'
+import { date, id } from "./utils"
+import type { UserPublicWithoutSettings } from "./User"
 
 export const memberSchema = {
   id,
@@ -10,7 +10,7 @@ export const memberSchema = {
   createdAt: date.createdAt,
   updatedAt: date.updatedAt,
   userId: id,
-  guildId: id
+  guildId: id,
 }
 const memberObjectSchema = Type.Object(memberSchema)
 export type Member = Static<typeof memberObjectSchema>

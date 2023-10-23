@@ -1,11 +1,11 @@
 services:
   thream-website:
     container_name: ${COMPOSE_PROJECT_NAME}
-    image: 'thream-website'
-    restart: 'unless-stopped'
+    image: "thream-website"
+    restart: "unless-stopped"
     build:
-      context: './'
-    network_mode: 'host'
+      context: "./"
+    network_mode: "host"
     environment:
       PORT: ${PORT-3000}
-    env_file: '.env'
+    env_file: ".env"

@@ -1,33 +1,33 @@
-import { authenticationHandlers } from '../../../fixtures/handler'
+import { authenticationHandlers } from "../../../fixtures/handler"
 
-describe('Pages > /application', () => {
+describe("Pages > /application", () => {
   beforeEach(() => {
-    cy.task('stopMockServer')
+    cy.task("stopMockServer")
   })
 
   it('should redirect user to `/application/guilds/create` on click on "Create a Guild"', () => {
-    cy.task('startMockServer', [...authenticationHandlers]).setCookie(
-      'refreshToken',
-      'refresh-token'
+    cy.task("startMockServer", [...authenticationHandlers]).setCookie(
+      "refreshToken",
+      "refresh-token",
     )
-    cy.visit('/application')
-    cy.get('[data-cy=application-title]').should('have.text', 'Application')
+    cy.visit("/application")
+    cy.get("[data-cy=application-title]").should("have.text", "Application")
     cy.get('a[href="/application/guilds/create"]')
       .click()
-      .location('pathname')
-      .should('eq', '/application/guilds/create')
+      .location("pathname")
+      .should("eq", "/application/guilds/create")
   })
 
   it('should redirect user to `/application/guilds/join` on click on "Join a Guild"', () => {
-    cy.task('startMockServer', [...authenticationHandlers]).setCookie(
-      'refreshToken',
-      'refresh-token'
+    cy.task("startMockServer", [...authenticationHandlers]).setCookie(
+      "refreshToken",
+      "refresh-token",
     )
-    cy.visit('/application')
+    cy.visit("/application")
     cy.get('a[href="/application/guilds/join"]')
       .click()
-      .location('pathname')
-      .should('eq', '/application/guilds/join')
+      .location("pathname")
+      .should("eq", "/application/guilds/join")
   })
 })
 

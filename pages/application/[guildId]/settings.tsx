@@ -1,17 +1,17 @@
-import type { NextPage } from 'next'
-import useTranslation from 'next-translate/useTranslation'
+import type { NextPage } from "next"
+import useTranslation from "next-translate/useTranslation"
 
-import { Head } from '../../../components/Head'
-import { Application } from '../../../components/Application'
-import type { PagePropsWithAuthentication } from '../../../tools/authentication'
+import { Head } from "../../../components/Head"
+import { Application } from "../../../components/Application"
+import type { PagePropsWithAuthentication } from "../../../tools/authentication"
 import {
   authenticationFromServerSide,
-  AuthenticationProvider
-} from '../../../tools/authentication'
-import type { GuildMember } from '../../../contexts/GuildMember'
-import { GuildMemberProvider } from '../../../contexts/GuildMember'
-import { GuildsProvider } from '../../../contexts/Guilds'
-import { GuildSettings } from '../../../components/Application/GuildSettings'
+  AuthenticationProvider,
+} from "../../../tools/authentication"
+import type { GuildMember } from "../../../contexts/GuildMember"
+import { GuildMemberProvider } from "../../../contexts/GuildMember"
+import { GuildsProvider } from "../../../contexts/Guilds"
+import { GuildSettings } from "../../../components/Application/GuildSettings"
 
 export interface GuildSettingsPageProps extends PagePropsWithAuthentication {
   guildId: number
@@ -28,8 +28,8 @@ const GuildSettingsPage: NextPage<GuildSettingsPageProps> = (props) => {
     <AuthenticationProvider authentication={authentication}>
       <GuildsProvider>
         <GuildMemberProvider guildMember={guildMember} path={path}>
-          <Head title={`Thream | ${t('application:guild-settings')}`} />
-          <Application path={path} title={t('application:guild-settings')}>
+          <Head title={`Thream | ${t("application:guild-settings")}`} />
+          <Application path={path} title={t("application:guild-settings")}>
             <GuildSettings />
           </Application>
         </GuildMemberProvider>
@@ -41,20 +41,20 @@ const GuildSettingsPage: NextPage<GuildSettingsPageProps> = (props) => {
 export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true,
   fetchData: async (context, api) => {
-    const guildId = Number(context?.params?.['guildId'])
+    const guildId = Number(context?.params?.["guildId"])
     if (Number.isNaN(guildId)) {
       return {
-        notFound: true
+        notFound: true,
       }
     }
     const { data: guildMember } = await api.get<GuildMember>(
-      `/guilds/${guildId}`
+      `/guilds/${guildId}`,
     )
     return {
       guildId,
-      guildMember
+      guildMember,
     }
-  }
+  },
 })
 
 export default GuildSettingsPage

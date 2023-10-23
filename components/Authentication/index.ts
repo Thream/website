@@ -1,2 +1,2 @@
-export * from './Authentication'
-export * from './AuthenticationForm'
+export * from "./Authentication"
+export * from "./AuthenticationForm"

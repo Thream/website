@@ -1,6 +1,6 @@
-import type { SetItems } from '../hooks/usePagination'
-import type { CacheKey } from './cache'
-import { savePaginationCache } from './cache'
+import type { SetItems } from "../hooks/usePagination"
+import type { CacheKey } from "./cache"
+import { savePaginationCache } from "./cache"
 
 export interface Item {
   id: number
@@ -8,7 +8,7 @@ export interface Item {
 }
 
 export interface SocketData<T extends Item = Item> {
-  action: 'create' | 'update' | 'delete'
+  action: "create" | "update" | "delete"
   item: T
 }
 
@@ -21,19 +21,19 @@ export interface HandleSocketDataOptions<T extends Item = Item> {
 export type SocketListener = (data: SocketData) => void
 
 export const handleSocketData = <T extends Item = Item>(
-  options: HandleSocketDataOptions<T>
+  options: HandleSocketDataOptions<T>,
 ): void => {
   const { data, setItems, cacheKey } = options
-  console.log('socket.io data received: ', data)
+  console.log("socket.io data received: ", data)
 
   setItems((oldItems) => {
     const newItems = [...oldItems]
     switch (data.action) {
-      case 'create': {
+      case "create": {
         newItems.push(data.item)
         break
       }
-      case 'delete': {
+      case "delete": {
         const itemIndex = newItems.findIndex((item) => {
           return item.id === data.item.id
         })
@@ -42,14 +42,14 @@ export const handleSocketData = <T extends Item = Item>(
         }
         break
       }
-      case 'update': {
+      case "update": {
         const itemIndex = newItems.findIndex((item) => {
           return item.id === data.item.id
         })
         if (itemIndex !== -1) {
           newItems[itemIndex] = {
             ...newItems[itemIndex],
-            ...data.item
+            ...data.item,
           }
         }
         break

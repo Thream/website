@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { PlusIcon, MenuIcon, UsersIcon, XIcon } from '@heroicons/react/solid'
-import classNames from 'clsx'
-import { useMediaQuery } from 'react-responsive'
-import { useSwipeable } from 'react-swipeable'
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import { PlusIcon, MenuIcon, UsersIcon, XIcon } from "@heroicons/react/solid"
+import classNames from "clsx"
+import { useMediaQuery } from "react-responsive"
+import { useSwipeable } from "react-swipeable"
 
-import type { DirectionSidebar } from './Sidebar'
-import { Sidebar } from './Sidebar'
-import { IconButton } from '../design/IconButton'
-import { IconLink } from '../design/IconLink'
-import { Guilds } from './Guilds/Guilds'
-import { Divider } from '../design/Divider'
-import { Members } from './Members'
-import { useAuthentication } from '../../tools/authentication'
+import type { DirectionSidebar } from "./Sidebar"
+import { Sidebar } from "./Sidebar"
+import { IconButton } from "../design/IconButton"
+import { IconLink } from "../design/IconLink"
+import { Guilds } from "./Guilds/Guilds"
+import { Divider } from "../design/Divider"
+import { Members } from "./Members"
+import { useAuthentication } from "../../tools/authentication"
 
 export interface ChannelsPath {
   channelId: number
@@ -27,9 +27,9 @@ const isGuildsChannelsPath = (path: any): path is GuildsChannelsPath => {
 }
 
 export type ApplicationPath =
-  | '/application'
-  | '/application/guilds/join'
-  | '/application/guilds/create'
+  | "/application"
+  | "/application/guilds/join"
+  | "/application/guilds/create"
   | `/application/users/${number}`
   | `/application/users/settings`
   | GuildsChannelsPath
@@ -51,51 +51,51 @@ export const Application: React.FC<
   const [mounted, setMounted] = useState(false)
 
   const isMobile = useMediaQuery({
-    query: '(max-width: 900px)'
+    query: "(max-width: 900px)",
   })
 
   const [visibleSidebars, setVisibleSidebars] = useState({
     left: !isMobile,
-    right: false
+    right: false,
   })
 
   const handleToggleSidebars = (direction: DirectionSidebar): void => {
     if (!isMobile) {
-      if (direction === 'left') {
+      if (direction === "left") {
         return setVisibleSidebars({
           ...visibleSidebars,
-          left: !visibleSidebars.left
+          left: !visibleSidebars.left,
         })
       }
-      if (direction === 'right') {
+      if (direction === "right") {
         return setVisibleSidebars({
           ...visibleSidebars,
-          right: !visibleSidebars.right
+          right: !visibleSidebars.right,
         })
       }
     } else {
-      if (direction === 'right' && visibleSidebars.left) {
+      if (direction === "right" && visibleSidebars.left) {
         return setVisibleSidebars({
           left: false,
-          right: true
+          right: true,
         })
       }
-      if (direction === 'left' && visibleSidebars.right) {
+      if (direction === "left" && visibleSidebars.right) {
         return setVisibleSidebars({
           left: true,
-          right: false
+          right: false,
         })
       }
-      if (direction === 'left' && !visibleSidebars.right) {
+      if (direction === "left" && !visibleSidebars.right) {
         return setVisibleSidebars({
           ...visibleSidebars,
-          left: !visibleSidebars.left
+          left: !visibleSidebars.left,
         })
       }
-      if (direction === 'right' && !visibleSidebars.left) {
+      if (direction === "right" && !visibleSidebars.left) {
         return setVisibleSidebars({
           ...visibleSidebars,
-          right: !visibleSidebars.right
+          right: !visibleSidebars.right,
         })
       }
     }
@@ -105,7 +105,7 @@ export const Application: React.FC<
     if (isMobile && (visibleSidebars.left || visibleSidebars.right)) {
       return setVisibleSidebars({
         left: false,
-        right: false
+        right: false,
       })
     }
   }
@@ -120,7 +120,7 @@ export const Application: React.FC<
       }
       setVisibleSidebars({
         ...visibleSidebars,
-        left: true
+        left: true,
       })
     },
     onSwipedLeft: () => {
@@ -130,10 +130,10 @@ export const Application: React.FC<
         }
         setVisibleSidebars({
           ...visibleSidebars,
-          right: true
+          right: true,
         })
       }
-    }
+    },
   })
 
   useEffect(() => {
@@ -146,28 +146,28 @@ export const Application: React.FC<
 
   return (
     <>
-      <header className='z-50 flex h-16 items-center justify-between bg-gray-200 px-2 py-3 shadow-lg dark:bg-gray-800'>
+      <header className="z-50 flex h-16 items-center justify-between bg-gray-200 px-2 py-3 shadow-lg dark:bg-gray-800">
         <IconButton
-          className='h-10 w-10 p-2'
+          className="h-10 w-10 p-2"
           onClick={() => {
-            return handleToggleSidebars('left')
+            return handleToggleSidebars("left")
           }}
         >
           {!visibleSidebars.left ? <MenuIcon /> : <XIcon />}
         </IconButton>
         <div
-          data-cy='application-title'
-          className='text-md font-semibold text-green-800 dark:text-green-400'
+          data-cy="application-title"
+          className="text-md font-semibold text-green-800 dark:text-green-400"
         >
           {title}
         </div>
-        <div className='flex space-x-2'>
-          {title.startsWith('#') && (
+        <div className="flex space-x-2">
+          {title.startsWith("#") && (
             <IconButton
-              data-cy='icon-button-right-sidebar-members'
-              className='h-10 w-10 p-2'
+              data-cy="icon-button-right-sidebar-members"
+              className="h-10 w-10 p-2"
               onClick={() => {
-                return handleToggleSidebars('right')
+                return handleToggleSidebars("right")
               }}
             >
               {!visibleSidebars.right ? <UsersIcon /> : <XIcon />}
@@ -177,26 +177,26 @@ export const Application: React.FC<
       </header>
 
       <main
-        className='h-full-without-header relative flex overflow-hidden'
+        className="h-full-without-header relative flex overflow-hidden"
         {...swipeableHandlers}
       >
         <Sidebar
-          direction='left'
+          direction="left"
           visible={visibleSidebars.left}
           isMobile={isMobile}
         >
-          <div className='left-0 top-0 z-50 flex min-w-[92px] flex-col space-y-4 border-r-2 border-gray-500 bg-gray-200 py-2 dark:border-white/20 dark:bg-gray-800'>
+          <div className="left-0 top-0 z-50 flex min-w-[92px] flex-col space-y-4 border-r-2 border-gray-500 bg-gray-200 py-2 dark:border-white/20 dark:bg-gray-800">
             <IconLink
               href={`/application/users/settings`}
               selected={path === `/application/users/settings`}
-              title='Settings'
+              title="Settings"
             >
               <Image
                 quality={100}
-                className='rounded-full'
+                className="rounded-full"
                 src={
                   user.logo == null
-                    ? '/images/data/user-default.png'
+                    ? "/images/data/user-default.png"
                     : user.logo
                 }
                 alt={"Users's profil picture"}
@@ -206,11 +206,11 @@ export const Application: React.FC<
               />
             </IconLink>
             <IconLink
-              href='/application'
-              selected={path === '/application'}
-              title='Join or create a Guild'
+              href="/application"
+              selected={path === "/application"}
+              title="Join or create a Guild"
             >
-              <PlusIcon className='h-12 w-12 text-green-800 dark:text-green-400' />
+              <PlusIcon className="h-12 w-12 text-green-800 dark:text-green-400" />
             </IconLink>
             <Divider />
             <Guilds path={path} />
@@ -219,14 +219,14 @@ export const Application: React.FC<
         </Sidebar>
 
         <div
-          id='application-page-content'
+          id="application-page-content"
           onClick={handleCloseSidebars}
           className={classNames(
-            'h-full-without-header relative top-0 z-0 flex w-full flex-1 flex-col overflow-y-auto transition',
+            "h-full-without-header relative top-0 z-0 flex w-full flex-1 flex-col overflow-y-auto transition",
             {
-              'absolute opacity-20':
-                isMobile && (visibleSidebars.left || visibleSidebars.right)
-            }
+              "absolute opacity-20":
+                isMobile && (visibleSidebars.left || visibleSidebars.right),
+            },
           )}
         >
           {children}
@@ -234,7 +234,7 @@ export const Application: React.FC<
 
         {isGuildsChannelsPath(path) && (
           <Sidebar
-            direction='right'
+            direction="right"
             visible={visibleSidebars.right}
             isMobile={isMobile}
           >

@@ -1,8 +1,8 @@
-import { memo } from 'react'
-import Image from 'next/image'
+import { memo } from "react"
+import Image from "next/image"
 
-import type { GuildWithDefaultChannelId } from '../../../models/Guild'
-import { IconLink } from '../../design/IconLink'
+import type { GuildWithDefaultChannelId } from "../../../models/Guild"
+import { IconLink } from "../../design/IconLink"
 
 export interface GuildProps {
   guild: GuildWithDefaultChannelId
@@ -14,19 +14,19 @@ const GuildMemo: React.FC<GuildProps> = (props) => {
 
   return (
     <IconLink
-      className='mt-2'
+      className="mt-2"
       href={`/application/${guild.id}/${guild.defaultChannelId}`}
       selected={selected}
       title={guild.name}
     >
-      <div className='pl-[6px]'>
+      <div className="pl-[6px]">
         <Image
           quality={100}
-          className='rounded-full'
+          className="rounded-full"
           src={
-            guild.icon != null ? guild.icon : '/images/data/guild-default.png'
+            guild.icon != null ? guild.icon : "/images/data/guild-default.png"
           }
-          alt='logo'
+          alt="logo"
           width={48}
           height={48}
           draggable={false}

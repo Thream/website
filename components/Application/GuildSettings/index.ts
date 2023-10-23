@@ -1,1 +1,1 @@
-export * from './GuildSettings'
+export * from "./GuildSettings"

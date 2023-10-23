@@ -1,11 +1,11 @@
-import { createContext, useState, useEffect, useMemo, useContext } from 'react'
-import { useTheme } from 'next-themes'
-import setLanguage from 'next-translate/setLanguage'
-import useTranslation from 'next-translate/useTranslation'
+import { createContext, useState, useEffect, useMemo, useContext } from "react"
+import { useTheme } from "next-themes"
+import setLanguage from "next-translate/setLanguage"
+import useTranslation from "next-translate/useTranslation"
 
-import type { PagePropsWithAuthentication } from '.'
-import { Authentication } from '.'
-import type { UserCurrent } from '../../models/User'
+import type { PagePropsWithAuthentication } from "."
+import { Authentication } from "."
+import type { UserCurrent } from "../../models/User"
 
 export interface AuthenticationValue {
   authentication: Authentication
@@ -15,7 +15,7 @@ export interface AuthenticationValue {
 
 const defaultAuthenticationContext: AuthenticationValue = {} as any
 const AuthenticationContext = createContext<AuthenticationValue>(
-  defaultAuthenticationContext
+  defaultAuthenticationContext,
 )
 
 export const AuthenticationProvider: React.FC<
@@ -42,15 +42,15 @@ export const AuthenticationProvider: React.FC<
 
   useEffect(() => {
     authentication.api
-      .put('/users/current/settings', { theme, language: lang })
+      .put("/users/current/settings", { theme, language: lang })
       .then(({ data: userCurrentSettings }) => {
         setUser((oldUser) => {
           return {
             ...oldUser,
             settings: {
               ...oldUser.settings,
-              ...userCurrentSettings.settings
-            }
+              ...userCurrentSettings.settings,
+            },
           }
         })
       })

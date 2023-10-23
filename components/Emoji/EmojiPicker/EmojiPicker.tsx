@@ -1,13 +1,13 @@
-import 'emoji-mart/css/emoji-mart.css'
-import type { EmojiData } from 'emoji-mart'
-import { Picker } from 'emoji-mart'
-import { useTheme } from 'next-themes'
+import "emoji-mart/css/emoji-mart.css"
+import type { EmojiData } from "emoji-mart"
+import { Picker } from "emoji-mart"
+import { useTheme } from "next-themes"
 
-import { EMOJI_SET } from '../emojiPlugin'
+import { EMOJI_SET } from "../emojiPlugin"
 
 export type EmojiPickerOnClick = (
   emoji: EmojiData,
-  event: React.MouseEvent<HTMLElement, MouseEvent>
+  event: React.MouseEvent<HTMLElement, MouseEvent>,
 ) => void
 
 export interface EmojiPickerProps {
@@ -20,7 +20,7 @@ export const EmojiPicker: React.FC<EmojiPickerProps> = (props) => {
   return (
     <Picker
       set={EMOJI_SET}
-      theme={theme as 'light' | 'dark' | 'auto'}
+      theme={theme as "light" | "dark" | "auto"}
       onClick={props.onClick}
       showPreview={false}
       showSkinTones={false}

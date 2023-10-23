@@ -1,16 +1,16 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next"
 
-import { Head } from '../../../../components/Head'
-import { Application } from '../../../../components/Application'
-import type { PagePropsWithAuthentication } from '../../../../tools/authentication'
+import { Head } from "../../../../components/Head"
+import { Application } from "../../../../components/Application"
+import type { PagePropsWithAuthentication } from "../../../../tools/authentication"
 import {
   authenticationFromServerSide,
-  AuthenticationProvider
-} from '../../../../tools/authentication'
-import { UserProfile } from '../../../../components/Application/UserProfile'
-import { GuildsProvider } from '../../../../contexts/Guilds'
-import type { UserPublic } from '../../../../models/User'
-import type { Guild } from '../../../../models/Guild'
+  AuthenticationProvider,
+} from "../../../../tools/authentication"
+import { UserProfile } from "../../../../components/Application/UserProfile"
+import { GuildsProvider } from "../../../../contexts/Guilds"
+import type { UserPublic } from "../../../../models/User"
+import type { Guild } from "../../../../models/Guild"
 
 export interface UserProfilePageProps extends PagePropsWithAuthentication {
   user: UserPublic
@@ -35,18 +35,18 @@ const UserProfilePage: NextPage<UserProfilePageProps> = (props) => {
 export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true,
   fetchData: async (context, api) => {
-    const userId = Number(context?.params?.['userId'])
+    const userId = Number(context?.params?.["userId"])
     if (Number.isNaN(userId)) {
       return {
-        notFound: true
+        notFound: true,
       }
     }
     const { data } = await api.get(`/users/${userId}`)
     return {
       user: data.user,
-      guilds: data.guilds
+      guilds: data.guilds,
     }
-  }
+  },
 })
 
 export default UserProfilePage

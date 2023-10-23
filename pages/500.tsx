@@ -1,10 +1,10 @@
-import type { GetStaticProps, NextPage } from 'next'
-import useTranslation from 'next-translate/useTranslation'
+import type { GetStaticProps, NextPage } from "next"
+import useTranslation from "next-translate/useTranslation"
 
-import { ErrorPage } from '../components/ErrorPage'
-import { Head } from '../components/Head'
-import { Header } from '../components/Header'
-import type { FooterProps } from '../components/Footer'
+import { ErrorPage } from "../components/ErrorPage"
+import { Head } from "../components/Head"
+import { Header } from "../components/Header"
+import type { FooterProps } from "../components/Footer"
 
 const Error500: NextPage<FooterProps> = (props) => {
   const { t } = useTranslation()
@@ -12,12 +12,12 @@ const Error500: NextPage<FooterProps> = (props) => {
 
   return (
     <>
-      <Head title='Thream | 500' />
+      <Head title="Thream | 500" />
 
       <Header />
       <ErrorPage
         statusCode={500}
-        message={t('errors:server-error')}
+        message={t("errors:server-error")}
         version={version}
       />
     </>
@@ -25,7 +25,7 @@ const Error500: NextPage<FooterProps> = (props) => {
 }
 
 export const getStaticProps: GetStaticProps<FooterProps> = async () => {
-  const { readPackage } = await import('read-pkg')
+  const { readPackage } = await import("read-pkg")
   const { version } = await readPackage()
   return { props: { version } }
 }

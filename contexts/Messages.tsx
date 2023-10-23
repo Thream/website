@@ -1,14 +1,14 @@
-import { createContext, useContext, useEffect, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo } from "react"
 
-import type { NextPage } from '../hooks/usePagination'
-import { usePagination } from '../hooks/usePagination'
-import { useAuthentication } from '../tools/authentication'
-import type { MessageWithMember } from '../models/Message'
-import type { GuildsChannelsPath } from '../components/Application'
-import type { SocketData } from '../tools/handleSocketData'
-import { handleSocketData } from '../tools/handleSocketData'
-import type { CacheKey } from '../tools/cache'
-import { MESSAGES_CACHE_KEY } from '../tools/cache'
+import type { NextPage } from "../hooks/usePagination"
+import { usePagination } from "../hooks/usePagination"
+import { useAuthentication } from "../tools/authentication"
+import type { MessageWithMember } from "../models/Message"
+import type { GuildsChannelsPath } from "../components/Application"
+import type { SocketData } from "../tools/handleSocketData"
+import { handleSocketData } from "../tools/handleSocketData"
+import type { CacheKey } from "../tools/cache"
+import { MESSAGES_CACHE_KEY } from "../tools/cache"
 
 export interface Messages {
   messages: MessageWithMember[]
@@ -38,38 +38,38 @@ export const MessagesProvider: React.FC<
     hasMore,
     nextPage,
     resetPagination,
-    setItems
+    setItems,
   } = usePagination<MessageWithMember>({
     api: authentication.api,
     url: `/channels/${path.channelId}/messages`,
     inverse: true,
-    cacheKey
+    cacheKey,
   })
 
   useEffect(() => {
     authentication?.socket?.on(
-      'messages',
+      "messages",
       (data: SocketData<MessageWithMember>) => {
         if (data.item.channelId === path.channelId) {
           const messagesDiv = window.document.getElementById(
-            'messages'
+            "messages",
           ) as HTMLDivElement
           const isAtBottom =
             messagesDiv.scrollHeight - messagesDiv.scrollTop <=
             messagesDiv.clientHeight
           handleSocketData({ data, setItems, cacheKey })
           if (
-            data.action === 'create' &&
+            data.action === "create" &&
             (isAtBottom || data.item.member.userId === user.id)
           ) {
             messagesDiv.scrollTo(0, messagesDiv.scrollHeight)
           }
         }
-      }
+      },
     )
 
     return () => {
-      authentication?.socket?.off('messages')
+      authentication?.socket?.off("messages")
     }
   }, [authentication.socket, setItems, path, user.id, cacheKey])
 
@@ -77,7 +77,7 @@ export const MessagesProvider: React.FC<
     resetPagination()
     nextPage(undefined, () => {
       const messagesDiv = window.document.getElementById(
-        'messages'
+        "messages",
       ) as HTMLDivElement
       messagesDiv.scrollTo(0, messagesDiv.scrollHeight)
     })
@@ -93,7 +93,7 @@ export const MessagesProvider: React.FC<
 export const useMessages = (): Messages => {
   const messages = useContext(MessagesContext)
   if (messages === defaultMessagesContext) {
-    throw new Error('`useMessages` must be used within a `MessagesProvider`')
+    throw new Error("`useMessages` must be used within a `MessagesProvider`")
   }
   return messages
 }

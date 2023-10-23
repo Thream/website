@@ -1,26 +1,26 @@
-import { useMemo } from 'react'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import useTranslation from 'next-translate/useTranslation'
-import { useTheme } from 'next-themes'
-import axios from 'axios'
-import { useForm } from 'react-component-form'
-import type { HandleUseFormCallback } from 'react-component-form'
+import { useMemo } from "react"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import useTranslation from "next-translate/useTranslation"
+import { useTheme } from "next-themes"
+import axios from "axios"
+import { useForm } from "react-component-form"
+import type { HandleUseFormCallback } from "react-component-form"
 
-import { Main } from '../design/Main'
-import { Input } from '../design/Input'
-import { Button } from '../design/Button'
-import { FormState } from '../design/FormState'
-import { AuthenticationForm } from '.'
-import { userSchema } from '../../models/User'
-import { api } from '../../tools/api'
-import type { Tokens } from '../../tools/authentication'
-import { Authentication as AuthenticationClass } from '../../tools/authentication'
-import { AuthenticationSocialMedia } from './AuthenticationSocialMedia'
-import { useFormTranslation } from '../../hooks/useFormTranslation'
+import { Main } from "../design/Main"
+import { Input } from "../design/Input"
+import { Button } from "../design/Button"
+import { FormState } from "../design/FormState"
+import { AuthenticationForm } from "."
+import { userSchema } from "../../models/User"
+import { api } from "../../tools/api"
+import type { Tokens } from "../../tools/authentication"
+import { Authentication as AuthenticationClass } from "../../tools/authentication"
+import { AuthenticationSocialMedia } from "./AuthenticationSocialMedia"
+import { useFormTranslation } from "../../hooks/useFormTranslation"
 
 export interface AuthenticationProps {
-  mode: 'signup' | 'signin'
+  mode: "signup" | "signin"
 }
 
 export const Authentication: React.FC<AuthenticationProps> = (props) => {
@@ -32,9 +32,9 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   const schema = useMemo(() => {
     return {
-      ...(mode === 'signup' && { name: userSchema.name }),
+      ...(mode === "signup" && { name: userSchema.name }),
       email: userSchema.email,
-      password: userSchema.password
+      password: userSchema.password,
     }
   }, [mode])
 
@@ -43,55 +43,55 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
 
   const onSubmit: HandleUseFormCallback<typeof schema> = async (
     formData,
-    formElement
+    formElement,
   ) => {
-    if (mode === 'signup') {
+    if (mode === "signup") {
       try {
         await api.post(
           `/users/signup?redirectURI=${window.location.origin}/authentication/signin`,
-          { ...formData, language: lang, theme }
+          { ...formData, language: lang, theme },
         )
         formElement.reset()
         return {
-          type: 'success',
-          message: 'authentication:success-signup'
+          type: "success",
+          message: "authentication:success-signup",
         }
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 400) {
           const message = error.response.data.message as string
-          if (message.endsWith('already taken.')) {
+          if (message.endsWith("already taken.")) {
             return {
-              type: 'error',
-              message: 'authentication:already-used'
+              type: "error",
+              message: "authentication:already-used",
             }
           }
           return {
-            type: 'error',
-            message: 'errors:server-error'
+            type: "error",
+            message: "errors:server-error",
           }
         }
         return {
-          type: 'error',
-          message: 'errors:server-error'
+          type: "error",
+          message: "errors:server-error",
         }
       }
     } else {
       try {
-        const { data } = await api.post<Tokens>('/users/signin', formData)
+        const { data } = await api.post<Tokens>("/users/signin", formData)
         const authentication = new AuthenticationClass(data, true)
         authentication.signin()
-        await router.push('/application')
+        await router.push("/application")
         return null
       } catch (error) {
         if (axios.isAxiosError(error) && error.response?.status === 400) {
           return {
-            type: 'error',
-            message: 'authentication:wrong-credentials'
+            type: "error",
+            message: "authentication:wrong-credentials",
           }
         }
         return {
-          type: 'error',
-          message: 'errors:server-error'
+          type: "error",
+          message: "errors:server-error",
         }
       }
     }
@@ -100,53 +100,53 @@ export const Authentication: React.FC<AuthenticationProps> = (props) => {
   return (
     <Main>
       <AuthenticationSocialMedia />
-      <div className='pt-8 text-center font-paragraph text-lg'>
-        {t('authentication:or')}
+      <div className="pt-8 text-center font-paragraph text-lg">
+        {t("authentication:or")}
       </div>
       <AuthenticationForm onSubmit={handleUseForm(onSubmit)}>
-        {mode === 'signup' && (
+        {mode === "signup" && (
           <Input
-            type='text'
-            placeholder={t('common:name')}
-            name='name'
-            label={t('common:name')}
+            type="text"
+            placeholder={t("common:name")}
+            name="name"
+            label={t("common:name")}
             error={getFirstErrorTranslation(errors.name)}
           />
         )}
         <Input
-          type='email'
-          placeholder='Email'
-          name='email'
-          label='Email'
+          type="email"
+          placeholder="Email"
+          name="email"
+          label="Email"
           error={getFirstErrorTranslation(errors.email)}
         />
         <Input
-          type='password'
-          placeholder={t('authentication:password')}
-          name='password'
-          label={t('authentication:password')}
-          showForgotPassword={mode === 'signin'}
+          type="password"
+          placeholder={t("authentication:password")}
+          name="password"
+          label={t("authentication:password")}
+          showForgotPassword={mode === "signin"}
           error={getFirstErrorTranslation(errors.password)}
         />
-        <Button data-cy='submit' className='mt-6 w-full' type='submit'>
-          {t('authentication:submit')}
+        <Button data-cy="submit" className="mt-6 w-full" type="submit">
+          {t("authentication:submit")}
         </Button>
-        <p className='mt-3 font-headline text-sm text-green-800 hover:underline dark:text-green-400'>
+        <p className="mt-3 font-headline text-sm text-green-800 hover:underline dark:text-green-400">
           <Link
             href={
-              mode === 'signup'
-                ? '/authentication/signin'
-                : '/authentication/signup'
+              mode === "signup"
+                ? "/authentication/signin"
+                : "/authentication/signup"
             }
           >
-            {mode === 'signup'
-              ? t('authentication:already-have-an-account')
-              : t('authentication:dont-have-an-account')}
+            {mode === "signup"
+              ? t("authentication:already-have-an-account")
+              : t("authentication:dont-have-an-account")}
           </Link>
         </p>
       </AuthenticationForm>
       <FormState
-        id='message'
+        id="message"
         state={fetchState}
         message={message != null ? t(message) : undefined}
       />

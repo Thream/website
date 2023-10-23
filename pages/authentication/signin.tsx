@@ -1,12 +1,12 @@
-import type { NextPage } from 'next'
-import useTranslation from 'next-translate/useTranslation'
+import type { NextPage } from "next"
+import useTranslation from "next-translate/useTranslation"
 
-import { Head } from '../../components/Head'
-import { Authentication } from '../../components/Authentication'
-import { Header } from '../../components/Header'
-import type { FooterProps } from '../../components/Footer'
-import { Footer } from '../../components/Footer'
-import { authenticationFromServerSide } from '../../tools/authentication'
+import { Head } from "../../components/Head"
+import { Authentication } from "../../components/Authentication"
+import { Header } from "../../components/Header"
+import type { FooterProps } from "../../components/Footer"
+import { Footer } from "../../components/Footer"
+import { authenticationFromServerSide } from "../../tools/authentication"
 
 const Signin: NextPage<FooterProps> = (props) => {
   const { version } = props
@@ -14,9 +14,9 @@ const Signin: NextPage<FooterProps> = (props) => {
 
   return (
     <>
-      <Head title={`Thream | ${t('authentication:signin')}`} />
+      <Head title={`Thream | ${t("authentication:signin")}`} />
       <Header />
-      <Authentication mode='signin' />
+      <Authentication mode="signin" />
       <Footer version={version} />
     </>
   )
@@ -25,10 +25,10 @@ const Signin: NextPage<FooterProps> = (props) => {
 export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: false,
   fetchData: async () => {
-    const { readPackage } = await import('read-pkg')
+    const { readPackage } = await import("read-pkg")
     const { version } = await readPackage()
     return { version }
-  }
+  },
 })
 
 export default Signin

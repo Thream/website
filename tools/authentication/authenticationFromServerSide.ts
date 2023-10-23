@@ -1,20 +1,20 @@
-import type { AxiosInstance, AxiosResponse } from 'axios'
-import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import type { AxiosInstance, AxiosResponse } from "axios"
+import type { GetServerSideProps, GetServerSidePropsContext } from "next"
 
-import { api } from '../api'
-import { Cookies } from '../cookies'
-import type { RefreshTokenResponse, Tokens } from './index'
-import { Authentication } from './Authentication'
-import type { UserCurrent } from '../../models/User'
+import { api } from "../api"
+import { Cookies } from "../cookies"
+import type { RefreshTokenResponse, Tokens } from "./index"
+import { Authentication } from "./Authentication"
+import type { UserCurrent } from "../../models/User"
 
 export const fetchRefreshToken = async (
-  refreshToken: string
+  refreshToken: string,
 ): Promise<Tokens> => {
   const { data } = await api.post<RefreshTokenResponse>(
-    '/users/refresh-token',
+    "/users/refresh-token",
     {
-      refreshToken
-    }
+      refreshToken,
+    },
   )
   return { ...data, refreshToken }
 }
@@ -25,33 +25,33 @@ interface AuthenticationFromServerSideOptions {
   /** allows to fetch data server side with the authenticated user, the callback should returns the data that will be transfer to the component as props */
   fetchData?: (
     context: GetServerSidePropsContext,
-    api: AxiosInstance
+    api: AxiosInstance,
   ) => Promise<{ [key: string]: any }>
 }
 
 export const authenticationFromServerSide = (
-  options: AuthenticationFromServerSideOptions
+  options: AuthenticationFromServerSideOptions,
 ): GetServerSideProps => {
   const { shouldBeAuthenticated, fetchData } = options
 
   return async (context) => {
     const cookies = new Cookies(context.req.headers.cookie)
-    const refreshToken = cookies.get('refreshToken')
+    const refreshToken = cookies.get("refreshToken")
     let tokens: Tokens | null = null
     if (refreshToken != null) {
       try {
         tokens = await fetchRefreshToken(refreshToken)
       } catch {
-        cookies.remove('refreshToken')
+        cookies.remove("refreshToken")
       }
     }
     if (!shouldBeAuthenticated) {
       if (tokens != null) {
         return {
           redirect: {
-            destination: '/application',
-            permanent: false
-          }
+            destination: "/application",
+            permanent: false,
+          },
         }
       } else {
         let data: any = {}
@@ -67,9 +67,9 @@ export const authenticationFromServerSide = (
       if (tokens == null) {
         return {
           redirect: {
-            destination: '/authentication/signin',
-            permanent: false
-          }
+            destination: "/authentication/signin",
+            permanent: false,
+          },
         }
       } else {
         try {
@@ -78,7 +78,7 @@ export const authenticationFromServerSide = (
           const { data: currentUser } = await authentication.api.get<
             unknown,
             AxiosResponse<UserCurrent>
-          >('/users/current')
+          >("/users/current")
           if (fetchData != null) {
             data = await fetchData(context, authentication.api)
           }
@@ -86,11 +86,11 @@ export const authenticationFromServerSide = (
             return data
           }
           return {
-            props: { authentication: { tokens, ...currentUser }, ...data }
+            props: { authentication: { tokens, ...currentUser }, ...data },
           }
         } catch {
           return {
-            notFound: true
+            notFound: true,
           }
         }
       }

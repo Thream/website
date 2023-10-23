@@ -1,34 +1,34 @@
-import useTranslation from 'next-translate/useTranslation'
-import type { Error } from 'react-component-form'
+import useTranslation from "next-translate/useTranslation"
+import type { Error } from "react-component-form"
 
-const knownErrorKeywords = ['minLength', 'maxLength', 'format']
+const knownErrorKeywords = ["minLength", "maxLength", "format"]
 
 const getErrorTranslationKey = (error: Error): string => {
   if (knownErrorKeywords.includes(error?.keyword)) {
     if (
-      error.keyword === 'minLength' &&
-      typeof error.data === 'string' &&
+      error.keyword === "minLength" &&
+      typeof error.data === "string" &&
       error.data.length === 0
     ) {
-      return 'errors:required'
+      return "errors:required"
     }
-    if (error.keyword === 'format') {
-      if (error.params['format'] === 'email') {
-        return 'errors:invalid-email'
+    if (error.keyword === "format") {
+      if (error.params["format"] === "email") {
+        return "errors:invalid-email"
       }
-      return 'errors:invalid'
+      return "errors:invalid"
     }
     return `errors:${error.keyword}`
   }
-  return 'errors:invalid'
+  return "errors:invalid"
 }
 
 export type GetErrorTranslation = (
-  error: Error | undefined
+  error: Error | undefined,
 ) => string | undefined
 
 export type GetFirstErrorTranslation = (
-  errors: Error[] | undefined
+  errors: Error[] | undefined,
 ) => string | undefined
 
 export interface UseFormTranslationResult {
@@ -42,8 +42,8 @@ export const useFormTranslation = (): UseFormTranslationResult => {
   const getErrorTranslation: GetErrorTranslation = (error) => {
     if (error != null) {
       return t(getErrorTranslationKey(error)).replace(
-        '{expected}',
-        error?.params?.['limit']
+        "{expected}",
+        error?.params?.["limit"],
       )
     }
     return undefined

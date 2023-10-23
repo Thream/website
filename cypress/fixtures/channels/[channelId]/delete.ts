@@ -1,14 +1,14 @@
-import type { Handler } from '../../handler'
-import { channelExample, channelExample2 } from '../channel'
+import type { Handler } from "../../handler"
+import { channelExample, channelExample2 } from "../channel"
 
 export const deleteChannelWithChannelIdHandler: Handler = {
-  method: 'DELETE',
+  method: "DELETE",
   url: `/channels/${channelExample.id}`,
   response: {
     statusCode: 200,
     body: {
       ...channelExample,
-      defaultChannelId: channelExample2.id
-    }
-  }
+      defaultChannelId: channelExample2.id,
+    },
+  },
 }

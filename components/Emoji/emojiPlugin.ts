@@ -1,21 +1,21 @@
-import { visit } from 'unist-util-visit'
-import type { Plugin, Transformer } from 'unified'
-import type { Literal, Parent } from 'unist'
-import type { ElementContent } from 'hast'
-import type { EmojiSet } from 'emoji-mart'
+import { visit } from "unist-util-visit"
+import type { Plugin, Transformer } from "unified"
+import type { Literal, Parent } from "unist"
+import type { ElementContent } from "hast"
+import type { EmojiSet } from "emoji-mart"
 
-import { emojiRegex } from './isStringWithOnlyOneEmoji'
+import { emojiRegex } from "./isStringWithOnlyOneEmoji"
 
-export const EMOJI_SET: EmojiSet = 'twitter'
+export const EMOJI_SET: EmojiSet = "twitter"
 
 const extractText = (
   string: string,
   start: number,
-  end: number
+  end: number,
 ): ElementContent => {
   return {
-    type: 'text',
-    value: string.slice(start, end)
+    type: "text",
+    value: string.slice(start, end),
   }
 }
 
@@ -23,9 +23,9 @@ export const emojiPlugin: Plugin<[], Literal<string>> = () => {
   const transformer: Transformer<Literal<string>> = (tree) => {
     visit<Literal<string>, string>(
       tree,
-      'text',
+      "text",
       (node, position, parent: Parent<ElementContent> | null) => {
-        if (typeof node.value !== 'string') {
+        if (typeof node.value !== "string") {
           return
         }
         position = position ?? 0
@@ -38,15 +38,15 @@ export const emojiPlugin: Plugin<[], Literal<string>> = () => {
             definition.push(extractText(node.value, lastIndex, match.index))
           }
           definition.push({
-            type: 'element',
-            tagName: 'emoji',
+            type: "element",
+            tagName: "emoji",
             properties: { value },
-            children: []
+            children: [],
           })
           lastIndex = match.index + value.length
           if (lastIndex !== node.value.length) {
             definition.push(
-              extractText(node.value, lastIndex, node.value.length)
+              extractText(node.value, lastIndex, node.value.length),
             )
           }
           if (parent != null) {
@@ -56,7 +56,7 @@ export const emojiPlugin: Plugin<[], Literal<string>> = () => {
             parent.children = parent.children.concat(last)
           }
         }
-      }
+      },
     )
   }
   return transformer

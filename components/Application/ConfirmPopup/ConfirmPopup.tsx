@@ -1,9 +1,9 @@
-import Image from 'next/image'
-import { useState } from 'react'
-import useTranslation from 'next-translate/useTranslation'
-import classNames from 'clsx'
+import Image from "next/image"
+import { useState } from "react"
+import useTranslation from "next-translate/useTranslation"
+import classNames from "clsx"
 
-import { Loader } from '../../design/Loader'
+import { Loader } from "../../design/Loader"
 
 export interface ConfirmPopupProps {
   className?: string
@@ -27,43 +27,43 @@ export const ConfirmPopup: React.FC<ConfirmPopupProps> = ({ ...props }) => {
     <div className={props.className}>
       <Loader
         className={classNames(
-          'absolute left-1/2 top-1/2 scale-0 transition-all',
+          "absolute left-1/2 top-1/2 scale-0 transition-all",
           {
-            'scale-100': isLoading
-          }
+            "scale-100": isLoading,
+          },
         )}
       />
       <div
         className={classNames(
-          'visible flex flex-col items-center opacity-100 transition-all',
+          "visible flex flex-col items-center opacity-100 transition-all",
           {
-            'invisible opacity-0': isLoading
-          }
+            "invisible opacity-0": isLoading,
+          },
         )}
       >
         <Image
           quality={100}
-          src='/images/svg/design/join-guild.svg'
-          alt='Illustration'
+          src="/images/svg/design/join-guild.svg"
+          alt="Illustration"
           height={150}
           width={150}
         />
-        <div className='mt-8 flex flex-col'>
-          <h1 className='mb-6 text-center text-xl'>{props.title}</h1>
-          <div className='flex gap-7'>
+        <div className="mt-8 flex flex-col">
+          <h1 className="mb-6 text-center text-xl">{props.title}</h1>
+          <div className="flex gap-7">
             <button
-              className='rounded-3xl bg-success px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
+              className="rounded-3xl bg-success px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75"
               onClick={handleYesLoading}
-              data-cy='confirm-popup-yes-button'
+              data-cy="confirm-popup-yes-button"
             >
-              {t('common:yes')}
+              {t("common:yes")}
             </button>
             <button
-              className='rounded-3xl bg-error px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75'
+              className="rounded-3xl bg-error px-8 py-2 text-white transition hover:brightness-125 dark:text-black hover:dark:brightness-75"
               onClick={props.handleNo}
-              data-cy='confirm-popup-no-button'
+              data-cy="confirm-popup-no-button"
             >
-              {t('common:no')}
+              {t("common:no")}
             </button>
           </div>
         </div>

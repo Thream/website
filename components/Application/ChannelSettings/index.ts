@@ -1,1 +1,1 @@
-export * from './ChannelSettings'
+export * from "./ChannelSettings"

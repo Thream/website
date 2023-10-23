@@ -1,7 +1,7 @@
-import { getUsersCurrentHandler } from './users/current/get'
-import { postUsersRefreshTokenHandler } from './users/refresh-token/post'
+import { getUsersCurrentHandler } from "./users/current/get"
+import { postUsersRefreshTokenHandler } from "./users/refresh-token/post"
 
-export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
+export type Method = "GET" | "POST" | "PUT" | "DELETE"
 
 export interface Handler {
   method: Method
@@ -17,5 +17,5 @@ export type Handlers = Handler[]
 
 export const authenticationHandlers = [
   getUsersCurrentHandler,
-  postUsersRefreshTokenHandler
+  postUsersRefreshTokenHandler,
 ]

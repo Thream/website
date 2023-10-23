@@ -1,9 +1,9 @@
-import type { PaginationItem } from '../hooks/usePagination'
+import type { PaginationItem } from "../hooks/usePagination"
 
-export const GUILDS_CACHE_KEY = 'guilds' as const
-export const CHANNELS_CACHE_KEY = 'channels' as const
-export const MEMBERS_CACHE_KEY = 'members' as const
-export const MESSAGES_CACHE_KEY = 'messages' as const
+export const GUILDS_CACHE_KEY = "guilds" as const
+export const CHANNELS_CACHE_KEY = "channels" as const
+export const MEMBERS_CACHE_KEY = "members" as const
+export const MESSAGES_CACHE_KEY = "messages" as const
 
 export type CacheKey =
   | typeof GUILDS_CACHE_KEY
@@ -12,7 +12,7 @@ export type CacheKey =
   | `${number}-${typeof MESSAGES_CACHE_KEY}`
 
 export const getPaginationCache = <T extends PaginationItem>(
-  key: CacheKey
+  key: CacheKey,
 ): T[] => {
   const cache = sessionStorage.getItem(key)
   if (cache != null) {
@@ -28,7 +28,7 @@ export const getPaginationCache = <T extends PaginationItem>(
 
 export const savePaginationCache = <T extends PaginationItem>(
   key: CacheKey,
-  data: T[]
+  data: T[],
 ): void => {
   sessionStorage.setItem(key, JSON.stringify(data))
 }

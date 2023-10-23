@@ -1,12 +1,12 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect } from "react"
 
-import type { NextPage } from '../hooks/usePagination'
-import { usePagination } from '../hooks/usePagination'
-import { useAuthentication } from '../tools/authentication'
-import type { GuildWithDefaultChannelId } from '../models/Guild'
-import type { SocketData } from '../tools/handleSocketData'
-import { handleSocketData } from '../tools/handleSocketData'
-import { GUILDS_CACHE_KEY } from '../tools/cache'
+import type { NextPage } from "../hooks/usePagination"
+import { usePagination } from "../hooks/usePagination"
+import { useAuthentication } from "../tools/authentication"
+import type { GuildWithDefaultChannelId } from "../models/Guild"
+import type { SocketData } from "../tools/handleSocketData"
+import { handleSocketData } from "../tools/handleSocketData"
+import { GUILDS_CACHE_KEY } from "../tools/cache"
 
 export interface Guilds {
   guilds: GuildWithDefaultChannelId[]
@@ -27,23 +27,23 @@ export const GuildsProvider: React.FC<React.PropsWithChildren> = (props) => {
     hasMore,
     nextPage,
     resetPagination,
-    setItems
+    setItems,
   } = usePagination<GuildWithDefaultChannelId>({
     api: authentication.api,
-    url: '/guilds',
-    cacheKey: GUILDS_CACHE_KEY
+    url: "/guilds",
+    cacheKey: GUILDS_CACHE_KEY,
   })
 
   useEffect(() => {
     authentication?.socket?.on(
-      'guilds',
+      "guilds",
       (data: SocketData<GuildWithDefaultChannelId>) => {
         handleSocketData({ data, setItems, cacheKey: GUILDS_CACHE_KEY })
-      }
+      },
     )
 
     return () => {
-      authentication?.socket?.off('guilds')
+      authentication?.socket?.off("guilds")
     }
   }, [authentication.socket, setItems])
 
@@ -62,7 +62,7 @@ export const GuildsProvider: React.FC<React.PropsWithChildren> = (props) => {
 export const useGuilds = (): Guilds => {
   const guilds = useContext(GuildsContext)
   if (guilds === defaultGuildsContext) {
-    throw new Error('`useGuilds` must be used within `GuildsProvider`')
+    throw new Error("`useGuilds` must be used within `GuildsProvider`")
   }
   return guilds
 }

@@ -1,4 +1,4 @@
-import classNames from 'clsx'
+import classNames from "clsx"
 
 export interface MainProps {
   className?: string
@@ -10,8 +10,8 @@ export const Main: React.FC<React.PropsWithChildren<MainProps>> = (props) => {
   return (
     <main
       className={classNames(
-        'flex flex-1 flex-col items-center justify-center py-8',
-        className
+        "flex flex-1 flex-col items-center justify-center py-8",
+        className,
       )}
     >
       {children}

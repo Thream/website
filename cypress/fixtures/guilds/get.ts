@@ -1,14 +1,14 @@
-import type { Handler } from '../handler'
-import { guildExample, guildExample2 } from './guild'
+import type { Handler } from "../handler"
+import { guildExample, guildExample2 } from "./guild"
 
 export const getGuildsHandler: Handler = {
-  method: 'GET',
-  url: '/guilds',
+  method: "GET",
+  url: "/guilds",
   response: {
     statusCode: 200,
     body: [
       { ...guildExample, defaultChannelId: 1 },
-      { ...guildExample2, defaultChannelId: 2 }
-    ]
-  }
+      { ...guildExample2, defaultChannelId: 2 },
+    ],
+  },
 }

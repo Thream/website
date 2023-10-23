@@ -1,4 +1,4 @@
-import type { Handler } from '../../../handler'
+import type { Handler } from "../../../handler"
 import {
   messageExampleComplete,
   messageExampleComplete2,
@@ -8,12 +8,12 @@ import {
   messageExampleComplete6,
   messageExampleComplete7,
   messageExampleComplete8,
-  messageExampleComplete9
-} from '../../../messages/message'
-import { channelExample } from '../../channel'
+  messageExampleComplete9,
+} from "../../../messages/message"
+import { channelExample } from "../../channel"
 
 export const getMessagesWithChannelIdHandler: Handler = {
-  method: 'GET',
+  method: "GET",
   url: `/channels/${channelExample.id}/messages`,
   response: {
     statusCode: 200,
@@ -26,7 +26,7 @@ export const getMessagesWithChannelIdHandler: Handler = {
       messageExampleComplete6,
       messageExampleComplete7,
       messageExampleComplete8,
-      messageExampleComplete9
-    ]
-  }
+      messageExampleComplete9,
+    ],
+  },
 }

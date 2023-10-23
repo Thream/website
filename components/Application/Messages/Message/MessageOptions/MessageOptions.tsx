@@ -1,12 +1,12 @@
-import useTranslation from 'next-translate/useTranslation'
+import useTranslation from "next-translate/useTranslation"
 
-import { useAuthentication } from '../../../../../tools/authentication'
-import { Emoji } from '../../../../Emoji'
-import type { MessageProps } from '../Message'
+import { useAuthentication } from "../../../../../tools/authentication"
+import { Emoji } from "../../../../Emoji"
+import type { MessageProps } from "../Message"
 
 interface MessageOptionsProps extends MessageProps {
   handleEdit: () => void
-  editMode: ':white_check_mark:' | ':pencil2:'
+  editMode: ":white_check_mark:" | ":pencil2:"
 }
 
 export const MessageOptions: React.FC<
@@ -22,22 +22,22 @@ export const MessageOptions: React.FC<
   }
 
   return (
-    <div className='absolute -top-8 right-6 flex opacity-0 transition-opacity group-hover:opacity-100'>
-      {message.type === 'text' && (
+    <div className="absolute -top-8 right-6 flex opacity-0 transition-opacity group-hover:opacity-100">
+      {message.type === "text" && (
         <div
-          className='message-options rounded-l-lg border-l-slate-600'
-          title={t('application:edit')}
+          className="message-options rounded-l-lg border-l-slate-600"
+          title={t("application:edit")}
           onClick={handleEdit}
         >
           <Emoji value={editMode} size={18} />
         </div>
       )}
       <div
-        className='message-options rounded-r-lg border-r-slate-600'
-        title={t('application:delete')}
+        className="message-options rounded-r-lg border-r-slate-600"
+        title={t("application:delete")}
         onClick={handleDeleteMessage}
       >
-        <Emoji value=':wastebasket:' size={18} />
+        <Emoji value=":wastebasket:" size={18} />
       </div>
     </div>
   )

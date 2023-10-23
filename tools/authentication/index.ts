@@ -1,11 +1,11 @@
-import type { UserCurrent } from '../../models/User'
+import type { UserCurrent } from "../../models/User"
 
 export interface RefreshTokenResponse {
   accessToken: string
 
   /** how long, in milliseconds, until the accessToken expires */
   expiresIn: number
-  type: 'Bearer'
+  type: "Bearer"
 }
 
 export interface Tokens extends RefreshTokenResponse {
@@ -21,13 +21,13 @@ export interface PagePropsWithAuthentication {
 
 export const isTokens = (data: { [key: string]: any }): data is Tokens => {
   return (
-    'accessToken' in data &&
-    'refreshToken' in data &&
-    'type' in data &&
-    'expiresIn' in data
+    "accessToken" in data &&
+    "refreshToken" in data &&
+    "type" in data &&
+    "expiresIn" in data
   )
 }
 
-export * from './Authentication'
-export * from './authenticationFromServerSide'
-export * from './AuthenticationContext'
+export * from "./Authentication"
+export * from "./authenticationFromServerSide"
+export * from "./AuthenticationContext"

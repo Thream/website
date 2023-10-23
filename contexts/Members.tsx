@@ -1,15 +1,15 @@
-import { createContext, useContext, useEffect, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo } from "react"
 
-import type { NextPage } from '../hooks/usePagination'
-import { usePagination } from '../hooks/usePagination'
-import { useAuthentication } from '../tools/authentication'
-import type { MemberWithPublicUser } from '../models/Member'
-import type { GuildsChannelsPath } from '../components/Application'
-import type { SocketData } from '../tools/handleSocketData'
-import { handleSocketData } from '../tools/handleSocketData'
-import type { User } from '../models/User'
-import type { CacheKey } from '../tools/cache'
-import { MEMBERS_CACHE_KEY } from '../tools/cache'
+import type { NextPage } from "../hooks/usePagination"
+import { usePagination } from "../hooks/usePagination"
+import { useAuthentication } from "../tools/authentication"
+import type { MemberWithPublicUser } from "../models/Member"
+import type { GuildsChannelsPath } from "../components/Application"
+import type { SocketData } from "../tools/handleSocketData"
+import { handleSocketData } from "../tools/handleSocketData"
+import type { User } from "../models/User"
+import type { CacheKey } from "../tools/cache"
+import { MEMBERS_CACHE_KEY } from "../tools/cache"
 
 export interface Members {
   members: MemberWithPublicUser[]
@@ -40,26 +40,26 @@ export const MembersProviders: React.FC<
     hasMore,
     nextPage,
     resetPagination,
-    setItems
+    setItems,
   } = usePagination<MemberWithPublicUser>({
     api: authentication.api,
     url: `/guilds/${path.guildId}/members`,
-    cacheKey
+    cacheKey,
   })
 
   useEffect(() => {
     authentication?.socket?.on(
-      'members',
+      "members",
       (data: SocketData<MemberWithPublicUser>) => {
         handleSocketData({ data, setItems, cacheKey })
-      }
+      },
     )
 
-    authentication?.socket?.on('users', (data: SocketData<User>) => {
+    authentication?.socket?.on("users", (data: SocketData<User>) => {
       setItems((oldItems) => {
         const newItems = [...oldItems]
         switch (data.action) {
-          case 'update': {
+          case "update": {
             for (const member of newItems) {
               if (member.user.id === data.item.id) {
                 member.user = data.item
@@ -74,8 +74,8 @@ export const MembersProviders: React.FC<
     })
 
     return () => {
-      authentication?.socket?.off('members')
-      authentication?.socket?.off('users')
+      authentication?.socket?.off("members")
+      authentication?.socket?.off("users")
     }
   }, [authentication.socket, setItems, cacheKey])
 
@@ -94,7 +94,7 @@ export const MembersProviders: React.FC<
 export const useMembers = (): Members => {
   const members = useContext(MembersContext)
   if (members === defaultMembersContext) {
-    throw new Error('`useMembers` must be used within `MembersProvider`')
+    throw new Error("`useMembers` must be used within `MembersProvider`")
   }
   return members
 }

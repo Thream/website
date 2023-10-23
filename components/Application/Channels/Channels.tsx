@@ -1,9 +1,9 @@
-import InfiniteScroll from 'react-infinite-scroll-component'
+import InfiniteScroll from "react-infinite-scroll-component"
 
-import { useChannels } from '../../../contexts/Channels'
-import type { GuildsChannelsPath } from '../Application'
-import { Loader } from '../../design/Loader'
-import { Channel } from './Channel'
+import { useChannels } from "../../../contexts/Channels"
+import type { GuildsChannelsPath } from "../Application"
+import { Loader } from "../../design/Loader"
+import { Channel } from "./Channel"
 
 export interface ChannelsProps {
   path: GuildsChannelsPath
@@ -16,12 +16,12 @@ export const Channels: React.FC<ChannelsProps> = (props) => {
 
   return (
     <div
-      id='channels'
-      className='scrollbar-firefox-support flex flex-1 flex-col overflow-y-auto'
+      id="channels"
+      className="scrollbar-firefox-support flex flex-1 flex-col overflow-y-auto"
     >
       <InfiniteScroll
-        className='channels-list w-full'
-        scrollableTarget='channels'
+        className="channels-list w-full"
+        scrollableTarget="channels"
         dataLength={channels.length}
         next={nextPage}
         hasMore={hasMore}

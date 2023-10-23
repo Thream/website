@@ -1,22 +1,22 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next"
 
-import { Head } from '../../../../components/Head'
-import { Application } from '../../../../components/Application'
-import { Messages } from '../../../../components/Application/Messages'
-import { SendMessage } from '../../../../components/Application/SendMessage'
-import type { PagePropsWithAuthentication } from '../../../../tools/authentication'
+import { Head } from "../../../../components/Head"
+import { Application } from "../../../../components/Application"
+import { Messages } from "../../../../components/Application/Messages"
+import { SendMessage } from "../../../../components/Application/SendMessage"
+import type { PagePropsWithAuthentication } from "../../../../tools/authentication"
 import {
   authenticationFromServerSide,
-  AuthenticationProvider
-} from '../../../../tools/authentication'
-import type { GuildMember } from '../../../../contexts/GuildMember'
-import { GuildMemberProvider } from '../../../../contexts/GuildMember'
-import { GuildLeftSidebar } from '../../../../components/Application/GuildLeftSidebar'
-import { ChannelsProvider } from '../../../../contexts/Channels'
-import { GuildsProvider } from '../../../../contexts/Guilds'
-import type { Channel } from '../../../../models/Channel'
-import { MessagesProvider } from '../../../../contexts/Messages'
-import { MembersProviders } from '../../../../contexts/Members'
+  AuthenticationProvider,
+} from "../../../../tools/authentication"
+import type { GuildMember } from "../../../../contexts/GuildMember"
+import { GuildMemberProvider } from "../../../../contexts/GuildMember"
+import { GuildLeftSidebar } from "../../../../components/Application/GuildLeftSidebar"
+import { ChannelsProvider } from "../../../../contexts/Channels"
+import { GuildsProvider } from "../../../../contexts/Guilds"
+import type { Channel } from "../../../../models/Channel"
+import { MessagesProvider } from "../../../../contexts/Messages"
+import { MembersProviders } from "../../../../contexts/Members"
 
 export interface ChannelPageProps extends PagePropsWithAuthentication {
   channelId: number
@@ -31,7 +31,7 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
 
   const path = {
     channelId,
-    guildId
+    guildId,
   }
 
   return (
@@ -62,24 +62,24 @@ const ChannelPage: NextPage<ChannelPageProps> = (props) => {
 export const getServerSideProps = authenticationFromServerSide({
   shouldBeAuthenticated: true,
   fetchData: async (context, api) => {
-    const channelId = Number(context?.params?.['channelId'])
-    const guildId = Number(context?.params?.['guildId'])
+    const channelId = Number(context?.params?.["channelId"])
+    const guildId = Number(context?.params?.["guildId"])
     if (Number.isNaN(channelId) || Number.isNaN(guildId)) {
       return {
-        notFound: true
+        notFound: true,
       }
     }
     const { data: guildMember } = await api.get(`/guilds/${guildId}`)
     const { data: selectedChannelData } = await api.get(
-      `/channels/${channelId}`
+      `/channels/${channelId}`,
     )
     return {
       channelId,
       guildId,
       guildMember,
-      selectedChannel: selectedChannelData.channel
+      selectedChannel: selectedChannelData.channel,
     }
-  }
+  },
 })
 
 export default ChannelPage

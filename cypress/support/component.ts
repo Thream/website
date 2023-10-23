@@ -1,7 +1,7 @@
-import { mount } from 'cypress/react'
+import { mount } from "cypress/react"
 
-import './commands'
-import '../../styles/global.css'
+import "./commands"
+import "../../styles/global.css"
 
 declare global {
   namespace Cypress {
@@ -11,4 +11,4 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount)
+Cypress.Commands.add("mount", mount)
