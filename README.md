@@ -1,6 +1,10 @@
 <h1 align="center"><a href="https://thream.theoludwig.fr/">Thream/website</a></h1>
 
 <p align="center">
+  <strong>⚠️ This project is not maintained anymore, you can still use the code as you wish and fork it to maintain it yourself.</strong>
+</p>
+
+<p align="center">
   <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/licence-MIT-blue.svg" alt="Licence MIT"/></a>
   <a href="./CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg" alt="Contributor Covenant" /></a>
@@ -18,7 +22,7 @@
 
 Thream's website to stay close with your friends and communities.
 
-It uses [Thream/api](https://github.com/Thream/api) [v1.2.9](https://github.com/Thream/api/releases/tag/v1.2.9).
+It uses [Thream/api](https://github.com/Thream/api) [v1.2.10](https://github.com/Thream/api/releases/tag/v1.2.10).
 
 ## ⚙️ Getting Started
 
