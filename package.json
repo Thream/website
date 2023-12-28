@@ -64,9 +64,9 @@
     "universal-cookie": "6.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "18.0.0",
-    "@commitlint/config-conventional": "18.0.0",
-    "@saithodev/semantic-release-backmerge": "3.2.1",
+    "@commitlint/cli": "18.4.3",
+    "@commitlint/config-conventional": "18.4.3",
+    "@saithodev/semantic-release-backmerge": "4.0.1",
     "@semantic-release/git": "10.0.1",
     "@tsconfig/strictest": "2.0.2",
     "@types/emoji-mart": "3.0.11",
@@ -101,7 +101,7 @@
     "postcss": "8.4.31",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.6",
-    "semantic-release": "21.1.1",
+    "semantic-release": "22.0.12",
     "start-server-and-test": "2.0.1",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
